@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/reset.css" rel="stylesheet">
+    <title>欧朋</title>
+    <style>
+        header {
+            width: 960px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header .logo, header ul {
+            float: left;
+            margin: 10px 7px;
+        }
+
+        header ul li {
+            float: left;
+            line-height: 44px;
+            padding: 0 5px;
+            margin: 0 14px;
+
+        }
+
+        header ul li:hover {
+            border-bottom: 2px #cb0000 solid;
+        }
+
+        header ul li a {
+            color: #323232;
+            font-size: 16px;
+            font-family: "微软雅黑";
+        }
+
+        /*伪元素 :nth-child 获取当前第几个，而且是从1开始*/
+        header ul li:nth-child(8) {
+            margin-left: 20px;
+        }
+
+        header ul li img {
+            width: 17px;
+        }
+
+        header ul li:nth-child(9),
+        header ul li:nth-child(10),
+        header ul li:nth-child(11),
+        header ul li:nth-child(12) {
+            margin: 16px 2px;
+        }
+
+        .banner {
+            width: 1290px;
+            margin: auto;
+            position: relative;
+        }
+
+        .banner .download {
+            position: absolute;
+            bottom: 120px;
+            left: 220px;
+        }
+
+        .content {
+            width: 960px;
+            margin: auto;
+        }
+
+        .content .top {
+            color: #a6a6a6;
+            line-height: 60px;
+            margin: 0 10px;
+        }
+
+        .content .middle {
+            overflow: hidden;
+        }
+
+        .content .middle ul li {
+            float: left;
+            margin: 0 10px;
+        }
+
+        .content .middle ul li p {
+            text-align: center;
+            color: #666;
+            line-height: 30px;
+        }
+
+        .content .bottom {
+            overflow: hidden;
+        }
+
+        .content .bottom ul {
+            width: 300px;
+            float: left;
+            list-style: square inside;
+            margin: 0 10px;
+            color: #666;
+            line-height: 24px;
+        }
+
+        .content .bottom ul li span {
+            float: right;
+            color: #b3b3b3;
+        }
+
+        hr {
+            width: 960px;
+            margin: 20px auto;
+        }
+
+        .footer {
+            width: 960px;
+            margin: auto;
+        }
+
+        .footer ul li {
+            float: left;
+            margin: 0 10px;
+            color: #666;
+        }
+
+        .footer ul {
+            overflow: hidden;
+        }
+
+        .footer ul li a {
+            color: #666;
+        }
+
+        .footer p {
+            color: #666666;
+            line-height: 40px;
+            margin-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="images/opera3.gif">
+    </div>
+    <ul>
+        <li class="current"><a href="#">首页</a></li>
+        <li><a href="#">产品</a></li>
+        <li><a href="#">下载</a></li>
+        <li><a href="#">公司</a></li>
+        <li><a href="#">论坛</a></li>
+        <li><a href="#">帮助</a></li>
+        <li><a href="#">开发者</a></li>
+        <li><a href="#">手机版</a></li>
+        <li><a href="#"><img src="images/opera9.gif"></a></li>
+        <li><a href="#"><img src="images/opera18.gif"></a></li>
+        <li><a href="#"><img src="images/opera15.gif"></a></li>
+        <li><a href="#"><img src="images/opera12.gif"></a></li>
+    </ul>
+</header>
+<div class="banner">
+    <img src="images/opera31.jpg">
+    <div class="download">
+        <img src="images/opera1.gif">
+    </div>
+</div>
+<div class="content">
+    <div class="top">
+        *超过3亿月度在线用户，遍及全球217个国家和地区。
+    </div>
+    <div class="middle">
+        <ul>
+            <li>
+                <img src="images/opera34.jpg">
+                <p>精致设计 强劲性能 更快更省</p>
+            </li>
+            <li>
+                <img src="images/opera36.jpg">
+                <p>你的iPhone将更出色</p>
+            </li>
+            <li>
+                <img src="images/opera38.jpg">
+                <p>让你浏览更多</p>
+            </li>
+        </ul>
+    </div>
+    <div class="bottom">
+        <ul>
+            <li>欧朋：2013年在华用户将达2.5亿<span>07-12</span></li>
+            <li>移动浏览器竞争再添变数<span>07-12</span></li>
+            <li>欧朋CEO宋麟：数十年 更 "本土化"<span>07-12</span></li>
+        </ul>
+        <ul>
+            <li>极致简约新概念 新一代欧朋浏览器全球<span>07-12</span></li>
+            <li>你的iPhone将更出色 欧朋强势登录iOS<span>07-12</span></li>
+            <li>手机浏览器的2012之路<span>07-12</span></li>
+        </ul>
+        <ul>
+            <li>非主流的春天 欧朋浏览器塞班版7.6发<span>07-12</span></li>
+            <li>Opera欧朋中国研发中心落户中国软件<span>07-12</span></li>
+            <li>圣诞等餐无需烦躁 欧朋浏览器助你轻松<span>07-12</span></li>
+        </ul>
+    </div>
+</div>
+<hr/>
+<div class="footer">
+    <ul>
+        <li>
+            合作伙伴：
+        </li>
+        <li>
+            <a href="">久游网</a>
+        </li>
+        <li>
+            <a href="">3366小游戏</a>
+        </li>
+        <li>
+            <a href="">塔防</a>
+        </li>
+        <li>
+            <a href="">DOTA</a>
+        </li>
+        <li>
+            <a href="">LOL</a>
+        </li>
+        <li>
+            <a href="">DOTA2</a>
+        </li>
+    </ul>
+    <p>Copyright&copy;2016欧朋保留所有权<br></p>
+</div>
+</body>
+</html>

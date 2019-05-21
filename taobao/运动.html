@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多动画同时执行</title>
+    <script src="move.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            background: red;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>
+<script>
+    var div = document.getElementsByTagName('div');
+
+    for (var i = 0; i < div.length; ++i) {
+        div[i].index = i;
+        div[i].timer = null;
+        div[i].style.background = 'rgb(' + parseInt(Math.random() * 256) + ','
+                + parseInt(Math.random() * 256) + ',' + parseInt(Math.random() * 256) + ')';
+        div[i].onmouseover = function () {
+            this.style.background = 'rgb(' + parseInt(Math.random() * 256) + ','
+                    + parseInt(Math.random() * 256) + ',' + parseInt(Math.random() * 256) + ')';
+            move(this,'width',600,60);
+        };
+        div[i].onmouseout = function () {
+            this.style.background = 'rgb(' + parseInt(Math.random() * 256) + ','
+                    + parseInt(Math.random() * 256) + ',' + parseInt(Math.random() * 256) + ')';
+            move(this,'width',200,60);
+        };
+    }
+</script>

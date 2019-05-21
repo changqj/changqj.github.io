@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .father {
+            perspective: 4000px;
+
+        }
+
+        .father2 {
+            /*保留子级3d转换*/
+            transform-style: preserve-3d;
+            transition: all 2s;
+            position: relative;
+            height: 90px;
+            transform-origin: center center -45px;
+        }
+
+        .father2:hover {
+            transform: rotateX(90deg);
+        }
+
+        .top, .bottom {
+            position: absolute;
+            width: 300px;
+            height: 90px;
+            border-radius: 5px;
+            box-shadow: 0 0 0px #666;
+        }
+
+        .top {
+            background: red;
+            z-index: 1;
+            transform: translateZ(45px);
+        }
+
+        .bottom {
+            background: pink;
+            transform: rotateX(-90deg) translateZ(45px);
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="father">
+    <div class="father2">
+        <div class="top">
+
+        </div>
+        <div class="bottom">
+        </div>
+    </div>
+</div>
+</body>
+</html>

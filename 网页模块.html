@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的第一个HTML</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        ul, ol {
+            list-style: none; /*去掉列表自带的样式*/
+        }
+
+        .box {
+            width: 960px;
+            background: #eff7ff;
+            border: #92b0dd solid 1px;
+            margin: 10px auto 0;
+        }
+
+        .box1 {
+            width: 140px;
+            height: 60px;
+            background: #b2d3f5;
+            border: 1px solid #92b0dd;
+            margin: 20px 10px;
+            text-align: center;
+            line-height: 60px;
+            color: snow;
+        }
+
+        .head {
+            width: 960px;
+            background: #b2d3f5;
+            border: 1px solid #92b0dd;
+            margin: 10px auto 0;
+        }
+
+        .head ul li {
+            width: 60px;
+            background: #f0fbeb;
+            border: 1px solid #9bdf70;
+            float: right;
+            margin: 10px 10px;
+            text-align: center;
+            color: #9bdf70;
+            font-size: 12px;
+            line-height: 20px;
+        }
+
+        .main {
+            width: 960px;
+            height: 400px;
+            background: #eff7ff;
+            position: relative;
+            margin: 10px auto 0;
+            border: solid 1px #92b0dd;
+        }
+
+        .left-son {
+            width: 240px;
+            height: 400px;
+            background: #eff7ff;
+            position: absolute;
+            border-right: solid 1px #92b0dd;
+        }
+
+        .s {
+            width: 220px;
+            height: 300px;
+            background: #b2d3f5;
+            margin: 10px auto 0;
+        }
+
+        .s ul li {
+            width: 180px;
+            background: #f0fbeb;
+            border: 1px solid #9BDF70;
+            margin: 10px auto;
+            color: #9BDF70;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        .right-content {
+            width: 698px;
+            height: 183px;
+            background: #b2d3f5;
+            border: 1px solid #92b0dd;
+            margin-left: 250px;
+            margin-top: 10px;
+        }
+
+        .right-bottom {
+            width: 739px;
+            height: 195px;
+            margin-left: 220px;
+            margin-top: 10px;
+        }
+
+        .right-bottom ul li {
+            width: 218px;
+            height: 183px;
+            background: #b2d3f5;
+            border: 1px solid #92b0dd;
+            float: right;
+            margin: 0 10px;
+            text-align: center;
+            color: #9bdf70;
+            font-size: 12px;
+            line-height: 185px;
+        }
+
+        .info {
+            width: 960px;
+            background: #eff7ff;
+            margin: 10px auto 0;
+            border: solid 1px #92b0dd;
+            text-align: center;
+            line-height: 80px;
+            color: #92B0DD;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="box1">logo</div>
+</div>
+<div class="nav" style="overflow:hidden;">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>菜单</li>
+    </ul>
+</div>
+<div class="main">
+    <div class="left-son">
+        <div class="s" style="overflow:hidden;">
+            <ul>
+                <li>导航</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-content"></div>
+    <div class="right-bottom" style="overflow:hidden;">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+<div class="info">版权信息</div>
+</body>
+</html>

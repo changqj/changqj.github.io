@@ -1,0 +1,32 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif,'微软雅黑';
+    color: #666;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+a, a:hover {
+    /*去掉a标签自带的样式*/
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    border: 0;
+    vertical-align: middle;
+}
+
+input, select, textarea {
+    outline: none;
+}
+
+.clearfix {
+    clear: both;
+    zoom: 1;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3</title>
+    <style>
+        .box,.box1,.box2{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left:50% ;
+            margin-left: -100px;
+            top:50%;
+            margin-top: -100px;
+        }
+        .box {
+            background: red;
+            z-index: 1;
+            transform:rotate(45deg) skew(-15deg,-15deg);
+           /* -webkit-transform:scale(0.5) skew(15deg,15deg) rotate(45deg) translate(200px,200px);
+            -ms-transform:scale(0.5) skew(15deg,15deg) rotate(45deg) translate(200px,200px);
+            -moz-transform:scale(0.5) skew(15deg,15deg) rotate(45deg) translate(200px,200px);
+            -o-transform:scale(0.5) skew(15deg,15deg) rotate(45deg) translate(200px,200px);
+            -s-transform:scale(0.5) skew(15deg,15deg) rotate(45deg) translate(200px,200px);*/
+        }
+        .box1 {
+            background: green;
+            z-index: 1;
+            transform:rotate(15deg) skew(15deg,15deg) translate(-100px,200px);
+        }
+        .box2{
+            background: blue;
+            transform:rotate(-15deg) skew(-15deg,-15deg) translate(100px,200px);
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box1"></div>
+<div class="box2"></div>
+</body>
+</html>

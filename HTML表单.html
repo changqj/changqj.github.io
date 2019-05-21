@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>表单</title>
+</head>
+
+<body>
+<progress></progress>
+<form action="1.php" method="post">
+  <table width="600px" border="1" cellspacing="0" cellpadding="4px" align="center">
+    <caption>
+    <h2>HTML表单</h2>
+    </caption>
+    <tr>
+      <td>用户名：</td>
+      <td><input type="text" name="userName" value="" placeholder="请输入用户名"></td>
+      <td>文本框</td>
+    </tr>
+    <tr>
+      <td>密码：</td>
+      <td><input type="password" name="password" value="" placeholder="请输入密码"></td>
+      <td>密码</td>
+    </tr>
+    <tr>
+      <td>性别：</td>
+      <td>男
+        <input type="radio" name="sex">
+        女
+        <input type="radio" name="sex">
+        不详
+        <input type="radio" name="sex"></td>
+      <td>单选框</td>
+    </tr>
+    <tr>
+      <td>爱好：</td>
+      <td>男
+        <input type="checkbox" name="hobby">
+        女
+        <input type="checkbox" name="hobby">
+        不详
+        <input type="checkbox" name="hobby"></td>
+      <td>复选框</td>
+    </tr>
+    <tr>
+      <td>省份：</td>
+      <td><select name="sheng">
+          <option>==请选择==</option>
+          <option>浙江</option>
+          <option>上海</option>
+          <option>四川</option>
+        </select></td>
+      <td>下拉框</td>
+    </tr>
+    <tr>
+      <td>省份：</td>
+      <td><select name="sheng" multiple>
+          <option>==请选择==</option>
+          <option>浙江</option>
+          <option>上海</option>
+          <option>四川</option>
+        </select></td>
+      <td>多选下拉框</td>
+    </tr>
+    <tr>
+      <td>出生地：</td>
+      <td><select name="sheng" multiple>
+          <option>==请选择==</option>
+          <optgroup label="浙江">
+          <option>杭州</option>
+          <option>宁波</option>
+          <option>舟山</option>
+          </optgroup>
+        </select></td>
+      <td>编组下拉框</td>
+    </tr>
+    <tr>
+      <td>发布内容：</td>
+      <td><textarea rows="5" cols="40" placeholder="请输入不超过140个字符">
+    
+    </textarea></td>
+      <td>文本域</td>
+    </tr>
+    <tr>
+      <td>上传：</td>
+      <td><input type="file" name="file"></td>
+      <td>文件上传</td>
+    </tr>
+     <tr>
+      <td>验证码：</td>
+      <td><input type="text" name="code" maxlength="4"></td>
+      <td>XHJK</td>
+    </tr>
+    <tr>
+      <td>隐藏：</td>
+      <td><input type="hidden" name="code"></td>
+      <td>隐藏框</td>
+    </tr>
+    <tr>
+    <td colspan="3">
+    <input type="submit" value="注册">
+    <input type="reset" value="重置">
+    <input type="button" value="点我没什么卵用">
+    </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

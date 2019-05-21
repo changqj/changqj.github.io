@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab切换</title>
+    <style>
+        ul {
+            list-style: none;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        #box li {
+            width: 100px;
+            border: 1px solid red;
+            text-align: center;
+            line-height: 30px;
+            float: left;
+            cursor: pointer;
+
+        }
+
+        #box1 li {
+            width: 330px;
+            height: 100px;
+            border: 1px solid red;
+            display: none;
+        }
+
+        #box1 li:nth-child(1) {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<ul id="box">
+    <li>王德洋</li>
+    <li>张杰</li>
+    <li>常清俊</li>
+</ul>
+<ul id="box1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+</body>
+</html>
+<script>
+    var box = document.getElementById('box');
+    var Lis = box.getElementsByTagName('li');
+    var box1 = document.getElementById('box1');
+    var lis = box1.getElementsByTagName('li');
+
+    for (var i = 0; i < Lis.length; ++i) {
+        Lis[i].index = i;
+        Lis[i].onmouseover = function () {
+            for (var j = 0; j < lis.length; ++j)
+                lis[j].style.display = 'none';
+            lis[this.index].style.display = 'block';
+        }
+    }
+</script>

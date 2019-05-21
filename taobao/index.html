@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝</title>
+    <style>
+        #small_box {
+            width: 350px;
+            height: 350px;
+            position: relative;
+            float: left;
+        }
+
+        #move {
+            width: 175px;
+            height: 175px;
+            background: rgba(255, 255, 0, 0.5);
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+
+        #big_box {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #666;
+            float: left;
+            overflow: hidden;
+            display: none;
+        }
+
+        #cover {
+            width: 350px;
+            height: 350px;
+            background: rgba(0, 0, 0, 0);
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+        }
+
+    </style>
+</head>
+<body>
+<div id="small_box">
+    <img src="image/small.jpg">
+    <div id="move">
+
+    </div>
+    <div id="cover">
+
+    </div>
+</div>
+<div id="big_box">
+    <img id="big_img" src="image/big.jpg">
+</div>
+</body>
+</html>
+<script>
+    window.onload = function () {
+        //获取DOM元素
+        var small_box = document.getElementById('small_box');
+        var move = document.getElementById('move');
+        var cover = document.getElementById('cover');
+        var big_box = document.getElementById('big_box');
+        var big_img = document.getElementById('big_img');
+
+
+        //移动
+        cover.onmousemove = function (e) {
+            var bili = (big_box.offsetWidth - 2) / move.offsetWidth;
+            //兼容IE和火狐
+            var e = e || window.event;
+            //offsetX鼠标距离相对父级的横坐标
+            var left = e.offsetX - move.offsetWidth / 2;
+            var top = e.offsetY - move.offsetHeight / 2;
+            left=Math.min(Math.max(Math.max(left, 0), Math.min(left, 175), 0), 175);
+            top=Math.min(Math.max(Math.max(top, 0), Math.min(top, 175), 0), 175);
+            move.style.left = left + 'px';
+            move.style.top = top + 'px';
+            big_img.style.marginLeft = -(left * bili) + 'px';
+            big_img.style.marginTop = -(top * bili) + 'px';
+        };
+
+        small_box.onmouseover = function () {
+            move.style.display = 'block';
+            big_box.style.display = 'block';
+        };
+        small_box.onmouseout = function () {
+            move.style.display = 'none';
+            big_box.style.display = 'none';
+        };
+    }
+</script>

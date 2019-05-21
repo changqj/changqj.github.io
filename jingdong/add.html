@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            width: 30px;
+            height: 30px;
+            float: left;
+            text-align: center;
+        }
+
+        .yun {
+            float: left;
+        }
+
+        .yun p {
+            width: 15px;
+            height: 15px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 15px;
+            cursor: pointer;
+        }
+
+        .add {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="add">
+    <input type="text" value="1" id="input">
+    <div class="yun">
+        <p id="plus">+</p>
+        <p id="reduce">-</p>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var input = document.getElementById('input');
+    var plus = document.getElementById('plus');
+    var reduce = document.getElementById('reduce');
+
+    plus.onclick = function () {
+        input.value = parseInt(input.value) + 1;
+    }
+    reduce.onclick = function () {
+        input.value = parseInt(input.value) - 1;
+        if (parseInt(input.value) < 1)
+            input.value = 1;
+    }
+</script>

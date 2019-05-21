@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style: none;
+            float: left;
+            padding: 0 10px;
+            margin: 0 5px;
+            background: orange;
+            color: #666;
+            cursor: pointer;
+            position: relative;
+        }
+
+        dl {
+            width: 84px;
+            position: absolute;
+            color: #666;
+            font-size: 12px;
+            background: orange;
+            left: 0px;
+            text-align: center;
+            display: none;
+        }
+
+        ul li:hover dl {
+            display: block;
+        }
+
+        ul:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>我的淘宝
+        <dl>
+            <dd>买到的宝贝</dd>
+            <dd>我的足迹</dd>
+        </dl>
+    </li>
+    <li>宝贝
+        <dl>
+            <dd>买到的宝贝</dd>
+            <dd>我的足迹</dd>
+        </dl>
+    </li>
+</ul>
+<div style="width: 600px;height: 300px;background: red"></div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片移动 - 副本</title>
+    <script src="js/move.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .box {
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .box ul li {
+            float: left;
+        }
+
+        .box .img_box {
+            height: 400px;
+            position: relative;
+            left: 0;
+        }
+
+        .box .prev, .box .next {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            opacity: 0.5; /*透明度*/
+            filter: alpha(opacity=50); /*IE透明度*/
+            cursor: pointer;
+        }
+
+        .box .prev {
+            left: 20px;
+        }
+
+        .box .next {
+            right: 20px;
+        }
+
+        .box .btn_box {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            margin-left: -75px;
+        }
+
+        .box .btn_box li {
+            cursor: pointer;
+            width: 20px;
+            line-height: 20px;
+            background-color: #333;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        .box .btn_box li.current {
+            background: #b61b1f;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <ul class="img_box" id="img_box">
+        <li><img src="images/1.jpg"></li>
+        <li><img src="images/2.jpg"></li>
+        <li><img src="images/3.jpg"></li>
+        <li><img src="images/4.jpg"></li>
+        <li><img src="images/5.jpg"></li>
+    </ul>
+    <ul class="btn_box" id="btn_box">
+        <li class="current">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <div class="prev" id="prev">
+        <img src="images/templatemo_slider_left.png">
+    </div>
+    <div class="next" id="next">
+        <img src="images/templatemo_slider_right.png">
+    </div>
+</div>
+</body>
+</html>
+<script>
+    window.onload = function () {
+        var next = document.getElementById('next');
+        var prev = document.getElementById('prev');
+        var img_box = document.getElementById('img_box');
+        var btn_box = document.getElementById('btn_box');
+        var n = 0;
+        var timer = null;
+        var big_box = document.getElementById('box');
+
+        //获取5个小按钮
+        var btns = btn_box.getElementsByTagName('li');
+        img_box.style.width = btns.length * 600 + 'px';
+        //点击切换class
+        for (var i = 0; i < btns.length; ++i) {
+            btns[i].index = i;
+            btns[i].onclick = function () {
+                n=this.index;
+                for (var j = 0; j < btns.length; ++j) {
+                    btns[j].className = '';
+                }
+                //className:修改/获取class
+                this.className = 'current';
+                move(img_box, {left: -600 * this.index}, 60, 5);
+            }
+        }
+
+        next.onclick = function () {
+            if (n < 4 && n > -1) {
+                n++;
+            } else {
+                n = 0;
+            }
+            for (var j = 0; j < btns.length; ++j) {
+                btns[j].className = '';
+            }
+            //className:修改/获取class
+            btns[n].className = 'current';
+            move(img_box, {left: -600 * n}, 60, 5);
+        };
+
+        prev.onclick = function () {
+            if (n < 5 && n > 0) {
+                n--;
+            } else {
+                n = 4;
+            }
+            for (var j = 0; j < btns.length; ++j) {
+                btns[j].className = '';
+            }
+            //className:修改/获取class
+            btns[n].className = 'current';
+            move(img_box, {left: -600 * n}, 60, 5);
+        };
+        prev.onmouseover = function () {
+            prev.style.opacity = 1;
+            prev.style.filter = 'alpha(opacity=' + 100 + ')';
+        };
+        next.onmouseover = function () {
+            next.style.opacity = 1;
+            next.style.filter = 'alpha(opacity=' + 100 + ')';
+        };
+        prev.onmouseout = function () {
+            prev.style.opacity = 0.5;
+            prev.style.filter = 'alpha(opacity=' + 50 + ')';
+        };
+        next.onmouseout = function () {
+            next.style.opacity = 0.5;
+            next.style.filter = 'alpha(opacity=' + 50 + ')';
+        };
+
+        //定义一个定时器
+        function gun() {
+            if (n < 4 && n > -1) {
+                n++;
+            } else {
+                n = 0;
+            }
+            for (var j = 0; j < btns.length; ++j) {
+                btns[j].className = '';
+            }
+            //className:修改/获取class
+            btns[n].className = 'current';
+            move(img_box, {left: -600 * n}, 60, 5);
+        }
+        timer=setInterval(gun,2000);
+        big_box.onmouseover=function () {
+            clearInterval(timer);
+        };
+        big_box.onmouseout=function () {
+            timer=setInterval(gun,2000);
+        };
+    }
+</script>

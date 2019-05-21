@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #top {
+            width: 280px;
+            height: 80px;
+            border: solid 4px red;
+            margin: 20px;
+            position: relative;
+        }
+
+        #content {
+            width: 800px;
+            height: 300px;
+            border: solid 4px red;
+            position: absolute;
+            left: -4px;
+            top: 80px;
+            display: none;
+        }
+
+        #fuzhu {
+            width: 280px;
+            height: 4px;
+            background: white;
+            position: absolute;
+            left: 0px;
+            top: 80px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+    <div id="fuzhu"></div>
+    <div id="content"></div>
+</div>
+
+</body>
+</html>
+<script>
+    var top = document.getElementById('top');
+    var content = document.getElementById('content');
+
+    top.onmouseover=function () {
+        content.style.display='block';
+    }
+    top.onmouseout=function () {
+        content.style.display='none';
+    }
+</script>

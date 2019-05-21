@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #nav {
+            width: 100px;
+            height: 40px;
+            position: relative;
+        }
+
+        #content {
+            width: 400px;
+            height: 200px;
+            border: 4px solid red;
+            position: absolute;
+            top: 40px;
+            left: 0px;
+        }
+
+        #nav1 {
+            width: 100px;
+            height: 40px;
+            border: 4px solid red;
+            position: relative;
+            border-bottom: 0px;
+            background-color: #fff;
+            z-index: 1;
+        }
+
+    </style>
+</head>
+<body>
+<div id="nav">
+    <div id="nav1"></div>
+    <div id="content">
+
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var nav1 = document.getElementById('nav1');
+    var nav = document.getElementById('nav');
+    var content = document.getElementById('content');
+
+    nav1.onmouseover = function () {
+        content.style.display = 'block';
+    }
+
+    nav.onmouseout = function () {
+        content.style.display = 'none';
+    }
+</script>

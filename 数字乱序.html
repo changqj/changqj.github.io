@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数字乱序</title>
+    <style>
+        #arr {
+            font-size: 30px;
+            text-align: center;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="arr">
+    [一,二,三,四,五,六,七,八,九,十,〇]
+</div>
+<center>
+    <button id="start">开始</button>
+    <button id="stop">停止</button>
+</center>
+</body>
+</html>
+<script>
+    var timer = null;
+    var flag = true;
+    var nameArr = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '〇'];
+    var arrDiv = document.getElementById('arr');
+    var start = document.getElementById('start');
+    var stop = document.getElementById('stop');
+    start.onclick = function () {
+        if (flag) {
+            timer = setInterval(function () {
+                var n = parseInt(Math.random() * (nameArr.length));
+                var m = parseInt(Math.random() * (nameArr.length));
+                move(n, m);
+                console.log('n=' + n + ';m=' + m);
+                arrDiv.innerHTML = '[' + nameArr + ']';
+            }, 10);
+        }
+        flag = false;
+    };
+
+    stop.onclick = function () {
+        clearInterval(timer);
+        flag = true;
+    };
+    //将下标为n的元素置于第m位
+    function move(n, m) {
+        var temp = nameArr[n];
+        if (n > m) {
+            for (var i = n; i > m;)
+                nameArr[i] = nameArr[--i];
+        }
+        else {
+            for (var i = n; i < m;)
+                nameArr[i] = nameArr[++i];
+        }
+        nameArr[m] = temp;
+    }
+</script>

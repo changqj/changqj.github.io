@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .father {
+            perspective: 4000px;
+
+        }
+
+        .father2 {
+            /*保留子级3d转换*/
+            transform-style: preserve-3d;
+            transition: all 6s linear;
+            position: relative;
+            height: 300px;
+            width: 300px;
+        }
+
+        .father2:hover {
+            transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+        }
+
+        .face, .behind, .top, .bottom, .left, .right {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 5px;
+            box-shadow: 0 0 0px #666;
+        }
+
+        .face {
+            background: red;
+            transform: translateZ(150px);
+        }
+
+        .behind {
+            background: green;
+            transform: translateZ(-150px);
+        }
+
+        .top {
+            background: blue;
+            transform: rotateX(90deg) translateZ(150px);
+        }
+
+        .bottom {
+            background: yellow;
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+
+        .left {
+            background: pink;
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+
+        .right {
+            background: blueviolet;
+            transform: rotateY(90deg) translateZ(150px);
+        }
+
+    </style>
+</head>
+<body>
+<div class="father">
+    <div class="father2">
+        <div class="face">
+        </div>
+        <div class="top">
+        </div>
+        <div class="bottom">
+        </div>
+        <div class="behind">
+        </div>
+        <div class="left">
+        </div>
+        <div class="right">
+        </div>
+    </div>
+</div>
+</body>
+</html>
