@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><h3 id="左键选择点，右键或中间结束"><a href="#左键选择点，右键或中间结束" class="headerlink" title="左键选择点，右键或中间结束"></a>左键选择点，右键或中间结束</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear</span><br><span class="line">close all</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">axis([<span class="number">-5</span>,<span class="number">5</span>,<span class="number">-5</span>,<span class="number">5</span>]);</span><br><span class="line">grid on;</span><br><span class="line">title(<span class="string">&#x27;Bezier曲线拟合&#x27;</span>);</span><br><span class="line">questdlg(<span class="string">&#x27;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#x27;</span>,<span class="string">&#x27;操作&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p><img data-src="http://img.ifish.ink/figure/main_01.png"></p>
+<h3 id="从鼠标获取数据点"><a href="#从鼠标获取数据点" class="headerlink" title="从鼠标获取数据点"></a>从鼠标获取数据点</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="built_in">i</span> = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span></span><br><span class="line">    <span class="built_in">i</span> = <span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line">    tip = [<span class="string">&#x27;请选择第&#x27;</span>,num2str(<span class="built_in">i</span>),<span class="string">&#x27;个数据点&#x27;</span>];</span><br><span class="line">    xlabel(tip);</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    [x,y,button] = ginput(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">catch</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">hold</span> on ,<span class="built_in">plot</span>(x,y,<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">    dataPoints(:,<span class="built_in">i</span>) = [x;y];</span><br><span class="line">    h1 = <span class="built_in">plot</span>(dataPoints(<span class="number">1</span>,:),dataPoints(<span class="number">2</span>,:),<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> button ~= <span class="number">1</span></span><br><span class="line">        xlabel(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">1</span></span><br><span class="line">    newData(:,int32(<span class="built_in">i</span>*<span class="number">100</span>)+<span class="number">1</span>) = cqj_GetBezier3Point(dataPoints,<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">h2 = <span class="built_in">plot</span>(newData(<span class="number">1</span>,:),newData(<span class="number">2</span>,:),<span class="string">&#x27;.-r&#x27;</span>);</span><br><span class="line"><span class="built_in">legend</span>([h1,h2],<span class="string">&#x27;原始点&#x27;</span>,<span class="string">&#x27;3次Bezier曲线&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="http://img.ifish.ink/figure/main_02.png"></p>
+<h3 id="得到曲线参数为u的数据点"><a href="#得到曲线参数为u的数据点" class="headerlink" title="得到曲线参数为u的数据点"></a>得到曲线参数为u的数据点</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ data ]</span> = <span class="title">cqj_GetBezier3Point</span><span class="params">(dataPoints,u)</span></span></span><br><span class="line"><span class="comment">% 得到曲线参数为u的数据点</span></span><br><span class="line"><span class="comment">% dataPoints：初始点 2xn</span></span><br><span class="line">data = dataPoints;</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">size</span>(data,<span class="number">2</span>) == <span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    temp = <span class="built_in">zeros</span>(<span class="built_in">size</span>(data,<span class="number">1</span>),<span class="built_in">size</span>(data,<span class="number">2</span>)<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">size</span>(data,<span class="number">2</span>)<span class="number">-1</span></span><br><span class="line">        temp(:,<span class="built_in">i</span>) = (<span class="number">1</span>-u)*data(:,<span class="built_in">i</span>)+u*data(:,<span class="built_in">i</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    data = temp;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="http://img.ifish.ink/figure/main_03.png"></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>原创</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -69,49 +97,40 @@
       </tags>
   </entry>
   <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
+    <title>OpenSubdiv + Visual Studio环境配置</title>
+    <url>/post/a507e481.html</url>
     <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
 </blockquote>
-<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><h3 id="左键选择点，右键或中间结束"><a href="#左键选择点，右键或中间结束" class="headerlink" title="左键选择点，右键或中间结束"></a>左键选择点，右键或中间结束</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear</span><br><span class="line">close all</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">axis([<span class="number">-5</span>,<span class="number">5</span>,<span class="number">-5</span>,<span class="number">5</span>]);</span><br><span class="line">grid on;</span><br><span class="line">title(<span class="string">&#x27;Bezier曲线拟合&#x27;</span>);</span><br><span class="line">questdlg(<span class="string">&#x27;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#x27;</span>,<span class="string">&#x27;操作&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
+<blockquote>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 <strong>qingjun_<a href="mailto:&#x63;&#x68;&#97;&#110;&#103;&#64;&#49;&#54;&#x33;&#46;&#x63;&#111;&#109;">&#x63;&#x68;&#97;&#110;&#103;&#64;&#49;&#54;&#x33;&#46;&#x63;&#111;&#109;</a></strong>。转载请注明出处：<a href="https://ifish.ink/">https://ifish.ink</a> ） （先前条件：<strong>win7系统</strong> 已安装**<a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https://www.baidu.com/link?url=ONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq&wd=&eqid=d2d58bc800015f450000000659ddca4f">Visual Studio</a>**环境，相关文件在附件）</p>
+</blockquote>
 <span id="more"></span>
-
-<p><img data-src="http://img.ifish.ink/figure/main_01.png"></p>
-<h3 id="从鼠标获取数据点"><a href="#从鼠标获取数据点" class="headerlink" title="从鼠标获取数据点"></a>从鼠标获取数据点</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="built_in">i</span> = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span></span><br><span class="line">    <span class="built_in">i</span> = <span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line">    tip = [<span class="string">&#x27;请选择第&#x27;</span>,num2str(<span class="built_in">i</span>),<span class="string">&#x27;个数据点&#x27;</span>];</span><br><span class="line">    xlabel(tip);</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    [x,y,button] = ginput(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">catch</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">hold</span> on ,<span class="built_in">plot</span>(x,y,<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">    dataPoints(:,<span class="built_in">i</span>) = [x;y];</span><br><span class="line">    h1 = <span class="built_in">plot</span>(dataPoints(<span class="number">1</span>,:),dataPoints(<span class="number">2</span>,:),<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> button ~= <span class="number">1</span></span><br><span class="line">        xlabel(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">1</span></span><br><span class="line">    newData(:,int32(<span class="built_in">i</span>*<span class="number">100</span>)+<span class="number">1</span>) = cqj_GetBezier3Point(dataPoints,<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">h2 = <span class="built_in">plot</span>(newData(<span class="number">1</span>,:),newData(<span class="number">2</span>,:),<span class="string">&#x27;.-r&#x27;</span>);</span><br><span class="line"><span class="built_in">legend</span>([h1,h2],<span class="string">&#x27;原始点&#x27;</span>,<span class="string">&#x27;3次Bezier曲线&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="http://img.ifish.ink/figure/main_02.png"></p>
-<h3 id="得到曲线参数为u的数据点"><a href="#得到曲线参数为u的数据点" class="headerlink" title="得到曲线参数为u的数据点"></a>得到曲线参数为u的数据点</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ data ]</span> = <span class="title">cqj_GetBezier3Point</span><span class="params">(dataPoints,u)</span></span></span><br><span class="line"><span class="comment">% 得到曲线参数为u的数据点</span></span><br><span class="line"><span class="comment">% dataPoints：初始点 2xn</span></span><br><span class="line">data = dataPoints;</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">size</span>(data,<span class="number">2</span>) == <span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    temp = <span class="built_in">zeros</span>(<span class="built_in">size</span>(data,<span class="number">1</span>),<span class="built_in">size</span>(data,<span class="number">2</span>)<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">size</span>(data,<span class="number">2</span>)<span class="number">-1</span></span><br><span class="line">        temp(:,<span class="built_in">i</span>) = (<span class="number">1</span>-u)*data(:,<span class="built_in">i</span>)+u*data(:,<span class="built_in">i</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    data = temp;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="http://img.ifish.ink/figure/main_03.png"></p>
 <hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>原创</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <url>/post/563c2d.html</url>
-    <content><![CDATA[<blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现 <strong>Briefly unavailable for scheduled maintenance. Check back in a minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
-</blockquote>
-<p><img data-src="http://img.ifish.ink/img/20190703103139.png" alt="Briefly unavailable for scheduled maintenance. Check back in a minute." title="Briefly unavailable for scheduled maintenance. Check back in a minute."></p>
-<h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly unavailable for scheduled maintenance. Check back in a minute.”</p>
-<span id="more"></span>
-
-<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong> 的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em> 即可</p>
+<h2 id="1-下载所需要的资源"><a href="#1-下载所需要的资源" class="headerlink" title="1.下载所需要的资源"></a>1.下载所需要的资源</h2><p> 需要的资源文件有<a href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。 ​  <strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:&#x2F;..&#x2F;OpenSubdiv-master&#x2F;该目录内容如下图所示（git方式获取的可能有细微差异） <img data-src="http://img.ifish.ink/figure/1.png" alt="fig1"> ​  <strong>cmake的安装</strong>：可直接从<a href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。 <img data-src="http://img.ifish.ink/figure/2.png" alt="fig2"></p>
 <ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除 <strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong> 文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为 _.maintenance_，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到 <strong>.maintenance</strong> 文件，然后删除即可。</li>
+<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p>
+</li>
+<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p>
+</li>
+<li><p>添加环境变量，选中“_Add CMake to the system PATH for the all user_”,点击“_Next_”按钮。（也可以选择添加到当前用户“_Add CMake to the system PATH for the current user_”）</p>
+</li>
+<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a href="http://glew.sourceforge.net/">http://glew.sourceforge.net</a> 如图所示可以下载二进制文件，或者用git克隆也可。</p>
+</li>
 </ul>
-<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
+<p><img data-src="http://img.ifish.ink/figure/2.png" alt="fig3"> <img data-src="http://img.ifish.ink/figure/4.png" alt="fig4"> ​ <strong>glfw</strong>：GLfW ：<a href="http://www.glfw.org/">http://www.glfw.org/</a> 如图所示可以下载压缩文件，或者用git克隆也可。 <img data-src="http://img.ifish.ink/figure/5.png" alt="fig5"> <img data-src="http://img.ifish.ink/figure/6.png" alt="fig6"></p>
+<hr>
+<h2 id="2-Cmake编译glfw"><a href="#2-Cmake编译glfw" class="headerlink" title="2.Cmake编译glfw"></a>2.Cmake编译glfw</h2><h4 id="a-打开Cmake-GUI选择源代码目录和构建路径："><a href="#a-打开Cmake-GUI选择源代码目录和构建路径：" class="headerlink" title="a.打开Cmake GUI选择源代码目录和构建路径："></a>a.打开Cmake GUI选择源代码目录和构建路径：</h4><p><img data-src="http://img.ifish.ink/figure/7.png" alt="fig7"> <img data-src="http://img.ifish.ink/figure/8.png" alt="fig8"></p>
+<h4 id="b-单击Configure，选择“是”，并根据自己VS版本选择"><a href="#b-单击Configure，选择“是”，并根据自己VS版本选择" class="headerlink" title="b.单击Configure，选择“是”，并根据自己VS版本选择"></a>b.单击Configure，选择“是”，并根据自己VS版本选择</h4><p><img data-src="http://img.ifish.ink/figure/9.png" alt="fig9"> <img data-src="http://img.ifish.ink/figure/10.png" alt="fig10"></p>
+<h4 id="c-单击Finish，出现红色后再次点击Configure，出现‘Configuring-done’即可"><a href="#c-单击Finish，出现红色后再次点击Configure，出现‘Configuring-done’即可" class="headerlink" title="c.单击Finish，出现红色后再次点击Configure，出现‘Configuring done’即可"></a>c.单击Finish，出现红色后再次点击Configure，出现‘Configuring done’即可</h4><p><img data-src="http://img.ifish.ink/figure/11.png" alt="fig11"> <img data-src="http://img.ifish.ink/figure/12.png" alt="fig12"></p>
+<h4 id="d-单击Generate，出现Generating-done完成"><a href="#d-单击Generate，出现Generating-done完成" class="headerlink" title="d.单击Generate，出现Generating done完成"></a>d.单击Generate，出现Generating done完成</h4><p><img data-src="http://img.ifish.ink/figure/13.png" alt="fig13"></p>
+<hr>
+<h2 id="3-Cmake编译OpenSubdiv"><a href="#3-Cmake编译OpenSubdiv" class="headerlink" title="3.Cmake编译OpenSubdiv"></a>3.Cmake编译OpenSubdiv</h2><p> Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;d:/Cmake3.8.0/bin/cmake.exe&quot;</span> -G <span class="string">&quot;Visual Studio 14 Win64&quot;</span> -DGLEW_LOCATION=[d:/glew/lib/Release/x64] -DGLEW_INCLUDE_DIR=[d:\glew\include\] -DGLEW_LIBRARY=[d:\glew\lib\] -DGLFW_LOCATION=[d:/glfw/bd/src/Release] <span class="attribute">-DNO_PTEX</span>=1 <span class="attribute">-DNO_DOC</span>=1 <span class="attribute">-DNO_OMP</span>=1 <span class="attribute">-DNO_TBB</span>=1 <span class="attribute">-DNO_CUDA</span>=1 <span class="attribute">-DNO_OPENCL</span>=1 <span class="attribute">-DNO_CLEW</span>=1</span><br></pre></td></tr></table></figure>
+
+<p>NO_PTEX&#x3D;1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。 <img data-src="http://img.ifish.ink/figure/14.png" alt="fig14"> 按下回车键： <img data-src="http://img.ifish.ink/figure/15.png" alt="fig15"> 完成！！！</p>
+<hr>
+<h2 id="4-VS下编译OpenSubdiv"><a href="#4-VS下编译OpenSubdiv" class="headerlink" title="4.VS下编译OpenSubdiv"></a>4.VS下编译OpenSubdiv</h2><p> 完成上述操作后，你会看见你的..&#x2F;OpenSubdiv-master&#x2F;目录下会有一个OpenSubdiv.sln的解决方案，用Visual Studio打开此文件 <img data-src="http://img.ifish.ink/figure/16.png" alt="fig16"> 点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img data-src="http://img.ifish.ink/figure/17.png" alt="fig17"> 生成过程需要一点时间，请耐心等待…… <img data-src="http://img.ifish.ink/figure/18.png" alt="fig18"> 生成成功 <img data-src="http://img.ifish.ink/figure/19.png" alt="fig19"> 测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行 <img data-src="http://img.ifish.ink/figure/20.png" alt="fig20"> 运行后如图所示： <img data-src="http://img.ifish.ink/figure/21.png" alt="fig21"> 其余例子也可同理运行。 谢谢阅读！！！</p>
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
@@ -120,7 +139,7 @@
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>wordpress</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -190,9 +209,36 @@
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>wordpress</tag>
         <tag>SEO</tag>
         <tag>sitemap</tag>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <url>/post/563c2d.html</url>
+    <content><![CDATA[<blockquote>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现 <strong>Briefly unavailable for scheduled maintenance. Check back in a minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+</blockquote>
+<p><img data-src="http://img.ifish.ink/img/20190703103139.png" alt="Briefly unavailable for scheduled maintenance. Check back in a minute." title="Briefly unavailable for scheduled maintenance. Check back in a minute."></p>
+<h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly unavailable for scheduled maintenance. Check back in a minute.”</p>
+<span id="more"></span>
+
+<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong> 的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em> 即可</p>
+<ul>
+<li>用FTP或者从终端进入WordPress的根目录下，删除 <strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong> 文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为 _.maintenance_，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到 <strong>.maintenance</strong> 文件，然后删除即可。</li>
+</ul>
+<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>wordpress</tag>
       </tags>
   </entry>
   <entry>
@@ -214,58 +260,12 @@
 ]]></content>
   </entry>
   <entry>
-    <title>OpenSubdiv + Visual Studio环境配置</title>
-    <url>/post/a507e481.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
-</blockquote>
-<blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 <strong>qingjun_<a href="mailto:&#99;&#x68;&#x61;&#x6e;&#103;&#x40;&#49;&#54;&#51;&#46;&#99;&#x6f;&#109;">&#99;&#x68;&#x61;&#x6e;&#103;&#x40;&#49;&#54;&#51;&#46;&#99;&#x6f;&#109;</a></strong>。转载请注明出处：<a href="https://ifish.ink/">https://ifish.ink</a> ） （先前条件：<strong>win7系统</strong> 已安装**<a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https://www.baidu.com/link?url=ONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq&wd=&eqid=d2d58bc800015f450000000659ddca4f">Visual Studio</a>**环境，相关文件在附件）</p>
-</blockquote>
-<span id="more"></span>
-<hr>
-<h2 id="1-下载所需要的资源"><a href="#1-下载所需要的资源" class="headerlink" title="1.下载所需要的资源"></a>1.下载所需要的资源</h2><p> 需要的资源文件有<a href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。 ​  <strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:&#x2F;..&#x2F;OpenSubdiv-master&#x2F;该目录内容如下图所示（git方式获取的可能有细微差异） <img data-src="http://img.ifish.ink/figure/1.png" alt="fig1"> ​  <strong>cmake的安装</strong>：可直接从<a href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。 <img data-src="http://img.ifish.ink/figure/2.png" alt="fig2"></p>
-<ul>
-<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p>
-</li>
-<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p>
-</li>
-<li><p>添加环境变量，选中“_Add CMake to the system PATH for the all user_”,点击“_Next_”按钮。（也可以选择添加到当前用户“_Add CMake to the system PATH for the current user_”）</p>
-</li>
-<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a href="http://glew.sourceforge.net/">http://glew.sourceforge.net</a> 如图所示可以下载二进制文件，或者用git克隆也可。</p>
-</li>
-</ul>
-<p><img data-src="http://img.ifish.ink/figure/2.png" alt="fig3"> <img data-src="http://img.ifish.ink/figure/4.png" alt="fig4"> ​ <strong>glfw</strong>：GLfW ：<a href="http://www.glfw.org/">http://www.glfw.org/</a> 如图所示可以下载压缩文件，或者用git克隆也可。 <img data-src="http://img.ifish.ink/figure/5.png" alt="fig5"> <img data-src="http://img.ifish.ink/figure/6.png" alt="fig6"></p>
-<hr>
-<h2 id="2-Cmake编译glfw"><a href="#2-Cmake编译glfw" class="headerlink" title="2.Cmake编译glfw"></a>2.Cmake编译glfw</h2><h4 id="a-打开Cmake-GUI选择源代码目录和构建路径："><a href="#a-打开Cmake-GUI选择源代码目录和构建路径：" class="headerlink" title="a.打开Cmake GUI选择源代码目录和构建路径："></a>a.打开Cmake GUI选择源代码目录和构建路径：</h4><p><img data-src="http://img.ifish.ink/figure/7.png" alt="fig7"> <img data-src="http://img.ifish.ink/figure/8.png" alt="fig8"></p>
-<h4 id="b-单击Configure，选择“是”，并根据自己VS版本选择"><a href="#b-单击Configure，选择“是”，并根据自己VS版本选择" class="headerlink" title="b.单击Configure，选择“是”，并根据自己VS版本选择"></a>b.单击Configure，选择“是”，并根据自己VS版本选择</h4><p><img data-src="http://img.ifish.ink/figure/9.png" alt="fig9"> <img data-src="http://img.ifish.ink/figure/10.png" alt="fig10"></p>
-<h4 id="c-单击Finish，出现红色后再次点击Configure，出现‘Configuring-done’即可"><a href="#c-单击Finish，出现红色后再次点击Configure，出现‘Configuring-done’即可" class="headerlink" title="c.单击Finish，出现红色后再次点击Configure，出现‘Configuring done’即可"></a>c.单击Finish，出现红色后再次点击Configure，出现‘Configuring done’即可</h4><p><img data-src="http://img.ifish.ink/figure/11.png" alt="fig11"> <img data-src="http://img.ifish.ink/figure/12.png" alt="fig12"></p>
-<h4 id="d-单击Generate，出现Generating-done完成"><a href="#d-单击Generate，出现Generating-done完成" class="headerlink" title="d.单击Generate，出现Generating done完成"></a>d.单击Generate，出现Generating done完成</h4><p><img data-src="http://img.ifish.ink/figure/13.png" alt="fig13"></p>
-<hr>
-<h2 id="3-Cmake编译OpenSubdiv"><a href="#3-Cmake编译OpenSubdiv" class="headerlink" title="3.Cmake编译OpenSubdiv"></a>3.Cmake编译OpenSubdiv</h2><p> Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;d:/Cmake3.8.0/bin/cmake.exe&quot;</span> -G <span class="string">&quot;Visual Studio 14 Win64&quot;</span> -DGLEW_LOCATION=[d:/glew/lib/Release/x64] -DGLEW_INCLUDE_DIR=[d:\glew\include\] -DGLEW_LIBRARY=[d:\glew\lib\] -DGLFW_LOCATION=[d:/glfw/bd/src/Release] <span class="attribute">-DNO_PTEX</span>=1 <span class="attribute">-DNO_DOC</span>=1 <span class="attribute">-DNO_OMP</span>=1 <span class="attribute">-DNO_TBB</span>=1 <span class="attribute">-DNO_CUDA</span>=1 <span class="attribute">-DNO_OPENCL</span>=1 <span class="attribute">-DNO_CLEW</span>=1</span><br></pre></td></tr></table></figure>
-
-<p>NO_PTEX&#x3D;1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。 <img data-src="http://img.ifish.ink/figure/14.png" alt="fig14"> 按下回车键： <img data-src="http://img.ifish.ink/figure/15.png" alt="fig15"> 完成！！！</p>
-<hr>
-<h2 id="4-VS下编译OpenSubdiv"><a href="#4-VS下编译OpenSubdiv" class="headerlink" title="4.VS下编译OpenSubdiv"></a>4.VS下编译OpenSubdiv</h2><p> 完成上述操作后，你会看见你的..&#x2F;OpenSubdiv-master&#x2F;目录下会有一个OpenSubdiv.sln的解决方案，用Visual Studio打开此文件 <img data-src="http://img.ifish.ink/figure/16.png" alt="fig16"> 点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img data-src="http://img.ifish.ink/figure/17.png" alt="fig17"> 生成过程需要一点时间，请耐心等待…… <img data-src="http://img.ifish.ink/figure/18.png" alt="fig18"> 生成成功 <img data-src="http://img.ifish.ink/figure/19.png" alt="fig19"> 测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行 <img data-src="http://img.ifish.ink/figure/20.png" alt="fig20"> 运行后如图所示： <img data-src="http://img.ifish.ink/figure/21.png" alt="fig21"> 其余例子也可同理运行。 谢谢阅读！！！</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>环境配置</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TexLive2017+TexStudio in Windows</title>
     <url>/post/c4cb1247.html</url>
     <content><![CDATA[<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建</p>
 <span id="more"></span>
 
-<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱： <a href="mailto:&#x71;&#x69;&#110;&#x67;&#x6a;&#117;&#x6e;&#46;&#x63;&#x6e;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#x71;&#x69;&#110;&#x67;&#x6a;&#117;&#x6e;&#46;&#x63;&#x6e;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a></p>
+<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱： <a href="mailto:&#x71;&#x69;&#110;&#103;&#x6a;&#x75;&#110;&#x2e;&#x63;&#x6e;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x71;&#x69;&#110;&#103;&#x6a;&#x75;&#110;&#x2e;&#x63;&#x6e;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a></p>
 <hr>
 <p>百度云资源下载：<a href="https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag">链接：https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag 提取码：uyed</a> 清华镜像下载：<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">texlive下载</a> 视频源：<a href="https://www.youtube.com/watch?v=82bF7uzgFes&list=PLFCWA3cnJDPVQuYFhrU0Lu9r1wogsAkdv">How to download and Install laTex (TeXstudio+texlive2017) full</a>  </p>
 <hr>
@@ -275,8 +275,38 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>摘</tag>
         <tag>环境配置</tag>
+        <tag>摘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu 外接显示与内置显示切换</title>
+    <url>/post/83277084.html</url>
+    <content><![CDATA[<ul>
+<li>查看显示器设备名称 在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为 LVDS-1 和 HDMI-1 (如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="http://img.ifish.ink/img/display_1.png"></p>
+<ul>
+<li><p>关闭外接显示器 终端键入：<code>$ xrandr --output HDMI-1 --off</code> (其中名称VGA-1根据你自己的设备名称作相应的替换)</p>
+</li>
+<li><p>打开外接显示器，关闭内置显示器 终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code> (其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p>
+</li>
+<li><p>关闭外接显示器，打开内置显示器 终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code> (其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p>
+</li>
+</ul>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>环境配置</tag>
+        <tag>ubuntu</tag>
+        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -316,6 +346,44 @@
 <ul>
 <li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
 </ul>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>原创</tag>
+        <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三对角矩阵求逆的算法-实现</title>
+    <url>/post/891db679.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="MATLAB代码"><a href="#MATLAB代码" class="headerlink" title="MATLAB代码"></a>MATLAB代码</h3><ul>
+<li>函数实现</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[A,C]</span> = <span class="title">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="params">(a,b,c)</span></span></span><br><span class="line"><span class="comment">% 本文实现的是论文《三对角矩阵求逆的算法》论文作者：冉瑞生、黄延祝等人</span></span><br><span class="line"><span class="comment">% 本文算法的计算复杂度为O(n^2)</span></span><br><span class="line"><span class="comment">% 应用数学和力学，第30卷，第2期 2009年2月15日出版 文章编号：1000-0887(2009)02-0238-07</span></span><br><span class="line"><span class="comment">% Code author:Qingjun Chang  qingjun_chang@163.com &amp; qingjun.cn@gmail.com</span></span><br><span class="line"><span class="comment">% INPUT     a：下对角线 1*(n-1)</span></span><br><span class="line"><span class="comment">%           b：对角线 1*n</span></span><br><span class="line"><span class="comment">%           c：上对角线 1*(n-1)</span></span><br><span class="line"><span class="comment">% OUTPUT    A：原始三对角矩阵</span></span><br><span class="line"><span class="comment">%           C：逆矩阵</span></span><br><span class="line">C = [];</span><br><span class="line">flag = <span class="number">0</span>;</span><br><span class="line"><span class="comment">%% STEP1 input A</span></span><br><span class="line"></span><br><span class="line">A = <span class="built_in">diag</span>(a,<span class="number">-1</span>)+<span class="built_in">diag</span>(b)+<span class="built_in">diag</span>(c,<span class="number">1</span>);</span><br><span class="line">a = [<span class="number">0</span> a];</span><br><span class="line"><span class="comment">%% STEP2 将A分解成A = LU</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $\alpha_1=b_1$</span></span><br><span class="line"><span class="comment">% $\tau_&#123;i-1&#125;=\frac&#123;c_&#123;i-1&#125;&#125;&#123;\alpha_&#123;i-1&#125;&#125;,\alpha_i=b_i-a_i\tau_&#123;i-1&#125;,$</span></span><br><span class="line"><span class="comment">% $\gamma_i=\frac&#123;a_i&#125;&#123;\alpha_&#123;i-1&#125;&#125;(i=2,\cdots,n)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line">n = <span class="built_in">size</span>(A,<span class="number">1</span>);</span><br><span class="line">alpha(<span class="number">1</span>) = b(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> alpha(<span class="number">1</span>) == <span class="number">0</span></span><br><span class="line">    fprintf(<span class="string">&#x27;算法2.1失败!正在尝试算法2.2...\n&#x27;</span>);</span><br><span class="line">    syms x</span><br><span class="line">    alpha = x;</span><br><span class="line">    flag = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:n</span><br><span class="line">    t(<span class="built_in">i</span><span class="number">-1</span>) = c(<span class="built_in">i</span><span class="number">-1</span>)/alpha(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    alpha(<span class="built_in">i</span>) = b(<span class="built_in">i</span>)-a(<span class="built_in">i</span>)*t(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">gamma</span>(<span class="built_in">i</span>) = a(<span class="built_in">i</span>)/alpha(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> alpha(<span class="built_in">i</span>) == <span class="number">0</span></span><br><span class="line">        fprintf(<span class="string">&#x27;算法2.1失败!正在尝试算法2.2...\n&#x27;</span>);</span><br><span class="line">        syms x</span><br><span class="line">        alpha = [alpha(<span class="number">1</span>:<span class="built_in">i</span><span class="number">-1</span>) x];</span><br><span class="line">        t = [t x];</span><br><span class="line">        <span class="built_in">gamma</span> = [<span class="built_in">gamma</span> x];</span><br><span class="line">        flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> alpha(n) == <span class="number">0</span></span><br><span class="line">    fprintf(<span class="string">&#x27;矩阵是奇异的!\n&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%% 算法2.2的一部分</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $P(x)=\Pi_&#123;i=1&#125;^n\alpha_i$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    P = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">        P = P*alpha(<span class="built_in">i</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    P = expand(P);</span><br><span class="line">    P_poly = sym2poly(P);  <span class="comment">% 偶尔会出现错误 提示是Not a polynomial.以后修复</span></span><br><span class="line">    <span class="keyword">if</span> ~P_poly(<span class="keyword">end</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;矩阵是奇异的\n&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP3 计算逆矩阵的最后一个元</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;nn&#125;=\frac&#123;1&#125;&#123;\alpha_n&#125;$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line">C = <span class="built_in">zeros</span>(n);</span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    C = [C(<span class="number">1</span>:<span class="keyword">end</span><span class="number">-1</span>) x];</span><br><span class="line">    C = <span class="built_in">reshape</span>(C,n,n);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">C(n,n) = <span class="number">1</span>/alpha(n);</span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP4 计算逆矩阵C的主对角线元素</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ii&#125;=\frac&#123;1&#125;&#123;\alpha_i&#125;+\tau_i\gamma_&#123;i+1&#125;C_&#123;i+1,i+1&#125; (i = n-1,\cdots,2,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n<span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">    C(<span class="built_in">i</span>,<span class="built_in">i</span>) = <span class="number">1</span>/alpha(<span class="built_in">i</span>)+t(<span class="built_in">i</span>)*<span class="built_in">gamma</span>(<span class="built_in">i</span>+<span class="number">1</span>)*C(<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">i</span>+<span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP5 计算第i行位于主对角线元素左边的元素以及位于第i列位于主对角线上方的元素</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ij&#125;=-\gamma_&#123;j+1&#125;C_&#123;i,j+1&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ji&#125;=-\tau_jC_&#123;j+1,i&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="built_in">i</span><span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">        C(<span class="built_in">i</span>,<span class="built_in">j</span>) = -<span class="built_in">gamma</span>(<span class="built_in">j</span>+<span class="number">1</span>)*C(<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="built_in">i</span><span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">        C(<span class="built_in">j</span>,<span class="built_in">i</span>) = -t(<span class="built_in">j</span>)*C(<span class="built_in">j</span>+<span class="number">1</span>,<span class="built_in">i</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP6 输出C</span></span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    C = expand(C);</span><br><span class="line">    str = <span class="string">&#x27;@(x) [&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">            temp = <span class="built_in">factor</span>(C(<span class="built_in">i</span>,<span class="built_in">j</span>));</span><br><span class="line">            str = [str <span class="string">&#x27; &#x27;</span> char(prod(temp))];</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        str = [str <span class="string">&#x27;;&#x27;</span>];</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    str = [str <span class="string">&#x27;]&#x27;</span>];</span><br><span class="line">    Cfun = str2func(str);</span><br><span class="line">    C = Cfun(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>测试</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span> <span class="number">-1</span> <span class="number">-1</span>];</span><br><span class="line">b = [<span class="number">1</span> <span class="number">3</span> <span class="number">-1</span> <span class="number">1</span>];</span><br><span class="line">c = [<span class="number">1</span> <span class="number">2</span> <span class="number">1</span>];</span><br><span class="line">[A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>论文原文</li>
+</ul>
+<p><a href="/pdf/%E4%B8%89%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5%E6%B1%82%E9%80%86%E7%9A%84%E7%AE%97%E6%B3%95_%E5%86%89%E7%91%9E%E7%94%9F.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
+<ul>
+<li>文档</li>
+</ul>
+<p><a href="https://img.ifish.ink/pdf/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
@@ -421,74 +489,6 @@
         <tag>原创</tag>
         <tag>算法实现</tag>
         <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>三对角矩阵求逆的算法-实现</title>
-    <url>/post/891db679.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人</p>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="MATLAB代码"><a href="#MATLAB代码" class="headerlink" title="MATLAB代码"></a>MATLAB代码</h3><ul>
-<li>函数实现</li>
-</ul>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[A,C]</span> = <span class="title">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="params">(a,b,c)</span></span></span><br><span class="line"><span class="comment">% 本文实现的是论文《三对角矩阵求逆的算法》论文作者：冉瑞生、黄延祝等人</span></span><br><span class="line"><span class="comment">% 本文算法的计算复杂度为O(n^2)</span></span><br><span class="line"><span class="comment">% 应用数学和力学，第30卷，第2期 2009年2月15日出版 文章编号：1000-0887(2009)02-0238-07</span></span><br><span class="line"><span class="comment">% Code author:Qingjun Chang  qingjun_chang@163.com &amp; qingjun.cn@gmail.com</span></span><br><span class="line"><span class="comment">% INPUT     a：下对角线 1*(n-1)</span></span><br><span class="line"><span class="comment">%           b：对角线 1*n</span></span><br><span class="line"><span class="comment">%           c：上对角线 1*(n-1)</span></span><br><span class="line"><span class="comment">% OUTPUT    A：原始三对角矩阵</span></span><br><span class="line"><span class="comment">%           C：逆矩阵</span></span><br><span class="line">C = [];</span><br><span class="line">flag = <span class="number">0</span>;</span><br><span class="line"><span class="comment">%% STEP1 input A</span></span><br><span class="line"></span><br><span class="line">A = <span class="built_in">diag</span>(a,<span class="number">-1</span>)+<span class="built_in">diag</span>(b)+<span class="built_in">diag</span>(c,<span class="number">1</span>);</span><br><span class="line">a = [<span class="number">0</span> a];</span><br><span class="line"><span class="comment">%% STEP2 将A分解成A = LU</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $\alpha_1=b_1$</span></span><br><span class="line"><span class="comment">% $\tau_&#123;i-1&#125;=\frac&#123;c_&#123;i-1&#125;&#125;&#123;\alpha_&#123;i-1&#125;&#125;,\alpha_i=b_i-a_i\tau_&#123;i-1&#125;,$</span></span><br><span class="line"><span class="comment">% $\gamma_i=\frac&#123;a_i&#125;&#123;\alpha_&#123;i-1&#125;&#125;(i=2,\cdots,n)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line">n = <span class="built_in">size</span>(A,<span class="number">1</span>);</span><br><span class="line">alpha(<span class="number">1</span>) = b(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> alpha(<span class="number">1</span>) == <span class="number">0</span></span><br><span class="line">    fprintf(<span class="string">&#x27;算法2.1失败!正在尝试算法2.2...\n&#x27;</span>);</span><br><span class="line">    syms x</span><br><span class="line">    alpha = x;</span><br><span class="line">    flag = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:n</span><br><span class="line">    t(<span class="built_in">i</span><span class="number">-1</span>) = c(<span class="built_in">i</span><span class="number">-1</span>)/alpha(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    alpha(<span class="built_in">i</span>) = b(<span class="built_in">i</span>)-a(<span class="built_in">i</span>)*t(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">gamma</span>(<span class="built_in">i</span>) = a(<span class="built_in">i</span>)/alpha(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> alpha(<span class="built_in">i</span>) == <span class="number">0</span></span><br><span class="line">        fprintf(<span class="string">&#x27;算法2.1失败!正在尝试算法2.2...\n&#x27;</span>);</span><br><span class="line">        syms x</span><br><span class="line">        alpha = [alpha(<span class="number">1</span>:<span class="built_in">i</span><span class="number">-1</span>) x];</span><br><span class="line">        t = [t x];</span><br><span class="line">        <span class="built_in">gamma</span> = [<span class="built_in">gamma</span> x];</span><br><span class="line">        flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> alpha(n) == <span class="number">0</span></span><br><span class="line">    fprintf(<span class="string">&#x27;矩阵是奇异的!\n&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%% 算法2.2的一部分</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $P(x)=\Pi_&#123;i=1&#125;^n\alpha_i$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    P = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">        P = P*alpha(<span class="built_in">i</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    P = expand(P);</span><br><span class="line">    P_poly = sym2poly(P);  <span class="comment">% 偶尔会出现错误 提示是Not a polynomial.以后修复</span></span><br><span class="line">    <span class="keyword">if</span> ~P_poly(<span class="keyword">end</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;矩阵是奇异的\n&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP3 计算逆矩阵的最后一个元</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;nn&#125;=\frac&#123;1&#125;&#123;\alpha_n&#125;$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line">C = <span class="built_in">zeros</span>(n);</span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    C = [C(<span class="number">1</span>:<span class="keyword">end</span><span class="number">-1</span>) x];</span><br><span class="line">    C = <span class="built_in">reshape</span>(C,n,n);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">C(n,n) = <span class="number">1</span>/alpha(n);</span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP4 计算逆矩阵C的主对角线元素</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ii&#125;=\frac&#123;1&#125;&#123;\alpha_i&#125;+\tau_i\gamma_&#123;i+1&#125;C_&#123;i+1,i+1&#125; (i = n-1,\cdots,2,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n<span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">    C(<span class="built_in">i</span>,<span class="built_in">i</span>) = <span class="number">1</span>/alpha(<span class="built_in">i</span>)+t(<span class="built_in">i</span>)*<span class="built_in">gamma</span>(<span class="built_in">i</span>+<span class="number">1</span>)*C(<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">i</span>+<span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP5 计算第i行位于主对角线元素左边的元素以及位于第i列位于主对角线上方的元素</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ij&#125;=-\gamma_&#123;j+1&#125;C_&#123;i,j+1&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ji&#125;=-\tau_jC_&#123;j+1,i&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="built_in">i</span><span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">        C(<span class="built_in">i</span>,<span class="built_in">j</span>) = -<span class="built_in">gamma</span>(<span class="built_in">j</span>+<span class="number">1</span>)*C(<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="built_in">i</span><span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">        C(<span class="built_in">j</span>,<span class="built_in">i</span>) = -t(<span class="built_in">j</span>)*C(<span class="built_in">j</span>+<span class="number">1</span>,<span class="built_in">i</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP6 输出C</span></span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    C = expand(C);</span><br><span class="line">    str = <span class="string">&#x27;@(x) [&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">            temp = <span class="built_in">factor</span>(C(<span class="built_in">i</span>,<span class="built_in">j</span>));</span><br><span class="line">            str = [str <span class="string">&#x27; &#x27;</span> char(prod(temp))];</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        str = [str <span class="string">&#x27;;&#x27;</span>];</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    str = [str <span class="string">&#x27;]&#x27;</span>];</span><br><span class="line">    Cfun = str2func(str);</span><br><span class="line">    C = Cfun(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>测试</li>
-</ul>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span> <span class="number">-1</span> <span class="number">-1</span>];</span><br><span class="line">b = [<span class="number">1</span> <span class="number">3</span> <span class="number">-1</span> <span class="number">1</span>];</span><br><span class="line">c = [<span class="number">1</span> <span class="number">2</span> <span class="number">1</span>];</span><br><span class="line">[A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>论文原文</li>
-</ul>
-<p><a href="/pdf/%E4%B8%89%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5%E6%B1%82%E9%80%86%E7%9A%84%E7%AE%97%E6%B3%95_%E5%86%89%E7%91%9E%E7%94%9F.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
-<ul>
-<li>文档</li>
-</ul>
-<p><a href="https://img.ifish.ink/pdf/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>原创</tag>
-        <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu 外接显示与内置显示切换</title>
-    <url>/post/83277084.html</url>
-    <content><![CDATA[<ul>
-<li>查看显示器设备名称 在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为 LVDS-1 和 HDMI-1 (如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
-</ul>
-<span id="more"></span>
-
-<p><img data-src="http://img.ifish.ink/img/display_1.png"></p>
-<ul>
-<li><p>关闭外接显示器 终端键入：<code>$ xrandr --output HDMI-1 --off</code> (其中名称VGA-1根据你自己的设备名称作相应的替换)</p>
-</li>
-<li><p>打开外接显示器，关闭内置显示器 终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code> (其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p>
-</li>
-<li><p>关闭外接显示器，打开内置显示器 终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code> (其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p>
-</li>
-</ul>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>环境配置</tag>
-        <tag>ubuntu</tag>
-        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
