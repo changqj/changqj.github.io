@@ -1,0 +1,11 @@
+User-agent: * 
+
+Disallow: /?p=* 
+Disallow: /?cat=* 
+Disallow: /?m=*
+Disallow: /?tag=* 
+
+Disallow: /qjchang/paper.html
+Disallow: /qjchang/bib/*
+
+Sitemap: https://www.ifish.ink/sitemap.xml

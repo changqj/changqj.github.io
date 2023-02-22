@@ -1,0 +1,284 @@
+table {
+    width: 95%; /*表格宽度*/
+    max-width: 65em; /*表格最大宽度，避免表格过宽*/
+    border: 1px solid #dedede; /*表格外边框设置*/
+    margin: 10px auto; /*外边距*/
+    border-collapse: collapse; /*使用单一线条的边框*/
+    empty-cells: show; /*单元格无内容依旧绘制边框*/
+}
+
+table th,
+table td {
+  height: 30px; /*统一每一行的默认高度*/
+  border: 1px solid #dedede; /*内部边框样式*/
+  padding: 0 5px; /*内边距*/
+}
+table tbody tr:nth-child(2n) {
+    background: rgba(158,188,226,0.12); 
+}
+table th {
+    white-space: nowrap; /*表头内容强制在一行显示*/
+}
+table td:nth-child(3) {
+    white-space: nowrap; 
+}
+.flag {
+    display: inline-block;
+    width: 16px;
+    height: 11px;
+    background: url(../images/post/flags.png) no-repeat;
+    background-position: 52px 42px;
+}
+.flag-AM{background-position:0 0}
+.flag-AL{background-position:-26px 0}
+.flag-AI{background-position:-52px 0}
+.flag-AG{background-position:-78px 0}
+.flag-AF{background-position:-104px 0}
+.flag-AE{background-position:-130px 0}
+.flag-AD{background-position:-156px 0}
+.flag-AZ{background-position:-182px 0}
+.flag-SX{background-position:-208px 0}
+.flag-AO{background-position:-234px 0}
+.flag-AR{background-position:-260px 0}
+.flag-AS{background-position:-286px 0}
+.flag-AT{background-position:-312px 0}
+.flag-AU{background-position:-338px 0}
+.flag-AW{background-position:-364px 0}
+.flag-AX{background-position:-390px 0}
+.flag-BY{background-position:0 -21px}
+.flag-BW{background-position:-26px -21px}
+.flag-BV{background-position:-52px -21px}
+.flag-BT{background-position:-78px -21px}
+.flag-BS{background-position:-104px -21px}
+.flag-BR{background-position:-130px -21px}
+.flag-BO{background-position:-156px -21px}
+.flag-BN{background-position:-182px -21px}
+.flag-BM{background-position:-208px -21px}
+.flag-BJ{background-position:-234px -21px}
+.flag-BI{background-position:-260px -21px}
+.flag-BH{background-position:-286px -21px}
+.flag-BG{background-position:-312px -21px}
+.flag-BF{background-position:-338px -21px}
+.flag-BE{background-position:-364px -21px}
+.flag-BD{background-position:-390px -21px}
+.flag-BB{background-position:0 -42px}
+.flag-BA{background-position:-26px -42px}
+.flag-BZ{background-position:-52px -42px}
+.flag-CY{background-position:-78px -42px}
+.flag-CZ{background-position:-104px -42px}
+.flag-CA{background-position:-130px -42px}
+.flag-CC{background-position:-182px -42px}
+.flag-CD{background-position:-208px -42px}
+.flag-CF{background-position:-234px -42px}
+.flag-CG{background-position:-260px -42px}
+.flag-CH{background-position:-286px -42px}
+.flag-CI{background-position:-312px -42px}
+.flag-CK{background-position:-338px -42px}
+.flag-CL{background-position:-364px -42px}
+.flag-CM{background-position:-390px -42px}
+.flag-CN{background-position:0 -63px}
+.flag-CV{background-position:-26px -63px}
+.flag-EC{background-position:-52px -63px}
+.flag-CR{background-position:-78px -63px}
+.flag-CS{background-position:-104px -63px}
+.flag-CU{background-position:-130px -63px}
+.flag-CX{background-position:-156px -63px}
+.flag-DZ{background-position:-182px -63px}
+.flag-DE{background-position:-208px -63px}
+.flag-DJ{background-position:-234px -63px}
+.flag-DK{background-position:-260px -63px}
+.flag-DM{background-position:-286px -63px}
+.flag-DO{background-position:-312px -63px}
+.flag-EU{background-position:-338px -63px}
+.flag-CO{background-position:-364px -63px}
+.flag-EE{background-position:-390px -63px}
+.flag-EG{background-position:0 -84px}
+.flag-EH{background-position:-26px -84px}
+.flag-ER{background-position:-78px -84px}
+.flag-ES{background-position:-104px -84px}
+.flag-ET{background-position:-130px -84px}
+.flag-FI{background-position:-182px -84px}
+.flag-FJ{background-position:-208px -84px}
+.flag-FK{background-position:-234px -84px}
+.flag-FM{background-position:-260px -84px}
+.flag-FO{background-position:-286px -84px}
+.flag-BL,.flag-MF,.flag-FR{background-position:-312px -84px}
+.flag-GY{background-position:-338px -84px}
+.flag-GA{background-position:-364px -84px}
+.flag-GB{background-position:-390px -84px}
+.flag-GD{background-position:0 -105px}
+.flag-GE{background-position:-26px -105px}
+.flag-GF{background-position:-52px -105px}
+.flag-GH{background-position:-78px -105px}
+.flag-GI{background-position:-104px -105px}
+.flag-GL{background-position:-130px -105px}
+.flag-GM{background-position:-156px -105px}
+.flag-GN{background-position:-182px -105px}
+.flag-GP{background-position:-208px -105px}
+.flag-GQ{background-position:-234px -105px}
+.flag-GR{background-position:-260px -105px}
+.flag-GS{background-position:-286px -105px}
+.flag-GT{background-position:-312px -105px}
+.flag-GU{background-position:-338px -105px}
+.flag-GW{background-position:-364px -105px}
+.flag-HT{background-position:-390px -105px}
+.flag-HR{background-position:0 -126px}
+.flag-HN{background-position:-26px -126px}
+.flag-HM{background-position:-52px -126px}
+.flag-HK{background-position:-78px -126px}
+.flag-HU{background-position:-104px -126px}
+.flag-IS{background-position:-130px -126px}
+.flag-IR{background-position:-156px -126px}
+.flag-IQ{background-position:-182px -126px}
+.flag-IO{background-position:-208px -126px}
+.flag-IN{background-position:-234px -126px}
+.flag-IL{background-position:-260px -126px}
+.flag-IE{background-position:-286px -126px}
+.flag-ID{background-position:-312px -126px}
+.flag-IT{background-position:-338px -126px}
+.flag-JO{background-position:-364px -126px}
+.flag-JM{background-position:-390px -126px}
+.flag-JP{background-position:0 -147px}
+.flag-KY{background-position:-26px -147px}
+.flag-KW{background-position:-52px -147px}
+.flag-KR{background-position:-78px -147px}
+.flag-KP{background-position:-104px -147px}
+.flag-KN{background-position:-130px -147px}
+.flag-KM{background-position:-156px -147px}
+.flag-KI{background-position:-182px -147px}
+.flag-KH{background-position:-208px -147px}
+.flag-KG{background-position:-234px -147px}
+.flag-KE{background-position:-260px -147px}
+.flag-KZ{background-position:-286px -147px}
+.flag-LV{background-position:-312px -147px}
+.flag-LU{background-position:-338px -147px}
+.flag-LT{background-position:-364px -147px}
+.flag-LS{background-position:-390px -147px}
+.flag-LR{background-position:0 -168px}
+.flag-LK{background-position:-26px -168px}
+.flag-LI{background-position:-52px -168px}
+.flag-LC{background-position:-78px -168px}
+.flag-LB{background-position:-104px -168px}
+.flag-LA{background-position:-130px -168px}
+.flag-LY{background-position:-156px -168px}
+.flag-MY{background-position:-182px -168px}
+.flag-MX{background-position:-208px -168px}
+.flag-MW{background-position:-234px -168px}
+.flag-MV{background-position:-260px -168px}
+.flag-MU{background-position:-286px -168px}
+.flag-MT{background-position:-312px -168px}
+.flag-MS{background-position:-338px -168px}
+.flag-MR{background-position:-364px -168px}
+.flag-MQ{background-position:-390px -168px}
+.flag-MP{background-position:0 -189px}
+.flag-MO{background-position:-26px -189px}
+.flag-MN{background-position:-52px -189px}
+.flag-MM{background-position:-78px -189px}
+.flag-ML{background-position:-104px -189px}
+.flag-MK{background-position:-130px -189px}
+.flag-MH{background-position:-156px -189px}
+.flag-MG{background-position:-182px -189px}
+.flag-ME{background-position:-208px -189px}
+.flag-MD{background-position:-234px -189px}
+.flag-MC{background-position:-260px -189px}
+.flag-MA{background-position:-286px -189px}
+.flag-MZ{background-position:-312px -189px}
+.flag-NU{background-position:-338px -189px}
+.flag-NR{background-position:-364px -189px}
+.flag-NP{background-position:-390px -189px}
+.flag-NO{background-position:0 -210px}
+.flag-NL,.flag-BQ{background-position:-26px -210px}
+.flag-NI{background-position:-52px -210px}
+.flag-NG{background-position:-78px -210px}
+.flag-NF{background-position:-104px -210px}
+.flag-NE{background-position:-130px -210px}
+.flag-NC{background-position:-156px -210px}
+.flag-NA{background-position:-182px -210px}
+.flag-NZ{background-position:-208px -210px}
+.flag-OM{background-position:-234px -210px}
+.flag-PW{background-position:-260px -210px}
+.flag-PT{background-position:-286px -210px}
+.flag-PS{background-position:-312px -210px}
+.flag-PR{background-position:-338px -210px}
+.flag-PN{background-position:-364px -210px}
+.flag-PM{background-position:-390px -210px}
+.flag-PL{background-position:0 -231px}
+.flag-PK{background-position:-26px -231px}
+.flag-PH{background-position:-52px -231px}
+.flag-PG{background-position:-78px -231px}
+.flag-PF{background-position:-104px -231px}
+.flag-PE{background-position:-130px -231px}
+.flag-PA{background-position:-156px -231px}
+.flag-PY{background-position:-182px -231px}
+.flag-QA{background-position:-208px -231px}
+.flag-RU{background-position:-234px -231px}
+.flag-RS{background-position:-260px -231px}
+.flag-RO{background-position:-286px -231px}
+.flag-RE{background-position:-312px -231px}
+.flag-RW{background-position:-338px -231px}
+.flag-SY{background-position:-364px -231px}
+.flag-SV{background-position:-390px -231px}
+.flag-ST{background-position:0 -252px}
+.flag-SR{background-position:-26px -252px}
+.flag-SO{background-position:-52px -252px}
+.flag-SN{background-position:-78px -252px}
+.flag-SM{background-position:-104px -252px}
+.flag-SL{background-position:-130px -252px}
+.flag-SK{background-position:-156px -252px}
+.flag-SJ{background-position:-182px -252px}
+.flag-SI{background-position:-208px -252px}
+.flag-SH{background-position:-234px -252px}
+.flag-SG{background-position:-260px -252px}
+.flag-SE{background-position:-286px -252px}
+.flag-SD{background-position:-312px -252px}
+.flag-SC{background-position:-364px -252px}
+.flag-SB{background-position:-390px -252px}
+.flag-SA{background-position:0 -273px}
+.flag-SZ{background-position:-26px -273px}
+.flag-TW{background-position:-52px -273px}
+.flag-TV{background-position:-78px -273px}
+.flag-TT{background-position:-104px -273px}
+.flag-TR{background-position:-130px -273px}
+.flag-TO{background-position:-156px -273px}
+.flag-TM{background-position:-208px -273px}
+.flag-TN{background-position:-182px -273px}
+.flag-TL{background-position:-234px -273px}
+.flag-TK{background-position:-260px -273px}
+.flag-TJ{background-position:-286px -273px}
+.flag-TH{background-position:-312px -273px}
+.flag-TG{background-position:-338px -273px}
+.flag-TF{background-position:-364px -273px}
+.flag-TD{background-position:-390px -273px}
+.flag-TC{background-position:0 -294px}
+.flag-TZ{background-position:-26px -294px}
+.flag-UY{background-position:-52px -294px}
+.flag-US{background-position:-78px -294px}
+.flag-UM{background-position:-104px -294px}
+.flag-UG{background-position:-130px -294px}
+.flag-UA{background-position:-156px -294px}
+.flag-UZ{background-position:-182px -294px}
+.flag-VN{background-position:-208px -294px}
+.flag-VI{background-position:-234px -294px}
+.flag-VG{background-position:-260px -294px}
+.flag-VE{background-position:-286px -294px}
+.flag-VC{background-position:-312px -294px}
+.flag-VA{background-position:-338px -294px}
+.flag-VU{background-position:-364px -294px}
+.flag-WF{background-position:-390px -294px}
+.flag-WS{background-position:-26px -315px}
+.flag-YE{background-position:-52px -315px}
+.flag-YT{background-position:-78px -315px}
+.flag-ZM{background-position:-104px -315px}
+.flag-ZA{background-position:-130px -315px}
+.flag-ZW{background-position:-156px -315px}
+.flag-IM{background-position:-182px -315px}
+.flag-JE{background-position:-234px -315px}
+.flag-GG{background-position:-260px -315px}
+.flag-CW{background-position:-286px -315px}
+.flag-SS{background-position:-312px -315px}
+.flag-XK{background-position:-338px -315px}
+.flag-AQ{background-position:-390px -315px}
+
+.table-area {
+    overflow: auto;
+}
