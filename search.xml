@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><h3 id="左键选择点，右键或中间结束"><a href="#左键选择点，右键或中间结束" class="headerlink" title="左键选择点，右键或中间结束"></a>左键选择点，右键或中间结束</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear</span><br><span class="line">close all</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">axis([<span class="number">-5</span>,<span class="number">5</span>,<span class="number">-5</span>,<span class="number">5</span>]);</span><br><span class="line">grid on;</span><br><span class="line">title(<span class="string">&#x27;Bezier曲线拟合&#x27;</span>);</span><br><span class="line">questdlg(<span class="string">&#x27;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#x27;</span>,<span class="string">&#x27;操作&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p><img data-src="http://img.ifish.ink/figure/main_01.png"></p>
-<h3 id="从鼠标获取数据点"><a href="#从鼠标获取数据点" class="headerlink" title="从鼠标获取数据点"></a>从鼠标获取数据点</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="built_in">i</span> = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span></span><br><span class="line">    <span class="built_in">i</span> = <span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line">    tip = [<span class="string">&#x27;请选择第&#x27;</span>,num2str(<span class="built_in">i</span>),<span class="string">&#x27;个数据点&#x27;</span>];</span><br><span class="line">    xlabel(tip);</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    [x,y,button] = ginput(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">catch</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">hold</span> on ,<span class="built_in">plot</span>(x,y,<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">    dataPoints(:,<span class="built_in">i</span>) = [x;y];</span><br><span class="line">    h1 = <span class="built_in">plot</span>(dataPoints(<span class="number">1</span>,:),dataPoints(<span class="number">2</span>,:),<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> button ~= <span class="number">1</span></span><br><span class="line">        xlabel(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">1</span></span><br><span class="line">    newData(:,int32(<span class="built_in">i</span>*<span class="number">100</span>)+<span class="number">1</span>) = cqj_GetBezier3Point(dataPoints,<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">h2 = <span class="built_in">plot</span>(newData(<span class="number">1</span>,:),newData(<span class="number">2</span>,:),<span class="string">&#x27;.-r&#x27;</span>);</span><br><span class="line"><span class="built_in">legend</span>([h1,h2],<span class="string">&#x27;原始点&#x27;</span>,<span class="string">&#x27;3次Bezier曲线&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="http://img.ifish.ink/figure/main_02.png"></p>
-<h3 id="得到曲线参数为u的数据点"><a href="#得到曲线参数为u的数据点" class="headerlink" title="得到曲线参数为u的数据点"></a>得到曲线参数为u的数据点</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ data ]</span> = <span class="title">cqj_GetBezier3Point</span><span class="params">(dataPoints,u)</span></span></span><br><span class="line"><span class="comment">% 得到曲线参数为u的数据点</span></span><br><span class="line"><span class="comment">% dataPoints：初始点 2xn</span></span><br><span class="line">data = dataPoints;</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">size</span>(data,<span class="number">2</span>) == <span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    temp = <span class="built_in">zeros</span>(<span class="built_in">size</span>(data,<span class="number">1</span>),<span class="built_in">size</span>(data,<span class="number">2</span>)<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">size</span>(data,<span class="number">2</span>)<span class="number">-1</span></span><br><span class="line">        temp(:,<span class="built_in">i</span>) = (<span class="number">1</span>-u)*data(:,<span class="built_in">i</span>)+u*data(:,<span class="built_in">i</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    data = temp;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p><img data-src="http://img.ifish.ink/figure/main_03.png"></p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>原创</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -97,13 +69,41 @@
       </tags>
   </entry>
   <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><h3 id="左键选择点，右键或中间结束"><a href="#左键选择点，右键或中间结束" class="headerlink" title="左键选择点，右键或中间结束"></a>左键选择点，右键或中间结束</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear</span><br><span class="line">close all</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">axis([<span class="number">-5</span>,<span class="number">5</span>,<span class="number">-5</span>,<span class="number">5</span>]);</span><br><span class="line">grid on;</span><br><span class="line">title(<span class="string">&#x27;Bezier曲线拟合&#x27;</span>);</span><br><span class="line">questdlg(<span class="string">&#x27;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#x27;</span>,<span class="string">&#x27;操作&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;ok&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p><img data-src="http://img.ifish.ink/figure/main_01.png"></p>
+<h3 id="从鼠标获取数据点"><a href="#从鼠标获取数据点" class="headerlink" title="从鼠标获取数据点"></a>从鼠标获取数据点</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="built_in">i</span> = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span></span><br><span class="line">    <span class="built_in">i</span> = <span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line">    tip = [<span class="string">&#x27;请选择第&#x27;</span>,num2str(<span class="built_in">i</span>),<span class="string">&#x27;个数据点&#x27;</span>];</span><br><span class="line">    xlabel(tip);</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    [x,y,button] = ginput(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">catch</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">hold</span> on ,<span class="built_in">plot</span>(x,y,<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">    dataPoints(:,<span class="built_in">i</span>) = [x;y];</span><br><span class="line">    h1 = <span class="built_in">plot</span>(dataPoints(<span class="number">1</span>,:),dataPoints(<span class="number">2</span>,:),<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> button ~= <span class="number">1</span></span><br><span class="line">        xlabel(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">1</span></span><br><span class="line">    newData(:,int32(<span class="built_in">i</span>*<span class="number">100</span>)+<span class="number">1</span>) = cqj_GetBezier3Point(dataPoints,<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">h2 = <span class="built_in">plot</span>(newData(<span class="number">1</span>,:),newData(<span class="number">2</span>,:),<span class="string">&#x27;.-r&#x27;</span>);</span><br><span class="line"><span class="built_in">legend</span>([h1,h2],<span class="string">&#x27;原始点&#x27;</span>,<span class="string">&#x27;3次Bezier曲线&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="http://img.ifish.ink/figure/main_02.png"></p>
+<h3 id="得到曲线参数为u的数据点"><a href="#得到曲线参数为u的数据点" class="headerlink" title="得到曲线参数为u的数据点"></a>得到曲线参数为u的数据点</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ data ]</span> = <span class="title">cqj_GetBezier3Point</span><span class="params">(dataPoints,u)</span></span></span><br><span class="line"><span class="comment">% 得到曲线参数为u的数据点</span></span><br><span class="line"><span class="comment">% dataPoints：初始点 2xn</span></span><br><span class="line">data = dataPoints;</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">size</span>(data,<span class="number">2</span>) == <span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    temp = <span class="built_in">zeros</span>(<span class="built_in">size</span>(data,<span class="number">1</span>),<span class="built_in">size</span>(data,<span class="number">2</span>)<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">size</span>(data,<span class="number">2</span>)<span class="number">-1</span></span><br><span class="line">        temp(:,<span class="built_in">i</span>) = (<span class="number">1</span>-u)*data(:,<span class="built_in">i</span>)+u*data(:,<span class="built_in">i</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    data = temp;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="http://img.ifish.ink/figure/main_03.png"></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>原创</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenSubdiv + Visual Studio环境配置</title>
     <url>/post/a507e481.html</url>
     <content><![CDATA[<blockquote>
 <p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
 </blockquote>
 <blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 <strong>qingjun_<a href="mailto:&#x63;&#x68;&#97;&#110;&#103;&#64;&#49;&#54;&#x33;&#46;&#x63;&#111;&#109;">&#x63;&#x68;&#97;&#110;&#103;&#64;&#49;&#54;&#x33;&#46;&#x63;&#111;&#109;</a></strong>。转载请注明出处：<a href="https://ifish.ink/">https://ifish.ink</a> ） （先前条件：<strong>win7系统</strong> 已安装**<a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https://www.baidu.com/link?url=ONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq&wd=&eqid=d2d58bc800015f450000000659ddca4f">Visual Studio</a>**环境，相关文件在附件）</p>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 <strong>qingjun_<a href="mailto:&#99;&#104;&#97;&#110;&#x67;&#x40;&#49;&#54;&#x33;&#x2e;&#99;&#111;&#109;">&#99;&#104;&#97;&#110;&#x67;&#x40;&#49;&#54;&#x33;&#x2e;&#99;&#111;&#109;</a></strong>。转载请注明出处：<a href="https://ifish.ink/">https://ifish.ink</a> ） （先前条件：<strong>win7系统</strong> 已安装**<a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https://www.baidu.com/link?url=ONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq&wd=&eqid=d2d58bc800015f450000000659ddca4f">Visual Studio</a>**环境，相关文件在附件）</p>
 </blockquote>
 <span id="more"></span>
 <hr>
@@ -165,56 +165,6 @@
       </tags>
   </entry>
   <entry>
-    <title>git clone 速度慢？</title>
-    <url>/post/ec4bf4f5.html</url>
-    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
-<h2 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h2><h3 id="查询IP地址"><a href="#查询IP地址" class="headerlink" title="查询IP地址"></a>查询IP地址</h3><p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com/" title="https://www.ipaddress.com">https://www.ipaddress.com</a> 分别输入如下网址查看对应的IP地址</p>
-<span id="more"></span>
-
-<p><code>github.global.ssl.fastly.net</code> <code>github.com</code> 或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
-<h3 id="修改hosts文件"><a href="#修改hosts文件" class="headerlink" title="修改hosts文件"></a>修改hosts文件</h3><p>得到对应的IP后，在hosts文件后追加如下两行 Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code> Linux用户：<code>sudo gedit /etc/hosts</code> （xxx替换为你得到的对应的IP地址）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">xxx.xxx.xxx.xxx github.global-ssl.fastly.net</span><br><span class="line">xxx.xxx.xxx.xxx github.com</span><br></pre></td></tr></table></figure>
-
-<h3 id="刷新DNS"><a href="#刷新DNS" class="headerlink" title="刷新DNS"></a>刷新DNS</h3><p>Windows用户：<code>ipconfig /flushdns</code> Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
-<h2 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h2><p>如果你使用了代理，可直接在克隆前使用如下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy <span class="string">&#x27;sock5://127.0.0.1:1080&#x27;</span></span><br><span class="line">git config --global https.proxy <span class="string">&#x27;sock5://127.0.0.1:1080&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>git</tag>
-        <tag>github</tag>
-        <tag>环境配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress站点地图自动更新</title>
-    <url>/post/943451b1.html</url>
-    <content><![CDATA[<blockquote>
-<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
-</blockquote>
-<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件 <img data-src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长"></p>
-<span id="more"></span>
-<p><img data-src="http://img.ifish.ink/img/googlezhanzhang.png" alt="google"> 现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件 <img data-src="http://img.ifish.ink/img/2.png" alt="google"> 在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>SEO</tag>
-        <tag>sitemap</tag>
-        <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
     <url>/post/563c2d.html</url>
     <content><![CDATA[<blockquote>
@@ -242,12 +192,34 @@
       </tags>
   </entry>
   <entry>
+    <title>WordPress站点地图自动更新</title>
+    <url>/post/943451b1.html</url>
+    <content><![CDATA[<blockquote>
+<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
+</blockquote>
+<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件 <img data-src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长"></p>
+<span id="more"></span>
+<p><img data-src="http://img.ifish.ink/img/googlezhanzhang.png" alt="google"> 现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件 <img data-src="http://img.ifish.ink/img/2.png" alt="google"> 在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>wordpress</tag>
+        <tag>SEO</tag>
+        <tag>sitemap</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TexLive2017+TexStudio in Windows</title>
     <url>/post/c4cb1247.html</url>
     <content><![CDATA[<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建</p>
 <span id="more"></span>
 
-<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱： <a href="mailto:&#x71;&#x69;&#110;&#103;&#x6a;&#x75;&#110;&#x2e;&#x63;&#x6e;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x71;&#x69;&#110;&#103;&#x6a;&#x75;&#110;&#x2e;&#x63;&#x6e;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱： <a href="mailto:&#113;&#x69;&#x6e;&#x67;&#x6a;&#x75;&#110;&#x2e;&#x63;&#110;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#113;&#x69;&#x6e;&#x67;&#x6a;&#x75;&#110;&#x2e;&#x63;&#110;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 <hr>
 <p>百度云资源下载：<a href="https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag">链接：https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag 提取码：uyed</a> 清华镜像下载：<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">texlive下载</a> 视频源：<a href="https://www.youtube.com/watch?v=82bF7uzgFes&list=PLFCWA3cnJDPVQuYFhrU0Lu9r1wogsAkdv">How to download and Install laTex (TeXstudio+texlive2017) full</a>  </p>
 <hr>
@@ -311,6 +283,34 @@
       </tags>
   </entry>
   <entry>
+    <title>git clone 速度慢？</title>
+    <url>/post/ec4bf4f5.html</url>
+    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
+<h2 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h2><h3 id="查询IP地址"><a href="#查询IP地址" class="headerlink" title="查询IP地址"></a>查询IP地址</h3><p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com/" title="https://www.ipaddress.com">https://www.ipaddress.com</a> 分别输入如下网址查看对应的IP地址</p>
+<span id="more"></span>
+
+<p><code>github.global.ssl.fastly.net</code> <code>github.com</code> 或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
+<h3 id="修改hosts文件"><a href="#修改hosts文件" class="headerlink" title="修改hosts文件"></a>修改hosts文件</h3><p>得到对应的IP后，在hosts文件后追加如下两行 Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code> Linux用户：<code>sudo gedit /etc/hosts</code> （xxx替换为你得到的对应的IP地址）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">xxx.xxx.xxx.xxx github.global-ssl.fastly.net</span><br><span class="line">xxx.xxx.xxx.xxx github.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="刷新DNS"><a href="#刷新DNS" class="headerlink" title="刷新DNS"></a>刷新DNS</h3><p>Windows用户：<code>ipconfig /flushdns</code> Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
+<h2 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h2><p>如果你使用了代理，可直接在克隆前使用如下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy <span class="string">&#x27;sock5://127.0.0.1:1080&#x27;</span></span><br><span class="line">git config --global https.proxy <span class="string">&#x27;sock5://127.0.0.1:1080&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>git</tag>
+        <tag>github</tag>
+        <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>三对角矩阵的类雅可比迭代程序</title>
     <url>/post/f9428d51.html</url>
     <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组"><a href="#三对角矩阵的类雅可比迭代算法解线性方程组" class="headerlink" title="三对角矩阵的类雅可比迭代算法解线性方程组"></a>三对角矩阵的类雅可比迭代算法解线性方程组</h2><span id="more"></span>
@@ -328,44 +328,6 @@
 <ul>
 <li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
 </ul>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>原创</tag>
-        <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>三对角矩阵求逆的算法-实现</title>
-    <url>/post/891db679.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人</p>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="MATLAB代码"><a href="#MATLAB代码" class="headerlink" title="MATLAB代码"></a>MATLAB代码</h3><ul>
-<li>函数实现</li>
-</ul>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[A,C]</span> = <span class="title">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="params">(a,b,c)</span></span></span><br><span class="line"><span class="comment">% 本文实现的是论文《三对角矩阵求逆的算法》论文作者：冉瑞生、黄延祝等人</span></span><br><span class="line"><span class="comment">% 本文算法的计算复杂度为O(n^2)</span></span><br><span class="line"><span class="comment">% 应用数学和力学，第30卷，第2期 2009年2月15日出版 文章编号：1000-0887(2009)02-0238-07</span></span><br><span class="line"><span class="comment">% Code author:Qingjun Chang  qingjun_chang@163.com &amp; qingjun.cn@gmail.com</span></span><br><span class="line"><span class="comment">% INPUT     a：下对角线 1*(n-1)</span></span><br><span class="line"><span class="comment">%           b：对角线 1*n</span></span><br><span class="line"><span class="comment">%           c：上对角线 1*(n-1)</span></span><br><span class="line"><span class="comment">% OUTPUT    A：原始三对角矩阵</span></span><br><span class="line"><span class="comment">%           C：逆矩阵</span></span><br><span class="line">C = [];</span><br><span class="line">flag = <span class="number">0</span>;</span><br><span class="line"><span class="comment">%% STEP1 input A</span></span><br><span class="line"></span><br><span class="line">A = <span class="built_in">diag</span>(a,<span class="number">-1</span>)+<span class="built_in">diag</span>(b)+<span class="built_in">diag</span>(c,<span class="number">1</span>);</span><br><span class="line">a = [<span class="number">0</span> a];</span><br><span class="line"><span class="comment">%% STEP2 将A分解成A = LU</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $\alpha_1=b_1$</span></span><br><span class="line"><span class="comment">% $\tau_&#123;i-1&#125;=\frac&#123;c_&#123;i-1&#125;&#125;&#123;\alpha_&#123;i-1&#125;&#125;,\alpha_i=b_i-a_i\tau_&#123;i-1&#125;,$</span></span><br><span class="line"><span class="comment">% $\gamma_i=\frac&#123;a_i&#125;&#123;\alpha_&#123;i-1&#125;&#125;(i=2,\cdots,n)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line">n = <span class="built_in">size</span>(A,<span class="number">1</span>);</span><br><span class="line">alpha(<span class="number">1</span>) = b(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> alpha(<span class="number">1</span>) == <span class="number">0</span></span><br><span class="line">    fprintf(<span class="string">&#x27;算法2.1失败!正在尝试算法2.2...\n&#x27;</span>);</span><br><span class="line">    syms x</span><br><span class="line">    alpha = x;</span><br><span class="line">    flag = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:n</span><br><span class="line">    t(<span class="built_in">i</span><span class="number">-1</span>) = c(<span class="built_in">i</span><span class="number">-1</span>)/alpha(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    alpha(<span class="built_in">i</span>) = b(<span class="built_in">i</span>)-a(<span class="built_in">i</span>)*t(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">gamma</span>(<span class="built_in">i</span>) = a(<span class="built_in">i</span>)/alpha(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> alpha(<span class="built_in">i</span>) == <span class="number">0</span></span><br><span class="line">        fprintf(<span class="string">&#x27;算法2.1失败!正在尝试算法2.2...\n&#x27;</span>);</span><br><span class="line">        syms x</span><br><span class="line">        alpha = [alpha(<span class="number">1</span>:<span class="built_in">i</span><span class="number">-1</span>) x];</span><br><span class="line">        t = [t x];</span><br><span class="line">        <span class="built_in">gamma</span> = [<span class="built_in">gamma</span> x];</span><br><span class="line">        flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> alpha(n) == <span class="number">0</span></span><br><span class="line">    fprintf(<span class="string">&#x27;矩阵是奇异的!\n&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%% 算法2.2的一部分</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $P(x)=\Pi_&#123;i=1&#125;^n\alpha_i$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    P = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">        P = P*alpha(<span class="built_in">i</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    P = expand(P);</span><br><span class="line">    P_poly = sym2poly(P);  <span class="comment">% 偶尔会出现错误 提示是Not a polynomial.以后修复</span></span><br><span class="line">    <span class="keyword">if</span> ~P_poly(<span class="keyword">end</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;矩阵是奇异的\n&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP3 计算逆矩阵的最后一个元</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;nn&#125;=\frac&#123;1&#125;&#123;\alpha_n&#125;$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line">C = <span class="built_in">zeros</span>(n);</span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    C = [C(<span class="number">1</span>:<span class="keyword">end</span><span class="number">-1</span>) x];</span><br><span class="line">    C = <span class="built_in">reshape</span>(C,n,n);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">C(n,n) = <span class="number">1</span>/alpha(n);</span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP4 计算逆矩阵C的主对角线元素</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ii&#125;=\frac&#123;1&#125;&#123;\alpha_i&#125;+\tau_i\gamma_&#123;i+1&#125;C_&#123;i+1,i+1&#125; (i = n-1,\cdots,2,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n<span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">    C(<span class="built_in">i</span>,<span class="built_in">i</span>) = <span class="number">1</span>/alpha(<span class="built_in">i</span>)+t(<span class="built_in">i</span>)*<span class="built_in">gamma</span>(<span class="built_in">i</span>+<span class="number">1</span>)*C(<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">i</span>+<span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP5 计算第i行位于主对角线元素左边的元素以及位于第i列位于主对角线上方的元素</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ij&#125;=-\gamma_&#123;j+1&#125;C_&#123;i,j+1&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ji&#125;=-\tau_jC_&#123;j+1,i&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="built_in">i</span><span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">        C(<span class="built_in">i</span>,<span class="built_in">j</span>) = -<span class="built_in">gamma</span>(<span class="built_in">j</span>+<span class="number">1</span>)*C(<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="built_in">i</span><span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">        C(<span class="built_in">j</span>,<span class="built_in">i</span>) = -t(<span class="built_in">j</span>)*C(<span class="built_in">j</span>+<span class="number">1</span>,<span class="built_in">i</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP6 输出C</span></span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    C = expand(C);</span><br><span class="line">    str = <span class="string">&#x27;@(x) [&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">            temp = <span class="built_in">factor</span>(C(<span class="built_in">i</span>,<span class="built_in">j</span>));</span><br><span class="line">            str = [str <span class="string">&#x27; &#x27;</span> char(prod(temp))];</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        str = [str <span class="string">&#x27;;&#x27;</span>];</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    str = [str <span class="string">&#x27;]&#x27;</span>];</span><br><span class="line">    Cfun = str2func(str);</span><br><span class="line">    C = Cfun(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>测试</li>
-</ul>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span> <span class="number">-1</span> <span class="number">-1</span>];</span><br><span class="line">b = [<span class="number">1</span> <span class="number">3</span> <span class="number">-1</span> <span class="number">1</span>];</span><br><span class="line">c = [<span class="number">1</span> <span class="number">2</span> <span class="number">1</span>];</span><br><span class="line">[A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>论文原文</li>
-</ul>
-<p><a href="/pdf/%E4%B8%89%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5%E6%B1%82%E9%80%86%E7%9A%84%E7%AE%97%E6%B3%95_%E5%86%89%E7%91%9E%E7%94%9F.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
-<ul>
-<li>文档</li>
-</ul>
-<p><a href="https://img.ifish.ink/pdf/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
@@ -496,32 +458,6 @@
       </tags>
   </entry>
   <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>给定高维空间$\mathbb{R}^n$中的$m$个样本点为${X_i}_{i&#x3D;1}^m$，考虑是否可以将$m$个样本嵌入到低维空间$\mathbb{R}^{d}$，$d&lt; n$，使得高维空间中两样本点的度量距离在低维空间中保持不变。 </p>
-<p><img data-src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding"></p>
-<span id="more"></span>
-
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>设高维空间中样本点${ X}_i$在低维空间中表示为${ Z}_i$，要保证度量距离不变，即：<br>$$<br>\Vert {X}_i-{ X}_j\Vert&#x3D;\Vert { Z}_i-{ Z}_j\Vert\qquad i,j&#x3D;1,2,\dots,m \label{eq1}<br>$$<br>将上式平方得到：<br>$$<br>\Vert {X}<em>i-{ X}<em>j\Vert^2&#x3D;\Vert { Z}<em>i\Vert^2+\Vert { Z}<em>j\Vert^2-2{ Z}<em>i^{ T}{ Z}<em>j<br>\label{eq2}<br>$$<br>   令${ B}&#x3D;{ Z}^{ T}{ Z}\in\mathbb{R}^{m\times m}$表示低维空间中样本的内积矩阵，内积矩阵第$i$行第$j$列元素为$B</em>{i,j}&#x3D;Z_i^{\rm T}Z_j$，用$D$表示样本在原始空间中的距离矩阵，其中$D</em>{i,j}&#x3D;\Vert X_i-X_j\Vert$，<br>$$<br>D</em>{i,j}^2&#x3D;B</em>{i,i}+B</em>{j,j}-2B</em>{i,j}<br>\label{eq3}<br>$$<br>如果得到满足上式约束的矩阵${ B}$，假定${ B}$含有$k$个非零特征值，分别为$\lambda_1,\lambda_2,\dots,\lambda_k$且满足$\lambda_i\ge\lambda_j,i&lt; j$，则有${ B}&#x3D;{ V\Lambda V^T}$，其中${ \Lambda}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_k}$，${ V}$的第$i$列是特征值$\lambda_i$对应的特征向量。则有${ Z}&#x3D;{ \Lambda}^{\frac{1}{2}}{ V}^{ T}\in\mathbb{R}^{k\times m}$，如果$k&lt; n$，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导"><a href="#内积矩阵的推导" class="headerlink" title="内积矩阵的推导"></a>内积矩阵的推导</h3><p>考虑低维样本的中心为原点，即$\sum_iZ_i&#x3D;0$，根据第二等式有：<br>$$<br>\sum_iD_{i,j}^2&#x3D;\sum_iB_{i,i}+mB_{j,j}<br>$$</p>
-<p>$$<br>\sum_{i,j}D_{i,j}^2 &#x3D;2m\sum_iB_{i,i}<br>$$</p>
-<p> 有：<br>$$<br>B_{j,j}&#x3D;\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}<br>$$<br>代入公式有：<br>$$<br>B_{i,j} &#x3D; -\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})<br>$$<br>由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入"><a href="#距离不必严格相等的嵌入" class="headerlink" title="距离不必严格相等的嵌入"></a>距离不必严格相等的嵌入</h3><p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度$d$小于非零特征值的个数，则做不到距离严格相等。此时取${ \Lambda_*}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_d}$，对应的特征向量矩阵为$V_*$。即$B\approx{ V_*\Lambda_<em>V^T_</em>}$。低维空间中的样本可表示为<br>$$<br>Z&#x3D;\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}<br>$$</p>
-<h3 id="简单应用-mathbb-R-3-longmapsto-mathbb-R-2"><a href="#简单应用-mathbb-R-3-longmapsto-mathbb-R-2" class="headerlink" title="简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$"></a>简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$</h3><p><img data-src="http://img.ifish.ink/2020/1110_2.png" alt="embedding"></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>曲线拟合的最小二乘法</title>
     <url>/post/b2bc7362.html</url>
     <content><![CDATA[<p>利用最小二乘法对空间中一组数据点进行多项式逼近的介绍</p>
@@ -552,6 +488,44 @@
         <tag>原创</tag>
         <tag>数值分析</tag>
         <tag>曲线拟合</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三对角矩阵求逆的算法-实现</title>
+    <url>/post/891db679.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="MATLAB代码"><a href="#MATLAB代码" class="headerlink" title="MATLAB代码"></a>MATLAB代码</h3><ul>
+<li>函数实现</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[A,C]</span> = <span class="title">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="params">(a,b,c)</span></span></span><br><span class="line"><span class="comment">% 本文实现的是论文《三对角矩阵求逆的算法》论文作者：冉瑞生、黄延祝等人</span></span><br><span class="line"><span class="comment">% 本文算法的计算复杂度为O(n^2)</span></span><br><span class="line"><span class="comment">% 应用数学和力学，第30卷，第2期 2009年2月15日出版 文章编号：1000-0887(2009)02-0238-07</span></span><br><span class="line"><span class="comment">% Code author:Qingjun Chang  qingjun_chang@163.com &amp; qingjun.cn@gmail.com</span></span><br><span class="line"><span class="comment">% INPUT     a：下对角线 1*(n-1)</span></span><br><span class="line"><span class="comment">%           b：对角线 1*n</span></span><br><span class="line"><span class="comment">%           c：上对角线 1*(n-1)</span></span><br><span class="line"><span class="comment">% OUTPUT    A：原始三对角矩阵</span></span><br><span class="line"><span class="comment">%           C：逆矩阵</span></span><br><span class="line">C = [];</span><br><span class="line">flag = <span class="number">0</span>;</span><br><span class="line"><span class="comment">%% STEP1 input A</span></span><br><span class="line"></span><br><span class="line">A = <span class="built_in">diag</span>(a,<span class="number">-1</span>)+<span class="built_in">diag</span>(b)+<span class="built_in">diag</span>(c,<span class="number">1</span>);</span><br><span class="line">a = [<span class="number">0</span> a];</span><br><span class="line"><span class="comment">%% STEP2 将A分解成A = LU</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $\alpha_1=b_1$</span></span><br><span class="line"><span class="comment">% $\tau_&#123;i-1&#125;=\frac&#123;c_&#123;i-1&#125;&#125;&#123;\alpha_&#123;i-1&#125;&#125;,\alpha_i=b_i-a_i\tau_&#123;i-1&#125;,$</span></span><br><span class="line"><span class="comment">% $\gamma_i=\frac&#123;a_i&#125;&#123;\alpha_&#123;i-1&#125;&#125;(i=2,\cdots,n)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line">n = <span class="built_in">size</span>(A,<span class="number">1</span>);</span><br><span class="line">alpha(<span class="number">1</span>) = b(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> alpha(<span class="number">1</span>) == <span class="number">0</span></span><br><span class="line">    fprintf(<span class="string">&#x27;算法2.1失败!正在尝试算法2.2...\n&#x27;</span>);</span><br><span class="line">    syms x</span><br><span class="line">    alpha = x;</span><br><span class="line">    flag = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:n</span><br><span class="line">    t(<span class="built_in">i</span><span class="number">-1</span>) = c(<span class="built_in">i</span><span class="number">-1</span>)/alpha(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    alpha(<span class="built_in">i</span>) = b(<span class="built_in">i</span>)-a(<span class="built_in">i</span>)*t(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">gamma</span>(<span class="built_in">i</span>) = a(<span class="built_in">i</span>)/alpha(<span class="built_in">i</span><span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> alpha(<span class="built_in">i</span>) == <span class="number">0</span></span><br><span class="line">        fprintf(<span class="string">&#x27;算法2.1失败!正在尝试算法2.2...\n&#x27;</span>);</span><br><span class="line">        syms x</span><br><span class="line">        alpha = [alpha(<span class="number">1</span>:<span class="built_in">i</span><span class="number">-1</span>) x];</span><br><span class="line">        t = [t x];</span><br><span class="line">        <span class="built_in">gamma</span> = [<span class="built_in">gamma</span> x];</span><br><span class="line">        flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> alpha(n) == <span class="number">0</span></span><br><span class="line">    fprintf(<span class="string">&#x27;矩阵是奇异的!\n&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%% 算法2.2的一部分</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $P(x)=\Pi_&#123;i=1&#125;^n\alpha_i$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    P = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">        P = P*alpha(<span class="built_in">i</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    P = expand(P);</span><br><span class="line">    P_poly = sym2poly(P);  <span class="comment">% 偶尔会出现错误 提示是Not a polynomial.以后修复</span></span><br><span class="line">    <span class="keyword">if</span> ~P_poly(<span class="keyword">end</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;矩阵是奇异的\n&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP3 计算逆矩阵的最后一个元</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;nn&#125;=\frac&#123;1&#125;&#123;\alpha_n&#125;$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line">C = <span class="built_in">zeros</span>(n);</span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    C = [C(<span class="number">1</span>:<span class="keyword">end</span><span class="number">-1</span>) x];</span><br><span class="line">    C = <span class="built_in">reshape</span>(C,n,n);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">C(n,n) = <span class="number">1</span>/alpha(n);</span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP4 计算逆矩阵C的主对角线元素</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ii&#125;=\frac&#123;1&#125;&#123;\alpha_i&#125;+\tau_i\gamma_&#123;i+1&#125;C_&#123;i+1,i+1&#125; (i = n-1,\cdots,2,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n<span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">    C(<span class="built_in">i</span>,<span class="built_in">i</span>) = <span class="number">1</span>/alpha(<span class="built_in">i</span>)+t(<span class="built_in">i</span>)*<span class="built_in">gamma</span>(<span class="built_in">i</span>+<span class="number">1</span>)*C(<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">i</span>+<span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP5 计算第i行位于主对角线元素左边的元素以及位于第i列位于主对角线上方的元素</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ij&#125;=-\gamma_&#123;j+1&#125;C_&#123;i,j+1&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $C_&#123;ji&#125;=-\tau_jC_&#123;j+1,i&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="built_in">i</span><span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">        C(<span class="built_in">i</span>,<span class="built_in">j</span>) = -<span class="built_in">gamma</span>(<span class="built_in">j</span>+<span class="number">1</span>)*C(<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = n:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="built_in">i</span><span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">        C(<span class="built_in">j</span>,<span class="built_in">i</span>) = -t(<span class="built_in">j</span>)*C(<span class="built_in">j</span>+<span class="number">1</span>,<span class="built_in">i</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%% STEP6 输出C</span></span><br><span class="line"><span class="keyword">if</span> flag</span><br><span class="line">    C = expand(C);</span><br><span class="line">    str = <span class="string">&#x27;@(x) [&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:n</span><br><span class="line">            temp = <span class="built_in">factor</span>(C(<span class="built_in">i</span>,<span class="built_in">j</span>));</span><br><span class="line">            str = [str <span class="string">&#x27; &#x27;</span> char(prod(temp))];</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        str = [str <span class="string">&#x27;;&#x27;</span>];</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    str = [str <span class="string">&#x27;]&#x27;</span>];</span><br><span class="line">    Cfun = str2func(str);</span><br><span class="line">    C = Cfun(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>测试</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span> <span class="number">-1</span> <span class="number">-1</span>];</span><br><span class="line">b = [<span class="number">1</span> <span class="number">3</span> <span class="number">-1</span> <span class="number">1</span>];</span><br><span class="line">c = [<span class="number">1</span> <span class="number">2</span> <span class="number">1</span>];</span><br><span class="line">[A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>论文原文</li>
+</ul>
+<p><a href="/pdf/%E4%B8%89%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5%E6%B1%82%E9%80%86%E7%9A%84%E7%AE%97%E6%B3%95_%E5%86%89%E7%91%9E%E7%94%9F.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
+<ul>
+<li>文档</li>
+</ul>
+<p><a href="https://img.ifish.ink/pdf/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>原创</tag>
+        <tag>算法实现</tag>
       </tags>
   </entry>
   <entry>
@@ -703,6 +677,32 @@
         <tag>随笔</tag>
         <tag>原创</tag>
         <tag>游记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>给定高维空间$\mathbb{R}^n$中的$m$个样本点为${X_i}_{i&#x3D;1}^m$，考虑是否可以将$m$个样本嵌入到低维空间$\mathbb{R}^{d}$，$d&lt; n$，使得高维空间中两样本点的度量距离在低维空间中保持不变。 </p>
+<p><img data-src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding"></p>
+<span id="more"></span>
+
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>设高维空间中样本点${ X}_i$在低维空间中表示为${ Z}_i$，要保证度量距离不变，即：<br>$$<br>\Vert {X}_i-{ X}_j\Vert&#x3D;\Vert { Z}_i-{ Z}_j\Vert\qquad i,j&#x3D;1,2,\dots,m \label{eq1}<br>$$<br>将上式平方得到：<br>$$<br>\Vert {X}<em>i-{ X}<em>j\Vert^2&#x3D;\Vert { Z}<em>i\Vert^2+\Vert { Z}<em>j\Vert^2-2{ Z}<em>i^{ T}{ Z}<em>j<br>\label{eq2}<br>$$<br>   令${ B}&#x3D;{ Z}^{ T}{ Z}\in\mathbb{R}^{m\times m}$表示低维空间中样本的内积矩阵，内积矩阵第$i$行第$j$列元素为$B</em>{i,j}&#x3D;Z_i^{\rm T}Z_j$，用$D$表示样本在原始空间中的距离矩阵，其中$D</em>{i,j}&#x3D;\Vert X_i-X_j\Vert$，<br>$$<br>D</em>{i,j}^2&#x3D;B</em>{i,i}+B</em>{j,j}-2B</em>{i,j}<br>\label{eq3}<br>$$<br>如果得到满足上式约束的矩阵${ B}$，假定${ B}$含有$k$个非零特征值，分别为$\lambda_1,\lambda_2,\dots,\lambda_k$且满足$\lambda_i\ge\lambda_j,i&lt; j$，则有${ B}&#x3D;{ V\Lambda V^T}$，其中${ \Lambda}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_k}$，${ V}$的第$i$列是特征值$\lambda_i$对应的特征向量。则有${ Z}&#x3D;{ \Lambda}^{\frac{1}{2}}{ V}^{ T}\in\mathbb{R}^{k\times m}$，如果$k&lt; n$，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导"><a href="#内积矩阵的推导" class="headerlink" title="内积矩阵的推导"></a>内积矩阵的推导</h3><p>考虑低维样本的中心为原点，即$\sum_iZ_i&#x3D;0$，根据第二等式有：<br>$$<br>\sum_iD_{i,j}^2&#x3D;\sum_iB_{i,i}+mB_{j,j}<br>$$</p>
+<p>$$<br>\sum_{i,j}D_{i,j}^2 &#x3D;2m\sum_iB_{i,i}<br>$$</p>
+<p> 有：<br>$$<br>B_{j,j}&#x3D;\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}<br>$$<br>代入公式有：<br>$$<br>B_{i,j} &#x3D; -\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})<br>$$<br>由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入"><a href="#距离不必严格相等的嵌入" class="headerlink" title="距离不必严格相等的嵌入"></a>距离不必严格相等的嵌入</h3><p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度$d$小于非零特征值的个数，则做不到距离严格相等。此时取${ \Lambda_*}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_d}$，对应的特征向量矩阵为$V_*$。即$B\approx{ V_*\Lambda_<em>V^T_</em>}$。低维空间中的样本可表示为<br>$$<br>Z&#x3D;\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}<br>$$</p>
+<h3 id="简单应用-mathbb-R-3-longmapsto-mathbb-R-2"><a href="#简单应用-mathbb-R-3-longmapsto-mathbb-R-2" class="headerlink" title="简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$"></a>简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$</h3><p><img data-src="http://img.ifish.ink/2020/1110_2.png" alt="embedding"></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
 </search>
