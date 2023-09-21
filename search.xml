@@ -1,78 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><h3 id="左键选择点，右键或中间结束"><a href="#左键选择点，右键或中间结束" class="headerlink" title="左键选择点，右键或中间结束"></a>左键选择点，右键或中间结束</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title(&#39;Bezier曲线拟合&#39;);
-questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
-
-<span id="more"></span>
-
-<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
-<h3 id="从鼠标获取数据点"><a href="#从鼠标获取数据点" class="headerlink" title="从鼠标获取数据点"></a>从鼠标获取数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
-while 1
-    i &#x3D; i+1;
-    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
-    xlabel(tip);
-    try
-    [x,y,button] &#x3D; ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,&#39;o&#39;);
-    dataPoints(:,i) &#x3D; [x;y];
-    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
-    if button ~&#x3D; 1
-        xlabel(&#39;&#39;);
-        break;
-    end
-end
-
-
-for i &#x3D; 0:0.01:1
-    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
-end
-h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
-legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
-
-<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
-<h3 id="得到曲线参数为u的数据点"><a href="#得到曲线参数为u的数据点" class="headerlink" title="得到曲线参数为u的数据点"></a>得到曲线参数为u的数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data &#x3D; dataPoints;
-while 1
-    if size(data,2) &#x3D;&#x3D; 1
-        break;
-    end
-    temp &#x3D; zeros(size(data,1),size(data,2)-1);
-    for i &#x3D; 1:size(data,2)-1
-        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data &#x3D; temp;
-end
-end</code></pre>
-
-<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>原创</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -212,13 +140,85 @@ grid on<span class="token punctuation">,</span>hold on
       </tags>
   </entry>
   <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><h3 id="左键选择点，右键或中间结束"><a href="#左键选择点，右键或中间结束" class="headerlink" title="左键选择点，右键或中间结束"></a>左键选择点，右键或中间结束</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title(&#39;Bezier曲线拟合&#39;);
+questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
+
+<span id="more"></span>
+
+<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
+<h3 id="从鼠标获取数据点"><a href="#从鼠标获取数据点" class="headerlink" title="从鼠标获取数据点"></a>从鼠标获取数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
+while 1
+    i &#x3D; i+1;
+    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
+    xlabel(tip);
+    try
+    [x,y,button] &#x3D; ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,&#39;o&#39;);
+    dataPoints(:,i) &#x3D; [x;y];
+    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
+    if button ~&#x3D; 1
+        xlabel(&#39;&#39;);
+        break;
+    end
+end
+
+
+for i &#x3D; 0:0.01:1
+    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
+end
+h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
+legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
+
+<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
+<h3 id="得到曲线参数为u的数据点"><a href="#得到曲线参数为u的数据点" class="headerlink" title="得到曲线参数为u的数据点"></a>得到曲线参数为u的数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data &#x3D; dataPoints;
+while 1
+    if size(data,2) &#x3D;&#x3D; 1
+        break;
+    end
+    temp &#x3D; zeros(size(data,1),size(data,2)-1);
+    for i &#x3D; 1:size(data,2)-1
+        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data &#x3D; temp;
+end
+end</code></pre>
+
+<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>原创</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenSubdiv + Visual Studio环境配置</title>
     <url>/post/a507e481.html</url>
     <content><![CDATA[<blockquote>
 <p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
 </blockquote>
 <blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 <strong>qingjun_<a href="mailto:&#x63;&#104;&#x61;&#110;&#103;&#x40;&#49;&#x36;&#x33;&#46;&#x63;&#x6f;&#109;">&#x63;&#104;&#x61;&#110;&#103;&#x40;&#49;&#x36;&#x33;&#46;&#x63;&#x6f;&#109;</a></strong>。转载请注明出处：<a href="https://ifish.ink/">https://ifish.ink</a> ） （先前条件：<strong>win7系统</strong> 已安装**<a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https://www.baidu.com/link?url=ONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq&wd=&eqid=d2d58bc800015f450000000659ddca4f">Visual Studio</a>**环境，相关文件在附件）</p>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 <strong>qingjun_<a href="mailto:&#99;&#x68;&#x61;&#110;&#103;&#64;&#49;&#x36;&#51;&#46;&#x63;&#111;&#109;">&#99;&#x68;&#x61;&#110;&#103;&#64;&#49;&#x36;&#51;&#46;&#x63;&#111;&#109;</a></strong>。转载请注明出处：<a href="https://ifish.ink/">https://ifish.ink</a> ） （先前条件：<strong>win7系统</strong> 已安装**<a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https://www.baidu.com/link?url=ONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq&wd=&eqid=d2d58bc800015f450000000659ddca4f">Visual Studio</a>**环境，相关文件在附件）</p>
 </blockquote>
 <span id="more"></span>
 <hr>
@@ -255,6 +255,33 @@ grid on<span class="token punctuation">,</span>hold on
       <tags>
         <tag>原创</tag>
         <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <url>/post/563c2d.html</url>
+    <content><![CDATA[<blockquote>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现 <strong>Briefly unavailable for scheduled maintenance. Check back in a minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+</blockquote>
+<p><img src="http://img.ifish.ink/img/20190703103139.png" alt="Briefly unavailable for scheduled maintenance. Check back in a minute." title="Briefly unavailable for scheduled maintenance. Check back in a minute."></p>
+<h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly unavailable for scheduled maintenance. Check back in a minute.”</p>
+<span id="more"></span>
+
+<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong> 的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em> 即可</p>
+<ul>
+<li>用FTP或者从终端进入WordPress的根目录下，删除 <strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong> 文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为 _.maintenance_，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到 <strong>.maintenance</strong> 文件，然后删除即可。</li>
+</ul>
+<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>wordpress</tag>
       </tags>
   </entry>
   <entry>
@@ -317,33 +344,6 @@ grid on<span class="token punctuation">,</span>hold on
       </tags>
   </entry>
   <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <url>/post/563c2d.html</url>
-    <content><![CDATA[<blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现 <strong>Briefly unavailable for scheduled maintenance. Check back in a minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
-</blockquote>
-<p><img src="http://img.ifish.ink/img/20190703103139.png" alt="Briefly unavailable for scheduled maintenance. Check back in a minute." title="Briefly unavailable for scheduled maintenance. Check back in a minute."></p>
-<h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly unavailable for scheduled maintenance. Check back in a minute.”</p>
-<span id="more"></span>
-
-<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong> 的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em> 即可</p>
-<ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除 <strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong> 文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为 _.maintenance_，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到 <strong>.maintenance</strong> 文件，然后删除即可。</li>
-</ul>
-<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WordPress站点地图自动更新</title>
     <url>/post/943451b1.html</url>
     <content><![CDATA[<blockquote>
@@ -363,6 +363,26 @@ grid on<span class="token punctuation">,</span>hold on
         <tag>wordpress</tag>
         <tag>SEO</tag>
         <tag>sitemap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TexLive2017+TexStudio in Windows</title>
+    <url>/post/c4cb1247.html</url>
+    <content><![CDATA[<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建</p>
+<span id="more"></span>
+
+<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱： <a href="mailto:&#x71;&#x69;&#x6e;&#103;&#106;&#x75;&#x6e;&#46;&#99;&#110;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#99;&#111;&#x6d;">&#x71;&#x69;&#x6e;&#103;&#106;&#x75;&#x6e;&#46;&#99;&#110;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#99;&#111;&#x6d;</a></p>
+<hr>
+<p>百度云资源下载：<a href="https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag">链接：https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag 提取码：uyed</a> 清华镜像下载：<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">texlive下载</a> 视频源：<a href="https://www.youtube.com/watch?v=82bF7uzgFes&list=PLFCWA3cnJDPVQuYFhrU0Lu9r1wogsAkdv">How to download and Install laTex (TeXstudio+texlive2017) full</a>  </p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+        <tag>摘</tag>
       </tags>
   </entry>
   <entry>
@@ -396,26 +416,6 @@ xxx.xxx.xxx.xxx github.com</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>TexLive2017+TexStudio in Windows</title>
-    <url>/post/c4cb1247.html</url>
-    <content><![CDATA[<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建</p>
-<span id="more"></span>
-
-<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱： <a href="mailto:&#113;&#x69;&#110;&#x67;&#106;&#117;&#x6e;&#46;&#x63;&#x6e;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;">&#113;&#x69;&#110;&#x67;&#106;&#117;&#x6e;&#46;&#x63;&#x6e;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;</a></p>
-<hr>
-<p>百度云资源下载：<a href="https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag">链接：https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag 提取码：uyed</a> 清华镜像下载：<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">texlive下载</a> 视频源：<a href="https://www.youtube.com/watch?v=82bF7uzgFes&list=PLFCWA3cnJDPVQuYFhrU0Lu9r1wogsAkdv">How to download and Install laTex (TeXstudio+texlive2017) full</a>  </p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>环境配置</tag>
-        <tag>摘</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu 外接显示与内置显示切换</title>
     <url>/post/83277084.html</url>
     <content><![CDATA[<ul>
@@ -443,25 +443,6 @@ xxx.xxx.xxx.xxx github.com</code></pre>
         <tag>环境配置</tag>
         <tag>ubuntu</tag>
         <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一直都好喜欢这首诗啊！《雨巷》--戴望舒</title>
-    <url>/post/d517eeb6.html</url>
-    <content><![CDATA[<blockquote>
-<p>一直都好喜欢这首诗啊！《雨巷》–戴望舒</p>
-</blockquote>
-<span id="more"></span>
-
-<p><img src="http://img.ifish.ink/figure/xitang.png" alt="西塘"></p>
-<hr>
-<p>撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷， 我希望逢着 一个丁香一样的 结着愁怨的姑娘。 她是有 丁香一样的颜色， 丁香一样的芬芳， 丁香一样的忧愁， 在雨中哀怨， 哀怨又彷徨； 她彷徨在这寂寥的雨巷， 撑着油纸伞 像我一样， 像我一样地 默默彳亍着， 冷漠，凄清，又惆怅。 她静默地走近 走近，又投出 太息一般的眼光， 她飘过 像梦一般的， 像梦一般的凄婉迷茫。 像梦中飘过 一枝丁香的， 我身旁飘过这女郎； 她静默地远了，远了， 到了颓圮的篱墙， 走尽这雨巷。 在雨的哀曲里， 消了她的颜色， 散了她的芬芳 消散了，甚至她的 太息般的眼光， 丁香般的惆怅。 撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷， 我希望飘过 一个丁香一样的 结着愁怨的姑娘。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -621,152 +602,22 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
       </tags>
   </entry>
   <entry>
-    <title>三对角矩阵的类雅可比迭代程序</title>
-    <url>/post/f9428d51.html</url>
-    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组"><a href="#三对角矩阵的类雅可比迭代算法解线性方程组" class="headerlink" title="三对角矩阵的类雅可比迭代算法解线性方程组"></a>三对角矩阵的类雅可比迭代算法解线性方程组</h2><span id="more"></span>
+    <title>一直都好喜欢这首诗啊！《雨巷》--戴望舒</title>
+    <url>/post/d517eeb6.html</url>
+    <content><![CDATA[<blockquote>
+<p>一直都好喜欢这首诗啊！《雨巷》–戴望舒</p>
+</blockquote>
+<span id="more"></span>
 
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
-% init_X：初始值
-% coefficient_mat：系数矩阵
-% b_mat：b
-% maxNum：最大迭代次数
-% epsilon：精度
-output_args &#x3D; [];
-flag &#x3D; 0;
-
-%% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
-    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
-    return;
-end
-if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
-    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
-    return;
-end
-if size(b_mat,1) &#x3D;&#x3D; 1
-    b_mat &#x3D; b_mat&#39;;
-end
-if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
-    disp(&#39;初始值必须为行向量或者列向量&#39;);
-    return;
-end
-if size(init_X,1) &#x3D;&#x3D; 1
-    init_X &#x3D; init_X&#39;;
-end
-if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
-    disp(&#39;初始值与系数矩阵维数不一致&#39;);
-    return;
-end
-if size(init_X,1) ~&#x3D; size(b_mat,1)
-    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
-    return;
-end
-if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
-    maxNum &#x3D; 500; % 默认值
-end
-if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
-    epsilon &#x3D; 1e-14; % 默认值
-end
-
-%% 三对角线
-a &#x3D; diag(coefficient_mat,-1)&#39;;
-b &#x3D; diag(coefficient_mat)&#39;;
-c &#x3D; diag(coefficient_mat,1)&#39;;
-D &#x3D; diag(a,-1)+diag(b)+diag(c,1);
-
-% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
-[~,D_inv] &#x3D; cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
-if isempty(D_inv)
-    disp(&#39;系数矩阵不可逆&#39;);
-    return;
-end
-%% 开始迭代
-% 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) &#x3D; init_X;
-% for k &#x3D; 1:maxNum
-%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
-%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag &#x3D; 1;
-%         break;
-%     end
-% end
-x &#x3D; init_X;
-%%
-% 迭代公式：
-% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
-% 
-for k &#x3D; 1:maxNum
-    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
-    if norm(temp-x) &lt; epsilon
-        flag &#x3D; 1;
-        x &#x3D; temp;
-        break;
-    end
-    x &#x3D; temp;
-end
-
-
-%% 结果
-text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
-% 正则表达式
-str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
-mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
-my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
-mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
-str5 &#x3D; &#39;\times X&#x3D;&#39;;
-% LaTex 输出
-text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
-    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
-    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
-text(0,0.5,&#39;三对角类雅可比迭代的结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-if flag &#x3D;&#x3D; 1  %好的结果
-    output_args.itrNum &#x3D; k;
-    output_args.result &#x3D; x;
-    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
-%     disp(x(:,k));
-    disp(&#39;解：&#39;);
-    disp(x);
-    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
-        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
-        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
-    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-    return;
-end
-text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
-end</code></pre>
-
-<ul>
-<li>测试程序</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat &#x3D; [-1 -5 2 -1];
-init_X &#x3D; zeros(size(b_mat));
-out_QuasiJacobi &#x3D; cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-
-<ul>
-<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
-</ul>
+<p><img src="http://img.ifish.ink/figure/xitang.png" alt="西塘"></p>
 <hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+<p>撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷， 我希望逢着 一个丁香一样的 结着愁怨的姑娘。 她是有 丁香一样的颜色， 丁香一样的芬芳， 丁香一样的忧愁， 在雨中哀怨， 哀怨又彷徨； 她彷徨在这寂寥的雨巷， 撑着油纸伞 像我一样， 像我一样地 默默彳亍着， 冷漠，凄清，又惆怅。 她静默地走近 走近，又投出 太息一般的眼光， 她飘过 像梦一般的， 像梦一般的凄婉迷茫。 像梦中飘过 一枝丁香的， 我身旁飘过这女郎； 她静默地远了，远了， 到了颓圮的篱墙， 走尽这雨巷。 在雨的哀曲里， 消了她的颜色， 散了她的芬芳 消散了，甚至她的 太息般的眼光， 丁香般的惆怅。 撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷， 我希望飘过 一个丁香一样的 结着愁怨的姑娘。</p>
 ]]></content>
       <categories>
-        <category>数学学习</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>MATLAB代码</tag>
-        <tag>原创</tag>
-        <tag>算法实现</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -919,59 +770,178 @@ figure
       </tags>
   </entry>
   <entry>
-    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
-    <url>/post/d033f67a.html</url>
-    <content><![CDATA[<h4 id="c-实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）："><a href="#c-实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：" class="headerlink" title="c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）："></a>c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4><blockquote>
-<p>关于3维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/4d3c170c.html" title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean Value Coordinates In 3D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <url>/post/f9428d51.html</url>
+    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组"><a href="#三对角矩阵的类雅可比迭代算法解线性方程组" class="headerlink" title="三对角矩阵的类雅可比迭代算法解线性方程组"></a>三对角矩阵的类雅可比迭代算法解线性方程组</h2><span id="more"></span>
 
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 2D
-/// @details    
-/// @param[in]  p,postiveity
-/// @return     
-/// @attention  
-*/</span>
-VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
-        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
-        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
-        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
+% init_X：初始值
+% coefficient_mat：系数矩阵
+% b_mat：b
+% maxNum：最大迭代次数
+% epsilon：精度
+output_args &#x3D; [];
+flag &#x3D; 0;
 
+%% 预处理 检查用户调用函数时参数格式是否传错
+if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
+    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
+    return;
+end
+if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
+    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
+    return;
+end
+if size(b_mat,1) &#x3D;&#x3D; 1
+    b_mat &#x3D; b_mat&#39;;
+end
+if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
+    disp(&#39;初始值必须为行向量或者列向量&#39;);
+    return;
+end
+if size(init_X,1) &#x3D;&#x3D; 1
+    init_X &#x3D; init_X&#39;;
+end
+if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
+    disp(&#39;初始值与系数矩阵维数不一致&#39;);
+    return;
+end
+if size(init_X,1) ~&#x3D; size(b_mat,1)
+    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
+    return;
+end
+if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
+    maxNum &#x3D; 500; % 默认值
+end
+if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
+    epsilon &#x3D; 1e-14; % 默认值
+end
+
+%% 三对角线
+a &#x3D; diag(coefficient_mat,-1)&#39;;
+b &#x3D; diag(coefficient_mat)&#39;;
+c &#x3D; diag(coefficient_mat,1)&#39;;
+D &#x3D; diag(a,-1)+diag(b)+diag(c,1);
+
+% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
+[~,D_inv] &#x3D; cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
+if isempty(D_inv)
+    disp(&#39;系数矩阵不可逆&#39;);
+    return;
+end
+%% 开始迭代
+% 下面代码段也行 但是对内存的消耗比较大 
+% x(:,0) &#x3D; init_X;
+% for k &#x3D; 1:maxNum
+%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
+%         flag &#x3D; 1;
+%         break;
+%     end
+% end
+x &#x3D; init_X;
+%%
+% 迭代公式：
+% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
+% 
+for k &#x3D; 1:maxNum
+    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
+    if norm(temp-x) &lt; epsilon
+        flag &#x3D; 1;
+        x &#x3D; temp;
+        break;
+    end
+    x &#x3D; temp;
+end
+
+
+%% 结果
+text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
+% 正则表达式
+str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
+mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
+my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
+mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
+str5 &#x3D; &#39;\times X&#x3D;&#39;;
+% LaTex 输出
+text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
+    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
+    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
+text(0,0.5,&#39;三对角类雅可比迭代的结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+if flag &#x3D;&#x3D; 1  %好的结果
+    output_args.itrNum &#x3D; k;
+    output_args.result &#x3D; x;
+    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
+%     disp(x(:,k));
+    disp(&#39;解：&#39;);
+    disp(x);
+    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
+        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
+        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
+    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+    return;
+end
+text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
+end</code></pre>
+
+<ul>
+<li>测试程序</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat &#x3D; [-1 -5 2 -1];
+init_X &#x3D; zeros(size(b_mat));
+out_QuasiJacobi &#x3D; cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+
+<ul>
+<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
+</ul>
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>图形学</category>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>原创</tag>
+        <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>给定高维空间$\mathbb{R}^n$中的$m$个样本点为${X_i}_{i&#x3D;1}^m$，考虑是否可以将$m$个样本嵌入到低维空间$\mathbb{R}^{d}$，$d&lt; n$，使得高维空间中两样本点的度量距离在低维空间中保持不变。 </p>
+<p><img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding"></p>
+<span id="more"></span>
+
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>设高维空间中样本点${ X}_i$在低维空间中表示为${ Z}_i$，要保证度量距离不变，即：<br>$$<br>\Vert {X}_i-{ X}_j\Vert&#x3D;\Vert { Z}_i-{ Z}_j\Vert\qquad i,j&#x3D;1,2,\dots,m \label{eq1}<br>$$<br>将上式平方得到：<br>$$<br>\Vert {X}<em>i-{ X}<em>j\Vert^2&#x3D;\Vert { Z}<em>i\Vert^2+\Vert { Z}<em>j\Vert^2-2{ Z}<em>i^{ T}{ Z}<em>j<br>\label{eq2}<br>$$<br>   令${ B}&#x3D;{ Z}^{ T}{ Z}\in\mathbb{R}^{m\times m}$表示低维空间中样本的内积矩阵，内积矩阵第$i$行第$j$列元素为$B</em>{i,j}&#x3D;Z_i^{\rm T}Z_j$，用$D$表示样本在原始空间中的距离矩阵，其中$D</em>{i,j}&#x3D;\Vert X_i-X_j\Vert$，<br>$$<br>D</em>{i,j}^2&#x3D;B</em>{i,i}+B</em>{j,j}-2B</em>{i,j}<br>\label{eq3}<br>$$<br>如果得到满足上式约束的矩阵${ B}$，假定${ B}$含有$k$个非零特征值，分别为$\lambda_1,\lambda_2,\dots,\lambda_k$且满足$\lambda_i\ge\lambda_j,i&lt; j$，则有${ B}&#x3D;{ V\Lambda V^T}$，其中${ \Lambda}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_k}$，${ V}$的第$i$列是特征值$\lambda_i$对应的特征向量。则有${ Z}&#x3D;{ \Lambda}^{\frac{1}{2}}{ V}^{ T}\in\mathbb{R}^{k\times m}$，如果$k&lt; n$，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导"><a href="#内积矩阵的推导" class="headerlink" title="内积矩阵的推导"></a>内积矩阵的推导</h3><p>考虑低维样本的中心为原点，即$\sum_iZ_i&#x3D;0$，根据第二等式有：<br>$$<br>\sum_iD_{i,j}^2&#x3D;\sum_iB_{i,i}+mB_{j,j}<br>$$</p>
+<p>$$<br>\sum_{i,j}D_{i,j}^2 &#x3D;2m\sum_iB_{i,i}<br>$$</p>
+<p> 有：<br>$$<br>B_{j,j}&#x3D;\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}<br>$$<br>代入公式有：<br>$$<br>B_{i,j} &#x3D; -\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})<br>$$<br>由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入"><a href="#距离不必严格相等的嵌入" class="headerlink" title="距离不必严格相等的嵌入"></a>距离不必严格相等的嵌入</h3><p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度$d$小于非零特征值的个数，则做不到距离严格相等。此时取${ \Lambda_*}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_d}$，对应的特征向量矩阵为$V_*$。即$B\approx{ V_*\Lambda_<em>V^T_</em>}$。低维空间中的样本可表示为<br>$$<br>Z&#x3D;\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}<br>$$</p>
+<h3 id="简单应用-mathbb-R-3-longmapsto-mathbb-R-2"><a href="#简单应用-mathbb-R-3-longmapsto-mathbb-R-2" class="headerlink" title="简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$"></a>简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$</h3><p><img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding"></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+        <category>算法</category>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>算法实现</tag>
-        <tag>C++代码</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1056,62 +1026,59 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
       </tags>
   </entry>
   <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>给定高维空间$\mathbb{R}^n$中的$m$个样本点为${X_i}_{i&#x3D;1}^m$，考虑是否可以将$m$个样本嵌入到低维空间$\mathbb{R}^{d}$，$d&lt; n$，使得高维空间中两样本点的度量距离在低维空间中保持不变。 </p>
-<p><img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding"></p>
-<span id="more"></span>
-
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>设高维空间中样本点${ X}_i$在低维空间中表示为${ Z}_i$，要保证度量距离不变，即：<br>$$<br>\Vert {X}_i-{ X}_j\Vert&#x3D;\Vert { Z}_i-{ Z}_j\Vert\qquad i,j&#x3D;1,2,\dots,m \label{eq1}<br>$$<br>将上式平方得到：<br>$$<br>\Vert {X}<em>i-{ X}<em>j\Vert^2&#x3D;\Vert { Z}<em>i\Vert^2+\Vert { Z}<em>j\Vert^2-2{ Z}<em>i^{ T}{ Z}<em>j<br>\label{eq2}<br>$$<br>   令${ B}&#x3D;{ Z}^{ T}{ Z}\in\mathbb{R}^{m\times m}$表示低维空间中样本的内积矩阵，内积矩阵第$i$行第$j$列元素为$B</em>{i,j}&#x3D;Z_i^{\rm T}Z_j$，用$D$表示样本在原始空间中的距离矩阵，其中$D</em>{i,j}&#x3D;\Vert X_i-X_j\Vert$，<br>$$<br>D</em>{i,j}^2&#x3D;B</em>{i,i}+B</em>{j,j}-2B</em>{i,j}<br>\label{eq3}<br>$$<br>如果得到满足上式约束的矩阵${ B}$，假定${ B}$含有$k$个非零特征值，分别为$\lambda_1,\lambda_2,\dots,\lambda_k$且满足$\lambda_i\ge\lambda_j,i&lt; j$，则有${ B}&#x3D;{ V\Lambda V^T}$，其中${ \Lambda}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_k}$，${ V}$的第$i$列是特征值$\lambda_i$对应的特征向量。则有${ Z}&#x3D;{ \Lambda}^{\frac{1}{2}}{ V}^{ T}\in\mathbb{R}^{k\times m}$，如果$k&lt; n$，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导"><a href="#内积矩阵的推导" class="headerlink" title="内积矩阵的推导"></a>内积矩阵的推导</h3><p>考虑低维样本的中心为原点，即$\sum_iZ_i&#x3D;0$，根据第二等式有：<br>$$<br>\sum_iD_{i,j}^2&#x3D;\sum_iB_{i,i}+mB_{j,j}<br>$$</p>
-<p>$$<br>\sum_{i,j}D_{i,j}^2 &#x3D;2m\sum_iB_{i,i}<br>$$</p>
-<p> 有：<br>$$<br>B_{j,j}&#x3D;\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}<br>$$<br>代入公式有：<br>$$<br>B_{i,j} &#x3D; -\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})<br>$$<br>由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入"><a href="#距离不必严格相等的嵌入" class="headerlink" title="距离不必严格相等的嵌入"></a>距离不必严格相等的嵌入</h3><p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度$d$小于非零特征值的个数，则做不到距离严格相等。此时取${ \Lambda_*}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_d}$，对应的特征向量矩阵为$V_*$。即$B\approx{ V_*\Lambda_<em>V^T_</em>}$。低维空间中的样本可表示为<br>$$<br>Z&#x3D;\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}<br>$$</p>
-<h3 id="简单应用-mathbb-R-3-longmapsto-mathbb-R-2"><a href="#简单应用-mathbb-R-3-longmapsto-mathbb-R-2" class="headerlink" title="简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$"></a>简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$</h3><p><img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding"></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>曲线拟合的最小二乘法</title>
-    <url>/post/b2bc7362.html</url>
-    <content><![CDATA[<p>利用最小二乘法对空间中一组数据点进行多项式逼近的介绍</p>
-<blockquote>
-<p>以下内容是参考了_《计算几何》第二版-浙江大学出版社-易大义&amp;沈云宝&amp;李有法_，根据所学整理 <strong>曲线拟合：</strong>已知$m$个数据点$(x_i,y_i)$，其中$i&#x3D;(1,2,…,m)$，寻找一个近似函数$y&#x3D;f(x)$</p>
+    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
+    <url>/post/d033f67a.html</url>
+    <content><![CDATA[<h4 id="c-实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）："><a href="#c-实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：" class="headerlink" title="c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）："></a>c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4><blockquote>
+<p>关于3维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/4d3c170c.html" title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean Value Coordinates In 3D代码实现</a></p>
 </blockquote>
 <span id="more"></span>
 
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 2D
+/// @details    
+/// @param[in]  p,postiveity
+/// @return     
+/// @attention  
+*/</span>
+VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
+        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
+        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
+        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
 <hr>
-<h2 id="1-最小二乘法"><a href="#1-最小二乘法" class="headerlink" title="1.最小二乘法"></a>1.最小二乘法</h2><p> 根据实际情况，一般来说给定$m$个数据点，所求的的目标曲线很难保证全部的数据点都落在曲线上，即不能保证拟合的函数曲线在$x_i$处的残差（偏差）$\delta_i&#x3D;\varphi(x_i)-y_i$其中 $i&#x3D;1,2,…,m$ 都严格等于$0$。但是希望残差 $\delta$ 在总体上比较小。常见的做法有如下几种：</p>
-<ul>
-<li><p>选取$\varphi (x)$，使得残差绝对值之和最小。(<em>这种方法不可导，求解困难</em>)<br>$$<br>\sum\limits_{i&#x3D;1}^m\delta_i&#x3D;\sum\limits_{i&#x3D;1}^m\varphi(x_i)-y_i&#x3D;min<br>$$</p>
-</li>
-<li><p>选取$\varphi(x)$，使得残差最大绝对值最小。(<em>比较复杂</em>)<br>$$<br>\max\limits_{1\le i\le m}\delta_i&#x3D;\max\limits_{1\le i\le m}\varphi(x_i)-y_i&#x3D;min<br>$$</p>
-</li>
-<li><p>选取$\varphi(x)$，使得残差平方和最小。(<em>可导，求解较方便</em>)<br>$$<br>\sum\limits_{i&#x3D;1}^m{\delta_i}^2&#x3D;\sum\limits_{i&#x3D;1}^m[\varphi(x_i)-y_i]^2&#x3D;min<br>$$</p>
-</li>
-</ul>
-<p>综合多种因素，一般选择<strong>残差平方和最小</strong>的原则（称为<strong>最小二乘原则</strong>）进行选择拟合曲线$\varphi(x)$。按最小二乘原则选择拟合曲线的方法，称为<strong>最小二乘法</strong>。</p>
-<hr>
-<h2 id="2-最小二乘法的求解"><a href="#2-最小二乘法的求解" class="headerlink" title="2.最小二乘法的求解"></a>2.最小二乘法的求解</h2><p> 已知$m$个数据点$(x_i,y_i)$，其中$i&#x3D;(1,2,…,m)$，要求在函数类$\phi &#x3D; {\varphi_0(x),\varphi_1(x),…,\varphi_n(x)} (n&lt;m)$中寻找一个函数：<br>$$<br>\overline{\varphi}(x)&#x3D;\overline{a_0}\varphi_0(x)+\overline{a_1}\varphi_1(x)+\cdots+\overline{a_n}\varphi_n(x)<br>$$<br>使得$\overline{\varphi}(x)$满足条件：<br>$$<br>\sum\limits_{i&#x3D;1}^m[\overline\varphi(x_i)-y_i]^2&#x3D;\min\limits_{\varphi(x)\in\phi}\sum\limits_{i&#x3D;1}^m[\varphi(x_i)-y_i]^2<br>$$<br>$$<br>\varphi(x)&#x3D;a_0\varphi_0(x)+a_1\varphi_1(x)+\cdots+a_n\varphi_n(x)<br>$$</p>
-<p>其中$\varphi(x)$是函数类$\phi$中任意一个函数。满足上述条件的$\overline\varphi(x)$成为最小二乘问题的最小二乘解。 #（未完待续）</p>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>数学学习</category>
+        <category>图形学</category>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>数值分析</tag>
-        <tag>曲线拟合</tag>
+        <tag>算法实现</tag>
+        <tag>C++代码</tag>
       </tags>
   </entry>
   <entry>
@@ -1253,52 +1220,36 @@ out_Jacobi &#x3D; cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件 uBlock Origin</p>
+    <title>曲线拟合的最小二乘法</title>
+    <url>/post/b2bc7362.html</url>
+    <content><![CDATA[<p>利用最小二乘法对空间中一组数据点进行多项式逼近的介绍</p>
+<blockquote>
+<p>以下内容是参考了_《计算几何》第二版-浙江大学出版社-易大义&amp;沈云宝&amp;李有法_，根据所学整理 <strong>曲线拟合：</strong>已知$m$个数据点$(x_i,y_i)$，其中$i&#x3D;(1,2,…,m)$，寻找一个近似函数$y&#x3D;f(x)$</p>
 </blockquote>
-<h2 id="小编使用uBlock-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件"><a href="#小编使用uBlock-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件" class="headerlink" title="小编使用uBlock Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件"></a>小编使用uBlock Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h2><span id="more"></span>
+<span id="more"></span>
 
-<h3 id="一、uBlock-Origin简介"><a href="#一、uBlock-Origin简介" class="headerlink" title="一、uBlock Origin简介"></a>一、uBlock Origin简介</h3><p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> 截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
 <hr>
-<h3 id="二、Chrome下安装uBlock-Origin插件"><a href="#二、Chrome下安装uBlock-Origin插件" class="headerlink" title="二、Chrome下安装uBlock Origin插件"></a>二、Chrome下安装uBlock Origin插件</h3><p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em>  </p>
-<h4 id="直接从Google-Store安装插件"><a href="#直接从Google-Store安装插件" class="headerlink" title="直接从Google Store安装插件"></a>直接从Google Store安装插件</h4><blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
-</blockquote>
-<ol>
-<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>” <img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
-</ol>
-<h4 id="从本地导入-crx文件"><a href="#从本地导入-crx文件" class="headerlink" title="从本地导入.crx文件"></a>从本地导入.crx文件</h4><ol>
-<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock Origin 1.19.6_0.crx文件 提取码：tqwe</p>
+<h2 id="1-最小二乘法"><a href="#1-最小二乘法" class="headerlink" title="1.最小二乘法"></a>1.最小二乘法</h2><p> 根据实际情况，一般来说给定$m$个数据点，所求的的目标曲线很难保证全部的数据点都落在曲线上，即不能保证拟合的函数曲线在$x_i$处的残差（偏差）$\delta_i&#x3D;\varphi(x_i)-y_i$其中 $i&#x3D;1,2,…,m$ 都严格等于$0$。但是希望残差 $\delta$ 在总体上比较小。常见的做法有如下几种：</p>
+<ul>
+<li><p>选取$\varphi (x)$，使得残差绝对值之和最小。(<em>这种方法不可导，求解困难</em>)<br>$$<br>\sum\limits_{i&#x3D;1}^m\delta_i&#x3D;\sum\limits_{i&#x3D;1}^m\varphi(x_i)-y_i&#x3D;min<br>$$</p>
 </li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome:&#x2F;&#x2F;extensions&#x2F;</a> 后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p>
+<li><p>选取$\varphi(x)$，使得残差最大绝对值最小。(<em>比较复杂</em>)<br>$$<br>\max\limits_{1\le i\le m}\delta_i&#x3D;\max\limits_{1\le i\le m}\varphi(x_i)-y_i&#x3D;min<br>$$</p>
 </li>
-<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可 <img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p>
-</li>
-<li><p>在Chrome右上角点击uBlock Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。 <img src="http://img.ifish.ink/img/uo4.png"></p>
-</li>
-</ol>
-<hr>
-<h3 id="三、测试"><a href="#三、测试" class="headerlink" title="三、测试"></a>三、测试</h3><ul>
-<li><p>未启用uBlock Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面 (可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p>
-</li>
-<li><p>启用uBlock Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面 (广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p>
-</li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p>
+<li><p>选取$\varphi(x)$，使得残差平方和最小。(<em>可导，求解较方便</em>)<br>$$<br>\sum\limits_{i&#x3D;1}^m{\delta_i}^2&#x3D;\sum\limits_{i&#x3D;1}^m[\varphi(x_i)-y_i]^2&#x3D;min<br>$$</p>
 </li>
 </ul>
+<p>综合多种因素，一般选择<strong>残差平方和最小</strong>的原则（称为<strong>最小二乘原则</strong>）进行选择拟合曲线$\varphi(x)$。按最小二乘原则选择拟合曲线的方法，称为<strong>最小二乘法</strong>。</p>
 <hr>
-<h3 id="四、参考："><a href="#四、参考：" class="headerlink" title="四、参考："></a>四、参考：</h3><p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>. 维基百科：<a href="https://zh.wikipedia.org/wiki/UBlock/_Origin">https://zh.wikipedia.org/wiki/UBlock\_Origin</a></p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+<h2 id="2-最小二乘法的求解"><a href="#2-最小二乘法的求解" class="headerlink" title="2.最小二乘法的求解"></a>2.最小二乘法的求解</h2><p> 已知$m$个数据点$(x_i,y_i)$，其中$i&#x3D;(1,2,…,m)$，要求在函数类$\phi &#x3D; {\varphi_0(x),\varphi_1(x),…,\varphi_n(x)} (n&lt;m)$中寻找一个函数：<br>$$<br>\overline{\varphi}(x)&#x3D;\overline{a_0}\varphi_0(x)+\overline{a_1}\varphi_1(x)+\cdots+\overline{a_n}\varphi_n(x)<br>$$<br>使得$\overline{\varphi}(x)$满足条件：<br>$$<br>\sum\limits_{i&#x3D;1}^m[\overline\varphi(x_i)-y_i]^2&#x3D;\min\limits_{\varphi(x)\in\phi}\sum\limits_{i&#x3D;1}^m[\varphi(x_i)-y_i]^2<br>$$<br>$$<br>\varphi(x)&#x3D;a_0\varphi_0(x)+a_1\varphi_1(x)+\cdots+a_n\varphi_n(x)<br>$$</p>
+<p>其中$\varphi(x)$是函数类$\phi$中任意一个函数。满足上述条件的$\overline\varphi(x)$成为最小二乘问题的最小二乘解。 #（未完待续）</p>
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>数学学习</category>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>神器</tag>
+        <tag>数值分析</tag>
+        <tag>曲线拟合</tag>
       </tags>
   </entry>
   <entry>
@@ -1367,10 +1318,59 @@ out_Jacobi &#x3D; cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
         <category>生活</category>
       </categories>
       <tags>
+        <tag>原创</tag>
         <tag>生活</tag>
         <tag>随笔</tag>
-        <tag>原创</tag>
         <tag>游记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
+    <content><![CDATA[<blockquote>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件 uBlock Origin</p>
+</blockquote>
+<h2 id="小编使用uBlock-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件"><a href="#小编使用uBlock-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件" class="headerlink" title="小编使用uBlock Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件"></a>小编使用uBlock Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h2><span id="more"></span>
+
+<h3 id="一、uBlock-Origin简介"><a href="#一、uBlock-Origin简介" class="headerlink" title="一、uBlock Origin简介"></a>一、uBlock Origin简介</h3><p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> 截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr>
+<h3 id="二、Chrome下安装uBlock-Origin插件"><a href="#二、Chrome下安装uBlock-Origin插件" class="headerlink" title="二、Chrome下安装uBlock Origin插件"></a>二、Chrome下安装uBlock Origin插件</h3><p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em>  </p>
+<h4 id="直接从Google-Store安装插件"><a href="#直接从Google-Store安装插件" class="headerlink" title="直接从Google Store安装插件"></a>直接从Google Store安装插件</h4><blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol>
+<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>” <img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
+</ol>
+<h4 id="从本地导入-crx文件"><a href="#从本地导入-crx文件" class="headerlink" title="从本地导入.crx文件"></a>从本地导入.crx文件</h4><ol>
+<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock Origin 1.19.6_0.crx文件 提取码：tqwe</p>
+</li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome:&#x2F;&#x2F;extensions&#x2F;</a> 后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p>
+</li>
+<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可 <img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p>
+</li>
+<li><p>在Chrome右上角点击uBlock Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。 <img src="http://img.ifish.ink/img/uo4.png"></p>
+</li>
+</ol>
+<hr>
+<h3 id="三、测试"><a href="#三、测试" class="headerlink" title="三、测试"></a>三、测试</h3><ul>
+<li><p>未启用uBlock Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面 (可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p>
+</li>
+<li><p>启用uBlock Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面 (广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p>
+</li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p>
+</li>
+</ul>
+<hr>
+<h3 id="四、参考："><a href="#四、参考：" class="headerlink" title="四、参考："></a>四、参考：</h3><p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>. 维基百科：<a href="https://zh.wikipedia.org/wiki/UBlock/_Origin">https://zh.wikipedia.org/wiki/UBlock\_Origin</a></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>神器</tag>
       </tags>
   </entry>
 </search>
