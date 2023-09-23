@@ -622,6 +622,40 @@
                     
 
                     
+                        <link rel="stylesheet" href="/libs/dplayer/DPlayer.min.css">
+<div class="video-player">
+    
+    <div class="row">
+		
+        <div class="col l8 offset-l2 m10 offset-m1 s12">
+            <div id="dplayer" class="dplayer-video"
+                    ></div>
+        </div>
+		
+    </div>
+</div>
+
+<script src="/libs/dplayer/DPlayer.min.js"></script>
+<script>
+    $(function () {
+        new DPlayer({
+            container: document.getElementById('dplayer'),
+            autoplay: 'true' === 'true',
+            theme: '#42b983',
+            loop: 'false' === 'true',
+            lang: 'zh-CN,en,default' === 'zh-CN' ? 'zh-cn' : 'en',
+            preload: 'auto',
+            volume: Number('0.7'),
+            video: {
+                url: 'http://mpvideo.qpic.cn/0bf2sya7eaabhaaepevgmrpvdfwd6klad4qa.f10002.mp4?dis_k=2e52758b596bdb92ff295e41a96bd239&dis_t=1695484295&play_scene=10120&auth_info=PKnIqJcmBU4d6+7Qh1IfVTtrRkZrNBk3bT4YOTIZbkIMdTtLBhEvfD0WWTQVI1QgZWtZSn9m&auth_key=5a80b4431688ecc3f76278ba3ec2d9e4&vid=wxv_1597765941948383233&format_id=10002&support_redirect=0&mmversion=false',
+                pic: '',
+                thumbnails: ''
+            }
+        });
+    });
+</script>
+
+                    
 
                     
                     <div id="recommend-sections" class="recommend">
@@ -630,8 +664,6 @@
 
 
 
-
-<div class="title"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;推荐文章</div>
 
 <div class="row">
 
@@ -670,71 +702,6 @@
     
     <div class="col s12 m6" >
         
-             <div class="post-card" style="background-image: url('http://img.ifish.ink/figure/main_03.png')">
-        
-            <div class="post-body">
-                <div class="post-categories">
-                    
-                        
-                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/" class="category">数学学习</a>
-                        
-                    
-                </div>
-                <a href="/post/7741e06a.html">
-                    <h3 class="post-title">Bezier曲线拟合数据点的几何作图法</h3>
-                </a>
-                <p class="post-description">
-                    
-                        
-Bezier曲线拟合数据点的几何作图法MATLAB程序。
-
-Contents左键选择点，右键或中间结束clear
-close all
-fi
-                    
-                </p>
-                <a href="/post/7741e06a.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)" target="_blank">
-                    <i class="icon far fa-eye fa-fw"></i>阅读更多
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="col s12 m6" data-aos="zoom-in-up">
-        
-             <div class="post-card" style="background-image: url('http://img.ifish.ink/figure/21.png')">
-        
-            <div class="post-body">
-                <div class="post-categories">
-                    
-                        
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="category">教程</a>
-                        
-                    
-                </div>
-                <a href="/post/a507e481.html">
-                    <h3 class="post-title">OpenSubdiv + Visual Studio环境配置</h3>
-                </a>
-                <p class="post-description">
-                    
-                        
-本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建
-
-
-（本文是根据自己实际操作所述，由于本人知识水平有限，文
-                    
-                </p>
-                <a href="/post/a507e481.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #1AD6FD 0%, #1D62F0 100%)" target="_blank">
-                    <i class="icon far fa-eye fa-fw"></i>阅读更多
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="col s12 m6" data-aos="zoom-in-up">
-        
             <div class="post-card" style="background-image: url('/medias/featureimages/7.jpg')">
             
             <div class="post-body">
@@ -754,7 +721,7 @@ fi
 关于2维中均值重心坐标的实现可参考我的另一篇博客：均值重心坐标Mean Value Coordinates In 2D代码实现
                     
                 </p>
-                <a href="/post/4d3c170c.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FFCC00 0%, #FF9500 100%)" target="_blank">
+                <a href="/post/4d3c170c.html" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)" target="_blank">
                     <i class="icon far fa-eye fa-fw"></i>阅读更多
                 </a>
             </div>
