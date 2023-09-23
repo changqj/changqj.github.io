@@ -428,10 +428,15 @@
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
+            
             <div class="row tag-cate">
                 <div class="col s7">
                     
                     <div class="article-tag">
+                        
+                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                <span class="chip bg-color">原创</span>
+                            </a>
                         
                             <a href="/tags/%E7%94%9F%E6%B4%BB/">
                                 <span class="chip bg-color">生活</span>
@@ -439,10 +444,6 @@
                         
                             <a href="/tags/%E9%9A%8F%E7%AC%94/">
                                 <span class="chip bg-color">随笔</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                                <span class="chip bg-color">原创</span>
                             </a>
                         
                             <a href="/tags/%E6%B8%B8%E8%AE%B0/">
@@ -465,6 +466,8 @@
                     
                 </div>
             </div>
+            
+
 
             <div class="post-info">
                 
@@ -492,6 +495,7 @@
 
                 
             </div>
+            
         </div>
         <hr class="clearfix">
 
@@ -566,8 +570,58 @@
                 
             </div>
             <hr/>
-
             
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">鱼墨常常</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.ifish.ink/post/f29efa2.html">https://www.ifish.ink/post/f29efa2.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">鱼墨常常</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
 
 
 
@@ -576,16 +630,16 @@
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                    <span class="chip bg-color">原创</span>
+                                </a>
+                            
                                 <a href="/tags/%E7%94%9F%E6%B4%BB/">
                                     <span class="chip bg-color">生活</span>
                                 </a>
                             
                                 <a href="/tags/%E9%9A%8F%E7%AC%94/">
                                     <span class="chip bg-color">随笔</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                                    <span class="chip bg-color">原创</span>
                                 </a>
                             
                                 <a href="/tags/%E6%B8%B8%E8%AE%B0/">
@@ -600,6 +654,9 @@
 <div id="article-share">
 
     
+    <div class="social-share" data-sites="twitter,facebook,google,wechat,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
 
     
 
@@ -608,8 +665,12 @@
                 </div>
             </div>
             
+            
         </div>
     </div>
+
+    
+    
 
     
         <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
@@ -653,7 +714,10 @@
     
 
     
+    
+    
 
+    
     
 
 <article id="prenext-posts" class="prev-next articles">
@@ -781,8 +845,9 @@
     </div>
 </article>
 
+    
+    
 </div>
-
 
 
 <!-- 代码块功能依赖 -->
