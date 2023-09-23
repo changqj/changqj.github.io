@@ -533,7 +533,7 @@ header .go-back i {
     position: relative;
     display: flex;
     align-items: center;
-    height: 60vh;
+    height: 40vh;
     padding: 0;
     border: 0;
     overflow: hidden;
@@ -547,7 +547,7 @@ header .go-back i {
 }
 
 .post-cover {
-    height: 40vh !important;
+    height: 20vh !important;
 }
 
 .bg-cover:after {
