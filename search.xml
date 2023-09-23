@@ -255,7 +255,7 @@ end</code></pre>
 <p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
 </blockquote>
 <blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 <strong>qingjun_<a href="mailto:&#x63;&#x68;&#97;&#x6e;&#103;&#x40;&#49;&#54;&#x33;&#46;&#x63;&#111;&#x6d;">&#x63;&#x68;&#97;&#x6e;&#103;&#x40;&#49;&#54;&#x33;&#46;&#x63;&#111;&#x6d;</a></strong>。转载请注明出处：<a href="https://ifish.ink/">https://ifish.ink</a> ） （先前条件：<strong>win7系统</strong> 已安装**<a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https://www.baidu.com/link?url=ONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq&wd=&eqid=d2d58bc800015f450000000659ddca4f">Visual Studio</a>**环境，相关文件在附件）</p>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 <strong>qingjun_<a href="mailto:&#x63;&#x68;&#97;&#x6e;&#x67;&#x40;&#49;&#54;&#51;&#46;&#x63;&#x6f;&#x6d;">&#x63;&#x68;&#97;&#x6e;&#x67;&#x40;&#49;&#54;&#51;&#46;&#x63;&#x6f;&#x6d;</a></strong>。转载请注明出处：<a href="https://ifish.ink/">https://ifish.ink</a> ） （先前条件：<strong>win7系统</strong> 已安装**<a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https://www.baidu.com/link?url=ONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq&wd=&eqid=d2d58bc800015f450000000659ddca4f">Visual Studio</a>**环境，相关文件在附件）</p>
 </blockquote>
 <span id="more"></span>
 <hr>
@@ -401,7 +401,7 @@ xxx.xxx.xxx.xxx github.com</code></pre>
     <content><![CDATA[<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建</p>
 <span id="more"></span>
 
-<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱： <a href="mailto:&#113;&#105;&#110;&#103;&#106;&#117;&#110;&#46;&#99;&#110;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#113;&#105;&#110;&#103;&#106;&#117;&#110;&#46;&#99;&#110;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱： <a href="mailto:&#x71;&#x69;&#x6e;&#x67;&#x6a;&#117;&#x6e;&#x2e;&#x63;&#x6e;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x71;&#x69;&#x6e;&#x67;&#x6a;&#117;&#x6e;&#x2e;&#x63;&#x6e;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a></p>
 <hr>
 <p>百度云资源下载：<a href="https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag">链接：https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag 提取码：uyed</a> 清华镜像下载：<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">texlive下载</a> 视频源：<a href="https://www.youtube.com/watch?v=82bF7uzgFes&list=PLFCWA3cnJDPVQuYFhrU0Lu9r1wogsAkdv">How to download and Install laTex (TeXstudio+texlive2017) full</a>  </p>
 <hr>
@@ -462,155 +462,6 @@ xxx.xxx.xxx.xxx github.com</code></pre>
       </categories>
       <tags>
         <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>三对角矩阵的类雅可比迭代程序</title>
-    <url>/post/f9428d51.html</url>
-    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组"><a href="#三对角矩阵的类雅可比迭代算法解线性方程组" class="headerlink" title="三对角矩阵的类雅可比迭代算法解线性方程组"></a>三对角矩阵的类雅可比迭代算法解线性方程组</h2><span id="more"></span>
-
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
-% init_X：初始值
-% coefficient_mat：系数矩阵
-% b_mat：b
-% maxNum：最大迭代次数
-% epsilon：精度
-output_args &#x3D; [];
-flag &#x3D; 0;
-
-%% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
-    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
-    return;
-end
-if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
-    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
-    return;
-end
-if size(b_mat,1) &#x3D;&#x3D; 1
-    b_mat &#x3D; b_mat&#39;;
-end
-if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
-    disp(&#39;初始值必须为行向量或者列向量&#39;);
-    return;
-end
-if size(init_X,1) &#x3D;&#x3D; 1
-    init_X &#x3D; init_X&#39;;
-end
-if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
-    disp(&#39;初始值与系数矩阵维数不一致&#39;);
-    return;
-end
-if size(init_X,1) ~&#x3D; size(b_mat,1)
-    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
-    return;
-end
-if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
-    maxNum &#x3D; 500; % 默认值
-end
-if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
-    epsilon &#x3D; 1e-14; % 默认值
-end
-
-%% 三对角线
-a &#x3D; diag(coefficient_mat,-1)&#39;;
-b &#x3D; diag(coefficient_mat)&#39;;
-c &#x3D; diag(coefficient_mat,1)&#39;;
-D &#x3D; diag(a,-1)+diag(b)+diag(c,1);
-
-% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
-[~,D_inv] &#x3D; cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
-if isempty(D_inv)
-    disp(&#39;系数矩阵不可逆&#39;);
-    return;
-end
-%% 开始迭代
-% 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) &#x3D; init_X;
-% for k &#x3D; 1:maxNum
-%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
-%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag &#x3D; 1;
-%         break;
-%     end
-% end
-x &#x3D; init_X;
-%%
-% 迭代公式：
-% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
-% 
-for k &#x3D; 1:maxNum
-    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
-    if norm(temp-x) &lt; epsilon
-        flag &#x3D; 1;
-        x &#x3D; temp;
-        break;
-    end
-    x &#x3D; temp;
-end
-
-
-%% 结果
-text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
-% 正则表达式
-str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
-mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
-my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
-mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
-str5 &#x3D; &#39;\times X&#x3D;&#39;;
-% LaTex 输出
-text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
-    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
-    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
-text(0,0.5,&#39;三对角类雅可比迭代的结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-if flag &#x3D;&#x3D; 1  %好的结果
-    output_args.itrNum &#x3D; k;
-    output_args.result &#x3D; x;
-    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
-%     disp(x(:,k));
-    disp(&#39;解：&#39;);
-    disp(x);
-    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
-        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
-        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
-    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-    return;
-end
-text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
-end</code></pre>
-
-<ul>
-<li>测试程序</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat &#x3D; [-1 -5 2 -1];
-init_X &#x3D; zeros(size(b_mat));
-out_QuasiJacobi &#x3D; cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-
-<ul>
-<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
-</ul>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>原创</tag>
-        <tag>算法实现</tag>
       </tags>
   </entry>
   <entry>
@@ -757,6 +608,155 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
 <li>文档</li>
 </ul>
 <p><a href="https://img.ifish.ink/pdf/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>原创</tag>
+        <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <url>/post/f9428d51.html</url>
+    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组"><a href="#三对角矩阵的类雅可比迭代算法解线性方程组" class="headerlink" title="三对角矩阵的类雅可比迭代算法解线性方程组"></a>三对角矩阵的类雅可比迭代算法解线性方程组</h2><span id="more"></span>
+
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
+% init_X：初始值
+% coefficient_mat：系数矩阵
+% b_mat：b
+% maxNum：最大迭代次数
+% epsilon：精度
+output_args &#x3D; [];
+flag &#x3D; 0;
+
+%% 预处理 检查用户调用函数时参数格式是否传错
+if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
+    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
+    return;
+end
+if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
+    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
+    return;
+end
+if size(b_mat,1) &#x3D;&#x3D; 1
+    b_mat &#x3D; b_mat&#39;;
+end
+if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
+    disp(&#39;初始值必须为行向量或者列向量&#39;);
+    return;
+end
+if size(init_X,1) &#x3D;&#x3D; 1
+    init_X &#x3D; init_X&#39;;
+end
+if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
+    disp(&#39;初始值与系数矩阵维数不一致&#39;);
+    return;
+end
+if size(init_X,1) ~&#x3D; size(b_mat,1)
+    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
+    return;
+end
+if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
+    maxNum &#x3D; 500; % 默认值
+end
+if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
+    epsilon &#x3D; 1e-14; % 默认值
+end
+
+%% 三对角线
+a &#x3D; diag(coefficient_mat,-1)&#39;;
+b &#x3D; diag(coefficient_mat)&#39;;
+c &#x3D; diag(coefficient_mat,1)&#39;;
+D &#x3D; diag(a,-1)+diag(b)+diag(c,1);
+
+% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
+[~,D_inv] &#x3D; cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
+if isempty(D_inv)
+    disp(&#39;系数矩阵不可逆&#39;);
+    return;
+end
+%% 开始迭代
+% 下面代码段也行 但是对内存的消耗比较大 
+% x(:,0) &#x3D; init_X;
+% for k &#x3D; 1:maxNum
+%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
+%         flag &#x3D; 1;
+%         break;
+%     end
+% end
+x &#x3D; init_X;
+%%
+% 迭代公式：
+% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
+% 
+for k &#x3D; 1:maxNum
+    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
+    if norm(temp-x) &lt; epsilon
+        flag &#x3D; 1;
+        x &#x3D; temp;
+        break;
+    end
+    x &#x3D; temp;
+end
+
+
+%% 结果
+text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
+% 正则表达式
+str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
+mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
+my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
+mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
+str5 &#x3D; &#39;\times X&#x3D;&#39;;
+% LaTex 输出
+text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
+    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
+    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
+text(0,0.5,&#39;三对角类雅可比迭代的结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+if flag &#x3D;&#x3D; 1  %好的结果
+    output_args.itrNum &#x3D; k;
+    output_args.result &#x3D; x;
+    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
+%     disp(x(:,k));
+    disp(&#39;解：&#39;);
+    disp(x);
+    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
+        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
+        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
+    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+    return;
+end
+text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
+end</code></pre>
+
+<ul>
+<li>测试程序</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat &#x3D; [-1 -5 2 -1];
+init_X &#x3D; zeros(size(b_mat));
+out_QuasiJacobi &#x3D; cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+
+<ul>
+<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
+</ul>
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
@@ -919,87 +919,6 @@ figure
       </tags>
   </entry>
   <entry>
-    <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
-    <url>/post/4d3c170c.html</url>
-    <content><![CDATA[<h4 id="c-实现："><a href="#c-实现：" class="headerlink" title="c++实现："></a>c++实现：</h4><blockquote>
-<p>关于2维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/d033f67a.html" title="均值重心坐标Mean Value Coordinates In 2D代码实现">均值重心坐标Mean Value Coordinates In 2D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
-
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 3D
-/// @details    
-/// @param[in]  p: 
-/// @return     
-/// @attention  
-*/</span> 
-VectorXd <span class="token class-name">MyMesh</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector3d p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token comment">//this->faces = this->fixMesh().faces;   // repair the faces index, so that the all normal vector of faces outward (inward)</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// get projection vertices on unit sphere</span>
-    Matrix<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>Dynamic<span class="token operator">></span> pro_vertices<span class="token punctuation">;</span>
-
-    pro_vertices<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">double</span> r <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
-        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
-        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-    Matrix<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">></span> T<span class="token punctuation">;</span>
-    Vector3d n0<span class="token punctuation">,</span> n1<span class="token punctuation">,</span> n2<span class="token punctuation">;</span>
-    <span class="token keyword">double</span> beta0<span class="token punctuation">,</span> beta1<span class="token punctuation">,</span> beta2<span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfFaces<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> i0<span class="token punctuation">,</span> i1<span class="token punctuation">,</span> i2<span class="token punctuation">;</span>     <span class="token comment">// index of vertices on the current face</span>
-        i0 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        i1 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        i2 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        n0 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        n1 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        n2 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment">// angle</span>
-        beta0 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        beta1 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        beta2 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        mvc_coor<span class="token punctuation">[</span>i0<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta1 <span class="token operator">+</span> beta0<span class="token operator">*</span>n0<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span> <span class="token operator">+</span> beta2<span class="token operator">*</span>n2<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        mvc_coor<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta2 <span class="token operator">+</span> beta1<span class="token operator">*</span>n1<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span> <span class="token operator">+</span> beta0<span class="token operator">*</span>n0<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        mvc_coor<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta0 <span class="token operator">+</span> beta2<span class="token operator">*</span>n2<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span> <span class="token operator">+</span> beta1<span class="token operator">*</span>n1<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">/=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>图形学</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>算法实现</tag>
-        <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
     <url>/post/d033f67a.html</url>
     <content><![CDATA[<h4 id="c-实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）："><a href="#c-实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：" class="headerlink" title="c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）："></a>c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4><blockquote>
@@ -1079,6 +998,87 @@ VectorXd <span class="token class-name">MyPolygon</span><span class="token doubl
       <tags>
         <tag>原创</tag>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
+    <url>/post/4d3c170c.html</url>
+    <content><![CDATA[<h4 id="c-实现："><a href="#c-实现：" class="headerlink" title="c++实现："></a>c++实现：</h4><blockquote>
+<p>关于2维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/d033f67a.html" title="均值重心坐标Mean Value Coordinates In 2D代码实现">均值重心坐标Mean Value Coordinates In 2D代码实现</a></p>
+</blockquote>
+<span id="more"></span>
+
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 3D
+/// @details    
+/// @param[in]  p: 
+/// @return     
+/// @attention  
+*/</span> 
+VectorXd <span class="token class-name">MyMesh</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector3d p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token comment">//this->faces = this->fixMesh().faces;   // repair the faces index, so that the all normal vector of faces outward (inward)</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// get projection vertices on unit sphere</span>
+    Matrix<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>Dynamic<span class="token operator">></span> pro_vertices<span class="token punctuation">;</span>
+
+    pro_vertices<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">double</span> r <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
+        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
+        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    Matrix<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">></span> T<span class="token punctuation">;</span>
+    Vector3d n0<span class="token punctuation">,</span> n1<span class="token punctuation">,</span> n2<span class="token punctuation">;</span>
+    <span class="token keyword">double</span> beta0<span class="token punctuation">,</span> beta1<span class="token punctuation">,</span> beta2<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfFaces<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> i0<span class="token punctuation">,</span> i1<span class="token punctuation">,</span> i2<span class="token punctuation">;</span>     <span class="token comment">// index of vertices on the current face</span>
+        i0 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        i1 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        i2 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        n0 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        n1 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        n2 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// angle</span>
+        beta0 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        beta1 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        beta2 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        mvc_coor<span class="token punctuation">[</span>i0<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta1 <span class="token operator">+</span> beta0<span class="token operator">*</span>n0<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span> <span class="token operator">+</span> beta2<span class="token operator">*</span>n2<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mvc_coor<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta2 <span class="token operator">+</span> beta1<span class="token operator">*</span>n1<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span> <span class="token operator">+</span> beta0<span class="token operator">*</span>n0<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mvc_coor<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta0 <span class="token operator">+</span> beta2<span class="token operator">*</span>n2<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span> <span class="token operator">+</span> beta1<span class="token operator">*</span>n1<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">/=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>图形学</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>算法实现</tag>
+        <tag>C++代码</tag>
       </tags>
   </entry>
   <entry>
