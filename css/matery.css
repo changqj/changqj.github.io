@@ -321,7 +321,7 @@ header .side-nav .mobile-head img {
 header .side-nav .mobile-head .logo-name {
     margin-top: -30px;
     padding-left: 10px;
-    font-size: 3rem;
+    font-size: 1.5rem;
 }
 
 header .side-nav .mobile-head .logo-desc {
@@ -533,7 +533,7 @@ header .go-back i {
     position: relative;
     display: flex;
     align-items: center;
-    height: 40vh;
+    height: 60vh;
     padding: 0;
     border: 0;
     overflow: hidden;
