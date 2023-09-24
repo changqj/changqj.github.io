@@ -255,3 +255,40 @@
 .flag-SS{background-position:-312px -315px}
 .flag-XK{background-position:-338px -315px}
 .flag-AQ{background-position:-390px -315px}
+
+
+
+/* 个人页面 */
+.publication {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 垂直居中对齐图片和信息 */
+    margin-bottom: 20px; /* 添加间距以避免重叠 */
+}
+
+.publication .img-item {
+    width: 20% !important; /* 设置图片宽度 */
+}
+
+.publication .img-item .img {
+    width: 20% !important; /* 设置图片宽度 */
+}
+
+.publication-info {
+    width: 75%; /* 设置信息块宽度 */
+}
+
+.publication-info h3 {
+    margin: 0; /* 移除标题的默认上下间距 */
+    overflow: hidden;
+}
+
+.publication-info h4 {
+    margin: 0; /* 移除标题的默认上下间距 */
+    overflow: hidden;
+}
+
+.publication-info p {
+    margin: 0 !important; /* 移除标题的默认上下间距 */
+    overflow: hidden;
+}
