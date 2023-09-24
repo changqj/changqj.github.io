@@ -292,3 +292,18 @@
     margin: 0 !important; /* 移除标题的默认上下间距 */
     overflow: hidden;
 }
+
+
+@media screen and (max-width: 580px) {
+    .publication .img-item {
+        width: 0 !important; /* 设置图片宽度 */
+    }
+    
+    .publication .img-item .img {
+        width: 0 !important; /* 设置图片宽度 */
+    }
+    
+    .publication-info {
+        width: 100%; /* 设置信息块宽度 */
+    }
+}
