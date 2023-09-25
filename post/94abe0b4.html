@@ -19,6 +19,17 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142108938-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-142108938-1');
+</script>
+
 
     <title>多维放缩MDS算法 | IFISH.INK</title>
     <link rel="icon" type="image/png" href="/images/chang.png">
@@ -51,7 +62,10 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -177,6 +191,17 @@
       <i class="fas fa-envelopes-bulk" style="zoom: 0.6;"></i>
       
       <span>明信片</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
     </a>
     
   </li>
@@ -319,6 +344,17 @@
 			    <i class="fa-fw fas fa-envelopes-bulk"></i>
 			
 			明信片
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
 		</a>
           
         </li>
@@ -473,7 +509,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    703
+                    685
                 </div>
                 
 
@@ -502,15 +538,15 @@
                 <blockquote>
 <p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。</p>
 </blockquote>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>给定高维空间$\mathbb{R}^n$中的$m$个样本点为${X_i}_{i&#x3D;1}^m$，考虑是否可以将$m$个样本嵌入到低维空间$\mathbb{R}^{d}$，$d&lt; n$，使得高维空间中两样本点的度量距离在低维空间中保持不变。 </p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>给定高维空间$\mathbb{R}^n$中的$m$个样本点为${X_i}_{i=1}^m$，考虑是否可以将$m$个样本嵌入到低维空间$\mathbb{R}^{d}$，$d&lt; n$，使得高维空间中两样本点的度量距离在低维空间中保持不变。 </p>
 <p><img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding"></p>
 <span id="more"></span>
 
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>设高维空间中样本点${ X}_i$在低维空间中表示为${ Z}_i$，要保证度量距离不变，即：<br>$$<br>\Vert {X}_i-{ X}_j\Vert&#x3D;\Vert { Z}_i-{ Z}_j\Vert\qquad i,j&#x3D;1,2,\dots,m \label{eq1}<br>$$<br>将上式平方得到：<br>$$<br>\Vert {X}<em>i-{ X}<em>j\Vert^2&#x3D;\Vert { Z}<em>i\Vert^2+\Vert { Z}<em>j\Vert^2-2{ Z}<em>i^{ T}{ Z}<em>j<br>\label{eq2}<br>$$<br>   令${ B}&#x3D;{ Z}^{ T}{ Z}\in\mathbb{R}^{m\times m}$表示低维空间中样本的内积矩阵，内积矩阵第$i$行第$j$列元素为$B</em>{i,j}&#x3D;Z_i^{\rm T}Z_j$，用$D$表示样本在原始空间中的距离矩阵，其中$D</em>{i,j}&#x3D;\Vert X_i-X_j\Vert$，<br>$$<br>D</em>{i,j}^2&#x3D;B</em>{i,i}+B</em>{j,j}-2B</em>{i,j}<br>\label{eq3}<br>$$<br>如果得到满足上式约束的矩阵${ B}$，假定${ B}$含有$k$个非零特征值，分别为$\lambda_1,\lambda_2,\dots,\lambda_k$且满足$\lambda_i\ge\lambda_j,i&lt; j$，则有${ B}&#x3D;{ V\Lambda V^T}$，其中${ \Lambda}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_k}$，${ V}$的第$i$列是特征值$\lambda_i$对应的特征向量。则有${ Z}&#x3D;{ \Lambda}^{\frac{1}{2}}{ V}^{ T}\in\mathbb{R}^{k\times m}$，如果$k&lt; n$，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导"><a href="#内积矩阵的推导" class="headerlink" title="内积矩阵的推导"></a>内积矩阵的推导</h3><p>考虑低维样本的中心为原点，即$\sum_iZ_i&#x3D;0$，根据第二等式有：<br>$$<br>\sum_iD_{i,j}^2&#x3D;\sum_iB_{i,i}+mB_{j,j}<br>$$</p>
-<p>$$<br>\sum_{i,j}D_{i,j}^2 &#x3D;2m\sum_iB_{i,i}<br>$$</p>
-<p> 有：<br>$$<br>B_{j,j}&#x3D;\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}<br>$$<br>代入公式有：<br>$$<br>B_{i,j} &#x3D; -\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})<br>$$<br>由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入"><a href="#距离不必严格相等的嵌入" class="headerlink" title="距离不必严格相等的嵌入"></a>距离不必严格相等的嵌入</h3><p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度$d$小于非零特征值的个数，则做不到距离严格相等。此时取${ \Lambda_*}&#x3D;diag{\lambda_1,\lambda_2,\dots,\lambda_d}$，对应的特征向量矩阵为$V_*$。即$B\approx{ V_*\Lambda_<em>V^T_</em>}$。低维空间中的样本可表示为<br>$$<br>Z&#x3D;\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}<br>$$</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>设高维空间中样本点${ X}_i$在低维空间中表示为${ Z}_i$，要保证度量距离不变，即：<br>$$<br>\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m \label{eq1}<br>$$<br>将上式平方得到：<br>$$<br>\Vert {X}<em>i-{ X}<em>j\Vert^2=\Vert { Z}<em>i\Vert^2+\Vert { Z}<em>j\Vert^2-2{ Z}<em>i^{ T}{ Z}<em>j<br>\label{eq2}<br>$$<br>   令${ B}={ Z}^{ T}{ Z}\in\mathbb{R}^{m\times m}$表示低维空间中样本的内积矩阵，内积矩阵第$i$行第$j$列元素为$B</em>{i,j}=Z_i^{\rm T}Z_j$，用$D$表示样本在原始空间中的距离矩阵，其中$D</em>{i,j}=\Vert X_i-X_j\Vert$，<br>$$<br>D</em>{i,j}^2=B</em>{i,i}+B</em>{j,j}-2B</em>{i,j}<br>\label{eq3}<br>$$<br>如果得到满足上式约束的矩阵${ B}$，假定${ B}$含有$k$个非零特征值，分别为$\lambda_1,\lambda_2,\dots,\lambda_k$且满足$\lambda_i\ge\lambda_j,i&lt; j$，则有${ B}={ V\Lambda V^T}$，其中${ \Lambda}=diag{\lambda_1,\lambda_2,\dots,\lambda_k}$，${ V}$的第$i$列是特征值$\lambda_i$对应的特征向量。则有${ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{ T}\in\mathbb{R}^{k\times m}$，如果$k&lt; n$，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导"><a href="#内积矩阵的推导" class="headerlink" title="内积矩阵的推导"></a>内积矩阵的推导</h3><p>考虑低维样本的中心为原点，即$\sum_iZ_i=0$，根据第二等式有：<br>$$<br>\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}<br>$$</p>
+<p>$$<br>\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}<br>$$</p>
+<p> 有：<br>$$<br>B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}<br>$$<br>代入公式有：<br>$$<br>B_{i,j} = -\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})<br>$$<br>由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入"><a href="#距离不必严格相等的嵌入" class="headerlink" title="距离不必严格相等的嵌入"></a>距离不必严格相等的嵌入</h3><p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度$d$小于非零特征值的个数，则做不到距离严格相等。此时取${ \Lambda_*}=diag{\lambda_1,\lambda_2,\dots,\lambda_d}$，对应的特征向量矩阵为$V_*$。即$B\approx{ V_*\Lambda_<em>V^T_</em>}$。低维空间中的样本可表示为<br>$$<br>Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}<br>$$</p>
 <h3 id="简单应用-mathbb-R-3-longmapsto-mathbb-R-2"><a href="#简单应用-mathbb-R-3-longmapsto-mathbb-R-2" class="headerlink" title="简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$"></a>简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$</h3><p><img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding"></p>
 
                 
@@ -550,7 +586,7 @@
                 <span class="reprint-info">
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    许可协议。转载请注明来源
+                    许可协议。来源
                     <a href="/about" target="_blank">鱼墨常常</a>
                     !
                 </span>
@@ -882,11 +918,21 @@ global
 
 
 
+    <a href="https://ch.linkedin.com/in/qingjun-chang-aa961a138" class="tooltipped" target="_blank" data-tooltip="关注我的Linkedin" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
 
 
 
 
 
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
 
 </div>
     </div>
@@ -1053,6 +1099,16 @@ $(function () {
     
 
     <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?20106c52bc0f032cd2c934444673826c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
     <!-- Baidu Push -->
 

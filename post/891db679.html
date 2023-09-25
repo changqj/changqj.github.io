@@ -25,6 +25,17 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142108938-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-142108938-1');
+</script>
+
 
     <title>三对角矩阵求逆的算法-实现 | IFISH.INK</title>
     <link rel="icon" type="image/png" href="/images/chang.png">
@@ -57,7 +68,10 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -183,6 +197,17 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
       <i class="fas fa-envelopes-bulk" style="zoom: 0.6;"></i>
       
       <span>明信片</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
     </a>
     
   </li>
@@ -325,6 +350,17 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
 			    <i class="fa-fw fas fa-envelopes-bulk"></i>
 			
 			明信片
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
 		</a>
           
         </li>
@@ -479,7 +515,7 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    764
+                    718
                 </div>
                 
 
@@ -532,8 +568,8 @@ a <span class="token operator">=</span> <span class="token punctuation">[</span>
 <span class="token comment">%% STEP2 将A分解成A = LU</span>
 %
 <span class="token comment">% $\alpha_1=b_1$</span>
-<span class="token comment">% $\tau_&#123;i-1&#125;=\frac&#123;c_&#123;i-1&#125;&#125;&#123;\alpha_&#123;i-1&#125;&#125;,\alpha_i=b_i-a_i\tau_&#123;i-1&#125;,$</span>
-<span class="token comment">% $\gamma_i=\frac&#123;a_i&#125;&#123;\alpha_&#123;i-1&#125;&#125;(i=2,\cdots,n)$</span>
+<span class="token comment">% $\tau_{i-1}=\frac{c_{i-1}}{\alpha_{i-1}},\alpha_i=b_i-a_i\tau_{i-1},$</span>
+<span class="token comment">% $\gamma_i=\frac{a_i}{\alpha_{i-1}}(i=2,\cdots,n)$</span>
 %
 n <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -562,7 +598,7 @@ n <span class="token operator">=</span> <span class="token function">size</span>
 <span class="token keyword">end</span>
 <span class="token comment">%% 算法2.2的一部分</span>
 %
-<span class="token comment">% $P(x)=\Pi_&#123;i=1&#125;^n\alpha_i$</span>
+<span class="token comment">% $P(x)=\Pi_{i=1}^n\alpha_i$</span>
 %
 <span class="token keyword">if</span> flag
     P <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
@@ -579,7 +615,7 @@ n <span class="token operator">=</span> <span class="token function">size</span>
 
 <span class="token comment">%% STEP3 计算逆矩阵的最后一个元</span>
 %
-<span class="token comment">% $C_&#123;nn&#125;=\frac&#123;1&#125;&#123;\alpha_n&#125;$</span>
+<span class="token comment">% $C_{nn}=\frac{1}{\alpha_n}$</span>
 %
 C <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">if</span> flag
@@ -590,7 +626,7 @@ C <span class="token operator">=</span> <span class="token function">zeros</span
 
 <span class="token comment">%% STEP4 计算逆矩阵C的主对角线元素</span>
 %
-<span class="token comment">% $C_&#123;ii&#125;=\frac&#123;1&#125;&#123;\alpha_i&#125;+\tau_i\gamma_&#123;i+1&#125;C_&#123;i+1,i+1&#125; (i = n-1,\cdots,2,1)$</span>
+<span class="token comment">% $C_{ii}=\frac{1}{\alpha_i}+\tau_i\gamma_{i+1}C_{i+1,i+1} (i = n-1,\cdots,2,1)$</span>
 %
 <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
     <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -598,9 +634,9 @@ C <span class="token operator">=</span> <span class="token function">zeros</span
 
 <span class="token comment">%% STEP5 计算第i行位于主对角线元素左边的元素以及位于第i列位于主对角线上方的元素</span>
 %
-<span class="token comment">% $C_&#123;ij&#125;=-\gamma_&#123;j+1&#125;C_&#123;i,j+1&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
+<span class="token comment">% $C_{ij}=-\gamma_{j+1}C_{i,j+1} (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
 %
-<span class="token comment">% $C_&#123;ji&#125;=-\tau_jC_&#123;j+1,i&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
+<span class="token comment">% $C_{ji}=-\tau_jC_{j+1,i} (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
 %
 <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span>
     <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
@@ -686,7 +722,7 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
                 <span class="reprint-info">
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    许可协议。转载请注明来源
+                    许可协议。来源
                     <a href="/about" target="_blank">鱼墨常常</a>
                     !
                 </span>
@@ -878,7 +914,7 @@ close all
 figure;
 axis([-5,5,-5,5]);
 grid on;
-title(&#39;Bezie
+title('Bezier曲线拟
                         
                     </div>
                     <div class="publish-info">
@@ -1008,11 +1044,21 @@ title(&#39;Bezie
 
 
 
+    <a href="https://ch.linkedin.com/in/qingjun-chang-aa961a138" class="tooltipped" target="_blank" data-tooltip="关注我的Linkedin" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
 
 
 
 
 
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
 
 </div>
     </div>
@@ -1179,6 +1225,16 @@ $(function () {
     
 
     <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?20106c52bc0f032cd2c934444673826c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
     <!-- Baidu Push -->
 

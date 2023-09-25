@@ -13,7 +13,7 @@ close all
 figure;
 axis([-5,5,-5,5]);
 grid on;
-title(&amp;#39;Bezie">
+title(&#39;Bezier曲线拟">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,6 +23,17 @@ title(&amp;#39;Bezie">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142108938-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-142108938-1');
+</script>
 
 
     <title>Bezier曲线拟合数据点的几何作图法 | IFISH.INK</title>
@@ -56,7 +67,10 @@ title(&amp;#39;Bezie">
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -182,6 +196,17 @@ title(&amp;#39;Bezie">
       <i class="fas fa-envelopes-bulk" style="zoom: 0.6;"></i>
       
       <span>明信片</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
     </a>
     
   </li>
@@ -324,6 +349,17 @@ title(&amp;#39;Bezie">
 			    <i class="fa-fw fas fa-envelopes-bulk"></i>
 			
 			明信片
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
 		</a>
           
         </li>
@@ -474,7 +510,7 @@ title(&amp;#39;Bezie">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    302
+                    258
                 </div>
                 
 
@@ -508,52 +544,52 @@ close all
 figure;
 axis([-5,5,-5,5]);
 grid on;
-title(&#39;Bezier曲线拟合&#39;);
-questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
+title('Bezier曲线拟合');
+questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
 
 <span id="more"></span>
 
 <p><img src="http://img.ifish.ink/figure/main_01.png"></p>
-<h3 id="从鼠标获取数据点"><a href="#从鼠标获取数据点" class="headerlink" title="从鼠标获取数据点"></a>从鼠标获取数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
+<h3 id="从鼠标获取数据点"><a href="#从鼠标获取数据点" class="headerlink" title="从鼠标获取数据点"></a>从鼠标获取数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
 while 1
-    i &#x3D; i+1;
-    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
+    i = i+1;
+    tip = ['请选择第',num2str(i),'个数据点'];
     xlabel(tip);
     try
-    [x,y,button] &#x3D; ginput(1);
+    [x,y,button] = ginput(1);
     catch
         return;
     end
-    hold on ,plot(x,y,&#39;o&#39;);
-    dataPoints(:,i) &#x3D; [x;y];
-    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
-    if button ~&#x3D; 1
-        xlabel(&#39;&#39;);
+    hold on ,plot(x,y,'o');
+    dataPoints(:,i) = [x;y];
+    h1 = plot(dataPoints(1,:),dataPoints(2,:),'b');
+    if button ~= 1
+        xlabel('');
         break;
     end
 end
 
 
-for i &#x3D; 0:0.01:1
-    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
+for i = 0:0.01:1
+    newData(:,int32(i*100)+1) = cqj_GetBezier3Point(dataPoints,i);
 end
-h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
-legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
+h2 = plot(newData(1,:),newData(2,:),'.-r');
+legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
 
 <p><img src="http://img.ifish.ink/figure/main_02.png"></p>
-<h3 id="得到曲线参数为u的数据点"><a href="#得到曲线参数为u的数据点" class="headerlink" title="得到曲线参数为u的数据点"></a>得到曲线参数为u的数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
+<h3 id="得到曲线参数为u的数据点"><a href="#得到曲线参数为u的数据点" class="headerlink" title="得到曲线参数为u的数据点"></a>得到曲线参数为u的数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
 % 得到曲线参数为u的数据点
 % dataPoints：初始点 2xn
-data &#x3D; dataPoints;
+data = dataPoints;
 while 1
-    if size(data,2) &#x3D;&#x3D; 1
+    if size(data,2) == 1
         break;
     end
-    temp &#x3D; zeros(size(data,1),size(data,2)-1);
-    for i &#x3D; 1:size(data,2)-1
-        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
+    temp = zeros(size(data,1),size(data,2)-1);
+    for i = 1:size(data,2)-1
+        temp(:,i) = (1-u)*data(:,i)+u*data(:,i+1);
     end
-    data &#x3D; temp;
+    data = temp;
 end
 end</code></pre>
 
@@ -598,7 +634,7 @@ end</code></pre>
                 <span class="reprint-info">
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    许可协议。转载请注明来源
+                    许可协议。来源
                     <a href="/about" target="_blank">鱼墨常常</a>
                     !
                 </span>
@@ -917,11 +953,21 @@ end</code></pre>
 
 
 
+    <a href="https://ch.linkedin.com/in/qingjun-chang-aa961a138" class="tooltipped" target="_blank" data-tooltip="关注我的Linkedin" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
 
 
 
 
 
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
 
 </div>
     </div>
@@ -1088,6 +1134,16 @@ $(function () {
     
 
     <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?20106c52bc0f032cd2c934444673826c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
     <!-- Baidu Push -->
 

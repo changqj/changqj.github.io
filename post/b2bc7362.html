@@ -7,7 +7,7 @@
     <meta name="keywords" content="曲线拟合的最小二乘法, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
     <meta name="description" content="利用最小二乘法对空间中一组数据点进行多项式逼近的介绍
 
-以下内容是参考了_《计算几何》第二版-浙江大学出版社-易大义&amp;amp;沈云宝&amp;amp;李有法_，根据所学整理 曲线拟合：已知$m$个数据点$(x_i,y_i)$，其中$i&amp;#x3D;(">
+以下内容是参考了_《计算几何》第二版-浙江大学出版社-易大义&amp;amp;沈云宝&amp;amp;李有法_，根据所学整理 曲线拟合：已知$m$个数据点$(x_i,y_i)$，其中$i=(1,2,…">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,6 +17,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142108938-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-142108938-1');
+</script>
 
 
     <title>曲线拟合的最小二乘法 | IFISH.INK</title>
@@ -50,7 +61,10 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -176,6 +190,17 @@
       <i class="fas fa-envelopes-bulk" style="zoom: 0.6;"></i>
       
       <span>明信片</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
     </a>
     
   </li>
@@ -318,6 +343,17 @@
 			    <i class="fa-fw fas fa-envelopes-bulk"></i>
 			
 			明信片
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
 		</a>
           
         </li>
@@ -472,7 +508,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    555
+                    534
                 </div>
                 
 
@@ -500,23 +536,23 @@
             <div id="articleContent">
                 <p>利用最小二乘法对空间中一组数据点进行多项式逼近的介绍</p>
 <blockquote>
-<p>以下内容是参考了_《计算几何》第二版-浙江大学出版社-易大义&amp;沈云宝&amp;李有法_，根据所学整理 <strong>曲线拟合：</strong>已知$m$个数据点$(x_i,y_i)$，其中$i&#x3D;(1,2,…,m)$，寻找一个近似函数$y&#x3D;f(x)$</p>
+<p>以下内容是参考了_《计算几何》第二版-浙江大学出版社-易大义&amp;沈云宝&amp;李有法_，根据所学整理 <strong>曲线拟合：</strong>已知$m$个数据点$(x_i,y_i)$，其中$i=(1,2,…,m)$，寻找一个近似函数$y=f(x)$</p>
 </blockquote>
 <span id="more"></span>
 
 <hr>
-<h2 id="1-最小二乘法"><a href="#1-最小二乘法" class="headerlink" title="1.最小二乘法"></a>1.最小二乘法</h2><p> 根据实际情况，一般来说给定$m$个数据点，所求的的目标曲线很难保证全部的数据点都落在曲线上，即不能保证拟合的函数曲线在$x_i$处的残差（偏差）$\delta_i&#x3D;\varphi(x_i)-y_i$其中 $i&#x3D;1,2,…,m$ 都严格等于$0$。但是希望残差 $\delta$ 在总体上比较小。常见的做法有如下几种：</p>
+<h2 id="1-最小二乘法"><a href="#1-最小二乘法" class="headerlink" title="1.最小二乘法"></a>1.最小二乘法</h2><p> 根据实际情况，一般来说给定$m$个数据点，所求的的目标曲线很难保证全部的数据点都落在曲线上，即不能保证拟合的函数曲线在$x_i$处的残差（偏差）$\delta_i=\varphi(x_i)-y_i$其中 $i=1,2,…,m$ 都严格等于$0$。但是希望残差 $\delta$ 在总体上比较小。常见的做法有如下几种：</p>
 <ul>
-<li><p>选取$\varphi (x)$，使得残差绝对值之和最小。(<em>这种方法不可导，求解困难</em>)<br>$$<br>\sum\limits_{i&#x3D;1}^m\delta_i&#x3D;\sum\limits_{i&#x3D;1}^m\varphi(x_i)-y_i&#x3D;min<br>$$</p>
+<li><p>选取$\varphi (x)$，使得残差绝对值之和最小。(<em>这种方法不可导，求解困难</em>)<br>$$<br>\sum\limits_{i=1}^m\delta_i=\sum\limits_{i=1}^m\varphi(x_i)-y_i=min<br>$$</p>
 </li>
-<li><p>选取$\varphi(x)$，使得残差最大绝对值最小。(<em>比较复杂</em>)<br>$$<br>\max\limits_{1\le i\le m}\delta_i&#x3D;\max\limits_{1\le i\le m}\varphi(x_i)-y_i&#x3D;min<br>$$</p>
+<li><p>选取$\varphi(x)$，使得残差最大绝对值最小。(<em>比较复杂</em>)<br>$$<br>\max\limits_{1\le i\le m}\delta_i=\max\limits_{1\le i\le m}\varphi(x_i)-y_i=min<br>$$</p>
 </li>
-<li><p>选取$\varphi(x)$，使得残差平方和最小。(<em>可导，求解较方便</em>)<br>$$<br>\sum\limits_{i&#x3D;1}^m{\delta_i}^2&#x3D;\sum\limits_{i&#x3D;1}^m[\varphi(x_i)-y_i]^2&#x3D;min<br>$$</p>
+<li><p>选取$\varphi(x)$，使得残差平方和最小。(<em>可导，求解较方便</em>)<br>$$<br>\sum\limits_{i=1}^m{\delta_i}^2=\sum\limits_{i=1}^m[\varphi(x_i)-y_i]^2=min<br>$$</p>
 </li>
 </ul>
 <p>综合多种因素，一般选择<strong>残差平方和最小</strong>的原则（称为<strong>最小二乘原则</strong>）进行选择拟合曲线$\varphi(x)$。按最小二乘原则选择拟合曲线的方法，称为<strong>最小二乘法</strong>。</p>
 <hr>
-<h2 id="2-最小二乘法的求解"><a href="#2-最小二乘法的求解" class="headerlink" title="2.最小二乘法的求解"></a>2.最小二乘法的求解</h2><p> 已知$m$个数据点$(x_i,y_i)$，其中$i&#x3D;(1,2,…,m)$，要求在函数类$\phi &#x3D; {\varphi_0(x),\varphi_1(x),…,\varphi_n(x)} (n&lt;m)$中寻找一个函数：<br>$$<br>\overline{\varphi}(x)&#x3D;\overline{a_0}\varphi_0(x)+\overline{a_1}\varphi_1(x)+\cdots+\overline{a_n}\varphi_n(x)<br>$$<br>使得$\overline{\varphi}(x)$满足条件：<br>$$<br>\sum\limits_{i&#x3D;1}^m[\overline\varphi(x_i)-y_i]^2&#x3D;\min\limits_{\varphi(x)\in\phi}\sum\limits_{i&#x3D;1}^m[\varphi(x_i)-y_i]^2<br>$$<br>$$<br>\varphi(x)&#x3D;a_0\varphi_0(x)+a_1\varphi_1(x)+\cdots+a_n\varphi_n(x)<br>$$</p>
+<h2 id="2-最小二乘法的求解"><a href="#2-最小二乘法的求解" class="headerlink" title="2.最小二乘法的求解"></a>2.最小二乘法的求解</h2><p> 已知$m$个数据点$(x_i,y_i)$，其中$i=(1,2,…,m)$，要求在函数类$\phi = {\varphi_0(x),\varphi_1(x),…,\varphi_n(x)} (n&lt;m)$中寻找一个函数：<br>$$<br>\overline{\varphi}(x)=\overline{a_0}\varphi_0(x)+\overline{a_1}\varphi_1(x)+\cdots+\overline{a_n}\varphi_n(x)<br>$$<br>使得$\overline{\varphi}(x)$满足条件：<br>$$<br>\sum\limits_{i=1}^m[\overline\varphi(x_i)-y_i]^2=\min\limits_{\varphi(x)\in\phi}\sum\limits_{i=1}^m[\varphi(x_i)-y_i]^2<br>$$<br>$$<br>\varphi(x)=a_0\varphi_0(x)+a_1\varphi_1(x)+\cdots+a_n\varphi_n(x)<br>$$</p>
 <p>其中$\varphi(x)$是函数类$\phi$中任意一个函数。满足上述条件的$\overline\varphi(x)$成为最小二乘问题的最小二乘解。 #（未完待续）</p>
 
                 
@@ -556,7 +592,7 @@
                 <span class="reprint-info">
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    许可协议。转载请注明来源
+                    许可协议。来源
                     <a href="/about" target="_blank">鱼墨常常</a>
                     !
                 </span>
@@ -737,7 +773,7 @@
 本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建
 
 
-（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 qingjun_&#99;&#104;&#97;&#110;&
+（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 qingjun_chang@163.com。转载请注明出处：h
                         
                     </div>
                     <div class="publish-info">
@@ -874,11 +910,21 @@
 
 
 
+    <a href="https://ch.linkedin.com/in/qingjun-chang-aa961a138" class="tooltipped" target="_blank" data-tooltip="关注我的Linkedin" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
 
 
 
 
 
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
 
 </div>
     </div>
@@ -1045,6 +1091,16 @@ $(function () {
     
 
     <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?20106c52bc0f032cd2c934444673826c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
     <!-- Baidu Push -->
 

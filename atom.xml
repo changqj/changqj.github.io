@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>IFISH.INK</title>
+  
+  <subtitle>Stand on the shoulders of giants</subtitle>
+  <link href="https://www.ifish.ink/atom.xml" rel="self"/>
+  
+  <link href="https://www.ifish.ink/"/>
+  <updated>2023-09-23T15:36:49.144Z</updated>
+  <id>https://www.ifish.ink/</id>
+  
+  <author>
+    <name>鱼墨常常</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <link href="https://www.ifish.ink/post/94abe0b4.html"/>
+    <id>https://www.ifish.ink/post/94abe0b4.html</id>
+    <published>2020-11-09T18:43:19.000Z</published>
+    <updated>2023-09-23T15:36:49.144Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h3&gt;&lt;p&gt;给定高维空间$\mathbb{R}^n$中的$m$个样本点为${X_i}_{i=1}^m$，考虑是否可以将$m$个样本嵌入到低维空间$\mathbb{R}^{d}$，$d&amp;lt; n$，使得高维空间中两样本点的度量距离在低维空间中保持不变。 &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000&quot; alt=&quot;embedding&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="算法" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="算法" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
+    <link href="https://www.ifish.ink/post/56c1b7a3.html"/>
+    <id>https://www.ifish.ink/post/56c1b7a3.html</id>
+    <published>2020-11-03T15:14:00.000Z</published>
+    <updated>2023-09-23T15:33:21.537Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在之前的一篇 &lt;a href=&quot;https://www.ifish.ink/post/7741e06a.html&quot;&gt;“Bezier曲线拟合数据点的几何作图法”&lt;/a&gt; 博客基础上添加鼠标移动控制顶点交互的功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;交互选择控制顶点，并画出初始曲线&quot;&gt;&lt;a href=&quot;#交互选择控制顶点，并画出初始曲线&quot; class=&quot;headerlink&quot; title=&quot;交互选择控制顶点，并画出初始曲线&quot;&gt;&lt;/a&gt;交互选择控制顶点，并画出初始曲线&lt;/h3&gt;&lt;pre class=&quot;language-matlab&quot; data-language=&quot;matlab&quot;&gt;&lt;code class=&quot;language-matlab&quot;&gt;clear
+close all
+grid on&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;hold on
+&lt;span class=&quot;token comment&quot;&gt;% axis equal&lt;/span&gt;
+global ctrl_points h1 h_bezier&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;ctrl_points&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;h&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cqj_selectPoints&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;newData&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;int32&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cqj_GetBezier3Point&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ctrl_points&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+h_bezier &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;newData&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;newData&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;-r&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+h1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ctrl_points&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ctrl_points&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;r*&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;h1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;visible&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;off&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+text__ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cell&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ctrl_points&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ctrl_points&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    text__&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;num2str&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ctrl_points&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ctrl_points&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;text__&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;gcf&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;WindowButtonDownFcn&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;@&lt;/span&gt;ButtonDownFcn&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;h&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;myText&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;h_bezier&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;gcf&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;WindowButtonUpFcn&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;@&lt;/span&gt;ButtonUpFcn&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
+    <link href="https://www.ifish.ink/post/8f4cbc0c.html"/>
+    <id>https://www.ifish.ink/post/8f4cbc0c.html</id>
+    <published>2020-11-02T18:09:11.000Z</published>
+    <updated>2023-09-23T15:29:43.244Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;Github上-fork了别人的代码-本地更新主分支代码&quot;&gt;&lt;a href=&quot;#Github上-fork了别人的代码-本地更新主分支代码&quot; class=&quot;headerlink&quot; title=&quot;Github上 fork了别人的代码 本地更新主分支代码&quot;&gt;&lt;/a&gt;Github上 fork了别人的代码 本地更新主分支代码&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;查看本地仓库项目目录：&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote &lt;span class=&quot;token parameter variable&quot;&gt;-v&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;添加上游项目地址：&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;remote-name&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;your upstream URL&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="教程" scheme="https://www.ifish.ink/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="git" scheme="https://www.ifish.ink/tags/git/"/>
+    
+    <category term="github" scheme="https://www.ifish.ink/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三角网格曲面参数化</title>
+    <link href="https://www.ifish.ink/post/bcf65292.html"/>
+    <id>https://www.ifish.ink/post/bcf65292.html</id>
+    <published>2020-10-31T14:26:08.000Z</published>
+    <updated>2023-09-23T15:38:25.728Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文介绍文章 &lt;em&gt;Parametrization and smooth approximation of surface triangulations&lt;/em&gt; 中的保形参数化算法，并给出MATLAB程序 曲面参数化问题：对于给定的三角网格曲面$\mathbf{S}$，找到一个映射$\phi(u,v): \mathbb{R}^2\longmapsto\mathbb{R}^3$，使得平面参数域中的点与曲面网格的点一一对应，求解参数$(u,v)$，即$\phi^{-1}$的过程称为参数化。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;算法描述&quot;&gt;&lt;a href=&quot;#算法描述&quot; class=&quot;headerlink&quot; title=&quot;算法描述&quot;&gt;&lt;/a&gt;算法描述&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://img.ifish.ink/20201031/1.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="图形学" scheme="https://www.ifish.ink/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+    <category term="参数化" scheme="https://www.ifish.ink/tags/%E5%8F%82%E6%95%B0%E5%8C%96/"/>
+    
+    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu 外接显示与内置显示切换</title>
+    <link href="https://www.ifish.ink/post/83277084.html"/>
+    <id>https://www.ifish.ink/post/83277084.html</id>
+    <published>2020-06-02T14:23:53.000Z</published>
+    <updated>2023-09-23T15:30:08.419Z</updated>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;查看显示器设备名称 在Linux终端键入命令：&lt;code&gt;$ xrandx&lt;/code&gt;，如下图所示查看对应的设备名称，本例为 LVDS-1 和 HDMI-1 (如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="教程" scheme="https://www.ifish.ink/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    
+    <category term="ubuntu" scheme="https://www.ifish.ink/tags/ubuntu/"/>
+    
+    <category term="方法" scheme="https://www.ifish.ink/tags/%E6%96%B9%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git clone 速度慢？</title>
+    <link href="https://www.ifish.ink/post/ec4bf4f5.html"/>
+    <id>https://www.ifish.ink/post/ec4bf4f5.html</id>
+    <published>2020-05-26T14:06:55.000Z</published>
+    <updated>2023-09-23T15:29:38.260Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;code&gt;$ git clone https://xxxx&lt;/code&gt; 克隆速度慢的解决方法：&lt;/p&gt;
+&lt;h2 id=&quot;方法1：&quot;&gt;&lt;a href=&quot;#方法1：&quot; class=&quot;headerlink&quot; title=&quot;方法1：&quot;&gt;&lt;/a&gt;方法1：&lt;/h2&gt;&lt;h3 id=&quot;查询IP地址&quot;&gt;&lt;a href=&quot;#查询IP地址&quot; class=&quot;headerlink&quot; title=&quot;查询IP地址&quot;&gt;&lt;/a&gt;查询IP地址&lt;/h3&gt;&lt;p&gt;进入域名IP地址查看工具： &lt;a href=&quot;https://www.ipaddress.com/&quot; title=&quot;https://www.ipaddress.com&quot;&gt;https://www.ipaddress.com&lt;/a&gt; 分别输入如下网址查看对应的IP地址&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="教程" scheme="https://www.ifish.ink/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="git" scheme="https://www.ifish.ink/tags/git/"/>
+    
+    <category term="github" scheme="https://www.ifish.ink/tags/github/"/>
+    
+    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>瑞士意大利语区大学访学记录</title>
+    <link href="https://www.ifish.ink/post/f29efa2.html"/>
+    <id>https://www.ifish.ink/post/f29efa2.html</id>
+    <published>2020-04-08T11:20:30.000Z</published>
+    <updated>2023-09-23T15:31:55.935Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;瑞士位于欧洲中部，与德国、意大利、法国接壤，属于内陆国。瑞士是全球最富裕、经济最发达的国家之一。瑞士人民拥有较高的生活水准。瑞士旅游资源丰富，有世界公园的美誉。 第一次写这种游记，主要是想介绍一下我此次欧洲之行的感受。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://img.ifish.ink/img/Switzerland.jpg&quot; alt=&quot;瑞士&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生活" scheme="https://www.ifish.ink/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="生活" scheme="https://www.ifish.ink/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="游记" scheme="https://www.ifish.ink/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
+    <link href="https://www.ifish.ink/post/d033f67a.html"/>
+    <id>https://www.ifish.ink/post/d033f67a.html</id>
+    <published>2019-10-06T16:02:20.000Z</published>
+    <updated>2023-09-23T15:30:38.354Z</updated>
+    
+    
+    <summary type="html">&lt;h4 id=&quot;c-实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：&quot;&gt;&lt;a href=&quot;#c-实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：&quot; class=&quot;headerlink&quot; title=&quot;c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：&quot;&gt;&lt;/a&gt;c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;关于3维中均值重心坐标的实现可参考我的另一篇博客：&lt;a href=&quot;https://www.ifish.ink/post/4d3c170c.html&quot; title=&quot;均值重心坐标Mean Value Coordinates In 3D代码实现&quot;&gt;均值重心坐标Mean Value Coordinates In 3D代码实现&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="图形学" scheme="https://www.ifish.ink/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+    <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <link href="https://www.ifish.ink/post/563c2d.html"/>
+    <id>https://www.ifish.ink/post/563c2d.html</id>
+    <published>2019-07-03T02:50:03.000Z</published>
+    <updated>2023-09-23T15:39:09.876Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现 &lt;strong&gt;Briefly unavailable for scheduled maintenance. Check back in a minute.&lt;/strong&gt; ，导致我们的WordPress站点不能正常使用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://img.ifish.ink/img/20190703103139.png&quot; alt=&quot;Briefly unavailable for scheduled maintenance. Check back in a minute.&quot; title=&quot;Briefly unavailable for scheduled maintenance. Check back in a minute.&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;原因：&quot;&gt;&lt;a href=&quot;#原因：&quot; class=&quot;headerlink&quot; title=&quot;原因：&quot;&gt;&lt;/a&gt;原因：&lt;/h3&gt;&lt;p&gt;这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly unavailable for scheduled maintenance. Check back in a minute.”&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="教程" scheme="https://www.ifish.ink/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <link href="https://www.ifish.ink/post/6248da0d.html"/>
+    <id>https://www.ifish.ink/post/6248da0d.html</id>
+    <published>2019-06-13T09:03:25.000Z</published>
+    <updated>2023-09-23T15:40:48.057Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件 uBlock Origin&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;小编使用uBlock-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件&quot;&gt;&lt;a href=&quot;#小编使用uBlock-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件&quot; class=&quot;headerlink&quot; title=&quot;小编使用uBlock Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件&quot;&gt;&lt;/a&gt;小编使用uBlock Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="生活" scheme="https://www.ifish.ink/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="神器" scheme="https://www.ifish.ink/tags/%E7%A5%9E%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WordPress站点地图自动更新</title>
+    <link href="https://www.ifish.ink/post/943451b1.html"/>
+    <id>https://www.ifish.ink/post/943451b1.html</id>
+    <published>2019-05-10T13:25:37.000Z</published>
+    <updated>2023-09-23T15:30:16.347Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;站点地图可以各个搜索引擎能够爬取到我们网站上页面。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件 &lt;img src=&quot;http://img.ifish.ink/img/baiduzhanzhang.png&quot; alt=&quot;百度站长&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="教程" scheme="https://www.ifish.ink/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="SEO" scheme="https://www.ifish.ink/tags/SEO/"/>
+    
+    <category term="sitemap" scheme="https://www.ifish.ink/tags/sitemap/"/>
+    
+    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
+    <link href="https://www.ifish.ink/post/4d3c170c.html"/>
+    <id>https://www.ifish.ink/post/4d3c170c.html</id>
+    <published>2019-05-09T14:08:51.000Z</published>
+    <updated>2023-09-23T15:30:51.940Z</updated>
+    
+    
+    <summary type="html">&lt;h4 id=&quot;c-实现：&quot;&gt;&lt;a href=&quot;#c-实现：&quot; class=&quot;headerlink&quot; title=&quot;c++实现：&quot;&gt;&lt;/a&gt;c++实现：&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;关于2维中均值重心坐标的实现可参考我的另一篇博客：&lt;a href=&quot;https://www.ifish.ink/post/d033f67a.html&quot; title=&quot;均值重心坐标Mean Value Coordinates In 2D代码实现&quot;&gt;均值重心坐标Mean Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="图形学" scheme="https://www.ifish.ink/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+    <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TexLive2017+TexStudio in Windows</title>
+    <link href="https://www.ifish.ink/post/c4cb1247.html"/>
+    <id>https://www.ifish.ink/post/c4cb1247.html</id>
+    <published>2018-06-10T03:26:16.000Z</published>
+    <updated>2023-09-23T15:42:53.996Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;本文主要讲述了win7系统下的TexLive+TexStudio环境搭建&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="教程" scheme="https://www.ifish.ink/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    
+    <category term="摘" scheme="https://www.ifish.ink/tags/%E6%91%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>标准雅可比迭代算法-实现</title>
+    <link href="https://www.ifish.ink/post/5d0495ae.html"/>
+    <id>https://www.ifish.ink/post/5d0495ae.html</id>
+    <published>2017-11-09T11:16:19.000Z</published>
+    <updated>2023-09-23T15:31:19.191Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;标准雅可比迭代算法解线性方程组-算法实现&quot;&gt;&lt;a href=&quot;#标准雅可比迭代算法解线性方程组-算法实现&quot; class=&quot;headerlink&quot; title=&quot;标准雅可比迭代算法解线性方程组-算法实现&quot;&gt;&lt;/a&gt;标准雅可比迭代算法解线性方程组-算法实现&lt;/h3&gt;</summary>
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <link href="https://www.ifish.ink/post/f9428d51.html"/>
+    <id>https://www.ifish.ink/post/f9428d51.html</id>
+    <published>2017-11-09T09:43:58.000Z</published>
+    <updated>2023-09-23T15:30:30.410Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;三对角矩阵的类雅可比迭代算法解线性方程组&quot;&gt;&lt;a href=&quot;#三对角矩阵的类雅可比迭代算法解线性方程组&quot; class=&quot;headerlink&quot; title=&quot;三对角矩阵的类雅可比迭代算法解线性方程组&quot;&gt;&lt;/a&gt;三对角矩阵的类雅可比迭代算法解线性方程组&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三对角矩阵求逆的算法-实现</title>
+    <link href="https://www.ifish.ink/post/891db679.html"/>
+    <id>https://www.ifish.ink/post/891db679.html</id>
+    <published>2017-11-09T09:17:04.000Z</published>
+    <updated>2023-09-23T15:30:25.485Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <link href="https://www.ifish.ink/post/7741e06a.html"/>
+    <id>https://www.ifish.ink/post/7741e06a.html</id>
+    <published>2017-10-31T08:54:18.000Z</published>
+    <updated>2023-09-23T15:55:36.695Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Bezier曲线拟合数据点的几何作图法MATLAB程序。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;Contents&quot;&gt;&lt;a href=&quot;#Contents&quot; class=&quot;headerlink&quot; title=&quot;Contents&quot;&gt;&lt;/a&gt;Contents&lt;/h1&gt;&lt;h3 id=&quot;左键选择点，右键或中间结束&quot;&gt;&lt;a href=&quot;#左键选择点，右键或中间结束&quot; class=&quot;headerlink&quot; title=&quot;左键选择点，右键或中间结束&quot;&gt;&lt;/a&gt;左键选择点，右键或中间结束&lt;/h3&gt;&lt;pre class=&quot;language-MATLAB&quot; data-language=&quot;MATLAB&quot;&gt;&lt;code class=&quot;language-MATLAB&quot;&gt;clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title(&#39;Bezier曲线拟合&#39;);
+questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Try Something New for 30 Days(Matt Cutts)(TED视频)</title>
+    <link href="https://www.ifish.ink/post/7606ecde.html"/>
+    <id>https://www.ifish.ink/post/7606ecde.html</id>
+    <published>2017-10-19T12:09:08.000Z</published>
+    <updated>2023-09-23T15:30:03.137Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;摘自TED里的一个视频，原视频地址：&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="视频" scheme="https://www.ifish.ink/categories/%E8%A7%86%E9%A2%91/"/>
+    
+    
+    <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="TED" scheme="https://www.ifish.ink/tags/TED/"/>
+    
+    <category term="摘" scheme="https://www.ifish.ink/tags/%E6%91%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一直都好喜欢这首诗啊！《雨巷》--戴望舒</title>
+    <link href="https://www.ifish.ink/post/d517eeb6.html"/>
+    <id>https://www.ifish.ink/post/d517eeb6.html</id>
+    <published>2017-10-19T12:01:38.000Z</published>
+    <updated>2023-09-23T15:43:32.018Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;一直都好喜欢这首诗啊！《雨巷》–戴望舒&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="生活" scheme="https://www.ifish.ink/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>曲线拟合的最小二乘法</title>
+    <link href="https://www.ifish.ink/post/b2bc7362.html"/>
+    <id>https://www.ifish.ink/post/b2bc7362.html</id>
+    <published>2017-10-12T13:00:18.000Z</published>
+    <updated>2023-09-23T15:31:14.389Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;利用最小二乘法对空间中一组数据点进行多项式逼近的介绍&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下内容是参考了_《计算几何》第二版-浙江大学出版社-易大义&amp;amp;沈云宝&amp;amp;李有法_，根据所学整理 &lt;strong&gt;曲线拟合：&lt;/strong&gt;已知$m$个数据点$(x_i,y_i)$，其中$i=(1,2,…,m)$，寻找一个近似函数$y=f(x)$&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="数值分析" scheme="https://www.ifish.ink/tags/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/"/>
+    
+    <category term="曲线拟合" scheme="https://www.ifish.ink/tags/%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88/"/>
+    
+  </entry>
+  
+</feed>

@@ -10,8 +10,8 @@
 
 函数实现
 
-function [ output_args ] &amp;#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 雅">
+function [ output_args ] = cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 雅可比迭代法">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,6 +21,17 @@ function [ output_args ] &amp;#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxN
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142108938-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-142108938-1');
+</script>
 
 
     <title>标准雅可比迭代算法-实现 | IFISH.INK</title>
@@ -54,7 +65,10 @@ function [ output_args ] &amp;#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxN
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -180,6 +194,17 @@ function [ output_args ] &amp;#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxN
       <i class="fas fa-envelopes-bulk" style="zoom: 0.6;"></i>
       
       <span>明信片</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
     </a>
     
   </li>
@@ -322,6 +347,17 @@ function [ output_args ] &amp;#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxN
 			    <i class="fa-fw fas fa-envelopes-bulk"></i>
 			
 			明信片
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
 		</a>
           
         </li>
@@ -476,14 +512,14 @@ function [ output_args ] &amp;#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxN
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    827
+                    648
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    3 分
                 </div>
                 
 
@@ -507,120 +543,120 @@ function [ output_args ] &amp;#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxN
 <ul>
 <li>函数实现</li>
 </ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
 % 雅可比迭代法
 % init_X：初始值
 % coefficient_mat：系数矩阵
 % b_mat：b
 % maxNum：最大迭代次数
 % epsilon：精度
-output_args &#x3D; [];
-flag &#x3D; 0;
+output_args = [];
+flag = 0;
 %% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
-    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
+if size(coefficient_mat,1) ~= size(coefficient_mat,2)
+    disp('系数矩阵格式错误(需要方阵)');
     return;
 end
-if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
-    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
+if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
+    disp('AX=b中的b必须为行向量或者列向量');
     return;
 end
-if size(b_mat,1) &#x3D;&#x3D; 1
-    b_mat &#x3D; b_mat&#39;;
+if size(b_mat,1) == 1
+    b_mat = b_mat';
 end
-if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
-    disp(&#39;初始值必须为行向量或者列向量&#39;);
+if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
+    disp('初始值必须为行向量或者列向量');
     return;
 end
-if size(init_X,1) &#x3D;&#x3D; 1
-    init_X &#x3D; init_X&#39;;
+if size(init_X,1) == 1
+    init_X = init_X';
 end
-if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
-    disp(&#39;初始值与系数矩阵维数不一致&#39;);
+if size(init_X,1) ~= size(coefficient_mat,1)
+    disp('初始值与系数矩阵维数不一致');
     return;
 end
-if size(init_X,1) ~&#x3D; size(b_mat,1)
-    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
+if size(init_X,1) ~= size(b_mat,1)
+    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
     return;
 end
-if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
-    maxNum &#x3D; 500; % 默认值
+if ~exist('maxNum', 'var')
+    maxNum = 500; % 默认值
 end
-if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
-    epsilon &#x3D; 1e-14; % 默认值
+if ~exist('epsilon', 'var')
+    epsilon = 1e-14; % 默认值
 end
 %% 对角线
-D &#x3D; diag(diag(coefficient_mat));
+D = diag(diag(coefficient_mat));
 % 可能matlab的源码inv函数对角函数求逆会像普通函数一样处理，
 % 这种特殊函数求逆会比较快
-D_inv &#x3D; diag(1.&#x2F;diag(coefficient_mat));
+D_inv = diag(1./diag(coefficient_mat));
 %% 开始迭代
 % 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) &#x3D; init_X;
-% for k &#x3D; 1:maxNum
-%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+% x(:,0) = init_X;
+% for k = 1:maxNum
+%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
 %     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag &#x3D; 1;
+%         flag = 1;
 %         break;
 %     end
 % end
-x &#x3D; init_X;
+x = init_X;
 %%
 % 迭代公式：
-% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
+% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
 % 
-for k &#x3D; 1:maxNum
-    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
+for k = 1:maxNum
+    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
     if norm(temp-x) &lt; epsilon
-        flag &#x3D; 1;
-        x &#x3D; temp;
+        flag = 1;
+        x = temp;
         break;
     end
-    x &#x3D; temp;
+    x = temp;
 end
 %% 结果
-text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
+text(0,0.95,'方程：','Color','red','FontSize',14);
+str1 = '\left[\begin{array}';
 % 正则表达式
-str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
-mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
-my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
-mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
-str5 &#x3D; &#39;\times X&#x3D;&#39;;
+str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    '[\s\[\]]',''),'0','c'); 
+mat_start = @(X) [str1 '{' str2(X) '}'];
+my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    ' *','&amp;'),';','\\\'),'[\[\]]','');
+mat_end = '\end{array}\right]';
+str5 = '\times X=';
 % LaTex 输出
-text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
+text('Interpreter','latex', 'String',['$$'...
     mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
-    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
-text(0,0.5,&#39;标准雅可比迭代结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-if flag &#x3D;&#x3D; 1  %好的结果
-    output_args.itrNum &#x3D; k;
-    output_args.result &#x3D; x;
-    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
+    'Position',[0.1 0.7],'FontSize',10);
+text(0,0.5,'标准雅可比迭代结果：','Color','red','FontSize',14);
+if flag == 1  %好的结果
+    output_args.itrNum = k;
+    output_args.result = x;
+    fprintf('迭代次数：%d\n',output_args.itrNum);
 %     disp(x(:,k));
-    disp(&#39;解：&#39;);
+    disp('解：');
     disp(x);
-    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
-        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
-        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
-    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+    text('Interpreter','latex', 'String',['$$X^*=' ...
+        mat_start(x) my_mat2str(x) mat_end '$$'],...
+        'Position',[0.1 0.3],'FontSize',10);
+    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
+    'Color','k','FontSize',10);
     return;
 end
-text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
+text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
+    'Color','k','FontSize',10);
+fprintf('迭代%d次后暂未收敛\n',maxNum);
 end</code></pre>
 
 <ul>
 <li>测试代码</li>
 </ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat &#x3D; [-1 -5 2 -1];
-init_X &#x3D; zeros(size(b_mat));
-out_Jacobi &#x3D; cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat = [-1 -5 2 -1];
+init_X = zeros(size(b_mat));
+out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
 
 <ul>
 <li>文档 <a target="_blank" rel="noopener" href="https://img.ifish.ink/Standard_Jacobian_Iterative_Algorithm_Procedure.pdf">文档原文</a></li>
@@ -665,7 +701,7 @@ out_Jacobi &#x3D; cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
                 <span class="reprint-info">
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    许可协议。转载请注明来源
+                    许可协议。来源
                     <a href="/about" target="_blank">鱼墨常常</a>
                     !
                 </span>
@@ -979,11 +1015,21 @@ out_Jacobi &#x3D; cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
 
 
 
+    <a href="https://ch.linkedin.com/in/qingjun-chang-aa961a138" class="tooltipped" target="_blank" data-tooltip="关注我的Linkedin" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
 
 
 
 
 
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
 
 </div>
     </div>
@@ -1150,6 +1196,16 @@ $(function () {
     
 
     <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?20106c52bc0f032cd2c934444673826c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
     <!-- Baidu Push -->
 
