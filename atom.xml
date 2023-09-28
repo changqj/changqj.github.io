@@ -219,11 +219,11 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     <category term="生活" scheme="https://www.ifish.ink/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
-    
     <category term="生活" scheme="https://www.ifish.ink/tags/%E7%94%9F%E6%B4%BB/"/>
     
     <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
     
     <category term="游记" scheme="https://www.ifish.ink/tags/%E6%B8%B8%E8%AE%B0/"/>
     
@@ -323,11 +323,11 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
     
+    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
+    
     <category term="SEO" scheme="https://www.ifish.ink/tags/SEO/"/>
     
     <category term="sitemap" scheme="https://www.ifish.ink/tags/sitemap/"/>
-    
-    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
     
   </entry>
   
@@ -371,9 +371,9 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     <category term="教程" scheme="https://www.ifish.ink/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    
     <category term="摘" scheme="https://www.ifish.ink/tags/%E6%91%98/"/>
+    
+    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
