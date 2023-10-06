@@ -281,6 +281,13 @@
 .publication-info h3 {
     margin: 0; /* 移除标题的默认上下间距 */
     overflow: hidden;
+    height: auto; /* 或者设置一个足够的高度值 */
+    line-height: normal; /* 或者设置一个合适的行高值 */
+}
+
+.publication-info a {
+    height: auto; /* 或者设置一个足够的高度值 */
+    line-height: normal; /* 或者设置一个合适的行高值 */
 }
 
 .publication-info h4 {
