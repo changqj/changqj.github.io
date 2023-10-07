@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2023-10-07T17:21:33.985Z</updated>
+  <updated>2023-10-07T20:22:37.102Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Introduction to Data Science (1)</title>
+    <link href="https://www.ifish.ink/post/ids1.html"/>
+    <id>https://www.ifish.ink/post/ids1.html</id>
+    <published>2023-10-07T15:21:45.000Z</published>
+    <updated>2023-10-07T20:22:37.102Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本节将简要介绍参数估计，主要讨论矩估计(method of
+moments)和极大似然估计(maximum likelihood estimation)。&lt;/p&gt;
+&lt;p&gt;参考书籍：《概率论与数理统计》</summary>
+        
+      
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="统计" scheme="https://www.ifish.ink/tags/%E7%BB%9F%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Introduction to Data Science (0)</title>
-    <link href="https://www.ifish.ink/post/undefined.html"/>
-    <id>https://www.ifish.ink/post/undefined.html</id>
+    <link href="https://www.ifish.ink/post/ids0.html"/>
+    <id>https://www.ifish.ink/post/ids0.html</id>
     <published>2023-10-07T12:02:20.000Z</published>
-    <updated>2023-10-07T17:21:33.985Z</updated>
+    <updated>2023-10-07T18:57:54.976Z</updated>
     
     
       
@@ -30,6 +60,7 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;在这个系列开始之前先附上几种常用的概率分布律、期望和方差。&lt;/p&gt;
+&lt;p&gt;参考书籍：《概率论与数理统计》 浙大第四版&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3</summary>
         
@@ -439,9 +470,9 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     <category term="教程" scheme="https://www.ifish.ink/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    
     <category term="摘" scheme="https://www.ifish.ink/tags/%E6%91%98/"/>
+    
+    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
@@ -569,27 +600,6 @@ questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择�
     <category term="TED" scheme="https://www.ifish.ink/tags/TED/"/>
     
     <category term="摘" scheme="https://www.ifish.ink/tags/%E6%91%98/"/>
-    
-    <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一直都好喜欢这首诗啊！《雨巷》--戴望舒</title>
-    <link href="https://www.ifish.ink/post/d517eeb6.html"/>
-    <id>https://www.ifish.ink/post/d517eeb6.html</id>
-    <published>2017-10-19T12:01:38.000Z</published>
-    <updated>2023-09-23T15:43:32.018Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;一直都好喜欢这首诗啊！《雨巷》--戴望舒&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="生活" scheme="https://www.ifish.ink/categories/%E7%94%9F%E6%B4%BB/"/>
-    
     
     <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
     

@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title('Bezier曲线拟合');
+questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
+<span id="more"></span>
+<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
+while 1
+    i = i+1;
+    tip = ['请选择第',num2str(i),'个数据点'];
+    xlabel(tip);
+    try
+    [x,y,button] = ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,'o');
+    dataPoints(:,i) = [x;y];
+    h1 = plot(dataPoints(1,:),dataPoints(2,:),'b');
+    if button ~= 1
+        xlabel('');
+        break;
+    end
+end
+
+
+for i = 0:0.01:1
+    newData(:,int32(i*100)+1) = cqj_GetBezier3Point(dataPoints,i);
+end
+h2 = plot(newData(1,:),newData(2,:),'.-r');
+legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data = dataPoints;
+while 1
+    if size(data,2) == 1
+        break;
+    end
+    temp = zeros(size(data,1),size(data,2)-1);
+    for i = 1:size(data,2)-1
+        temp(:,i) = (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data = temp;
+end
+end</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>MATLAB代码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -139,78 +211,6 @@ grid on<span class="token punctuation">,</span>hold on
       </tags>
   </entry>
   <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title('Bezier曲线拟合');
-questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
-<span id="more"></span>
-<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
-while 1
-    i = i+1;
-    tip = ['请选择第',num2str(i),'个数据点'];
-    xlabel(tip);
-    try
-    [x,y,button] = ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,'o');
-    dataPoints(:,i) = [x;y];
-    h1 = plot(dataPoints(1,:),dataPoints(2,:),'b');
-    if button ~= 1
-        xlabel('');
-        break;
-    end
-end
-
-
-for i = 0:0.01:1
-    newData(:,int32(i*100)+1) = cqj_GetBezier3Point(dataPoints,i);
-end
-h2 = plot(newData(1,:),newData(2,:),'.-r');
-legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data = dataPoints;
-while 1
-    if size(data,2) == 1
-        break;
-    end
-    temp = zeros(size(data,1),size(data,2)-1);
-    for i = 1:size(data,2)-1
-        temp(:,i) = (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data = temp;
-end
-end</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>MATLAB代码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Github上 fork了别人的代码 本地更新主分支代码</title>
     <url>/post/8f4cbc0c.html</url>
     <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
@@ -246,9 +246,10 @@ fork了别人的代码 本地更新主分支代码</h3>
   </entry>
   <entry>
     <title>Introduction to Data Science (0)</title>
-    <url>/post/undefined.html</url>
+    <url>/post/ids0.html</url>
     <content><![CDATA[<blockquote>
 <p>在这个系列开始之前先附上几种常用的概率分布律、期望和方差。</p>
+<p>参考书籍：《概率论与数理统计》 浙大第四版</p>
 </blockquote>
 <h3 id="离散型随机变量">离散型随机变量</h3>
 <p>随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为<strong>离散型随机变量</strong>。</p>
@@ -370,6 +371,175 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
       <tags>
         <tag>原创</tag>
         <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction to Data Science (1)</title>
+    <url>/post/ids1.html</url>
+    <content><![CDATA[<blockquote>
+<p>本节将简要介绍参数估计，主要讨论矩估计(method of
+moments)和极大似然估计(maximum likelihood estimation)。</p>
+<p>参考书籍：《概率论与数理统计》 浙大第四版</p>
+</blockquote>
+<h4 id="矩估计">矩估计</h4>
+<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，其中参数<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>为待估计参数。总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩为 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=E[X^m]=\sum_{x\in
+R_X}x^mp(x;\theta_1,\theta_2,\dots,\theta_k),\]</span> 其中<span class="math inline">\(R_X\)</span>是<span class="math inline">\(X\)</span>可能的取值范围。如果随机变量<span class="math inline">\(X\)</span>是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>的连续型随机变量，假设总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩是 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=E[X^m]=\int_{-\infty}^{\infty}x^mf(x;\theta_1,\theta_2,\dots,\theta_k)dx.\]</span>
+如果<span class="math inline">\(X\)</span>的前<span class="math inline">\(k\)</span>阶矩存在。由于样本矩<span class="math inline">\(A_m=\frac{1}{n}\sum_{i=1}^nX_i^m\)</span>依概率收敛于相应的总体矩<span class="math inline">\(\mu_m\)</span>。用样本矩作为相应的总体矩的估计量。对于<span class="math inline">\(m=1,2,\dots,k\)</span>，可以建立如下方程组： <span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\mu_1(\theta_1,\dots,\theta_k)=A_1,\\
+\mu_2(\theta_1,\dots,\theta_k)=A_2,\\
+\vdots\\
+\mu_k(\theta_1,\dots,\theta_k)=A_k
+\end{array}
+\right.
+\end{equation*}\]</span> 通过求解出<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>。这样的估计量被称为<strong>矩估计量</strong>。</p>
+<hr>
+<h4 id="极大似然估计">极大似然估计</h4>
+<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，则<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>的联合分布律为 <span class="math display">\[\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k),\]</span>
+假如已知样本<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>对应的样本值是<span class="math inline">\(x_1,x_2,\dots,x_n\)</span>，则事件<span class="math inline">\(\{X_i=x_i,~i=1,\dots,n\}\)</span>的概率为 <span class="math display">\[P\{X_i=x_i,~i=1,\dots,n\}=\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k)=L(\theta_1,\dots,\theta_k)，\]</span>
+由于该事件为观测值对应的事件，其已经发生，表明这个概率值较大，给予该原则最大化函数<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>，该函数被称为样本的<strong>似然函数</strong>。则极大似然估计值为
+<span class="math display">\[(\hat{\theta_1},\dots,\hat{\theta_k})=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k).\]</span>
+对于连续型随机变量，假设其对应的概率密度函数为是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>，同理有极大似然估计量为
+<span class="math display">\[(\hat{\theta_1},\dots,\hat{\theta_k})=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^nf(x_i;\theta_1,\dots,\theta_k).\]</span>
+对于该优化问题的求解，当<span class="math inline">\(p(x_i;\theta_1,\dots,\theta_k)\)</span>或<span class="math inline">\(f(x_i;\theta_1,\dots,\theta_k)\)</span>关于<span class="math inline">\(\theta_j\)</span>可微，则极大似然估计值可从方程组
+<span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\frac{\partial}{\partial\theta_1}L(\theta_1,\dots,\theta_k)=0,\\
+\frac{\partial}{\partial\theta_2}L(\theta_1,\dots,\theta_k)=0,\\
+\vdots\\
+\frac{\partial}{\partial\theta_k}L(\theta_1,\dots,\theta_k)=0
+\end{array}
+\right.
+\end{equation*}\]</span> 求得。由于<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>与<span class="math inline">\(\log
+L(\theta_1,\dots,\theta_k)\)</span>在同一处取得极值，因此极大似然估计值亦可通过求解下面的<strong>对数似然方程组</strong>获得。
+<span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\frac{\partial}{\partial\theta_1}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+p(x_1;\theta_1,\dots,\theta_k)=0,\\
+\frac{\partial}{\partial\theta_2}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+p(x_1;\theta_1,\dots,\theta_k)=0,\\
+\vdots\\
+\frac{\partial}{\partial\theta_k}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+p(x_1;\theta_1,\dots,\theta_k)=0
+\end{array}
+\right.\qquad \text{（离散型随机变量）}
+\end{equation*}\]</span> 或 <span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\frac{\partial}{\partial\theta_1}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+f(x_1;\theta_1,\dots,\theta_k)=0,\\
+\frac{\partial}{\partial\theta_2}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+f(x_1;\theta_1,\dots,\theta_k)=0,\\
+\vdots\\
+\frac{\partial}{\partial\theta_k}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+f(x_1;\theta_1,\dots,\theta_k)=0
+\end{array}
+\right.\qquad \text{（连续型随机变量）}
+\end{equation*}\]</span></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Try Something New for 30 Days(Matt Cutts)(TED视频)</title>
+    <url>/post/7606ecde.html</url>
+    <content><![CDATA[<blockquote>
+<p>摘自TED里的一个视频，原视频地址：</p>
+</blockquote>
+<span id="more"></span>
+<p><strong><a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days#t-94596">Matt
+Cutts: Try Something New for 30 Days</a></strong> <a href="http://img.ifish.ink/res/MC.pptx">PPT下载</a></p>
+<h3 id="中文文本">中文文本:</h3>
+<p>几年前， 我感觉对老一套感到枯燥乏味， 所以我决定追随
+伟大的美国哲学家摩根·斯普尔洛克的脚步， 尝试做新事情30天。
+这个想法的确是非常简单。 考虑下，你常想在你生命中做的一些事情
+接下来30天尝试做这些。 这就是， 30天刚好是这么一段合适的时间
+去养成一个新的习惯或者改掉一个习惯-- 例如看新闻 -- 在你生活中。
+当我在30天做这些挑战性事情时，我学到以下一些事。 第一件事是，
+取代了飞逝而过易被遗忘的岁月的是 这段时间非常的更加令人难忘。
+挑战的一部分是要一个月内每天我要去拍摄一张照片。
+我清楚地记得那一天我所处的位置 我都在干什么。 我也注意到
+随着我开始做更多的，更难的30天里具有挑战性的事时， 我自信心也增强了。
+我从一个台式计算机宅男极客 变成了一个爱骑自行车去工作的人-- 为了玩乐。
+甚至去年，我完成了在非洲最高山峰 乞力马扎罗山的远足。
+在我开始这30天做挑战性的事之前 我从来没有这样爱冒险过。 我也认识到
+如果你真想一些槽糕透顶的事， 你可以在30天里做这些事。 你曾想写小说吗？
+每年11月， 数以万计的人们 在30天里，从零起点 尝试写他们自己的5万字小说。
+这结果就是，你所要去做的事 就是每天写1667个字 要写一个月。
+所以我做到了。 顺便说一下，秘密是除非在一天里你已经写完了1667个字，
+要不你就甭想睡觉。 你可能被剥夺睡眠， 但你将会完成你的小说。
+那么我写的书会是下一部伟大的美国小说吗？ 不是的。我在一个月内写完它。
+它看上去太可怕了。 但在我的余生， 如果我在一个TED聚会上遇见约翰·霍奇曼，
+我不必开口说， “我是一个电脑科学家。”
+不，不会的，如果我想我可以说，“我是一个小说家。” （笑声）
+我这儿想提的最后一件事。 当我做些小的，持续性的变化，
+我可以不断尝试做的事时， 我学到我可以把它们更容易地坚持做下来。
+这和又大又疯狂的具有挑战性的事情无关。 事实上，它们的乐趣无穷。
+但是，它们就不太可能坚持做下来。 当我在30天里拒绝吃糖果，
+31天后看上去就像这样。 （笑声） 所以我给大家提的问题是：
+大家还在等什么呀？ 我保准大家在未来的30天 会去经历
+你喜欢或者不喜欢的事， 那么为什么不考虑一些 你常想去尝试
+并在未来30天里试试 给自己一个机会。 谢谢。 （掌声）</p>
+<hr>
+<h3 id="english-text">English Text:</h3>
+<p>A few years ago, I felt like I was stuck in a rut, so I decided to
+follow in the footsteps of the great American philosopher, Morgan
+Spurlock, and try something new for 30 days. The idea is actually pretty
+simple. Think about something you've always wanted to add to your life
+and try it for the next 30 days. It turns out 30 days is just about the
+right amount of time to add a new habit or subtract a habit -- like
+watching the news -- from your life. There's a few things I learned
+while doing these 30-day challenges. The first was, instead of the
+months flying by, forgotten, the time was much more memorable. This was
+part of a challenge I did to take a picture every day for a month. And I
+remember exactly where I was and what I was doing that day. I also
+noticed that as I started to do more and harder 30-day challenges, my
+self-confidence grew. I went from desk-dwelling computer nerd to the
+kind of guy who bikes to work. For fun! (Laughter) Even last year, I
+ended up hiking up Mt. Kilimanjaro, the highest mountain in Africa. I
+would never have been that adventurous before I started my 30-day
+challenges. I also figured out that if you really want something badly
+enough, you can do anything for 30 days. Have you ever wanted to write a
+novel? Every November, tens of thousands of people try to write their
+own 50,000-word novel, from scratch, in 30 days. It turns out, all you
+have to do is write 1,667 words a day for a month. So I did. By the way,
+the secret is not to go to sleep until you've written your words for the
+day. You might be sleep-deprived, but you'll finish your novel. Now is
+my book the next great American novel? No. I wrote it in a month. It's
+awful. (Laughter) But for the rest of my life, if I meet John Hodgman at
+a TED party, I don't have to say, "I'm a computer scientist." No, no, if
+I want to, I can say, "I'm a novelist." (Laughter) So here's one last
+thing I'd like to mention. I learned that when I made small, sustainable
+changes, things I could keep doing, they were more likely to stick.
+There's nothing wrong with big, crazy challenges. In fact, they're a ton
+of fun. But they're less likely to stick. When I gave up sugar for 30
+days, day 31 looked like this. (Laughter) So here's my question to you:
+What are you waiting for? I guarantee you the next 30 days are going to
+pass whether you like it or not, so why not think about something you
+have always wanted to try and give it a shot! For the next 30 days.
+Thanks. (Applause)</p>
+]]></content>
+      <categories>
+        <category>视频</category>
+      </categories>
+      <tags>
+        <tag>TED</tag>
+        <tag>摘</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -550,94 +720,6 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
       </tags>
   </entry>
   <entry>
-    <title>Try Something New for 30 Days(Matt Cutts)(TED视频)</title>
-    <url>/post/7606ecde.html</url>
-    <content><![CDATA[<blockquote>
-<p>摘自TED里的一个视频，原视频地址：</p>
-</blockquote>
-<span id="more"></span>
-<p><strong><a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days#t-94596">Matt
-Cutts: Try Something New for 30 Days</a></strong> <a href="http://img.ifish.ink/res/MC.pptx">PPT下载</a></p>
-<h3 id="中文文本">中文文本:</h3>
-<p>几年前， 我感觉对老一套感到枯燥乏味， 所以我决定追随
-伟大的美国哲学家摩根·斯普尔洛克的脚步， 尝试做新事情30天。
-这个想法的确是非常简单。 考虑下，你常想在你生命中做的一些事情
-接下来30天尝试做这些。 这就是， 30天刚好是这么一段合适的时间
-去养成一个新的习惯或者改掉一个习惯-- 例如看新闻 -- 在你生活中。
-当我在30天做这些挑战性事情时，我学到以下一些事。 第一件事是，
-取代了飞逝而过易被遗忘的岁月的是 这段时间非常的更加令人难忘。
-挑战的一部分是要一个月内每天我要去拍摄一张照片。
-我清楚地记得那一天我所处的位置 我都在干什么。 我也注意到
-随着我开始做更多的，更难的30天里具有挑战性的事时， 我自信心也增强了。
-我从一个台式计算机宅男极客 变成了一个爱骑自行车去工作的人-- 为了玩乐。
-甚至去年，我完成了在非洲最高山峰 乞力马扎罗山的远足。
-在我开始这30天做挑战性的事之前 我从来没有这样爱冒险过。 我也认识到
-如果你真想一些槽糕透顶的事， 你可以在30天里做这些事。 你曾想写小说吗？
-每年11月， 数以万计的人们 在30天里，从零起点 尝试写他们自己的5万字小说。
-这结果就是，你所要去做的事 就是每天写1667个字 要写一个月。
-所以我做到了。 顺便说一下，秘密是除非在一天里你已经写完了1667个字，
-要不你就甭想睡觉。 你可能被剥夺睡眠， 但你将会完成你的小说。
-那么我写的书会是下一部伟大的美国小说吗？ 不是的。我在一个月内写完它。
-它看上去太可怕了。 但在我的余生， 如果我在一个TED聚会上遇见约翰·霍奇曼，
-我不必开口说， “我是一个电脑科学家。”
-不，不会的，如果我想我可以说，“我是一个小说家。” （笑声）
-我这儿想提的最后一件事。 当我做些小的，持续性的变化，
-我可以不断尝试做的事时， 我学到我可以把它们更容易地坚持做下来。
-这和又大又疯狂的具有挑战性的事情无关。 事实上，它们的乐趣无穷。
-但是，它们就不太可能坚持做下来。 当我在30天里拒绝吃糖果，
-31天后看上去就像这样。 （笑声） 所以我给大家提的问题是：
-大家还在等什么呀？ 我保准大家在未来的30天 会去经历
-你喜欢或者不喜欢的事， 那么为什么不考虑一些 你常想去尝试
-并在未来30天里试试 给自己一个机会。 谢谢。 （掌声）</p>
-<hr>
-<h3 id="english-text">English Text:</h3>
-<p>A few years ago, I felt like I was stuck in a rut, so I decided to
-follow in the footsteps of the great American philosopher, Morgan
-Spurlock, and try something new for 30 days. The idea is actually pretty
-simple. Think about something you've always wanted to add to your life
-and try it for the next 30 days. It turns out 30 days is just about the
-right amount of time to add a new habit or subtract a habit -- like
-watching the news -- from your life. There's a few things I learned
-while doing these 30-day challenges. The first was, instead of the
-months flying by, forgotten, the time was much more memorable. This was
-part of a challenge I did to take a picture every day for a month. And I
-remember exactly where I was and what I was doing that day. I also
-noticed that as I started to do more and harder 30-day challenges, my
-self-confidence grew. I went from desk-dwelling computer nerd to the
-kind of guy who bikes to work. For fun! (Laughter) Even last year, I
-ended up hiking up Mt. Kilimanjaro, the highest mountain in Africa. I
-would never have been that adventurous before I started my 30-day
-challenges. I also figured out that if you really want something badly
-enough, you can do anything for 30 days. Have you ever wanted to write a
-novel? Every November, tens of thousands of people try to write their
-own 50,000-word novel, from scratch, in 30 days. It turns out, all you
-have to do is write 1,667 words a day for a month. So I did. By the way,
-the secret is not to go to sleep until you've written your words for the
-day. You might be sleep-deprived, but you'll finish your novel. Now is
-my book the next great American novel? No. I wrote it in a month. It's
-awful. (Laughter) But for the rest of my life, if I meet John Hodgman at
-a TED party, I don't have to say, "I'm a computer scientist." No, no, if
-I want to, I can say, "I'm a novelist." (Laughter) So here's one last
-thing I'd like to mention. I learned that when I made small, sustainable
-changes, things I could keep doing, they were more likely to stick.
-There's nothing wrong with big, crazy challenges. In fact, they're a ton
-of fun. But they're less likely to stick. When I gave up sugar for 30
-days, day 31 looked like this. (Laughter) So here's my question to you:
-What are you waiting for? I guarantee you the next 30 days are going to
-pass whether you like it or not, so why not think about something you
-have always wanted to try and give it a shot! For the next 30 days.
-Thanks. (Applause)</p>
-]]></content>
-      <categories>
-        <category>视频</category>
-      </categories>
-      <tags>
-        <tag>TED</tag>
-        <tag>摘</tag>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TexLive2017+TexStudio in Windows</title>
     <url>/post/c4cb1247.html</url>
     <content><![CDATA[<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建</p>
@@ -656,8 +738,8 @@ to download and Install laTex (TeXstudio+texlive2017) full</a></p>
         <category>教程</category>
       </categories>
       <tags>
-        <tag>环境配置</tag>
         <tag>摘</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -881,6 +963,153 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
       </tags>
   </entry>
   <entry>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <url>/post/f9428d51.html</url>
+    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
+<span id="more"></span>
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
+% init_X：初始值
+% coefficient_mat：系数矩阵
+% b_mat：b
+% maxNum：最大迭代次数
+% epsilon：精度
+output_args = [];
+flag = 0;
+
+%% 预处理 检查用户调用函数时参数格式是否传错
+if size(coefficient_mat,1) ~= size(coefficient_mat,2)
+    disp('系数矩阵格式错误(需要方阵)');
+    return;
+end
+if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
+    disp('AX=b中的b必须为行向量或者列向量');
+    return;
+end
+if size(b_mat,1) == 1
+    b_mat = b_mat';
+end
+if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
+    disp('初始值必须为行向量或者列向量');
+    return;
+end
+if size(init_X,1) == 1
+    init_X = init_X';
+end
+if size(init_X,1) ~= size(coefficient_mat,1)
+    disp('初始值与系数矩阵维数不一致');
+    return;
+end
+if size(init_X,1) ~= size(b_mat,1)
+    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
+    return;
+end
+if ~exist('maxNum', 'var')
+    maxNum = 500; % 默认值
+end
+if ~exist('epsilon', 'var')
+    epsilon = 1e-14; % 默认值
+end
+
+%% 三对角线
+a = diag(coefficient_mat,-1)';
+b = diag(coefficient_mat)';
+c = diag(coefficient_mat,1)';
+D = diag(a,-1)+diag(b)+diag(c,1);
+
+% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
+[~,D_inv] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
+if isempty(D_inv)
+    disp('系数矩阵不可逆');
+    return;
+end
+%% 开始迭代
+% 下面代码段也行 但是对内存的消耗比较大 
+% x(:,0) = init_X;
+% for k = 1:maxNum
+%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
+%         flag = 1;
+%         break;
+%     end
+% end
+x = init_X;
+%%
+% 迭代公式：
+% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
+% 
+for k = 1:maxNum
+    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
+    if norm(temp-x) &lt; epsilon
+        flag = 1;
+        x = temp;
+        break;
+    end
+    x = temp;
+end
+
+
+%% 结果
+text(0,0.95,'方程：','Color','red','FontSize',14);
+str1 = '\left[\begin{array}';
+% 正则表达式
+str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    '[\s\[\]]',''),'0','c'); 
+mat_start = @(X) [str1 '{' str2(X) '}'];
+my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    ' *','&amp;'),';','\\\'),'[\[\]]','');
+mat_end = '\end{array}\right]';
+str5 = '\times X=';
+% LaTex 输出
+text('Interpreter','latex', 'String',['$$'...
+    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
+    'Position',[0.1 0.7],'FontSize',10);
+text(0,0.5,'三对角类雅可比迭代的结果：','Color','red','FontSize',14);
+if flag == 1  %好的结果
+    output_args.itrNum = k;
+    output_args.result = x;
+    fprintf('迭代次数：%d\n',output_args.itrNum);
+%     disp(x(:,k));
+    disp('解：');
+    disp(x);
+    text('Interpreter','latex', 'String',['$$X^*=' ...
+        mat_start(x) my_mat2str(x) mat_end '$$'],...
+        'Position',[0.1 0.3],'FontSize',10);
+    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
+    'Color','k','FontSize',10);
+    return;
+end
+text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
+    'Color','k','FontSize',10);
+fprintf('迭代%d次后暂未收敛\n',maxNum);
+end</code></pre>
+<ul>
+<li>测试程序</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat = [-1 -5 2 -1];
+init_X = zeros(size(b_mat));
+out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+<ul>
+<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
+</ul>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>三角网格曲面参数化</title>
     <url>/post/bcf65292.html</url>
     <content><![CDATA[<blockquote>
@@ -1087,150 +1316,73 @@ VectorXd <span class="token class-name">MyPolygon</span><span class="token doubl
       </tags>
   </entry>
   <entry>
-    <title>三对角矩阵的类雅可比迭代程序</title>
-    <url>/post/f9428d51.html</url>
-    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(m\)</span>个样本点为<span class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span class="math inline">\(m\)</span>个样本嵌入到低维空间<span class="math inline">\(\mathbb{R}^{d}\)</span>，<span class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding">
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
 <span id="more"></span>
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
-% init_X：初始值
-% coefficient_mat：系数矩阵
-% b_mat：b
-% maxNum：最大迭代次数
-% epsilon：精度
-output_args = [];
-flag = 0;
-
-%% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~= size(coefficient_mat,2)
-    disp('系数矩阵格式错误(需要方阵)');
-    return;
-end
-if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
-    disp('AX=b中的b必须为行向量或者列向量');
-    return;
-end
-if size(b_mat,1) == 1
-    b_mat = b_mat';
-end
-if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
-    disp('初始值必须为行向量或者列向量');
-    return;
-end
-if size(init_X,1) == 1
-    init_X = init_X';
-end
-if size(init_X,1) ~= size(coefficient_mat,1)
-    disp('初始值与系数矩阵维数不一致');
-    return;
-end
-if size(init_X,1) ~= size(b_mat,1)
-    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
-    return;
-end
-if ~exist('maxNum', 'var')
-    maxNum = 500; % 默认值
-end
-if ~exist('epsilon', 'var')
-    epsilon = 1e-14; % 默认值
-end
-
-%% 三对角线
-a = diag(coefficient_mat,-1)';
-b = diag(coefficient_mat)';
-c = diag(coefficient_mat,1)';
-D = diag(a,-1)+diag(b)+diag(c,1);
-
-% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
-[~,D_inv] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
-if isempty(D_inv)
-    disp('系数矩阵不可逆');
-    return;
-end
-%% 开始迭代
-% 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) = init_X;
-% for k = 1:maxNum
-%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
-%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag = 1;
-%         break;
-%     end
-% end
-x = init_X;
-%%
-% 迭代公式：
-% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
-% 
-for k = 1:maxNum
-    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
-    if norm(temp-x) &lt; epsilon
-        flag = 1;
-        x = temp;
-        break;
-    end
-    x = temp;
-end
-
-
-%% 结果
-text(0,0.95,'方程：','Color','red','FontSize',14);
-str1 = '\left[\begin{array}';
-% 正则表达式
-str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    '[\s\[\]]',''),'0','c'); 
-mat_start = @(X) [str1 '{' str2(X) '}'];
-my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    ' *','&amp;'),';','\\\'),'[\[\]]','');
-mat_end = '\end{array}\right]';
-str5 = '\times X=';
-% LaTex 输出
-text('Interpreter','latex', 'String',['$$'...
-    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
-    'Position',[0.1 0.7],'FontSize',10);
-text(0,0.5,'三对角类雅可比迭代的结果：','Color','red','FontSize',14);
-if flag == 1  %好的结果
-    output_args.itrNum = k;
-    output_args.result = x;
-    fprintf('迭代次数：%d\n',output_args.itrNum);
-%     disp(x(:,k));
-    disp('解：');
-    disp(x);
-    text('Interpreter','latex', 'String',['$$X^*=' ...
-        mat_start(x) my_mat2str(x) mat_end '$$'],...
-        'Position',[0.1 0.3],'FontSize',10);
-    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
-    'Color','k','FontSize',10);
-    return;
-end
-text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
-    'Color','k','FontSize',10);
-fprintf('迭代%d次后暂未收敛\n',maxNum);
-end</code></pre>
-<ul>
-<li>测试程序</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat = [-1 -5 2 -1];
-init_X = zeros(size(b_mat));
-out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-<ul>
-<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
-</ul>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列元素为<span class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span class="math inline">\(k\)</span>个非零特征值，分别为<span class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span class="math inline">\({ V}\)</span>的第<span class="math inline">\(i\)</span>列是特征值<span class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br>
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span class="math inline">\(V_*\)</span>。即<span class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding">
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
 ]]></content>
       <categories>
         <category>数学学习</category>
+        <category>算法</category>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1312,76 +1464,6 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
         <tag>原创</tag>
         <tag>算法实现</tag>
         <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(m\)</span>个样本点为<span class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span class="math inline">\(m\)</span>个样本嵌入到低维空间<span class="math inline">\(\mathbb{R}^{d}\)</span>，<span class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列元素为<span class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span class="math inline">\(k\)</span>个非零特征值，分别为<span class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span class="math inline">\({ V}\)</span>的第<span class="math inline">\(i\)</span>列是特征值<span class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br>
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span class="math inline">\(V_*\)</span>。即<span class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
