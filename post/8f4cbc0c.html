@@ -5,10 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Github上 fork了别人的代码 本地更新主分支代码, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
-    <meta name="description" content="Github上 fork了别人的代码 本地更新主分支代码
+    <meta name="description" content="Github上
+fork了别人的代码 本地更新主分支代码
+
 查看本地仓库项目目录：
 git remote -v
-
 添加上游项目地址：
 git remote add &amp;lt;remote-name&amp;gt; &amp;lt;your upstream U">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,7 +65,11 @@ git remote add &amp;lt;remote-name&amp;gt; &amp;lt;your upstream U">
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -537,27 +542,24 @@ git remote add &amp;lt;remote-name&amp;gt; &amp;lt;your upstream U">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="Github上-fork了别人的代码-本地更新主分支代码"><a href="#Github上-fork了别人的代码-本地更新主分支代码" class="headerlink" title="Github上 fork了别人的代码 本地更新主分支代码"></a>Github上 fork了别人的代码 本地更新主分支代码</h3><ul>
+                <h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
+fork了别人的代码 本地更新主分支代码</h3>
+<ul>
 <li><p>查看本地仓库项目目录：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre>
-</li>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
 <li><p>添加上游项目地址：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">&gt;</span></code></pre>
-
 <span id="more"></span>
-
-<p>例如我从<a target="_blank" rel="noopener" href="https://github.com/xxx/xxxx.git%E8%BF%99%E4%B8%AA%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80fork%EF%BC%8C%E5%88%99%E6%8C%87%E4%BB%A4%E4%B8%BA%EF%BC%9A">https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</a></p>
+<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
 </ul>
 <hr>
 <p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
 <ul>
 <li><p>从上游提取：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span></code></pre>
-</li>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span></code></pre></li>
 <li><p>合并：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">&gt;</span></code></pre>
-</li>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">&gt;</span></code></pre></li>
 <li><p>上传：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
 </ul>
@@ -727,13 +729,15 @@ git remote add &amp;lt;remote-name&amp;gt; &amp;lt;your upstream U">
                     <div class="summary block-with-text">
                         
                             
-在之前的一篇 “Bezier曲线拟合数据点的几何作图法” 博客基础上添加鼠标移动控制顶点交互的功能。
+在之前的一篇 “Bezier曲线拟合数据点的几何作图法”
+博客基础上添加鼠标移动控制顶点交互的功能。
 
-交互选择控制顶点，并画出初始曲线clear
+交互选择控制顶点，并画出初始曲线
+clear
 close all
 grid on,hold on
 % axis equal
-global
+globa
                         
                     </div>
                     <div class="publish-info">
@@ -755,12 +759,12 @@ global
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                        <span class="chip bg-color">MATLAB代码</span>
-                    </a>
-                    
                     <a href="/tags/%E5%8E%9F%E5%88%9B/">
                         <span class="chip bg-color">原创</span>
+                    </a>
+                    
+                    <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                        <span class="chip bg-color">MATLAB代码</span>
                     </a>
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -790,7 +794,9 @@ global
                     <div class="summary block-with-text">
                         
                             
-本文介绍文章 Parametrization and smooth approximation of surface triangulations 中的保形参数化算法，并给出MATLAB程序 曲面参数化问题：对于给定的三角网格曲面$\ma
+本文介绍文章 Parametrization and smooth approximation of surface
+triangulations 中的保形参数化算法，并给出MATLAB程序
+曲面参数化问题：对于给定的三角网格曲面\(\m
                         
                     </div>
                     <div class="publish-info">
@@ -812,12 +818,12 @@ global
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                        <span class="chip bg-color">MATLAB代码</span>
-                    </a>
-                    
                     <a href="/tags/%E5%8E%9F%E5%88%9B/">
                         <span class="chip bg-color">原创</span>
+                    </a>
+                    
+                    <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                        <span class="chip bg-color">MATLAB代码</span>
                     </a>
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">

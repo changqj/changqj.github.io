@@ -6,13 +6,15 @@
     <meta charset="utf-8">
     <meta name="keywords" content="(增强篇)  Bezier曲线拟合数据点的几何作图法, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
     <meta name="description" content="
-在之前的一篇 “Bezier曲线拟合数据点的几何作图法” 博客基础上添加鼠标移动控制顶点交互的功能。
+在之前的一篇 “Bezier曲线拟合数据点的几何作图法”
+博客基础上添加鼠标移动控制顶点交互的功能。
 
-交互选择控制顶点，并画出初始曲线clear
+交互选择控制顶点，并画出初始曲线
+clear
 close all
 grid on,hold on
 % axis equal
-global">
+globa">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -66,7 +68,11 @@ global">
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -469,12 +475,12 @@ global">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                                <span class="chip bg-color">MATLAB代码</span>
-                            </a>
-                        
                             <a href="/tags/%E5%8E%9F%E5%88%9B/">
                                 <span class="chip bg-color">原创</span>
+                            </a>
+                        
+                            <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                                <span class="chip bg-color">MATLAB代码</span>
                             </a>
                         
                             <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -513,7 +519,7 @@ global">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    636
+                    637
                 </div>
                 
 
@@ -540,9 +546,11 @@ global">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>在之前的一篇 <a href="https://www.ifish.ink/post/7741e06a.html">“Bezier曲线拟合数据点的几何作图法”</a> 博客基础上添加鼠标移动控制顶点交互的功能。</p>
+<p>在之前的一篇 <a href="https://www.ifish.ink/post/7741e06a.html">“Bezier曲线拟合数据点的几何作图法”</a>
+博客基础上添加鼠标移动控制顶点交互的功能。</p>
 </blockquote>
-<h3 id="交互选择控制顶点，并画出初始曲线"><a href="#交互选择控制顶点，并画出初始曲线" class="headerlink" title="交互选择控制顶点，并画出初始曲线"></a>交互选择控制顶点，并画出初始曲线</h3><pre class="language-matlab" data-language="matlab"><code class="language-matlab">clear
+<h3 id="交互选择控制顶点并画出初始曲线">交互选择控制顶点，并画出初始曲线</h3>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab">clear
 close all
 grid on<span class="token punctuation">,</span>hold on
 <span class="token comment">% axis equal</span>
@@ -563,10 +571,9 @@ text__ <span class="token operator">=</span> <span class="token function">cell</
 myText <span class="token operator">=</span> <span class="token function">text</span><span class="token punctuation">(</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span>text__<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonDownFcn'</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token operator">@</span>ButtonDownFcn<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonUpFcn'</span><span class="token punctuation">,</span><span class="token operator">@</span>ButtonUpFcn<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-
 <span id="more"></span>
-
-<h3 id="Bezier曲线几何作图法"><a href="#Bezier曲线几何作图法" class="headerlink" title="Bezier曲线几何作图法"></a>Bezier曲线几何作图法</h3><pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span> data <span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_GetBezier3Point</span><span class="token punctuation">(</span>dataPoints<span class="token punctuation">,</span>u<span class="token punctuation">)</span>
+<h3 id="bezier曲线几何作图法">Bezier曲线几何作图法</h3>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span> data <span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_GetBezier3Point</span><span class="token punctuation">(</span>dataPoints<span class="token punctuation">,</span>u<span class="token punctuation">)</span>
 <span class="token comment">% 得到曲线参数为u的数据点</span>
 <span class="token comment">% dataPoints：初始点 2xn</span>
 data <span class="token operator">=</span> dataPoints<span class="token punctuation">;</span>
@@ -581,11 +588,10 @@ data <span class="token operator">=</span> dataPoints<span class="token punctuat
     data <span class="token operator">=</span> temp<span class="token punctuation">;</span>
 <span class="token keyword">end</span>
 <span class="token keyword">end</span></code></pre>
-
-<h3 id="处理鼠标响应事件"><a href="#处理鼠标响应事件" class="headerlink" title="处理鼠标响应事件"></a>处理鼠标响应事件</h3><pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonUpFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">)</span>
+<h3 id="处理鼠标响应事件">处理鼠标响应事件</h3>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonUpFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">)</span>
 <span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span> <span class="token string">'WindowButtonMotionFcn'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">%取消鼠标移动响应</span>
 <span class="token keyword">end</span></code></pre>
-
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonMotionFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">,</span>ind<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">)</span>
 global ctrl_points h1<span class="token punctuation">;</span>
 pt <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'CurrentPoint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">%获取当前点坐标</span>
@@ -604,7 +610,6 @@ pt <span class="token operator">=</span> <span class="token function">get</span>
 <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'visible'</span><span class="token punctuation">,</span><span class="token string">'on'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 drawnow<span class="token punctuation">;</span>
 <span class="token keyword">end</span></code></pre>
-
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonDownFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">)</span>
 global ctrl_points h1<span class="token punctuation">;</span>
 pt <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'CurrentPoint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">%获取当前点坐标</span>
@@ -619,8 +624,8 @@ distance <span class="token operator">=</span> <span class="token function">vecn
     <span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonMotionFcn'</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token operator">@</span>ButtonMotionFcn<span class="token punctuation">,</span>ind<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">%设置鼠标移动响应</span>
 <span class="token keyword">end</span>
 <span class="token keyword">end</span></code></pre>
-
-<h3 id="封装了一个选择点的方法"><a href="#封装了一个选择点的方法" class="headerlink" title="封装了一个选择点的方法"></a>封装了一个选择点的方法</h3><pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>dataPoints<span class="token punctuation">,</span>h<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_selectPoints</span><span class="token punctuation">(</span>isclose<span class="token punctuation">,</span>x_axis<span class="token punctuation">,</span>y_axis<span class="token punctuation">)</span>
+<h3 id="封装了一个选择点的方法">封装了一个选择点的方法</h3>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>dataPoints<span class="token punctuation">,</span>h<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_selectPoints</span><span class="token punctuation">(</span>isclose<span class="token punctuation">,</span>x_axis<span class="token punctuation">,</span>y_axis<span class="token punctuation">)</span>
 
 <span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">exist</span><span class="token punctuation">(</span><span class="token string">'isclose'</span><span class="token punctuation">,</span><span class="token string">'var'</span><span class="token punctuation">)</span>
     isclose <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
@@ -663,8 +668,8 @@ grid on<span class="token punctuation">,</span>hold on
     <span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'YData'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span>
 <span class="token keyword">end</span></code></pre>
-
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p><img src="http://img.ifish.ink/2020/1103_1.gif"></p>
+<h3 id="结果">结果</h3>
+<p><img src="http://img.ifish.ink/2020/1103_1.gif"></p>
 
                 
             </div>
@@ -729,12 +734,12 @@ grid on<span class="token punctuation">,</span>hold on
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                                    <span class="chip bg-color">MATLAB代码</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%8E%9F%E5%88%9B/">
                                     <span class="chip bg-color">原创</span>
+                                </a>
+                            
+                                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                                    <span class="chip bg-color">MATLAB代码</span>
                                 </a>
                             
                                 <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -831,9 +836,11 @@ grid on<span class="token punctuation">,</span>hold on
                     <div class="summary block-with-text">
                         
                             
-在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。
+在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。
 
-问题给定高维空间$\mathbb{R}^n$中的
+问题
+给定高维空间\(\mathbb{R}^n\
                         
                     </div>
                     <div class="publish-info">
@@ -890,10 +897,11 @@ grid on<span class="token punctuation">,</span>hold on
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Github上 fork了别人的代码 本地更新主分支代码
+                            Github上
+fork了别人的代码 本地更新主分支代码
+
 查看本地仓库项目目录：
 git remote -v
-
 添加上游项目地址：
 git remote add &lt;remote-name&gt; &lt;your upstream U
                         

@@ -65,7 +65,11 @@ function [ output_args ] = cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilo
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -468,12 +472,12 @@ function [ output_args ] = cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilo
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                                <span class="chip bg-color">MATLAB代码</span>
-                            </a>
-                        
                             <a href="/tags/%E5%8E%9F%E5%88%9B/">
                                 <span class="chip bg-color">原创</span>
+                            </a>
+                        
+                            <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                                <span class="chip bg-color">MATLAB代码</span>
                             </a>
                         
                             <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -538,8 +542,8 @@ function [ output_args ] = cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilo
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="标准雅可比迭代算法解线性方程组-算法实现"><a href="#标准雅可比迭代算法解线性方程组-算法实现" class="headerlink" title="标准雅可比迭代算法解线性方程组-算法实现"></a>标准雅可比迭代算法解线性方程组-算法实现</h3><span id="more"></span>
-
+                <h3 id="标准雅可比迭代算法解线性方程组-算法实现">标准雅可比迭代算法解线性方程组-算法实现</h3>
+<span id="more"></span>
 <ul>
 <li>函数实现</li>
 </ul>
@@ -649,7 +653,6 @@ text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
     'Color','k','FontSize',10);
 fprintf('迭代%d次后暂未收敛\n',maxNum);
 end</code></pre>
-
 <ul>
 <li>测试代码</li>
 </ul>
@@ -657,7 +660,6 @@ end</code></pre>
 b_mat = [-1 -5 2 -1];
 init_X = zeros(size(b_mat));
 out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-
 <ul>
 <li>文档 <a target="_blank" rel="noopener" href="https://img.ifish.ink/Standard_Jacobian_Iterative_Algorithm_Procedure.pdf">文档原文</a></li>
 </ul>
@@ -727,12 +729,12 @@ out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                                    <span class="chip bg-color">MATLAB代码</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%8E%9F%E5%88%9B/">
                                     <span class="chip bg-color">原创</span>
+                                </a>
+                            
+                                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                                    <span class="chip bg-color">MATLAB代码</span>
                                 </a>
                             
                                 <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -850,12 +852,12 @@ out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%91%98/">
-                        <span class="chip bg-color">摘</span>
-                    </a>
-                    
                     <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
                         <span class="chip bg-color">环境配置</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%91%98/">
+                        <span class="chip bg-color">摘</span>
                     </a>
                     
                 </div>
@@ -903,12 +905,12 @@ out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                        <span class="chip bg-color">MATLAB代码</span>
-                    </a>
-                    
                     <a href="/tags/%E5%8E%9F%E5%88%9B/">
                         <span class="chip bg-color">原创</span>
+                    </a>
+                    
+                    <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                        <span class="chip bg-color">MATLAB代码</span>
                     </a>
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">

@@ -6,7 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
     <meta name="description" content="
-在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现 Briefly unavailable for scheduled maintenance. Check back in a minute. ，导致我们的Wo">
+在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
+Briefly unavailable for scheduled maintenance. Check back in a
+minute. ，导致我们的Wo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -60,7 +62,11 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -503,7 +509,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    275
+                    284
                 </div>
                 
 
@@ -530,16 +536,30 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现 <strong>Briefly unavailable for scheduled maintenance. Check back in a minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
+<strong>Briefly unavailable for scheduled maintenance. Check back in a
+minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
 </blockquote>
-<p><img src="http://img.ifish.ink/img/20190703103139.png" alt="Briefly unavailable for scheduled maintenance. Check back in a minute." title="Briefly unavailable for scheduled maintenance. Check back in a minute."></p>
-<h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly unavailable for scheduled maintenance. Check back in a minute.”</p>
+<figure>
+<img src="http://img.ifish.ink/img/20190703103139.png" title="Briefly unavailable for scheduled maintenance. Check back in a minute." alt="Briefly unavailable for scheduled maintenance. Check back in a minute.">
+<figcaption aria-hidden="true">Briefly unavailable for scheduled
+maintenance. Check back in a minute.</figcaption>
+</figure>
+<h3 id="原因">原因：</h3>
+<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
+unavailable for scheduled maintenance. Check back in a minute.”</p>
 <span id="more"></span>
-
-<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong> 的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em> 即可</p>
+<h3 id="解决方法">解决方法：</h3>
+<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
+的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
+即可</p>
 <ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除 <strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong> 文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为 _.maintenance_，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到 <strong>.maintenance</strong> 文件，然后删除即可。</li>
+<li>用FTP或者从终端进入WordPress的根目录下，删除
+<strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
+文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
+<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
+<strong>.maintenance</strong> 文件，然后删除即可。</li>
 </ul>
 <p>重新访问网站，发现一切正常<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 感谢阅读！</p>
 <hr>
@@ -707,7 +727,9 @@
                     <div class="summary block-with-text">
                         
                             c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：
-关于3维中均值重心坐标的实现可参考我的另一篇博客：均值重心坐标Mean Value Coordinates In 3D代码实现
+
+关于3维中均值重心坐标的实现可参考我的另一篇博客：均值重心坐标Mean
+Value Coordinates In 3D代码实现
 
                         
                     </div>
@@ -765,9 +787,11 @@
                     <div class="summary block-with-text">
                         
                             
-相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件 uBlock Origin
+相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin
 
-小编使用uBlock Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插
+小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插
                         
                     </div>
                     <div class="publish-info">

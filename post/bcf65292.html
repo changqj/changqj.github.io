@@ -6,7 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="三角网格曲面参数化, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
     <meta name="description" content="
-本文介绍文章 Parametrization and smooth approximation of surface triangulations 中的保形参数化算法，并给出MATLAB程序 曲面参数化问题：对于给定的三角网格曲面$\ma">
+本文介绍文章 Parametrization and smooth approximation of surface
+triangulations 中的保形参数化算法，并给出MATLAB程序
+曲面参数化问题：对于给定的三角网格曲面\(\m">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -60,7 +62,11 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -463,12 +469,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                                <span class="chip bg-color">MATLAB代码</span>
-                            </a>
-                        
                             <a href="/tags/%E5%8E%9F%E5%88%9B/">
                                 <span class="chip bg-color">原创</span>
+                            </a>
+                        
+                            <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                                <span class="chip bg-color">MATLAB代码</span>
                             </a>
                         
                             <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -542,51 +548,55 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>本文介绍文章 <em>Parametrization and smooth approximation of surface triangulations</em> 中的保形参数化算法，并给出MATLAB程序 曲面参数化问题：对于给定的三角网格曲面$\mathbf{S}$，找到一个映射$\phi(u,v): \mathbb{R}^2\longmapsto\mathbb{R}^3$，使得平面参数域中的点与曲面网格的点一一对应，求解参数$(u,v)$，即$\phi^{-1}$的过程称为参数化。</p>
+<p>本文介绍文章 <em>Parametrization and smooth approximation of surface
+triangulations</em> 中的保形参数化算法，并给出MATLAB程序
+曲面参数化问题：对于给定的三角网格曲面<span class="math inline">\(\mathbf{S}\)</span>，找到一个映射<span class="math inline">\(\phi(u,v):
+\mathbb{R}^2\longmapsto\mathbb{R}^3\)</span>，使得平面参数域中的点与曲面网格的点一一对应，求解参数<span class="math inline">\((u,v)\)</span>，即<span class="math inline">\(\phi^{-1}\)</span>的过程称为参数化。</p>
 </blockquote>
 <hr>
-<h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p><img src="http://img.ifish.ink/20201031/1.png"></p>
+<h2 id="算法描述">算法描述</h2>
+<p><img src="http://img.ifish.ink/20201031/1.png"></p>
 <span id="more"></span>
-
-<ol>
-<li><p>对于三角网格曲面$\mathbf{S}$的每个内部点$x_i$，寻找1领域内的邻接点，将其记为$x_{j_1},x_{j_2},\dots,x_{j_m}$，定义$x_i$的子图的顶点集$X_i={x_i,x_{j_1},x_{j_2},\dots,x_{j_m}}$表示，如上图左侧所示。</p>
-</li>
-<li><p>将步骤1中的$X_i$通过某种方式投影到平面域$\mathbb{R}^2$中，得到平面域中的图$P_i={p,p_1,p_2,\dots,p_m}$。上图中间</p>
+<ol type="1">
+<li><p>对于三角网格曲面<span class="math inline">\(\mathbf{S}\)</span>的每个内部点<span class="math inline">\(x_i\)</span>，寻找1领域内的邻接点，将其记为<span class="math inline">\(x_{j_1},x_{j_2},\dots,x_{j_m}\)</span>，定义<span class="math inline">\(x_i\)</span>的子图的顶点集<span class="math inline">\(X_i={x_i,x_{j_1},x_{j_2},\dots,x_{j_m}}\)</span>表示，如上图左侧所示。</p></li>
+<li><p>将步骤1中的<span class="math inline">\(X_i\)</span>通过某种方式投影到平面域<span class="math inline">\(\mathbb{R}^2\)</span>中，得到平面域中的图<span class="math inline">\(P_i={p,p_1,p_2,\dots,p_m}\)</span>。上图中间</p>
 <blockquote>
 <p>这里的投影方式有多种选择，文章提及到最小二乘面和平均法向面，但是当曲面中三角面片之间的夹角过大时，这两种方法不具有稳定性。于是介绍了一种W-W提出的测地极坐标映射的方法。</p>
 </blockquote>
-<p>$$ r_k=\Vert p_k-p\Vert =\Vert x_{j_k}-x_i\Vert $$</p>
-</li>
+<p><span class="math display">\[ r_k=\Vert p_k-p\Vert =\Vert
+x_{j_k}-x_i\Vert \]</span></p></li>
 </ol>
-<p>$$ \theta_k = ang(p_k,p,p_{k+1})=2\pi \frac{ang(x_{j_k},x_i,x_{j_{k+1}})}{\sum_kang(x_{j_k},x_i,x_{k_{k+1}})} $$ 这里$ang(a,b,c)$表示向量$\vec {ba}$与向量$\vec {bc}$之间的角度。实际上上面第二个等式就是将空间角度等比例放缩到平面中，因为平面周角为$2\pi$，所以前面需要乘$2\pi$。定义$p=(0,0)$，$p_1=(\Vert x_{j_1}-x_i\Vert,0)$，这里$p$相当于极点，$pp_1$相当于极轴，根据极坐标$(r_k,\theta_k)$则可计算出每个$p_k$。则得到平面域中的多边形${p,p_1,p_2,\dots,p_m}$及其内部一点$p$</p>
-<ol start="3">
-<li><p>计算$p$关于该平面多边形的广义重心坐标。这里采用均值重心坐标[<a target="_blank" rel="noopener" href="https://www.mn.uio.no/math/english/people/aca/michaelf/papers/mean_value.pdf" title="Mean value coordinates">1</a>] 均值重心坐标的计算方式如下：</p>
+<p><span class="math display">\[ \theta_k = ang(p_k,p,p_{k+1})=2\pi
+\frac{ang(x_{j_k},x_i,x_{j_{k+1}})}{\sum_kang(x_{j_k},x_i,x_{k_{k+1}})}
+\]</span> 这里<span class="math inline">\(ang(a,b,c)\)</span>表示向量<span class="math inline">\(\vec {ba}\)</span>与向量<span class="math inline">\(\vec
+{bc}\)</span>之间的角度。实际上上面第二个等式就是将空间角度等比例放缩到平面中，因为平面周角为<span class="math inline">\(2\pi\)</span>，所以前面需要乘<span class="math inline">\(2\pi\)</span>。定义<span class="math inline">\(p=(0,0)\)</span>，<span class="math inline">\(p_1=(\Vert x_{j_1}-x_i\Vert,0)\)</span>，这里<span class="math inline">\(p\)</span>相当于极点，<span class="math inline">\(pp_1\)</span>相当于极轴，根据极坐标<span class="math inline">\((r_k,\theta_k)\)</span>则可计算出每个<span class="math inline">\(p_k\)</span>。则得到平面域中的多边形<span class="math inline">\({p,p_1,p_2,\dots,p_m}\)</span>及其内部一点<span class="math inline">\(p\)</span></p>
+<ol start="3" type="1">
+<li><p>计算<span class="math inline">\(p\)</span>关于该平面多边形的广义重心坐标。这里采用均值重心坐标[<a target="_blank" rel="noopener" href="https://www.mn.uio.no/math/english/people/aca/michaelf/papers/mean_value.pdf" title="Mean value coordinates">1</a>] 均值重心坐标的计算方式如下：</p>
 <blockquote>
-<p>c++实现均值重心坐标可参考我的另一篇文章：<a href="http://www.ifish.ink/?p=611">均值重心坐标Mean Value Coordinates In 2D代码实现</a></p>
+<p>c++实现均值重心坐标可参考我的另一篇文章：<a href="http://www.ifish.ink/?p=611">均值重心坐标Mean Value Coordinates In
+2D代码实现</a></p>
 </blockquote>
-<p><img src="http://img.ifish.ink/20201031/2.jpg"></p>
-</li>
-<li><p>在第3步可计算出投影到平面域中的每个内部点关于1-ring点的广义重心坐标。 记：$\lambda_i=[\dots,0,\dots,\lambda_{j_a},\dots,\lambda_{j_b},\dots,0,\dots]$，即只是$x_i$的邻接点对应序号中的元素为第三步计算出的重心坐标值，其余位置为0</p>
-</li>
-<li><p>固定边界点对应的参数（如参数化到矩形域，则将网格曲面上边界点参数有序定义为矩形域的边界） 假定后$N$个点为边界点，初始化${(u_i,v_i)}_{i=n+1}^N$</p>
-</li>
-<li><p>记$\Lambda=[\lambda_1,\lambda_2,\dots,\lambda_n]^{\rm T}$，求稀疏解线性方程组： <img src="http://img.ifish.ink/20201031/5.png"></p>
-</li>
+<p><img src="http://img.ifish.ink/20201031/2.jpg"></p></li>
+<li><p>在第3步可计算出投影到平面域中的每个内部点关于1-ring点的广义重心坐标。
+记：<span class="math inline">\(\lambda_i=[\dots,0,\dots,\lambda_{j_a},\dots,\lambda_{j_b},\dots,0,\dots]\)</span>，即只是<span class="math inline">\(x_i\)</span>的邻接点对应序号中的元素为第三步计算出的重心坐标值，其余位置为0</p></li>
+<li><p>固定边界点对应的参数（如参数化到矩形域，则将网格曲面上边界点参数有序定义为矩形域的边界）
+假定后<span class="math inline">\(N\)</span>个点为边界点，初始化<span class="math inline">\({(u_i,v_i)}_{i=n+1}^N\)</span></p></li>
+<li><p>记<span class="math inline">\(\Lambda=[\lambda_1,\lambda_2,\dots,\lambda_n]^{\rm
+T}\)</span>，求稀疏解线性方程组： <img src="http://img.ifish.ink/20201031/5.png"></p></li>
 </ol>
-<h2 id="MATLAB代码"><a href="#MATLAB代码" class="headerlink" title="MATLAB代码"></a>MATLAB代码</h2><blockquote>
+<h2 id="matlab代码">MATLAB代码</h2>
+<blockquote>
 <p>下面代码仅使用与开网格 建议在桌面端浏览器或大屏移动端查看代码</p>
 </blockquote>
 <ul>
 <li><p>首先导入模型文件：</p>
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab">clear<span class="token punctuation">,</span> close all
 model_name <span class="token operator">=</span> <span class="token string">'data/bunny.obj'</span><span class="token punctuation">;</span>
-<span class="token punctuation">[</span>v<span class="token punctuation">,</span>f<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">read_mesh</span><span class="token punctuation">(</span>model_name<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">% 导入模型</span></code></pre>
-</li>
+<span class="token punctuation">[</span>v<span class="token punctuation">,</span>f<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">read_mesh</span><span class="token punctuation">(</span>model_name<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">% 导入模型</span></code></pre></li>
 <li><p>计算边界点</p>
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab">boundary<span class="token operator">=</span><span class="token function">compute_boundary</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">% 计算边界点，注意此时的边界是有序的</span>
 <span class="token function">assert</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">isempty</span><span class="token punctuation">(</span>boundary<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'仅适用于亏格数为0的开网格！'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-MVC <span class="token operator">=</span> <span class="token function">sparse</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">length</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
+MVC <span class="token operator">=</span> <span class="token function">sparse</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">length</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li>
 <li><p>对非边界点循环 计算均值重心坐标</p>
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token function">setdiff</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span>boundary<span class="token punctuation">)</span>   <span class="token comment">% 对非边界点循环 i</span>
   <span class="token punctuation">[</span><span class="token operator">~</span><span class="token punctuation">,</span>indexes_of_adjacent_faces<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>f<span class="token operator">==</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">% 找到x_i的邻接面</span>
@@ -624,13 +634,11 @@ MVC <span class="token operator">=</span> <span class="token function">sparse</s
   MVC_i <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">tan_value</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token function">tan_value</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">+</span>tan_value<span class="token punctuation">)</span><span class="token operator">./</span><span class="token punctuation">...</span>
       length_of_adjacent_edges<span class="token punctuation">;</span>
   <span class="token function">MVC</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span>adjacent_vertices<span class="token punctuation">)</span> <span class="token operator">=</span> MVC_i<span class="token operator">/</span><span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span>MVC_i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span></code></pre>
-</li>
+<span class="token keyword">end</span></code></pre></li>
 <li><p>筛选出有用的MVC</p>
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">% 只保留内部点的MVC</span>
-MVC <span class="token operator">=</span> <span class="token function">MVC</span><span class="token punctuation">(</span><span class="token function">any</span><span class="token punctuation">(</span>MVC<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-<li><p>初始化边界点的$(u,v)$参数</p>
+MVC <span class="token operator">=</span> <span class="token function">MVC</span><span class="token punctuation">(</span><span class="token function">any</span><span class="token punctuation">(</span>MVC<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>初始化边界点的<span class="math inline">\((u,v)\)</span>参数</p>
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% 指定边界点的(u,v)  </span>
 <span class="token comment">% 假定考虑参数化到[0,1]X[0,1]的正方形中</span>
 chord <span class="token operator">=</span> <span class="token function">vecnorm</span><span class="token punctuation">(</span><span class="token function">v</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token function">boundary</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token function">boundary</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">v</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>boundary<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -655,8 +663,7 @@ uv_ <span class="token operator">=</span> chord<span class="token operator">*</s
 <span class="token keyword">else</span>
   <span class="token function">uv_3</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span>
-uv_boundary <span class="token operator">=</span> <span class="token punctuation">[</span>uv_1 uv_2 uv_3 uv_4<span class="token punctuation">]</span><span class="token operator">'</span><span class="token punctuation">;</span></code></pre>
-</li>
+uv_boundary <span class="token operator">=</span> <span class="token punctuation">[</span>uv_1 uv_2 uv_3 uv_4<span class="token punctuation">]</span><span class="token operator">'</span><span class="token punctuation">;</span></code></pre></li>
 <li><p>构造最后一步中的稀疏线性系统</p>
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% (I-Lambda_1)*uv_int = Lambda_2*uv_boundary</span>
 Lambda_1 <span class="token operator">=</span> <span class="token function">MVC</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token function">setdiff</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span>boundary<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% 构造Lambda_1</span>
@@ -665,8 +672,7 @@ A <span class="token operator">=</span> <span class="token function">eye</span><
 uv_Int <span class="token operator">=</span> A<span class="token operator">\</span>Lambda_2<span class="token operator">*</span>uv_boundary<span class="token punctuation">;</span>    <span class="token comment">% 解线性方程组</span>
 
 <span class="token function">uv</span><span class="token punctuation">(</span><span class="token function">setdiff</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">,</span>boundary<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> uv_Int<span class="token punctuation">;</span>
-<span class="token function">uv</span><span class="token punctuation">(</span>boundary<span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> uv_boundary<span class="token punctuation">;</span></code></pre>
-</li>
+<span class="token function">uv</span><span class="token punctuation">(</span>boundary<span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> uv_boundary<span class="token punctuation">;</span></code></pre></li>
 <li><p>可视化结果</p>
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% 可视化结果</span>
 <span class="token function">uv</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -674,7 +680,8 @@ uv_Int <span class="token operator">=</span> A<span class="token operator">\</sp
 figure
 <span class="token function">plot_mesh</span><span class="token punctuation">(</span>uv<span class="token punctuation">,</span>f<span class="token punctuation">)</span></code></pre></li>
 </ul>
-<p><img src="http://img.ifish.ink/20201031/3.png"> 将绿白相见棋盘格贴图到模型表面可以直观感受参数化的好坏 <img src="http://img.ifish.ink/20201031/4.png"></p>
+<p><img src="http://img.ifish.ink/20201031/3.png">
+将绿白相见棋盘格贴图到模型表面可以直观感受参数化的好坏 <img src="http://img.ifish.ink/20201031/4.png"></p>
 
                 
             </div>
@@ -739,12 +746,12 @@ figure
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                                    <span class="chip bg-color">MATLAB代码</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%8E%9F%E5%88%9B/">
                                     <span class="chip bg-color">原创</span>
+                                </a>
+                            
+                                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                                    <span class="chip bg-color">MATLAB代码</span>
                                 </a>
                             
                                 <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -849,10 +856,11 @@ figure
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Github上 fork了别人的代码 本地更新主分支代码
+                            Github上
+fork了别人的代码 本地更新主分支代码
+
 查看本地仓库项目目录：
 git remote -v
-
 添加上游项目地址：
 git remote add &lt;remote-name&gt; &lt;your upstream U
                         
@@ -912,7 +920,10 @@ git remote add &lt;remote-name&gt; &lt;your upstream U
                     <div class="summary block-with-text">
                         
                             
-查看显示器设备名称 在Linux终端键入命令：$ xrandx，如下图所示查看对应的设备名称，本例为 LVDS-1 和 HDMI-1 (如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)
+查看显示器设备名称
+在Linux终端键入命令：$ xrandx，如下图所示查看对应的设备名称，本例为
+LVDS-1 和 HDMI-1
+(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)
 
                         
                     </div>

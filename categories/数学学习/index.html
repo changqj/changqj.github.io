@@ -61,7 +61,11 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -502,20 +506,11 @@
                 
                 
                 
-                <a href="/categories/%E7%94%9F%E6%B4%BB/" title="生活: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F9EBEA;">生活
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/" title="数学学习: 7">
+                <a href="/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/" title="数学学习: 6">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            style="background-color: #F5EEF8;">数学学习
-                        <span class="tag-length">7</span>
+                            style="background-color: #F9EBEA;">数学学习
+                        <span class="tag-length">6</span>
                     </span>
                 </a>
                 
@@ -523,7 +518,7 @@
                 <a href="/categories/%E6%95%99%E7%A8%8B/" title="教程: 7">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">教程
+                            style="background-color: #F5EEF8;">教程
                         <span class="tag-length">7</span>
                     </span>
                 </a>
@@ -532,8 +527,17 @@
                 <a href="/categories/%E8%A7%86%E9%A2%91/" title="视频: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #E8F8F5;">视频
+                            style="background-color: #D5F5E3;">视频
                         <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/%E7%94%9F%E6%B4%BB/" title="生活: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #E8F8F5;">生活
+                        <span class="tag-length">3</span>
                     </span>
                 </a>
                 
@@ -581,9 +585,11 @@
                         <div class="summary block-with-text">
                             
                                 
-在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。
+在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。
 
-问题给定高维空间$\mathbb{R}^n$中的
+问题
+给定高维空间\(\mathbb{R}^n\
                             
                         </div>
                         <div class="publish-info">
@@ -637,13 +643,15 @@
                         <div class="summary block-with-text">
                             
                                 
-在之前的一篇 “Bezier曲线拟合数据点的几何作图法” 博客基础上添加鼠标移动控制顶点交互的功能。
+在之前的一篇 “Bezier曲线拟合数据点的几何作图法”
+博客基础上添加鼠标移动控制顶点交互的功能。
 
-交互选择控制顶点，并画出初始曲线clear
+交互选择控制顶点，并画出初始曲线
+clear
 close all
 grid on,hold on
 % axis equal
-global
+globa
                             
                         </div>
                         <div class="publish-info">
@@ -666,12 +674,12 @@ global
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                            <span class="chip bg-color">MATLAB代码</span>
-                        </a>
-                        
                         <a href="/tags/%E5%8E%9F%E5%88%9B/">
                             <span class="chip bg-color">原创</span>
+                        </a>
+                        
+                        <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                            <span class="chip bg-color">MATLAB代码</span>
                         </a>
                         
                         <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -726,12 +734,12 @@ function [ output_args ] = cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilo
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                            <span class="chip bg-color">MATLAB代码</span>
-                        </a>
-                        
                         <a href="/tags/%E5%8E%9F%E5%88%9B/">
                             <span class="chip bg-color">原创</span>
+                        </a>
+                        
+                        <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                            <span class="chip bg-color">MATLAB代码</span>
                         </a>
                         
                         <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -786,12 +794,12 @@ function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,e
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                            <span class="chip bg-color">MATLAB代码</span>
-                        </a>
-                        
                         <a href="/tags/%E5%8E%9F%E5%88%9B/">
                             <span class="chip bg-color">原创</span>
+                        </a>
+                        
+                        <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                            <span class="chip bg-color">MATLAB代码</span>
                         </a>
                         
                         <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -818,11 +826,12 @@ function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,e
                         <div class="summary block-with-text">
                             
                                 
-本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人
-
+本文实现的是论文《三对角矩阵求逆的算法》
+论文作者：冉瑞生、黄延祝等人
 
 
 MATLAB代码
+
 函数实现
 
 function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
@@ -849,12 +858,12 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                            <span class="chip bg-color">MATLAB代码</span>
-                        </a>
-                        
                         <a href="/tags/%E5%8E%9F%E5%88%9B/">
                             <span class="chip bg-color">原创</span>
+                        </a>
+                        
+                        <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                            <span class="chip bg-color">MATLAB代码</span>
                         </a>
                         
                         <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -882,12 +891,14 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
                                 
 Bezier曲线拟合数据点的几何作图法MATLAB程序。
 
-Contents左键选择点，右键或中间结束clear
+Contents
+左键选择点，右键或中间结束
+clear
 close all
 figure;
 axis([-5,5,-5,5]);
 grid on;
-title('Bezier曲线拟
+title('Bezier曲
                             
                         </div>
                         <div class="publish-info">
@@ -910,68 +921,12 @@ title('Bezier曲线拟
                     
                     <div class="card-action article-tags">
                         
+                        <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                            <span class="chip bg-color">原创</span>
+                        </a>
+                        
                         <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                             <span class="chip bg-color">MATLAB代码</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                            <span class="chip bg-color">原创</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/post/b2bc7362.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="曲线拟合的最小二乘法">
-                            
-                            <span class="card-title">曲线拟合的最小二乘法</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                利用最小二乘法对空间中一组数据点进行多项式逼近的介绍
-
-以下内容是参考了_《计算几何》第二版-浙江大学出版社-易大义&amp;沈云宝&amp;李有法_，根据所学整理 曲线拟合：已知$m$个数据点$(x_i,y_i)$，其中$i=(1,2,…
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2017-10-12
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    数学学习
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                            <span class="chip bg-color">原创</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/">
-                            <span class="chip bg-color">数值分析</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88/">
-                            <span class="chip bg-color">曲线拟合</span>
                         </a>
                         
                     </div>
