@@ -8,12 +8,14 @@
     <meta name="description" content="
 Bezier曲线拟合数据点的几何作图法MATLAB程序。
 
-Contents左键选择点，右键或中间结束clear
+Contents
+左键选择点，右键或中间结束
+clear
 close all
 figure;
 axis([-5,5,-5,5]);
 grid on;
-title(&#39;Bezier曲线拟">
+title(&#39;Bezier曲">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -470,12 +472,12 @@ title(&#39;Bezier曲线拟">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                                <span class="chip bg-color">MATLAB代码</span>
-                            </a>
-                        
                             <a href="/tags/%E5%8E%9F%E5%88%9B/">
                                 <span class="chip bg-color">原创</span>
+                            </a>
+                        
+                            <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                                <span class="chip bg-color">MATLAB代码</span>
                             </a>
                         
                     </div>
@@ -510,7 +512,7 @@ title(&#39;Bezier曲线拟">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    258
+                    259
                 </div>
                 
 
@@ -539,18 +541,19 @@ title(&#39;Bezier曲线拟">
                 <blockquote>
 <p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
 </blockquote>
-<h1 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h1><h3 id="左键选择点，右键或中间结束"><a href="#左键选择点，右键或中间结束" class="headerlink" title="左键选择点，右键或中间结束"></a>左键选择点，右键或中间结束</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
 close all
 figure;
 axis([-5,5,-5,5]);
 grid on;
 title('Bezier曲线拟合');
 questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
-
 <span id="more"></span>
-
 <p><img src="http://img.ifish.ink/figure/main_01.png"></p>
-<h3 id="从鼠标获取数据点"><a href="#从鼠标获取数据点" class="headerlink" title="从鼠标获取数据点"></a>从鼠标获取数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
 while 1
     i = i+1;
     tip = ['请选择第',num2str(i),'个数据点'];
@@ -575,9 +578,9 @@ for i = 0:0.01:1
 end
 h2 = plot(newData(1,:),newData(2,:),'.-r');
 legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
-
 <p><img src="http://img.ifish.ink/figure/main_02.png"></p>
-<h3 id="得到曲线参数为u的数据点"><a href="#得到曲线参数为u的数据点" class="headerlink" title="得到曲线参数为u的数据点"></a>得到曲线参数为u的数据点</h3><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
 % 得到曲线参数为u的数据点
 % dataPoints：初始点 2xn
 data = dataPoints;
@@ -592,7 +595,6 @@ while 1
     data = temp;
 end
 end</code></pre>
-
 <p><img src="http://img.ifish.ink/figure/main_03.png"></p>
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
@@ -660,12 +662,12 @@ end</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                                    <span class="chip bg-color">MATLAB代码</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%8E%9F%E5%88%9B/">
                                     <span class="chip bg-color">原创</span>
+                                </a>
+                            
+                                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                                    <span class="chip bg-color">MATLAB代码</span>
                                 </a>
                             
                         </div>
@@ -759,7 +761,8 @@ end</code></pre>
                     <div class="summary block-with-text">
                         
                             
-本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人
+本文实现的是论文《三对角矩阵求逆的算法》
+论文作者：冉瑞生、黄延祝等人
 
                         
                     </div>
@@ -782,12 +785,12 @@ end</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
-                        <span class="chip bg-color">MATLAB代码</span>
-                    </a>
-                    
                     <a href="/tags/%E5%8E%9F%E5%88%9B/">
                         <span class="chip bg-color">原创</span>
+                    </a>
+                    
+                    <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                        <span class="chip bg-color">MATLAB代码</span>
                     </a>
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
