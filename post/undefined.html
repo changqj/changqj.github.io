@@ -10,8 +10,8 @@
 
 离散型随机变量
 随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为离散型随机变量。
-(0-1)分布：
-(0-1)分布的随机变量\(X\)只可能取0与1，">
+(0-1)分布
+(0-1)分布的随机变量\(X\)只可能取0与1，如">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -55,7 +55,9 @@
 
 
 
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
     <link rel="stylesheet" href="/css/post.css">
+
 
 
 
@@ -459,10 +461,12 @@
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -470,12 +474,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                <span class="chip bg-color">原创</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BB%9F%E8%AE%A1/">
+                                <span class="chip bg-color">统计</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                数学学习
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -526,7 +547,7 @@
 </blockquote>
 <h3 id="离散型随机变量">离散型随机变量</h3>
 <p>随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为<strong>离散型随机变量</strong>。</p>
-<h4 id="分布">(0-1)分布：</h4>
+<h4 id="分布">(0-1)分布</h4>
 <p>(0-1)分布的随机变量<span class="math inline">\(X\)</span>只可能取0与1，如果概率满足 <span class="math display">\[
 P_k=P\{X=k\}=p^k(1-p)^{1-k},\quad k=0,1\qquad (0&lt;p&lt;1),
 \]</span> 称<span class="math inline">\(X\)</span>服从参数<span class="math inline">\(为\)</span>p$的(0-1)分布。</p>
@@ -553,7 +574,7 @@ k=0,1\qquad (0&lt;p&lt;1)\)</span></p>
 <li><p>方差：<span class="math inline">\(\sigma^2[X]=p(1-p)\)</span></p></li>
 </ul>
 <hr>
-<h4 id="几何分布">几何分布：</h4>
+<h4 id="几何分布">几何分布</h4>
 <p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现一次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(p\)</span>的几何分布。</p>
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=(1-p)^{k-1}p,\quad
@@ -562,7 +583,7 @@ k=1,2,\dots\)</span></li>
 <li>方差：<span class="math inline">\(\sigma^2[X]=\frac{1-p}{p^2}\)</span></li>
 </ul>
 <hr>
-<h4 id="伯努利分布二项分布">伯努利分布/二项分布：</h4>
+<h4 id="伯努利分布二项分布">伯努利分布/二项分布</h4>
 <p>设试验<span class="math inline">\(E\)</span>只有两个可能的结果：<span class="math inline">\(A\)</span>与<span class="math inline">\(\bar{A}\)</span>，则称<span class="math inline">\(E\)</span>为伯努利试验。设<span class="math inline">\(P(A)=p~(0&lt;p&lt;1)\)</span>。将<span class="math inline">\(E\)</span>独立重复地进行<span class="math inline">\(n\)</span>次，则称这一串重复的独立试验为<span class="math inline">\(n\)</span>重伯努利试验。</p>
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=\binom{n}{k}p^k(1-p)^{n-k},\quad
@@ -571,7 +592,7 @@ k=0,1,\dots,n\)</span></li>
 <li>方差：<span class="math inline">\(\sigma^2[X]=np(1-p)\)</span></li>
 </ul>
 <hr>
-<h4 id="巴斯卡分布负二项分布">巴斯卡分布（负二项分布）：</h4>
+<h4 id="巴斯卡分布负二项分布">巴斯卡分布（负二项分布）</h4>
 <p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现<span class="math inline">\(r\)</span>次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(r,p\)</span>的巴斯卡（负二项）分布。</p>
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=\binom{k-1}{r-1}p^r(1-p)^{k-r},\quad
@@ -580,7 +601,7 @@ k=r,r+1,\dots\)</span></li>
 <li>方差：<span class="math inline">\(\sigma^2[X]=\frac{r(1-p)}{p^2}\)</span></li>
 </ul>
 <hr>
-<h4 id="泊松分布">泊松分布：</h4>
+<h4 id="泊松分布">泊松分布</h4>
 <p>设随机变量<span class="math inline">\(X\)</span>所有可能取的值为<span class="math inline">\(0,1,2,\dots\)</span>，取各个值的概率为 <span class="math display">\[
 P\{X=k\}=\frac{\lambda^ke^{-\lambda}}{k!},\quad \lambda&gt;0,\quad
 k=0,1,2,\dots
@@ -599,7 +620,7 @@ k=0,1,\dots\)</span></li>
 <h3 id="连续型随机变量">连续型随机变量</h3>
 <p>如果对于随机变量<span class="math inline">\(X\)</span>的分布函数<span class="math inline">\(F(x)\)</span>，存在非负函数<span class="math inline">\(f(x)\)</span>，使得对于任意实数<span class="math inline">\(x\)</span>，有 <span class="math display">\[F(x)=P\{X\le x\}=\int_{-\infty}^x f(t)dt\]</span>
 则称<span class="math inline">\(X\)</span>为<strong>连续型随机变量</strong>，其中<span class="math inline">\(f(x)\)</span>称为<span class="math inline">\(X\)</span>的<strong>概率密度函数</strong>。</p>
-<h4 id="均匀分布">均匀分布：</h4>
+<h4 id="均匀分布">均匀分布</h4>
 <p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
 f(x) =
 \begin{cases}
@@ -612,7 +633,7 @@ f(x) =
 <li>方差：<span class="math inline">\(\sigma^2[X]=\frac{(b-a)^2}{12}\)</span></li>
 </ul>
 <hr>
-<h4 id="指数分布">指数分布：</h4>
+<h4 id="指数分布">指数分布</h4>
 <p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
 f(x) =
 \begin{cases}
@@ -625,7 +646,7 @@ f(x) =
 <li>方差：<span class="math inline">\(\sigma^2[X]=\theta^2\)</span></li>
 </ul>
 <hr>
-<h4 id="正态高斯分布">正态（高斯）分布：</h4>
+<h4 id="正态高斯分布">正态（高斯）分布</h4>
 <p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
 f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
 -\infty&lt;x&lt;\infty,
@@ -700,7 +721,15 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                    <span class="chip bg-color">原创</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BB%9F%E8%AE%A1/">
+                                    <span class="chip bg-color">统计</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -801,13 +830,29 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            鱼墨常常
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    数学学习
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">原创</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BB%9F%E8%AE%A1/">
+                        <span class="chip bg-color">统计</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -904,6 +949,87 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
 
     
 

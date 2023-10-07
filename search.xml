@@ -325,7 +325,7 @@ Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
 </blockquote>
 <h3 id="离散型随机变量">离散型随机变量</h3>
 <p>随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为<strong>离散型随机变量</strong>。</p>
-<h4 id="分布">(0-1)分布：</h4>
+<h4 id="分布">(0-1)分布</h4>
 <p>(0-1)分布的随机变量<span class="math inline">\(X\)</span>只可能取0与1，如果概率满足 <span class="math display">\[
 P_k=P\{X=k\}=p^k(1-p)^{1-k},\quad k=0,1\qquad (0&lt;p&lt;1),
 \]</span> 称<span class="math inline">\(X\)</span>服从参数<span class="math inline">\(为\)</span>p$的(0-1)分布。</p>
@@ -352,7 +352,7 @@ k=0,1\qquad (0&lt;p&lt;1)\)</span></p>
 <li><p>方差：<span class="math inline">\(\sigma^2[X]=p(1-p)\)</span></p></li>
 </ul>
 <hr>
-<h4 id="几何分布">几何分布：</h4>
+<h4 id="几何分布">几何分布</h4>
 <p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现一次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(p\)</span>的几何分布。</p>
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=(1-p)^{k-1}p,\quad
@@ -361,7 +361,7 @@ k=1,2,\dots\)</span></li>
 <li>方差：<span class="math inline">\(\sigma^2[X]=\frac{1-p}{p^2}\)</span></li>
 </ul>
 <hr>
-<h4 id="伯努利分布二项分布">伯努利分布/二项分布：</h4>
+<h4 id="伯努利分布二项分布">伯努利分布/二项分布</h4>
 <p>设试验<span class="math inline">\(E\)</span>只有两个可能的结果：<span class="math inline">\(A\)</span>与<span class="math inline">\(\bar{A}\)</span>，则称<span class="math inline">\(E\)</span>为伯努利试验。设<span class="math inline">\(P(A)=p~(0&lt;p&lt;1)\)</span>。将<span class="math inline">\(E\)</span>独立重复地进行<span class="math inline">\(n\)</span>次，则称这一串重复的独立试验为<span class="math inline">\(n\)</span>重伯努利试验。</p>
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=\binom{n}{k}p^k(1-p)^{n-k},\quad
@@ -370,7 +370,7 @@ k=0,1,\dots,n\)</span></li>
 <li>方差：<span class="math inline">\(\sigma^2[X]=np(1-p)\)</span></li>
 </ul>
 <hr>
-<h4 id="巴斯卡分布负二项分布">巴斯卡分布（负二项分布）：</h4>
+<h4 id="巴斯卡分布负二项分布">巴斯卡分布（负二项分布）</h4>
 <p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现<span class="math inline">\(r\)</span>次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(r,p\)</span>的巴斯卡（负二项）分布。</p>
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=\binom{k-1}{r-1}p^r(1-p)^{k-r},\quad
@@ -379,7 +379,7 @@ k=r,r+1,\dots\)</span></li>
 <li>方差：<span class="math inline">\(\sigma^2[X]=\frac{r(1-p)}{p^2}\)</span></li>
 </ul>
 <hr>
-<h4 id="泊松分布">泊松分布：</h4>
+<h4 id="泊松分布">泊松分布</h4>
 <p>设随机变量<span class="math inline">\(X\)</span>所有可能取的值为<span class="math inline">\(0,1,2,\dots\)</span>，取各个值的概率为 <span class="math display">\[
 P\{X=k\}=\frac{\lambda^ke^{-\lambda}}{k!},\quad \lambda&gt;0,\quad
 k=0,1,2,\dots
@@ -398,7 +398,7 @@ k=0,1,\dots\)</span></li>
 <h3 id="连续型随机变量">连续型随机变量</h3>
 <p>如果对于随机变量<span class="math inline">\(X\)</span>的分布函数<span class="math inline">\(F(x)\)</span>，存在非负函数<span class="math inline">\(f(x)\)</span>，使得对于任意实数<span class="math inline">\(x\)</span>，有 <span class="math display">\[F(x)=P\{X\le x\}=\int_{-\infty}^x f(t)dt\]</span>
 则称<span class="math inline">\(X\)</span>为<strong>连续型随机变量</strong>，其中<span class="math inline">\(f(x)\)</span>称为<span class="math inline">\(X\)</span>的<strong>概率密度函数</strong>。</p>
-<h4 id="均匀分布">均匀分布：</h4>
+<h4 id="均匀分布">均匀分布</h4>
 <p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
 f(x) =
 \begin{cases}
@@ -411,7 +411,7 @@ f(x) =
 <li>方差：<span class="math inline">\(\sigma^2[X]=\frac{(b-a)^2}{12}\)</span></li>
 </ul>
 <hr>
-<h4 id="指数分布">指数分布：</h4>
+<h4 id="指数分布">指数分布</h4>
 <p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
 f(x) =
 \begin{cases}
@@ -424,7 +424,7 @@ f(x) =
 <li>方差：<span class="math inline">\(\sigma^2[X]=\theta^2\)</span></li>
 </ul>
 <hr>
-<h4 id="正态高斯分布">正态（高斯）分布：</h4>
+<h4 id="正态高斯分布">正态（高斯）分布</h4>
 <p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
 f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
 -\infty&lt;x&lt;\infty,
@@ -437,6 +437,13 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
 <p>特别地，当<span class="math inline">\(\mu=0\)</span>，<span class="math inline">\(\sigma=1\)</span>时称随机变量<span class="math inline">\(X\)</span>服从<strong>标准正态分布</strong>。</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>统计</tag>
+      </tags>
   </entry>
   <entry>
     <title>Try Something New for 30 Days(Matt Cutts)(TED视频)</title>
