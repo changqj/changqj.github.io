@@ -8,10 +8,8 @@
     <meta name="description" content="
 在这个系列开始之前先附上几种常用的概率分布律、期望和方差。
 
-离散型随机变量
-随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为离散型随机变量。
-(0-1)分布
-(0-1)分布的随机变量\(X\)只可能取0与1，如">
+离散型随机变量随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为离散型随机变量。
+(0-1)分布(0-1)分布的随机变量$X$只可能取0与1，如果概率满">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -67,11 +65,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -545,118 +539,82 @@
                 <blockquote>
 <p>在这个系列开始之前先附上几种常用的概率分布律、期望和方差。</p>
 </blockquote>
-<h3 id="离散型随机变量">离散型随机变量</h3>
-<p>随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为<strong>离散型随机变量</strong>。</p>
-<h4 id="分布">(0-1)分布</h4>
-<p>(0-1)分布的随机变量<span class="math inline">\(X\)</span>只可能取0与1，如果概率满足 <span class="math display">\[
-P_k=P\{X=k\}=p^k(1-p)^{1-k},\quad k=0,1\qquad (0&lt;p&lt;1),
-\]</span> 称<span class="math inline">\(X\)</span>服从参数<span class="math inline">\(为\)</span>p$的(0-1)分布。</p>
+<h3 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h3><p>随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为<strong>离散型随机变量</strong>。</p>
+<h4 id="0-1-分布"><a href="#0-1-分布" class="headerlink" title="(0-1)分布"></a>(0-1)分布</h4><p>(0-1)分布的随机变量$X$只可能取0与1，如果概率满足<br>$$<br>P_k=P{X=k}=p^k(1-p)^{1-k},\quad k=0,1\qquad (0&lt;p&lt;1),<br>$$<br>称$X$服从参数$为$p$的(0-1)分布。</p>
 <ul>
-<li><p>分布律：<span class="math inline">\(P\{X=k\}=p^k(1-p)^{1-k},\quad
-k=0,1\qquad (0&lt;p&lt;1)\)</span></p>
+<li><p>分布律：$P{X=k}=p^k(1-p)^{1-k},\quad k=0,1\qquad (0&lt;p&lt;1)$</p>
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(X\)</span></th>
-<th style="text-align: center;">0</th>
-<th style="text-align: center;">1</th>
+<tr>
+<th align="center">$X$</th>
+<th align="center">0</th>
+<th align="center">1</th>
 </tr>
 </thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(P_k\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(1-p\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
+<tbody><tr>
+<td align="center">$P_k$</td>
+<td align="center">$1-p$</td>
+<td align="center">$p$</td>
 </tr>
-</tbody>
-</table></li>
-<li><p>期望：<span class="math inline">\(E[X]=p\)</span></p></li>
-<li><p>方差：<span class="math inline">\(\sigma^2[X]=p(1-p)\)</span></p></li>
+</tbody></table>
+</li>
+<li><p>期望：$E[X]=p$</p>
+</li>
+<li><p>方差：$\sigma^2[X]=p(1-p)$</p>
+</li>
 </ul>
 <hr>
-<h4 id="几何分布">几何分布</h4>
-<p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现一次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(p\)</span>的几何分布。</p>
+<h4 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h4><p>进行重复独立试验，设每次试验的成功概率为$p~(0&lt;p&lt;1)$，失败概率为$q=1-p$，将试验进行到出现一次成功为止，所需的试验次数的记为$X$，称$X$是服从参数为$p$的几何分布。</p>
 <ul>
-<li>分布律：<span class="math inline">\(P\{X=k\}=(1-p)^{k-1}p,\quad
-k=1,2,\dots\)</span></li>
-<li>期望：<span class="math inline">\(E[X]=\frac{1}{p}\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\frac{1-p}{p^2}\)</span></li>
+<li>分布律：$P{X=k}=(1-p)^{k-1}p,\quad k=1,2,\dots$</li>
+<li>期望：$E[X]=\frac{1}{p}$</li>
+<li>方差：$\sigma^2[X]=\frac{1-p}{p^2}$</li>
 </ul>
 <hr>
-<h4 id="伯努利分布二项分布">伯努利分布/二项分布</h4>
-<p>设试验<span class="math inline">\(E\)</span>只有两个可能的结果：<span class="math inline">\(A\)</span>与<span class="math inline">\(\bar{A}\)</span>，则称<span class="math inline">\(E\)</span>为伯努利试验。设<span class="math inline">\(P(A)=p~(0&lt;p&lt;1)\)</span>。将<span class="math inline">\(E\)</span>独立重复地进行<span class="math inline">\(n\)</span>次，则称这一串重复的独立试验为<span class="math inline">\(n\)</span>重伯努利试验。</p>
+<h4 id="伯努利分布-二项分布"><a href="#伯努利分布-二项分布" class="headerlink" title="伯努利分布/二项分布"></a>伯努利分布/二项分布</h4><p>设试验$E$只有两个可能的结果：$A$与$\bar{A}$，则称$E$为伯努利试验。设$P(A)=p~(0&lt;p&lt;1)$。将$E$独立重复地进行$n$次，则称这一串重复的独立试验为$n$重伯努利试验。</p>
 <ul>
-<li>分布律：<span class="math inline">\(P\{X=k\}=\binom{n}{k}p^k(1-p)^{n-k},\quad
-k=0,1,\dots,n\)</span></li>
-<li>期望：<span class="math inline">\(E[X]=np\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=np(1-p)\)</span></li>
+<li>分布律：$P{X=k}=\binom{n}{k}p^k(1-p)^{n-k},\quad k=0,1,\dots,n$</li>
+<li>期望：$E[X]=np$</li>
+<li>方差：$\sigma^2[X]=np(1-p)$</li>
 </ul>
 <hr>
-<h4 id="巴斯卡分布负二项分布">巴斯卡分布（负二项分布）</h4>
-<p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现<span class="math inline">\(r\)</span>次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(r,p\)</span>的巴斯卡（负二项）分布。</p>
+<h4 id="巴斯卡分布（负二项分布）"><a href="#巴斯卡分布（负二项分布）" class="headerlink" title="巴斯卡分布（负二项分布）"></a>巴斯卡分布（负二项分布）</h4><p>进行重复独立试验，设每次试验的成功概率为$p~(0&lt;p&lt;1)$，失败概率为$q=1-p$，将试验进行到出现$r$次成功为止，所需的试验次数的记为$X$，称$X$是服从参数为$r,p$的巴斯卡（负二项）分布。</p>
 <ul>
-<li>分布律：<span class="math inline">\(P\{X=k\}=\binom{k-1}{r-1}p^r(1-p)^{k-r},\quad
-k=r,r+1,\dots\)</span></li>
-<li>期望：<span class="math inline">\(E[X]=\frac{r}{p}\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\frac{r(1-p)}{p^2}\)</span></li>
+<li>分布律：$P{X=k}=\binom{k-1}{r-1}p^r(1-p)^{k-r},\quad k=r,r+1,\dots$</li>
+<li>期望：$E[X]=\frac{r}{p}$</li>
+<li>方差：$\sigma^2[X]=\frac{r(1-p)}{p^2}$</li>
 </ul>
 <hr>
-<h4 id="泊松分布">泊松分布</h4>
-<p>设随机变量<span class="math inline">\(X\)</span>所有可能取的值为<span class="math inline">\(0,1,2,\dots\)</span>，取各个值的概率为 <span class="math display">\[
-P\{X=k\}=\frac{\lambda^ke^{-\lambda}}{k!},\quad \lambda&gt;0,\quad
-k=0,1,2,\dots
-\]</span> 称<span class="math inline">\(X\)</span>是服从<span class="math inline">\(\lambda\)</span>的泊松分布。特别地， <span class="math display">\[\sum_{k=0}^\infty
-P\{X=k\}=\sum_{k=0}^\infty\frac{\lambda^ke^{-\lambda}}{k!}=e^{-\lambda}\sum_{k=0}^\infty\frac{\lambda^k}{k!}=e^{-\lambda}e^\lambda=1.\]</span></p>
+<h4 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h4><p>设随机变量$X$所有可能取的值为$0,1,2,\dots$，取各个值的概率为<br>$$<br>P{X=k}=\frac{\lambda^ke^{-\lambda}}{k!},\quad \lambda&gt;0,\quad k=0,1,2,\dots<br>$$<br>称$X$是服从$\lambda$的泊松分布。特别地，<br>$$\sum_{k=0}^\infty P{X=k}=\sum_{k=0}^\infty\frac{\lambda^ke^{-\lambda}}{k!}=e^{-\lambda}\sum_{k=0}^\infty\frac{\lambda^k}{k!}=e^{-\lambda}e^\lambda=1.$$</p>
 <ul>
-<li>分布律：<span class="math inline">\(P\{X=k\}=\frac{\lambda^ke^{-\lambda}}{k!},\quad
-k=0,1,\dots\)</span></li>
-<li>期望：<span class="math inline">\(E[X]=\lambda\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\lambda\)</span></li>
+<li>分布律：$P{X=k}=\frac{\lambda^ke^{-\lambda}}{k!},\quad k=0,1,\dots$</li>
+<li>期望：$E[X]=\lambda$</li>
+<li>方差：$\sigma^2[X]=\lambda$</li>
 </ul>
 <blockquote>
-<p>当伯努利分布(二项分布)的试验次数<span class="math inline">\(n\)</span>足够多，其分布近似于以<span class="math inline">\(\lambda=np\)</span>为参数的泊松分布，即<strong>泊松定理</strong>：设<span class="math inline">\(\lambda&gt;0\)</span>是常数，<span class="math inline">\(n\)</span>是任意正整数，设<span class="math inline">\(\lambda=np\)</span>，则对非负整数<span class="math inline">\(k\le n\)</span>，有 <span class="math display">\[\lim_{n\to\infty}\binom{n}{k}p^k(1-p)^{n-k}=\frac{\lambda^ke^{-\lambda}}{k!}\]</span></p>
+<p>当伯努利分布(二项分布)的试验次数$n$足够多，其分布近似于以$\lambda=np$为参数的泊松分布，即<strong>泊松定理</strong>：设$\lambda&gt;0$是常数，$n$是任意正整数，设$\lambda=np$，则对非负整数$k\le n$，有<br>$$\lim_{n\to\infty}\binom{n}{k}p^k(1-p)^{n-k}=\frac{\lambda^ke^{-\lambda}}{k!}$$</p>
 </blockquote>
 <hr>
-<h3 id="连续型随机变量">连续型随机变量</h3>
-<p>如果对于随机变量<span class="math inline">\(X\)</span>的分布函数<span class="math inline">\(F(x)\)</span>，存在非负函数<span class="math inline">\(f(x)\)</span>，使得对于任意实数<span class="math inline">\(x\)</span>，有 <span class="math display">\[F(x)=P\{X\le x\}=\int_{-\infty}^x f(t)dt\]</span>
-则称<span class="math inline">\(X\)</span>为<strong>连续型随机变量</strong>，其中<span class="math inline">\(f(x)\)</span>称为<span class="math inline">\(X\)</span>的<strong>概率密度函数</strong>。</p>
-<h4 id="均匀分布">均匀分布</h4>
-<p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
-f(x) =
-\begin{cases}
-  \frac{1}{b-a}, &amp; a&lt;x&lt;b, \\
-  0, &amp; \text{else}
-\end{cases}
-\end{equation}\]</span> 则称<span class="math inline">\(X\)</span>在区间<span class="math inline">\((a,b)\)</span>上的服从均匀分布。</p>
+<h3 id="连续型随机变量"><a href="#连续型随机变量" class="headerlink" title="连续型随机变量"></a>连续型随机变量</h3><p>如果对于随机变量$X$的分布函数$F(x)$，存在非负函数$f(x)$，使得对于任意实数$x$，有<br>$$F(x)=P{X\le x}=\int_{-\infty}^x f(t)dt$$<br>则称$X$为<strong>连续型随机变量</strong>，其中$f(x)$称为$X$的<strong>概率密度函数</strong>。</p>
+<h4 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h4><p>如果连续型随机变量$X$具有概率密度函数<br>\begin{equation}<br>f(x) =<br>\begin{cases}<br>  \frac{1}{b-a}, &amp; a&lt;x&lt;b, \<br>  0, &amp; \text{else}<br>\end{cases}<br>\end{equation}<br>则称$X$在区间$(a,b)$上的服从均匀分布。</p>
 <ul>
-<li>期望：<span class="math inline">\(E[X]=\frac{a+b}{2}\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\frac{(b-a)^2}{12}\)</span></li>
+<li>期望：$E[X]=\frac{a+b}{2}$</li>
+<li>方差：$\sigma^2[X]=\frac{(b-a)^2}{12}$</li>
 </ul>
 <hr>
-<h4 id="指数分布">指数分布</h4>
-<p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
-f(x) =
-\begin{cases}
-  \frac{1}{\theta}e^{\frac{-x}{\theta}}, &amp; x&gt;0, \\
-  0, &amp; \text{else}
-\end{cases}
-\end{equation}\]</span> 则称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(\theta\)</span>的指数分布。</p>
+<h4 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h4><p>如果连续型随机变量$X$具有概率密度函数<br>\begin{equation}<br>f(x) =<br>\begin{cases}<br>  \frac{1}{\theta}e^{\frac{-x}{\theta}}, &amp; x&gt;0, \<br>  0, &amp; \text{else}<br>\end{cases}<br>\end{equation}<br>则称$X$是服从参数为$\theta$的指数分布。</p>
 <ul>
-<li>期望：<span class="math inline">\(E[X]=\theta\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\theta^2\)</span></li>
+<li>期望：$E[X]=\theta$</li>
+<li>方差：$\sigma^2[X]=\theta^2$</li>
 </ul>
 <hr>
-<h4 id="正态高斯分布">正态（高斯）分布</h4>
-<p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
-f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
--\infty&lt;x&lt;\infty,
-\end{equation}\]</span> 其中<span class="math inline">\(\mu,\sigma~(\sigma&gt;0)\)</span>为常数，则称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(\mu,\sigma\)</span>的正态分布（高斯分布）。</p>
+<h4 id="正态（高斯）分布"><a href="#正态（高斯）分布" class="headerlink" title="正态（高斯）分布"></a>正态（高斯）分布</h4><p>如果连续型随机变量$X$具有概率密度函数<br>\begin{equation}<br>f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad -\infty&lt;x&lt;\infty,<br>\end{equation}<br>其中$\mu,\sigma~(\sigma&gt;0)$为常数，则称$X$是服从参数为$\mu,\sigma$的正态分布（高斯分布）。</p>
 <ul>
-<li>期望：<span class="math inline">\(E[X]=\mu\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\sigma^2\)</span></li>
+<li>期望：$E[X]=\mu$</li>
+<li>方差：$\sigma^2[X]=\sigma^2$</li>
 </ul>
 <blockquote>
-<p>特别地，当<span class="math inline">\(\mu=0\)</span>，<span class="math inline">\(\sigma=1\)</span>时称随机变量<span class="math inline">\(X\)</span>服从<strong>标准正态分布</strong>。</p>
+<p>特别地，当$\mu=0$，$\sigma=1$时称随机变量$X$服从<strong>标准正态分布</strong>。</p>
 </blockquote>
 
                 
@@ -875,11 +833,9 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
                     <div class="summary block-with-text">
                         
                             
-在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。
+在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。
 
-问题
-给定高维空间\(\mathbb{R}^n\
+问题给定高维空间$\mathbb{R}^n$中的
                         
                     </div>
                     <div class="publish-info">

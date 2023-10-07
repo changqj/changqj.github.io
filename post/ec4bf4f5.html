@@ -6,12 +6,10 @@
     <meta charset="utf-8">
     <meta name="keywords" content="git clone 速度慢？, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
     <meta name="description" content="$ git clone https://xxxx 克隆速度慢的解决方法：
-方法1：
-查询IP地址
-进入域名IP地址查看工具： https://www.ipaddress.com
-分别输入如下网址查看对应的IP地址
+方法1：查询IP地址进入域名IP地址查看工具： https://www.ipaddress.com 分别输入如下网址查看对应的IP地址
 
-github.globa">
+
+github.global">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -65,11 +63,7 @@ github.globa">
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -520,7 +514,7 @@ github.globa">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    239
+                    236
                 </div>
                 
 
@@ -547,27 +541,19 @@ github.globa">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
-<h2 id="方法1">方法1：</h2>
-<h3 id="查询ip地址">查询IP地址</h3>
-<p>进入域名IP地址查看工具： <a target="_blank" rel="noopener" href="https://www.ipaddress.com" title="https://www.ipaddress.com">https://www.ipaddress.com</a>
-分别输入如下网址查看对应的IP地址</p>
+<h2 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h2><h3 id="查询IP地址"><a href="#查询IP地址" class="headerlink" title="查询IP地址"></a>查询IP地址</h3><p>进入域名IP地址查看工具： <a target="_blank" rel="noopener" href="https://www.ipaddress.com/" title="https://www.ipaddress.com">https://www.ipaddress.com</a> 分别输入如下网址查看对应的IP地址</p>
 <span id="more"></span>
-<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
-或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
-<h3 id="修改hosts文件">修改hosts文件</h3>
-<p>得到对应的IP后，在hosts文件后追加如下两行
-Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
-Linux用户：<code>sudo gedit /etc/hosts</code>
-（xxx替换为你得到的对应的IP地址）</p>
+
+<p><code>github.global.ssl.fastly.net</code> <code>github.com</code> 或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
+<h3 id="修改hosts文件"><a href="#修改hosts文件" class="headerlink" title="修改hosts文件"></a>修改hosts文件</h3><p>得到对应的IP后，在hosts文件后追加如下两行 Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code> Linux用户：<code>sudo gedit /etc/hosts</code> （xxx替换为你得到的对应的IP地址）</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
 xxx.xxx.xxx.xxx github.com</code></pre>
-<h3 id="刷新dns">刷新DNS</h3>
-<p>Windows用户：<code>ipconfig /flushdns</code>
-Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
-<h2 id="方法2">方法2：</h2>
-<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
+
+<h3 id="刷新DNS"><a href="#刷新DNS" class="headerlink" title="刷新DNS"></a>刷新DNS</h3><p>Windows用户：<code>ipconfig /flushdns</code> Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
+<h2 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h2><p>如果你使用了代理，可直接在克隆前使用如下命令</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
 <span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
+
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 
@@ -741,10 +727,7 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
                     <div class="summary block-with-text">
                         
                             
-查看显示器设备名称
-在Linux终端键入命令：$ xrandx，如下图所示查看对应的设备名称，本例为
-LVDS-1 和 HDMI-1
-(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)
+查看显示器设备名称 在Linux终端键入命令：$ xrandx，如下图所示查看对应的设备名称，本例为 LVDS-1 和 HDMI-1 (如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)
 
                         
                     </div>
@@ -806,12 +789,8 @@ LVDS-1 和 HDMI-1
                     <div class="summary block-with-text">
                         
                             
-瑞士位于欧洲中部，与德国、意大利、法国接壤，属于内陆国。瑞士是全球最富裕、经济最发达的国家之一。瑞士人民拥有较高的生活水准。瑞士旅游资源丰富，有世界公园的美誉。
-第一次写这种游记，主要是想介绍一下我此次欧洲之行的感受。
+瑞士位于欧洲中部，与德国、意大利、法国接壤，属于内陆国。瑞士是全球最富裕、经济最发达的国家之一。瑞士人民拥有较高的生活水准。瑞士旅游资源丰富，有世界公园的美誉。 第一次写这种游记，主要是想介绍一下我此次欧洲之行的感受。
 
-
-
-瑞士
 
                         
                     </div>

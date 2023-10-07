@@ -6,11 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="多维放缩MDS算法, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
     <meta name="description" content="
-在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。
+在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。
 
-问题
-给定高维空间\(\mathbb{R}^n\">
+问题给定高维空间$\mathbb{R}^n$中的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -64,11 +62,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -515,7 +509,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    688
+                    685
                 </div>
                 
 
@@ -542,62 +536,18 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。</p>
 </blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(m\)</span>个样本点为<span class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span class="math inline">\(m\)</span>个样本嵌入到低维空间<span class="math inline">\(\mathbb{R}^{d}\)</span>，<span class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>给定高维空间$\mathbb{R}^n$中的$m$个样本点为${X_i}_{i=1}^m$，考虑是否可以将$m$个样本嵌入到低维空间$\mathbb{R}^{d}$，$d&lt; n$，使得高维空间中两样本点的度量距离在低维空间中保持不变。 </p>
+<p><img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding"></p>
 <span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列元素为<span class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span class="math inline">\(k\)</span>个非零特征值，分别为<span class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span class="math inline">\({ V}\)</span>的第<span class="math inline">\(i\)</span>列是特征值<span class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br>
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span class="math inline">\(V_*\)</span>。即<span class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
+
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>设高维空间中样本点${ X}_i$在低维空间中表示为${ Z}_i$，要保证度量距离不变，即：<br>$$<br>\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m \label{eq1}<br>$$<br>将上式平方得到：<br>$$<br>\Vert {X}<em>i-{ X}<em>j\Vert^2=\Vert { Z}<em>i\Vert^2+\Vert { Z}<em>j\Vert^2-2{ Z}<em>i^{ T}{ Z}<em>j<br>\label{eq2}<br>$$<br>   令${ B}={ Z}^{ T}{ Z}\in\mathbb{R}^{m\times m}$表示低维空间中样本的内积矩阵，内积矩阵第$i$行第$j$列元素为$B</em>{i,j}=Z_i^{\rm T}Z_j$，用$D$表示样本在原始空间中的距离矩阵，其中$D</em>{i,j}=\Vert X_i-X_j\Vert$，<br>$$<br>D</em>{i,j}^2=B</em>{i,i}+B</em>{j,j}-2B</em>{i,j}<br>\label{eq3}<br>$$<br>如果得到满足上式约束的矩阵${ B}$，假定${ B}$含有$k$个非零特征值，分别为$\lambda_1,\lambda_2,\dots,\lambda_k$且满足$\lambda_i\ge\lambda_j,i&lt; j$，则有${ B}={ V\Lambda V^T}$，其中${ \Lambda}=diag{\lambda_1,\lambda_2,\dots,\lambda_k}$，${ V}$的第$i$列是特征值$\lambda_i$对应的特征向量。则有${ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{ T}\in\mathbb{R}^{k\times m}$，如果$k&lt; n$，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导"><a href="#内积矩阵的推导" class="headerlink" title="内积矩阵的推导"></a>内积矩阵的推导</h3><p>考虑低维样本的中心为原点，即$\sum_iZ_i=0$，根据第二等式有：<br>$$<br>\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}<br>$$</p>
+<p>$$<br>\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}<br>$$</p>
+<p> 有：<br>$$<br>B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}<br>$$<br>代入公式有：<br>$$<br>B_{i,j} = -\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})<br>$$<br>由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入"><a href="#距离不必严格相等的嵌入" class="headerlink" title="距离不必严格相等的嵌入"></a>距离不必严格相等的嵌入</h3><p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度$d$小于非零特征值的个数，则做不到距离严格相等。此时取${ \Lambda_*}=diag{\lambda_1,\lambda_2,\dots,\lambda_d}$，对应的特征向量矩阵为$V_*$。即$B\approx{ V_*\Lambda_<em>V^T_</em>}$。低维空间中的样本可表示为<br>$$<br>Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}<br>$$</p>
+<h3 id="简单应用-mathbb-R-3-longmapsto-mathbb-R-2"><a href="#简单应用-mathbb-R-3-longmapsto-mathbb-R-2" class="headerlink" title="简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$"></a>简单应用$\mathbb{R}^3\longmapsto\mathbb{R}^2$</h3><p><img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding"></p>
 
                 
             </div>
@@ -813,15 +763,13 @@ Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
                     <div class="summary block-with-text">
                         
                             
-在之前的一篇 “Bezier曲线拟合数据点的几何作图法”
-博客基础上添加鼠标移动控制顶点交互的功能。
+在之前的一篇 “Bezier曲线拟合数据点的几何作图法” 博客基础上添加鼠标移动控制顶点交互的功能。
 
-交互选择控制顶点，并画出初始曲线
-clear
+交互选择控制顶点，并画出初始曲线clear
 close all
 grid on,hold on
 % axis equal
-globa
+global
                         
                     </div>
                     <div class="publish-info">
@@ -843,12 +791,12 @@ globa
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                        <span class="chip bg-color">原创</span>
-                    </a>
-                    
                     <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                         <span class="chip bg-color">MATLAB代码</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">原创</span>
                     </a>
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">

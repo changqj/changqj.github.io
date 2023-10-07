@@ -9,8 +9,7 @@
 本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建
 
 
-（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
-qingjun_chang@163.com。转载请注明出处：h">
+（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 qingjun_chang@163.com。转载请注明出处：h">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -64,11 +63,7 @@ qingjun_chang@163.com。转载请注明出处：h">
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -511,7 +506,7 @@ qingjun_chang@163.com。转载请注明出处：h">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    773
+                    771
                 </div>
                 
 
@@ -541,61 +536,34 @@ qingjun_chang@163.com。转载请注明出处：h">
 <p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
 </blockquote>
 <blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
-<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
-） （先前条件：<strong>win7系统</strong> 已安装<strong><a target="_blank" rel="noopener" href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
-Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 <strong>qingjun_<a href="mailto:chang@163.com">chang@163.com</a></strong>。转载请注明出处：<a target="_blank" rel="noopener" href="https://ifish.ink/">https://ifish.ink</a> ） （先前条件：<strong>win7系统</strong> 已安装**<a target="_blank" rel="noopener" href="https://www.visualstudio.com/zh-hans/downloads/?rr=https://www.baidu.com/link?url=ONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq&amp;wd=&amp;eqid=d2d58bc800015f450000000659ddca4f">Visual Studio</a>**环境，相关文件在附件）</p>
 </blockquote>
-<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
-<p>需要的资源文件有<a target="_blank" rel="noopener" href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a target="_blank" rel="noopener" href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
-​&nbsp;<strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a target="_blank" rel="noopener" href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
-<img src="http://img.ifish.ink/figure/1.png" alt="fig1"> ​
-&nbsp;<strong>cmake的安装</strong>：可直接从<a target="_blank" rel="noopener" href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
-<img src="http://img.ifish.ink/figure/2.png" alt="fig2"></p>
+<span id="more"></span>
+<hr>
+<h2 id="1-下载所需要的资源"><a href="#1-下载所需要的资源" class="headerlink" title="1.下载所需要的资源"></a>1.下载所需要的资源</h2><p> 需要的资源文件有<a target="_blank" rel="noopener" href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a target="_blank" rel="noopener" href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。 ​ &nbsp;<strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a target="_blank" rel="noopener" href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异） <img src="http://img.ifish.ink/figure/1.png" alt="fig1"> ​ &nbsp;<strong>cmake的安装</strong>：可直接从<a target="_blank" rel="noopener" href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。 <img src="http://img.ifish.ink/figure/2.png" alt="fig2"></p>
 <ul>
-<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
-<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
-<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
-user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
-CMake to the system PATH for the current user</em>”）</p></li>
-<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a target="_blank" rel="noopener" href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
-如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
+<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p>
+</li>
+<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p>
+</li>
+<li><p>添加环境变量，选中“_Add CMake to the system PATH for the all user_”,点击“_Next_”按钮。（也可以选择添加到当前用户“_Add CMake to the system PATH for the current user_”）</p>
+</li>
+<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a target="_blank" rel="noopener" href="http://glew.sourceforge.net/">http://glew.sourceforge.net</a> 如图所示可以下载二进制文件，或者用git克隆也可。</p>
+</li>
 </ul>
-<p><img src="http://img.ifish.ink/figure/2.png" alt="fig3"> <img src="http://img.ifish.ink/figure/4.png" alt="fig4"> ​
-<strong>glfw</strong>：GLfW ：<a target="_blank" rel="noopener" href="http://www.glfw.org/">http://www.glfw.org/</a>
-如图所示可以下载压缩文件，或者用git克隆也可。 <img src="http://img.ifish.ink/figure/5.png" alt="fig5"> <img src="http://img.ifish.ink/figure/6.png" alt="fig6"></p>
+<p><img src="http://img.ifish.ink/figure/2.png" alt="fig3"> <img src="http://img.ifish.ink/figure/4.png" alt="fig4"> ​ <strong>glfw</strong>：GLfW ：<a target="_blank" rel="noopener" href="http://www.glfw.org/">http://www.glfw.org/</a> 如图所示可以下载压缩文件，或者用git克隆也可。 <img src="http://img.ifish.ink/figure/5.png" alt="fig5"> <img src="http://img.ifish.ink/figure/6.png" alt="fig6"></p>
 <hr>
-<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
-<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
-GUI选择源代码目录和构建路径：</h4>
-<p><img src="http://img.ifish.ink/figure/7.png" alt="fig7"> <img src="http://img.ifish.ink/figure/8.png" alt="fig8"></p>
-<h4 id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
-<p><img src="http://img.ifish.ink/figure/9.png" alt="fig9"> <img src="http://img.ifish.ink/figure/10.png" alt="fig10"></p>
-<h4 id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
-done’即可</h4>
-<p><img src="http://img.ifish.ink/figure/11.png" alt="fig11"> <img src="http://img.ifish.ink/figure/12.png" alt="fig12"></p>
-<h4 id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
-done完成</h4>
-<figure>
-<img src="http://img.ifish.ink/figure/13.png" alt="fig13">
-<figcaption aria-hidden="true">fig13</figcaption>
-</figure>
+<h2 id="2-Cmake编译glfw"><a href="#2-Cmake编译glfw" class="headerlink" title="2.Cmake编译glfw"></a>2.Cmake编译glfw</h2><h4 id="a-打开Cmake-GUI选择源代码目录和构建路径："><a href="#a-打开Cmake-GUI选择源代码目录和构建路径：" class="headerlink" title="a.打开Cmake GUI选择源代码目录和构建路径："></a>a.打开Cmake GUI选择源代码目录和构建路径：</h4><p><img src="http://img.ifish.ink/figure/7.png" alt="fig7"> <img src="http://img.ifish.ink/figure/8.png" alt="fig8"></p>
+<h4 id="b-单击Configure，选择“是”，并根据自己VS版本选择"><a href="#b-单击Configure，选择“是”，并根据自己VS版本选择" class="headerlink" title="b.单击Configure，选择“是”，并根据自己VS版本选择"></a>b.单击Configure，选择“是”，并根据自己VS版本选择</h4><p><img src="http://img.ifish.ink/figure/9.png" alt="fig9"> <img src="http://img.ifish.ink/figure/10.png" alt="fig10"></p>
+<h4 id="c-单击Finish，出现红色后再次点击Configure，出现‘Configuring-done’即可"><a href="#c-单击Finish，出现红色后再次点击Configure，出现‘Configuring-done’即可" class="headerlink" title="c.单击Finish，出现红色后再次点击Configure，出现‘Configuring done’即可"></a>c.单击Finish，出现红色后再次点击Configure，出现‘Configuring done’即可</h4><p><img src="http://img.ifish.ink/figure/11.png" alt="fig11"> <img src="http://img.ifish.ink/figure/12.png" alt="fig12"></p>
+<h4 id="d-单击Generate，出现Generating-done完成"><a href="#d-单击Generate，出现Generating-done完成" class="headerlink" title="d.单击Generate，出现Generating done完成"></a>d.单击Generate，出现Generating done完成</h4><p><img src="http://img.ifish.ink/figure/13.png" alt="fig13"></p>
 <hr>
-<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
-<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
+<h2 id="3-Cmake编译OpenSubdiv"><a href="#3-Cmake编译OpenSubdiv" class="headerlink" title="3.Cmake编译OpenSubdiv"></a>3.Cmake编译OpenSubdiv</h2><p> Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
 <pre class="language-none"><code class="language-none">"d:/Cmake3.8.0/bin/cmake.exe" -G "Visual Studio 14 Win64" -DGLEW_LOCATION=[d:/glew/lib/Release/x64] -DGLEW_INCLUDE_DIR=[d:\glew\include\] -DGLEW_LIBRARY=[d:\glew\lib\] -DGLFW_LOCATION=[d:/glfw/bd/src/Release] -DNO_PTEX=1 -DNO_DOC=1 -DNO_OMP=1 -DNO_TBB=1 -DNO_CUDA=1 -DNO_OPENCL=1 -DNO_CLEW=1</code></pre>
-<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
-<img src="http://img.ifish.ink/figure/14.png" alt="fig14">
-按下回车键： <img src="http://img.ifish.ink/figure/15.png" alt="fig15"> 完成！！！</p>
+
+<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。 <img src="http://img.ifish.ink/figure/14.png" alt="fig14"> 按下回车键： <img src="http://img.ifish.ink/figure/15.png" alt="fig15"> 完成！！！</p>
 <hr>
-<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
-<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
-Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
-点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img src="http://img.ifish.ink/figure/17.png" alt="fig17">
-生成过程需要一点时间，请耐心等待…… <img src="http://img.ifish.ink/figure/18.png" alt="fig18"> 生成成功 <img src="http://img.ifish.ink/figure/19.png" alt="fig19">
-测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
-<img src="http://img.ifish.ink/figure/20.png" alt="fig20">
-运行后如图所示： <img src="http://img.ifish.ink/figure/21.png" alt="fig21"> 其余例子也可同理运行。 谢谢阅读！！！</p>
+<h2 id="4-VS下编译OpenSubdiv"><a href="#4-VS下编译OpenSubdiv" class="headerlink" title="4.VS下编译OpenSubdiv"></a>4.VS下编译OpenSubdiv</h2><p> 完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16"> 点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img src="http://img.ifish.ink/figure/17.png" alt="fig17"> 生成过程需要一点时间，请耐心等待…… <img src="http://img.ifish.ink/figure/18.png" alt="fig18"> 生成成功 <img src="http://img.ifish.ink/figure/19.png" alt="fig19"> 测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行 <img src="http://img.ifish.ink/figure/20.png" alt="fig20"> 运行后如图所示： <img src="http://img.ifish.ink/figure/21.png" alt="fig21"> 其余例子也可同理运行。 谢谢阅读！！！</p>
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 
@@ -760,7 +728,7 @@ Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
                     <div class="summary block-with-text">
                         
                             
-一直都好喜欢这首诗啊！《雨巷》--戴望舒
+一直都好喜欢这首诗啊！《雨巷》–戴望舒
 
                         
                     </div>
@@ -813,8 +781,7 @@ Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
 本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建
 
 
-（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
-qingjun_chang@163.com。转载请注明出处：h
+（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱 qingjun_chang@163.com。转载请注明出处：h
                         
                     </div>
                     <div class="publish-info">

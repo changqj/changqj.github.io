@@ -65,11 +65,7 @@ function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,e
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -472,12 +468,12 @@ function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,e
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                                <span class="chip bg-color">原创</span>
-                            </a>
-                        
                             <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                                 <span class="chip bg-color">MATLAB代码</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                <span class="chip bg-color">原创</span>
                             </a>
                         
                             <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -542,8 +538,8 @@ function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,e
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
-<span id="more"></span>
+                <h2 id="三对角矩阵的类雅可比迭代算法解线性方程组"><a href="#三对角矩阵的类雅可比迭代算法解线性方程组" class="headerlink" title="三对角矩阵的类雅可比迭代算法解线性方程组"></a>三对角矩阵的类雅可比迭代算法解线性方程组</h2><span id="more"></span>
+
 <ul>
 <li>函数实现</li>
 </ul>
@@ -664,6 +660,7 @@ text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
     'Color','k','FontSize',10);
 fprintf('迭代%d次后暂未收敛\n',maxNum);
 end</code></pre>
+
 <ul>
 <li>测试程序</li>
 </ul>
@@ -671,6 +668,7 @@ end</code></pre>
 b_mat = [-1 -5 2 -1];
 init_X = zeros(size(b_mat));
 out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+
 <ul>
 <li>文档 <a target="_blank" rel="noopener" href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
 </ul>
@@ -740,12 +738,12 @@ out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                                    <span class="chip bg-color">原创</span>
-                                </a>
-                            
                                 <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                                     <span class="chip bg-color">MATLAB代码</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                    <span class="chip bg-color">原创</span>
                                 </a>
                             
                                 <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -864,12 +862,12 @@ out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                        <span class="chip bg-color">原创</span>
-                    </a>
-                    
                     <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                         <span class="chip bg-color">MATLAB代码</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">原创</span>
                     </a>
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -900,8 +898,7 @@ out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
                     <div class="summary block-with-text">
                         
                             
-本文实现的是论文《三对角矩阵求逆的算法》
-论文作者：冉瑞生、黄延祝等人
+本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人
 
                         
                     </div>
@@ -924,12 +921,12 @@ out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                        <span class="chip bg-color">原创</span>
-                    </a>
-                    
                     <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                         <span class="chip bg-color">MATLAB代码</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">原创</span>
                     </a>
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">

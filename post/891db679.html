@@ -6,12 +6,11 @@
     <meta charset="utf-8">
     <meta name="keywords" content="三对角矩阵求逆的算法-实现, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
     <meta name="description" content="
-本文实现的是论文《三对角矩阵求逆的算法》
-论文作者：冉瑞生、黄延祝等人
+本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人
+
 
 
 MATLAB代码
-
 函数实现
 
 function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
@@ -69,11 +68,7 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
@@ -476,12 +471,12 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                                <span class="chip bg-color">原创</span>
-                            </a>
-                        
                             <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                                 <span class="chip bg-color">MATLAB代码</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                <span class="chip bg-color">原创</span>
                             </a>
                         
                             <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -547,12 +542,11 @@ function [A,C] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c)
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>本文实现的是论文《三对角矩阵求逆的算法》
-论文作者：冉瑞生、黄延祝等人</p>
+<p>本文实现的是论文《三对角矩阵求逆的算法》 论文作者：冉瑞生、黄延祝等人</p>
 </blockquote>
 <span id="more"></span>
-<h3 id="matlab代码">MATLAB代码</h3>
-<ul>
+
+<h3 id="MATLAB代码"><a href="#MATLAB代码" class="headerlink" title="MATLAB代码"></a>MATLAB代码</h3><ul>
 <li>函数实现</li>
 </ul>
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span>
@@ -671,6 +665,7 @@ C <span class="token operator">=</span> <span class="token function">zeros</span
     C <span class="token operator">=</span> <span class="token function">Cfun</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span></code></pre>
+
 <ul>
 <li>测试</li>
 </ul>
@@ -678,10 +673,11 @@ C <span class="token operator">=</span> <span class="token function">zeros</span
 b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">3</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span></code></pre>
+
 <ul>
 <li>论文原文</li>
 </ul>
-<p><a href="/pdf/三对角矩阵求逆的算法_冉瑞生.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
+<p><a href="/pdf/%E4%B8%89%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5%E6%B1%82%E9%80%86%E7%9A%84%E7%AE%97%E6%B3%95_%E5%86%89%E7%91%9E%E7%94%9F.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
 <ul>
 <li>文档</li>
 </ul>
@@ -752,12 +748,12 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                                    <span class="chip bg-color">原创</span>
-                                </a>
-                            
                                 <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                                     <span class="chip bg-color">MATLAB代码</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                    <span class="chip bg-color">原创</span>
                                 </a>
                             
                                 <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -876,12 +872,12 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                        <span class="chip bg-color">原创</span>
-                    </a>
-                    
                     <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                         <span class="chip bg-color">MATLAB代码</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">原创</span>
                     </a>
                     
                     <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
@@ -913,14 +909,12 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
                             
 Bezier曲线拟合数据点的几何作图法MATLAB程序。
 
-Contents
-左键选择点，右键或中间结束
-clear
+Contents左键选择点，右键或中间结束clear
 close all
 figure;
 axis([-5,5,-5,5]);
 grid on;
-title('Bezier曲
+title('Bezier曲线拟
                         
                     </div>
                     <div class="publish-info">
@@ -942,12 +936,12 @@ title('Bezier曲
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                        <span class="chip bg-color">原创</span>
-                    </a>
-                    
                     <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
                         <span class="chip bg-color">MATLAB代码</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">原创</span>
                     </a>
                     
                 </div>
