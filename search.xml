@@ -1,78 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title('Bezier曲线拟合');
-questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
-<span id="more"></span>
-<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
-while 1
-    i = i+1;
-    tip = ['请选择第',num2str(i),'个数据点'];
-    xlabel(tip);
-    try
-    [x,y,button] = ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,'o');
-    dataPoints(:,i) = [x;y];
-    h1 = plot(dataPoints(1,:),dataPoints(2,:),'b');
-    if button ~= 1
-        xlabel('');
-        break;
-    end
-end
-
-
-for i = 0:0.01:1
-    newData(:,int32(i*100)+1) = cqj_GetBezier3Point(dataPoints,i);
-end
-h2 = plot(newData(1,:),newData(2,:),'.-r');
-legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data = dataPoints;
-while 1
-    if size(data,2) == 1
-        break;
-    end
-    temp = zeros(size(data,1),size(data,2)-1);
-    for i = 1:size(data,2)-1
-        temp(:,i) = (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data = temp;
-end
-end</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>MATLAB代码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -208,6 +136,78 @@ grid on<span class="token punctuation">,</span>hold on
         <tag>原创</tag>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title('Bezier曲线拟合');
+questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
+<span id="more"></span>
+<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
+while 1
+    i = i+1;
+    tip = ['请选择第',num2str(i),'个数据点'];
+    xlabel(tip);
+    try
+    [x,y,button] = ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,'o');
+    dataPoints(:,i) = [x;y];
+    h1 = plot(dataPoints(1,:),dataPoints(2,:),'b');
+    if button ~= 1
+        xlabel('');
+        break;
+    end
+end
+
+
+for i = 0:0.01:1
+    newData(:,int32(i*100)+1) = cqj_GetBezier3Point(dataPoints,i);
+end
+h2 = plot(newData(1,:),newData(2,:),'.-r');
+legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data = dataPoints;
+while 1
+    if size(data,2) == 1
+        break;
+    end
+    temp = zeros(size(data,1),size(data,2)-1);
+    for i = 1:size(data,2)-1
+        temp(:,i) = (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data = temp;
+end
+end</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>MATLAB代码</tag>
       </tags>
   </entry>
   <entry>
@@ -455,94 +455,6 @@ f(x_1;\theta_1,\dots,\theta_k)=0
       </tags>
   </entry>
   <entry>
-    <title>Try Something New for 30 Days(Matt Cutts)(TED视频)</title>
-    <url>/post/7606ecde.html</url>
-    <content><![CDATA[<blockquote>
-<p>摘自TED里的一个视频，原视频地址：</p>
-</blockquote>
-<span id="more"></span>
-<p><strong><a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days#t-94596">Matt
-Cutts: Try Something New for 30 Days</a></strong> <a href="http://img.ifish.ink/res/MC.pptx">PPT下载</a></p>
-<h3 id="中文文本">中文文本:</h3>
-<p>几年前， 我感觉对老一套感到枯燥乏味， 所以我决定追随
-伟大的美国哲学家摩根·斯普尔洛克的脚步， 尝试做新事情30天。
-这个想法的确是非常简单。 考虑下，你常想在你生命中做的一些事情
-接下来30天尝试做这些。 这就是， 30天刚好是这么一段合适的时间
-去养成一个新的习惯或者改掉一个习惯-- 例如看新闻 -- 在你生活中。
-当我在30天做这些挑战性事情时，我学到以下一些事。 第一件事是，
-取代了飞逝而过易被遗忘的岁月的是 这段时间非常的更加令人难忘。
-挑战的一部分是要一个月内每天我要去拍摄一张照片。
-我清楚地记得那一天我所处的位置 我都在干什么。 我也注意到
-随着我开始做更多的，更难的30天里具有挑战性的事时， 我自信心也增强了。
-我从一个台式计算机宅男极客 变成了一个爱骑自行车去工作的人-- 为了玩乐。
-甚至去年，我完成了在非洲最高山峰 乞力马扎罗山的远足。
-在我开始这30天做挑战性的事之前 我从来没有这样爱冒险过。 我也认识到
-如果你真想一些槽糕透顶的事， 你可以在30天里做这些事。 你曾想写小说吗？
-每年11月， 数以万计的人们 在30天里，从零起点 尝试写他们自己的5万字小说。
-这结果就是，你所要去做的事 就是每天写1667个字 要写一个月。
-所以我做到了。 顺便说一下，秘密是除非在一天里你已经写完了1667个字，
-要不你就甭想睡觉。 你可能被剥夺睡眠， 但你将会完成你的小说。
-那么我写的书会是下一部伟大的美国小说吗？ 不是的。我在一个月内写完它。
-它看上去太可怕了。 但在我的余生， 如果我在一个TED聚会上遇见约翰·霍奇曼，
-我不必开口说， “我是一个电脑科学家。”
-不，不会的，如果我想我可以说，“我是一个小说家。” （笑声）
-我这儿想提的最后一件事。 当我做些小的，持续性的变化，
-我可以不断尝试做的事时， 我学到我可以把它们更容易地坚持做下来。
-这和又大又疯狂的具有挑战性的事情无关。 事实上，它们的乐趣无穷。
-但是，它们就不太可能坚持做下来。 当我在30天里拒绝吃糖果，
-31天后看上去就像这样。 （笑声） 所以我给大家提的问题是：
-大家还在等什么呀？ 我保准大家在未来的30天 会去经历
-你喜欢或者不喜欢的事， 那么为什么不考虑一些 你常想去尝试
-并在未来30天里试试 给自己一个机会。 谢谢。 （掌声）</p>
-<hr>
-<h3 id="english-text">English Text:</h3>
-<p>A few years ago, I felt like I was stuck in a rut, so I decided to
-follow in the footsteps of the great American philosopher, Morgan
-Spurlock, and try something new for 30 days. The idea is actually pretty
-simple. Think about something you've always wanted to add to your life
-and try it for the next 30 days. It turns out 30 days is just about the
-right amount of time to add a new habit or subtract a habit -- like
-watching the news -- from your life. There's a few things I learned
-while doing these 30-day challenges. The first was, instead of the
-months flying by, forgotten, the time was much more memorable. This was
-part of a challenge I did to take a picture every day for a month. And I
-remember exactly where I was and what I was doing that day. I also
-noticed that as I started to do more and harder 30-day challenges, my
-self-confidence grew. I went from desk-dwelling computer nerd to the
-kind of guy who bikes to work. For fun! (Laughter) Even last year, I
-ended up hiking up Mt. Kilimanjaro, the highest mountain in Africa. I
-would never have been that adventurous before I started my 30-day
-challenges. I also figured out that if you really want something badly
-enough, you can do anything for 30 days. Have you ever wanted to write a
-novel? Every November, tens of thousands of people try to write their
-own 50,000-word novel, from scratch, in 30 days. It turns out, all you
-have to do is write 1,667 words a day for a month. So I did. By the way,
-the secret is not to go to sleep until you've written your words for the
-day. You might be sleep-deprived, but you'll finish your novel. Now is
-my book the next great American novel? No. I wrote it in a month. It's
-awful. (Laughter) But for the rest of my life, if I meet John Hodgman at
-a TED party, I don't have to say, "I'm a computer scientist." No, no, if
-I want to, I can say, "I'm a novelist." (Laughter) So here's one last
-thing I'd like to mention. I learned that when I made small, sustainable
-changes, things I could keep doing, they were more likely to stick.
-There's nothing wrong with big, crazy challenges. In fact, they're a ton
-of fun. But they're less likely to stick. When I gave up sugar for 30
-days, day 31 looked like this. (Laughter) So here's my question to you:
-What are you waiting for? I guarantee you the next 30 days are going to
-pass whether you like it or not, so why not think about something you
-have always wanted to try and give it a shot! For the next 30 days.
-Thanks. (Applause)</p>
-]]></content>
-      <categories>
-        <category>视频</category>
-      </categories>
-      <tags>
-        <tag>TED</tag>
-        <tag>摘</tag>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenSubdiv + Visual Studio环境配置</title>
     <url>/post/a507e481.html</url>
     <content><![CDATA[<blockquote>
@@ -657,6 +569,94 @@ unavailable for scheduled maintenance. Check back in a minute.”</p>
       </tags>
   </entry>
   <entry>
+    <title>Try Something New for 30 Days(Matt Cutts)(TED视频)</title>
+    <url>/post/7606ecde.html</url>
+    <content><![CDATA[<blockquote>
+<p>摘自TED里的一个视频，原视频地址：</p>
+</blockquote>
+<span id="more"></span>
+<p><strong><a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days#t-94596">Matt
+Cutts: Try Something New for 30 Days</a></strong> <a href="http://img.ifish.ink/res/MC.pptx">PPT下载</a></p>
+<h3 id="中文文本">中文文本:</h3>
+<p>几年前， 我感觉对老一套感到枯燥乏味， 所以我决定追随
+伟大的美国哲学家摩根·斯普尔洛克的脚步， 尝试做新事情30天。
+这个想法的确是非常简单。 考虑下，你常想在你生命中做的一些事情
+接下来30天尝试做这些。 这就是， 30天刚好是这么一段合适的时间
+去养成一个新的习惯或者改掉一个习惯-- 例如看新闻 -- 在你生活中。
+当我在30天做这些挑战性事情时，我学到以下一些事。 第一件事是，
+取代了飞逝而过易被遗忘的岁月的是 这段时间非常的更加令人难忘。
+挑战的一部分是要一个月内每天我要去拍摄一张照片。
+我清楚地记得那一天我所处的位置 我都在干什么。 我也注意到
+随着我开始做更多的，更难的30天里具有挑战性的事时， 我自信心也增强了。
+我从一个台式计算机宅男极客 变成了一个爱骑自行车去工作的人-- 为了玩乐。
+甚至去年，我完成了在非洲最高山峰 乞力马扎罗山的远足。
+在我开始这30天做挑战性的事之前 我从来没有这样爱冒险过。 我也认识到
+如果你真想一些槽糕透顶的事， 你可以在30天里做这些事。 你曾想写小说吗？
+每年11月， 数以万计的人们 在30天里，从零起点 尝试写他们自己的5万字小说。
+这结果就是，你所要去做的事 就是每天写1667个字 要写一个月。
+所以我做到了。 顺便说一下，秘密是除非在一天里你已经写完了1667个字，
+要不你就甭想睡觉。 你可能被剥夺睡眠， 但你将会完成你的小说。
+那么我写的书会是下一部伟大的美国小说吗？ 不是的。我在一个月内写完它。
+它看上去太可怕了。 但在我的余生， 如果我在一个TED聚会上遇见约翰·霍奇曼，
+我不必开口说， “我是一个电脑科学家。”
+不，不会的，如果我想我可以说，“我是一个小说家。” （笑声）
+我这儿想提的最后一件事。 当我做些小的，持续性的变化，
+我可以不断尝试做的事时， 我学到我可以把它们更容易地坚持做下来。
+这和又大又疯狂的具有挑战性的事情无关。 事实上，它们的乐趣无穷。
+但是，它们就不太可能坚持做下来。 当我在30天里拒绝吃糖果，
+31天后看上去就像这样。 （笑声） 所以我给大家提的问题是：
+大家还在等什么呀？ 我保准大家在未来的30天 会去经历
+你喜欢或者不喜欢的事， 那么为什么不考虑一些 你常想去尝试
+并在未来30天里试试 给自己一个机会。 谢谢。 （掌声）</p>
+<hr>
+<h3 id="english-text">English Text:</h3>
+<p>A few years ago, I felt like I was stuck in a rut, so I decided to
+follow in the footsteps of the great American philosopher, Morgan
+Spurlock, and try something new for 30 days. The idea is actually pretty
+simple. Think about something you've always wanted to add to your life
+and try it for the next 30 days. It turns out 30 days is just about the
+right amount of time to add a new habit or subtract a habit -- like
+watching the news -- from your life. There's a few things I learned
+while doing these 30-day challenges. The first was, instead of the
+months flying by, forgotten, the time was much more memorable. This was
+part of a challenge I did to take a picture every day for a month. And I
+remember exactly where I was and what I was doing that day. I also
+noticed that as I started to do more and harder 30-day challenges, my
+self-confidence grew. I went from desk-dwelling computer nerd to the
+kind of guy who bikes to work. For fun! (Laughter) Even last year, I
+ended up hiking up Mt. Kilimanjaro, the highest mountain in Africa. I
+would never have been that adventurous before I started my 30-day
+challenges. I also figured out that if you really want something badly
+enough, you can do anything for 30 days. Have you ever wanted to write a
+novel? Every November, tens of thousands of people try to write their
+own 50,000-word novel, from scratch, in 30 days. It turns out, all you
+have to do is write 1,667 words a day for a month. So I did. By the way,
+the secret is not to go to sleep until you've written your words for the
+day. You might be sleep-deprived, but you'll finish your novel. Now is
+my book the next great American novel? No. I wrote it in a month. It's
+awful. (Laughter) But for the rest of my life, if I meet John Hodgman at
+a TED party, I don't have to say, "I'm a computer scientist." No, no, if
+I want to, I can say, "I'm a novelist." (Laughter) So here's one last
+thing I'd like to mention. I learned that when I made small, sustainable
+changes, things I could keep doing, they were more likely to stick.
+There's nothing wrong with big, crazy challenges. In fact, they're a ton
+of fun. But they're less likely to stick. When I gave up sugar for 30
+days, day 31 looked like this. (Laughter) So here's my question to you:
+What are you waiting for? I guarantee you the next 30 days are going to
+pass whether you like it or not, so why not think about something you
+have always wanted to try and give it a shot! For the next 30 days.
+Thanks. (Applause)</p>
+]]></content>
+      <categories>
+        <category>视频</category>
+      </categories>
+      <tags>
+        <tag>TED</tag>
+        <tag>摘</tag>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>WordPress站点地图自动更新</title>
     <url>/post/943451b1.html</url>
     <content><![CDATA[<blockquote>
@@ -738,8 +738,8 @@ to download and Install laTex (TeXstudio+texlive2017) full</a></p>
         <category>教程</category>
       </categories>
       <tags>
-        <tag>摘</tag>
         <tag>环境配置</tag>
+        <tag>摘</tag>
       </tags>
   </entry>
   <entry>
@@ -1316,76 +1316,6 @@ VectorXd <span class="token class-name">MyPolygon</span><span class="token doubl
       </tags>
   </entry>
   <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(m\)</span>个样本点为<span class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span class="math inline">\(m\)</span>个样本嵌入到低维空间<span class="math inline">\(\mathbb{R}^{d}\)</span>，<span class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列元素为<span class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span class="math inline">\(k\)</span>个非零特征值，分别为<span class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span class="math inline">\({ V}\)</span>的第<span class="math inline">\(i\)</span>列是特征值<span class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br>
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span class="math inline">\(V_*\)</span>。即<span class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
     <url>/post/4d3c170c.html</url>
     <content><![CDATA[<h4 id="c实现">c++实现：</h4>
@@ -1464,74 +1394,6 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
         <tag>原创</tag>
         <tag>算法实现</tag>
         <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
-uBlock Origin</p>
-</blockquote>
-<h3 id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
-<span id="more"></span>
-<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
-<p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock
-Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
-Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
-Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
-截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
-Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
-<hr>
-<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
-Origin插件</h3>
-<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
-<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
-<blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
-store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
-</blockquote>
-<ol type="1">
-<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
-<img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
-</ol>
-<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
-<ol type="1">
-<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
-Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome://extensions/</a>
-后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p></li>
-<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
-<img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p></li>
-<li><p>在Chrome右上角点击uBlock
-Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
-<img src="http://img.ifish.ink/img/uo4.png"></p></li>
-</ol>
-<hr>
-<h3 id="三测试">三、测试</h3>
-<ul>
-<li><p>未启用uBlock
-Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p></li>
-<li><p>启用uBlock
-Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p></li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p></li>
-</ul>
-<hr>
-<h3 id="四参考">四、参考：</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
-维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>神器</tag>
       </tags>
   </entry>
   <entry>
@@ -1668,6 +1530,144 @@ out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
         <tag>原创</tag>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
+    <content><![CDATA[<blockquote>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin</p>
+</blockquote>
+<h3 id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
+<span id="more"></span>
+<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
+<p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock
+Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
+Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
+Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
+截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
+Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr>
+<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
+Origin插件</h3>
+<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
+<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+<blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
+store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol type="1">
+<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
+<img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
+</ol>
+<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
+<ol type="1">
+<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
+Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome://extensions/</a>
+后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p></li>
+<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
+<img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p></li>
+<li><p>在Chrome右上角点击uBlock
+Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
+<img src="http://img.ifish.ink/img/uo4.png"></p></li>
+</ol>
+<hr>
+<h3 id="三测试">三、测试</h3>
+<ul>
+<li><p>未启用uBlock
+Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p></li>
+<li><p>启用uBlock
+Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p></li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p></li>
+</ul>
+<hr>
+<h3 id="四参考">四、参考：</h3>
+<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
+维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>神器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(m\)</span>个样本点为<span class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span class="math inline">\(m\)</span>个样本嵌入到低维空间<span class="math inline">\(\mathbb{R}^{d}\)</span>，<span class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding">
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列元素为<span class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span class="math inline">\(k\)</span>个非零特征值，分别为<span class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span class="math inline">\({ V}\)</span>的第<span class="math inline">\(i\)</span>列是特征值<span class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br>
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span class="math inline">\(V_*\)</span>。即<span class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding">
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
