@@ -548,7 +548,7 @@
 <h4 id="分布">(0-1)分布</h4>
 <p>(0-1)分布的随机变量<span class="math inline">\(X\)</span>只可能取0与1，如果概率满足 <span class="math display">\[
 P_k=P\{X=k\}=p^k(1-p)^{1-k},\quad k=0,1\qquad (0&lt;p&lt;1),
-\]</span> 称<span class="math inline">\(X\)</span>服从参数<span class="math inline">\(为\)</span>p$的(0-1)分布。</p>
+\]</span> 称<span class="math inline">\(X\)</span>服从参数为<span class="math inline">\(p\)</span>的(0-1)分布。</p>
 <ul>
 <li><p>分布律：<span class="math inline">\(P\{X=k\}=p^k(1-p)^{1-k},\quad
 k=0,1\qquad (0&lt;p&lt;1)\)</span></p>
@@ -568,8 +568,8 @@ k=0,1\qquad (0&lt;p&lt;1)\)</span></p>
 </tr>
 </tbody>
 </table></li>
-<li><p>期望：<span class="math inline">\(E[X]=p\)</span></p></li>
-<li><p>方差：<span class="math inline">\(\sigma^2[X]=p(1-p)\)</span></p></li>
+<li><p>期望：<span class="math inline">\(\text{E}[X]=p\)</span></p></li>
+<li><p>方差：<span class="math inline">\(\text{V}[X]=p(1-p)\)</span></p></li>
 </ul>
 <hr>
 <h4 id="几何分布">几何分布</h4>
@@ -577,8 +577,8 @@ k=0,1\qquad (0&lt;p&lt;1)\)</span></p>
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=(1-p)^{k-1}p,\quad
 k=1,2,\dots\)</span></li>
-<li>期望：<span class="math inline">\(E[X]=\frac{1}{p}\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\frac{1-p}{p^2}\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=\frac{1}{p}\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\frac{1-p}{p^2}\)</span></li>
 </ul>
 <hr>
 <h4 id="伯努利分布二项分布">伯努利分布/二项分布</h4>
@@ -586,8 +586,8 @@ k=1,2,\dots\)</span></li>
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=\binom{n}{k}p^k(1-p)^{n-k},\quad
 k=0,1,\dots,n\)</span></li>
-<li>期望：<span class="math inline">\(E[X]=np\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=np(1-p)\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=np\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=np(1-p)\)</span></li>
 </ul>
 <hr>
 <h4 id="巴斯卡分布负二项分布">巴斯卡分布（负二项分布）</h4>
@@ -595,8 +595,8 @@ k=0,1,\dots,n\)</span></li>
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=\binom{k-1}{r-1}p^r(1-p)^{k-r},\quad
 k=r,r+1,\dots\)</span></li>
-<li>期望：<span class="math inline">\(E[X]=\frac{r}{p}\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\frac{r(1-p)}{p^2}\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=\frac{r}{p}\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\frac{r(1-p)}{p^2}\)</span></li>
 </ul>
 <hr>
 <h4 id="泊松分布">泊松分布</h4>
@@ -608,8 +608,8 @@ P\{X=k\}=\sum_{k=0}^\infty\frac{\lambda^ke^{-\lambda}}{k!}=e^{-\lambda}\sum_{k=0
 <ul>
 <li>分布律：<span class="math inline">\(P\{X=k\}=\frac{\lambda^ke^{-\lambda}}{k!},\quad
 k=0,1,\dots\)</span></li>
-<li>期望：<span class="math inline">\(E[X]=\lambda\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\lambda\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=\lambda\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\lambda\)</span></li>
 </ul>
 <blockquote>
 <p>当伯努利分布(二项分布)的试验次数<span class="math inline">\(n\)</span>足够多，其分布近似于以<span class="math inline">\(\lambda=np\)</span>为参数的泊松分布，即<strong>泊松定理</strong>：设<span class="math inline">\(\lambda&gt;0\)</span>是常数，<span class="math inline">\(n\)</span>是任意正整数，设<span class="math inline">\(\lambda=np\)</span>，则对非负整数<span class="math inline">\(k\le n\)</span>，有 <span class="math display">\[\lim_{n\to\infty}\binom{n}{k}p^k(1-p)^{n-k}=\frac{\lambda^ke^{-\lambda}}{k!}\]</span></p>
@@ -627,8 +627,8 @@ f(x) =
 \end{cases}
 \end{equation}\]</span> 则称<span class="math inline">\(X\)</span>在区间<span class="math inline">\((a,b)\)</span>上的服从均匀分布。</p>
 <ul>
-<li>期望：<span class="math inline">\(E[X]=\frac{a+b}{2}\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\frac{(b-a)^2}{12}\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=\frac{a+b}{2}\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\frac{(b-a)^2}{12}\)</span></li>
 </ul>
 <hr>
 <h4 id="指数分布">指数分布</h4>
@@ -640,8 +640,8 @@ f(x) =
 \end{cases}
 \end{equation}\]</span> 则称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(\theta\)</span>的指数分布。</p>
 <ul>
-<li>期望：<span class="math inline">\(E[X]=\theta\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\theta^2\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=\theta\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\theta^2\)</span></li>
 </ul>
 <hr>
 <h4 id="正态高斯分布">正态（高斯）分布</h4>
@@ -650,8 +650,8 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
 -\infty&lt;x&lt;\infty,
 \end{equation}\]</span> 其中<span class="math inline">\(\mu,\sigma~(\sigma&gt;0)\)</span>为常数，则称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(\mu,\sigma\)</span>的正态分布（高斯分布）。</p>
 <ul>
-<li>期望：<span class="math inline">\(E[X]=\mu\)</span></li>
-<li>方差：<span class="math inline">\(\sigma^2[X]=\sigma^2\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=\mu\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\sigma^2\)</span></li>
 </ul>
 <blockquote>
 <p>特别地，当<span class="math inline">\(\mu=0\)</span>，<span class="math inline">\(\sigma=1\)</span>时称随机变量<span class="math inline">\(X\)</span>服从<strong>标准正态分布</strong>。</p>
@@ -662,56 +662,6 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
             <hr/>
             
             
-
-    <div class="reprint" id="reprint-statement">
-        
-            <div class="reprint__author">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-user">
-                        文章作者:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">鱼墨常常</a>
-                </span>
-            </div>
-            <div class="reprint__type">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-link">
-                        文章链接:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    <a href="https://www.ifish.ink/post/ids0.html">https://www.ifish.ink/post/ids0.html</a>
-                </span>
-            </div>
-            <div class="reprint__notice">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-copyright">
-                        版权声明:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    本博客所有文章除特別声明外，均采用
-                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    许可协议。来源
-                    <a href="/about" target="_blank">鱼墨常常</a>
-                    !
-                </span>
-            </div>
-        
-    </div>
-
-    <script async defer>
-      document.addEventListener("copy", function (e) {
-        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
-        M.toast({html: toastHTML})
-      });
-
-      function navToReprintStatement() {
-        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
-      }
-    </script>
 
 
 

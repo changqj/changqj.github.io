@@ -318,6 +318,11 @@
 /* 数学公式过宽在小屏幕上的处理 */
 .MathJax_Display {
     overflow-x: auto;
+    overflow-y: hidden;
     white-space: nowrap;
     max-width: 100%;
+}
+
+blockquote .MathJax {
+    padding-right: 2px;
 }

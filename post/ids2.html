@@ -507,7 +507,7 @@ Duxbury, 2th edition.
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    685
+                    686
                 </div>
                 
 
@@ -540,7 +540,7 @@ Duxbury, 2th edition.</p>
 </blockquote>
 <h4 id="无偏性unbiasedness">无偏性(Unbiasedness)</h4>
 <p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>是无偏的，即： <span class="math display">\[\text{E}[\hat{\theta}(X)]=\theta_0,\]</span>
-其中<span class="math inline">\(\theta_0\)</span>是真实参数。将<span class="math inline">\(\text{Bias}_{\theta_0}(\hat{\theta}(X))=\text{E}[\hat{\theta}(X)]-\theta_0\)</span>称之为偏差。</p>
+其中<span class="math inline">\(\theta_0\)</span>是真实参数。将<span class="math inline">\(\text{Bias}_{\theta_0}[\hat{\theta}(X)]=\text{E}[\hat{\theta}(X)]-\theta_0\)</span>称之为偏差。</p>
 <ul>
 <li>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，其极大似然估计和矩估计均为<span class="math inline">\(\hat{\theta}(X)=\frac{1}{n}\sum\limits_{i=1}^nX_i=s\bar{X}\)</span>，是无偏估计量。
 <span class="math display">\[\text{E}[\hat{\theta}(X)]=\text{E}\left[\frac{1}{n}\sum_{i=1}^nX_i\right]=\frac{1}{n}\text{E}\left[\sum_{i=1}^nX_i\right]=\frac{1}{n}\sum_{i=1}^n\text{E}\left[X_i\right]=\frac{1}{n}
@@ -574,70 +574,20 @@ n\cdot \theta_0(1-\theta_0)=\frac{\theta_0(1-\theta_0)}{n}\]</span>
 &amp;=\text{E}\left[\left(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)]+\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\right]\\
 &amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2+2(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])(\text{E}[\hat{\theta}(X)]-\theta_0)+(\text{E}[\hat{\theta}(X)]-\theta_0)^2\right]\\
 &amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2\right]+2(\text{E}[\hat{\theta}(X)]-\theta_0)\cdot\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])\right]+\left(\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\\
-&amp;=\text{V}[\hat{\theta}(X)]+\text{Bisa}_{\theta_0}^2(\hat{\theta}(X))
+&amp;=\text{V}[\hat{\theta}(X)]+\text{Bisa}_{\theta_0}^2[\hat{\theta}(X)]
 \end{align}\]</span>
 即平均二次误差为估计量的方差与与偏差的平方之和。</p>
 <hr>
 <h4 id="cramér-rao下界">Cramér-Rao下界</h4>
 <p>如果<span class="math inline">\(X_1,\dots,X_n\)</span>服从密度函数为<span class="math inline">\(f(x;\theta)\)</span>的分布。则任何无偏估计量<span class="math inline">\(\hat{\theta}\)</span>的方差满足： <span class="math display">\[\text{V}[\hat{\theta}(X)]\ge\frac{1}{n\cdot
 I_{X_1}(\theta)}\]</span> 其中<span class="math inline">\(I_{X_1}(\theta)\)</span>被称为Fisher信息，定义为：
-<span class="math display">\[I_{X_1}(\theta)=\text{E}\left[\left(\frac{\partial}{\partial\theta}\log_{X_1}(X_1;\theta)\right)^2\right]=-\text{E}\left[\frac{\partial^2}{\partial\theta}\log_{X_1}(X_1;\theta)\right].\]</span></p>
+<span class="math display">\[I_{X_1}(\theta)=\text{E}\left[\left(\frac{\partial}{\partial\theta}\log_{X_1}(X_1;\theta)\right)^2\right]=-\text{E}\left[\frac{\partial^2}{\partial\theta^2}\log_{X_1}(X_1;\theta)\right].\]</span></p>
 
                 
             </div>
             <hr/>
             
             
-
-    <div class="reprint" id="reprint-statement">
-        
-            <div class="reprint__author">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-user">
-                        文章作者:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">鱼墨常常</a>
-                </span>
-            </div>
-            <div class="reprint__type">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-link">
-                        文章链接:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    <a href="https://www.ifish.ink/post/ids2.html">https://www.ifish.ink/post/ids2.html</a>
-                </span>
-            </div>
-            <div class="reprint__notice">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-copyright">
-                        版权声明:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    本博客所有文章除特別声明外，均采用
-                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    许可协议。来源
-                    <a href="/about" target="_blank">鱼墨常常</a>
-                    !
-                </span>
-            </div>
-        
-    </div>
-
-    <script async defer>
-      document.addEventListener("copy", function (e) {
-        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
-        M.toast({html: toastHTML})
-      });
-
-      function navToReprintStatement() {
-        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
-      }
-    </script>
 
 
 

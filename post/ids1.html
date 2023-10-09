@@ -508,7 +508,7 @@ moments)和极大似然估计(maximum likelihood estimation)。
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    867
+                    873
                 </div>
                 
 
@@ -540,8 +540,8 @@ moments)和极大似然估计(maximum likelihood estimation)。</p>
 <p>参考书籍：《概率论与数理统计》 浙大第四版</p>
 </blockquote>
 <h4 id="矩估计">矩估计</h4>
-<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，其中参数<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>为待估计参数。总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩为 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=E[X^m]=\sum_{x\in
-R_X}x^mp(x;\theta_1,\theta_2,\dots,\theta_k),\]</span> 其中<span class="math inline">\(R_X\)</span>是<span class="math inline">\(X\)</span>可能的取值范围。如果随机变量<span class="math inline">\(X\)</span>是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>的连续型随机变量，假设总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩是 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=E[X^m]=\int_{-\infty}^{\infty}x^mf(x;\theta_1,\theta_2,\dots,\theta_k)dx.\]</span>
+<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，其中参数<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>为待估计参数。总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩为 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\sum_{x\in
+R_X}x^mp(x;\theta_1,\theta_2,\dots,\theta_k),\]</span> 其中<span class="math inline">\(R_X\)</span>是<span class="math inline">\(X\)</span>可能的取值范围。如果随机变量<span class="math inline">\(X\)</span>是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>的连续型随机变量，假设总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩是 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\int_{-\infty}^{\infty}x^mf(x;\theta_1,\theta_2,\dots,\theta_k)dx.\]</span>
 如果<span class="math inline">\(X\)</span>的前<span class="math inline">\(k\)</span>阶矩存在。由于样本矩<span class="math inline">\(A_m=\frac{1}{n}\sum_{i=1}^nX_i^m\)</span>依概率收敛于相应的总体矩<span class="math inline">\(\mu_m\)</span>。用样本矩作为相应的总体矩的估计量。对于<span class="math inline">\(m=1,2,\dots,k\)</span>，可以建立如下方程组： <span class="math display">\[\begin{equation*}
 \left\{
 \begin{array}{c}
@@ -557,9 +557,9 @@ R_X}x^mp(x;\theta_1,\theta_2,\dots,\theta_k),\]</span> 其中<span class="math i
 <p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，则<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>的联合分布律为 <span class="math display">\[\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k),\]</span>
 假如已知样本<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>对应的样本值是<span class="math inline">\(x_1,x_2,\dots,x_n\)</span>，则事件<span class="math inline">\(\{X_i=x_i,~i=1,\dots,n\}\)</span>的概率为 <span class="math display">\[P\{X_i=x_i,~i=1,\dots,n\}=\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k)=L(\theta_1,\dots,\theta_k)，\]</span>
 由于该事件为观测值对应的事件，其已经发生，表明这个概率值较大，给予该原则最大化函数<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>，该函数被称为样本的<strong>似然函数</strong>。则极大似然估计值为
-<span class="math display">\[(\hat{\theta_1},\dots,\hat{\theta_k})=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k).\]</span>
+<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k).\]</span>
 对于连续型随机变量，假设其对应的概率密度函数为是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>，同理有极大似然估计量为
-<span class="math display">\[(\hat{\theta_1},\dots,\hat{\theta_k})=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^nf(x_i;\theta_1,\dots,\theta_k).\]</span>
+<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^nf(x_i;\theta_1,\dots,\theta_k).\]</span>
 对于该优化问题的求解，当<span class="math inline">\(p(x_i;\theta_1,\dots,\theta_k)\)</span>或<span class="math inline">\(f(x_i;\theta_1,\dots,\theta_k)\)</span>关于<span class="math inline">\(\theta_j\)</span>可微，则极大似然估计值可从方程组
 <span class="math display">\[\begin{equation*}
 \left\{
@@ -609,56 +609,6 @@ f(x_1;\theta_1,\dots,\theta_k)=0
             <hr/>
             
             
-
-    <div class="reprint" id="reprint-statement">
-        
-            <div class="reprint__author">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-user">
-                        文章作者:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">鱼墨常常</a>
-                </span>
-            </div>
-            <div class="reprint__type">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-link">
-                        文章链接:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    <a href="https://www.ifish.ink/post/ids1.html">https://www.ifish.ink/post/ids1.html</a>
-                </span>
-            </div>
-            <div class="reprint__notice">
-                <span class="reprint-meta" style="font-weight: bold;">
-                    <i class="fas fa-copyright">
-                        版权声明:
-                    </i>
-                </span>
-                <span class="reprint-info">
-                    本博客所有文章除特別声明外，均采用
-                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    许可协议。来源
-                    <a href="/about" target="_blank">鱼墨常常</a>
-                    !
-                </span>
-            </div>
-        
-    </div>
-
-    <script async defer>
-      document.addEventListener("copy", function (e) {
-        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
-        M.toast({html: toastHTML})
-      });
-
-      function navToReprintStatement() {
-        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
-      }
-    </script>
 
 
 
