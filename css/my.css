@@ -314,3 +314,9 @@
         width: 100%; /* 设置信息块宽度 */
     }
 }
+
+/* 数学公式过宽在小屏幕上的处理 */
+.MathJax_Display {
+    overflow-x: auto;
+    white-space: nowrap;
+}
