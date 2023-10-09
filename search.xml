@@ -139,40 +139,6 @@ grid on<span class="token punctuation">,</span>hold on
       </tags>
   </entry>
   <entry>
-    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
-    <url>/post/8f4cbc0c.html</url>
-    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
-fork了别人的代码 本地更新主分支代码</h3>
-<ul>
-<li><p>查看本地仓库项目目录：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
-<li><p>添加上游项目地址：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">&gt;</span></code></pre>
-<span id="more"></span>
-<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
-</ul>
-<hr>
-<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
-<ul>
-<li><p>从上游提取：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span></code></pre></li>
-<li><p>合并：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">&gt;</span></code></pre></li>
-<li><p>上传：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
-</ul>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/7741e06a.html</url>
     <content><![CDATA[<blockquote>
@@ -242,6 +208,40 @@ end</code></pre>
       <tags>
         <tag>原创</tag>
         <tag>MATLAB代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
+    <url>/post/8f4cbc0c.html</url>
+    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
+fork了别人的代码 本地更新主分支代码</h3>
+<ul>
+<li><p>查看本地仓库项目目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
+<li><p>添加上游项目地址：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">&gt;</span></code></pre>
+<span id="more"></span>
+<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
+</ul>
+<hr>
+<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
+<ul>
+<li><p>从上游提取：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span></code></pre></li>
+<li><p>合并：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">&gt;</span></code></pre></li>
+<li><p>上传：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -466,7 +466,7 @@ Duxbury, 2th edition.</p>
 <p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>是无偏的，即： <span class="math display">\[\text{E}[\hat{\theta}(X)]=\theta_0,\]</span>
 其中<span class="math inline">\(\theta_0\)</span>是真实参数。将<span class="math inline">\(\text{Bias}_{\theta_0}[\hat{\theta}(X)]=\text{E}[\hat{\theta}(X)]-\theta_0\)</span>称之为偏差。</p>
 <ul>
-<li>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，其极大似然估计和矩估计均为<span class="math inline">\(\hat{\theta}(X)=\frac{1}{n}\sum\limits_{i=1}^nX_i=s\bar{X}\)</span>，是无偏估计量。
+<li>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，其极大似然估计和矩估计均为<span class="math inline">\(\hat{\theta}(X)=\frac{1}{n}\sum\limits_{i=1}^nX_i=\bar{X}\)</span>，是无偏估计量。
 <span class="math display">\[\text{E}[\hat{\theta}(X)]=\text{E}\left[\frac{1}{n}\sum_{i=1}^nX_i\right]=\frac{1}{n}\text{E}\left[\sum_{i=1}^nX_i\right]=\frac{1}{n}\sum_{i=1}^n\text{E}\left[X_i\right]=\frac{1}{n}
 \cdot n\cdot\theta_0=\theta_0.\]</span></li>
 </ul>
@@ -505,7 +505,42 @@ n\cdot \theta_0(1-\theta_0)=\frac{\theta_0(1-\theta_0)}{n}\]</span>
 <h4 id="cramér-rao下界">Cramér-Rao下界</h4>
 <p>如果<span class="math inline">\(X_1,\dots,X_n\)</span>服从密度函数为<span class="math inline">\(f(x;\theta)\)</span>的分布。则任何无偏估计量<span class="math inline">\(\hat{\theta}\)</span>的方差满足： <span class="math display">\[\text{V}[\hat{\theta}(X)]\ge\frac{1}{n\cdot
 I_{X_1}(\theta)}\]</span> 其中<span class="math inline">\(I_{X_1}(\theta)\)</span>被称为Fisher信息，定义为：
-<span class="math display">\[I_{X_1}(\theta)=\text{E}\left[\left(\frac{\partial}{\partial\theta}\log_{X_1}(X_1;\theta)\right)^2\right]=-\text{E}\left[\frac{\partial^2}{\partial\theta^2}\log_{X_1}(X_1;\theta)\right].\]</span></p>
+<span class="math display">\[\begin{align}
+I_{X_1}(\theta)&amp;=\text{E}\left[\left(\frac{\partial}{\partial\theta}l_{X_1}(x;\theta)\right)^2\right]:=\text{E}[l'_{X_1}(\theta)^2]\\
+&amp;=-\text{E}\left[\frac{\partial^2}{\partial\theta^2}l_{X_1}(x;\theta)\right]:=-\text{E}[l''_{X_1}(\theta)].
+\end{align}\]</span> 其中<span class="math inline">\(l_{X_1}(\theta)=\log
+f_{X_1}(x;\theta)\)</span></p>
+<ul>
+<li><em>证明</em>：令<span class="math inline">\(Y=\hat{\theta}(X)\)</span>，<span class="math inline">\(Z=l'_X(\theta)\)</span>，由于<span class="math inline">\(Y,Z\)</span>的相关系数介于<span class="math inline">\([-1,1]\)</span>，即 <span class="math display">\[-1\le\frac{\text{Cov}[Y,Z]}{\sqrt{\text{V}[Y]\cdot\text{V}[Z]}}\le
+1,\]</span> 由此可得 <span class="math display">\[\begin{equation}
+\text{V}[Y]=\text{V}[\hat{\theta}(X)]\ge\frac{\text{Cov}^2[Y,Z]}{\text{V}[Z]},
+\end{equation}\]</span> 观察上式，现需替换分子<span class="math inline">\(\text{Cov}^2[Y,Z]\)</span>和分母<span class="math inline">\(\text{V}[Z]\)</span>，首先<span class="math inline">\(\text{V}[Z]\)</span>可以被写作 <span class="math display">\[\begin{align}
+\text{V}[Z]&amp;=\text{V}[l'_X(\theta)]=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log
+f_X(x;\theta)\right]}_{对数似然函数}=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^nf_{X_i}(x;\theta)\right]}_{\log(ab)=\log
+a+\log b}\\
+&amp;=\underbrace{\text{V}\left[\sum_{i=1}^n\frac{\partial}{\partial\theta}\log
+f_{X_i}(x;\theta)\right]}_{X\text{是相互独立的}}=\sum_{i=1}^n\text{V}\left[\frac{\partial}{\partial\theta}\log
+f_{X_i}(x;\theta)\right]\\
+&amp;=n\cdot\text{V}[l'_{X_1}(\theta)]=n\cdot\left\{\text{E}[l'_{X_1}(\theta)^2]-\text{E}^2[l'_{X_1}(\theta)]\right\}
+\end{align}\]</span> 由期望的定义有 <span class="math display">\[\begin{align}
+&amp;\text{E}[l'_{X_1}(\theta)]=\int_{-\infty}^{\infty}l'_{X_1}(\theta)f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}\frac{\partial}{\partial\theta}\log
+f_{X_1}(x;\theta)\cdot f_{X_1}(x;\theta)dx\\
+=&amp;\int_{-\infty}^{\infty}\frac{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}{f_{X_1}(x;\theta)}f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}dx=\frac{\partial}{\partial\theta}\underbrace{\int_{-\infty}^{\infty}f_{X_1}(x;\theta)dx}_{\text{概率密度函数积分为1}}=0,
+\end{align}\]</span> 即<span class="math inline">\(\text{V}[Z]=n\cdot\text{E}[l'_{X_1}(\theta)^2]=n\cdot
+I_{X_1}(\theta)\)</span>，根据协方差定义 <span class="math display">\[\begin{align}
+\text{Cov}[Y,Z]&amp;=\text{Cov}[\hat{\theta}(X),l'_X(\theta)]=\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot\text{E}[l'_X(\theta)]\\
+&amp;=\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot
+n\cdot\underbrace{\text{E}[l'_{X_1}(\theta)]}_{0}=\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)],
+\end{align}\]</span> 再由定义 <span class="math display">\[\begin{align}
+\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)]=\int_{-\infty}^{\infty}\hat{\theta}(X)\frac{\frac{\partial}{\partial\theta}f_X(x;\theta)}{f_X(x;\theta)}f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}\hat{\theta}\cdot
+f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\text{E}[\hat{\theta}(X)]=1,
+\end{align}\]</span> 即<span class="math inline">\(\text{Cov}[Y,Z]=1\)</span>，综上有<span class="math inline">\(\text{V}[\hat{\theta}(X)]\ge\left(n\cdot
+I_{X_i}(\theta)\right)^{-1}\)</span>，得证。</li>
+</ul>
 ]]></content>
       <categories>
         <category>数学学习</category>
@@ -702,30 +737,35 @@ Thanks. (Applause)</p>
       </tags>
   </entry>
   <entry>
-    <title>git clone 速度慢？</title>
-    <url>/post/ec4bf4f5.html</url>
-    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
-<h2 id="方法1">方法1：</h2>
-<h3 id="查询ip地址">查询IP地址</h3>
-<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com" title="https://www.ipaddress.com">https://www.ipaddress.com</a>
-分别输入如下网址查看对应的IP地址</p>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <url>/post/563c2d.html</url>
+    <content><![CDATA[<blockquote>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
+<strong>Briefly unavailable for scheduled maintenance. Check back in a
+minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+</blockquote>
+<figure>
+<img src="http://img.ifish.ink/img/20190703103139.png" title="Briefly unavailable for scheduled maintenance. Check back in a minute." alt="Briefly unavailable for scheduled maintenance. Check back in a minute.">
+<figcaption aria-hidden="true">Briefly unavailable for scheduled
+maintenance. Check back in a minute.</figcaption>
+</figure>
+<h3 id="原因">原因：</h3>
+<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
+unavailable for scheduled maintenance. Check back in a minute.”</p>
 <span id="more"></span>
-<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
-或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
-<h3 id="修改hosts文件">修改hosts文件</h3>
-<p>得到对应的IP后，在hosts文件后追加如下两行
-Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
-Linux用户：<code>sudo gedit /etc/hosts</code>
-（xxx替换为你得到的对应的IP地址）</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
-xxx.xxx.xxx.xxx github.com</code></pre>
-<h3 id="刷新dns">刷新DNS</h3>
-<p>Windows用户：<code>ipconfig /flushdns</code>
-Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
-<h2 id="方法2">方法2：</h2>
-<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
-<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
+<h3 id="解决方法">解决方法：</h3>
+<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
+的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
+即可</p>
+<ul>
+<li>用FTP或者从终端进入WordPress的根目录下，删除
+<strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
+文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
+<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
+<strong>.maintenance</strong> 文件，然后删除即可。</li>
+</ul>
+<p>重新访问网站，发现一切正常<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 感谢阅读！</p>
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
@@ -734,9 +774,7 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>git</tag>
-        <tag>github</tag>
-        <tag>环境配置</tag>
+        <tag>wordpress</tag>
       </tags>
   </entry>
   <entry>
@@ -798,44 +836,33 @@ LVDS-1 和 HDMI-1
       </tags>
   </entry>
   <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <url>/post/563c2d.html</url>
+    <title>一直都好喜欢这首诗啊！《雨巷》--戴望舒</title>
+    <url>/post/d517eeb6.html</url>
     <content><![CDATA[<blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
-<strong>Briefly unavailable for scheduled maintenance. Check back in a
-minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+<p>一直都好喜欢这首诗啊！《雨巷》--戴望舒</p>
 </blockquote>
-<figure>
-<img src="http://img.ifish.ink/img/20190703103139.png" title="Briefly unavailable for scheduled maintenance. Check back in a minute." alt="Briefly unavailable for scheduled maintenance. Check back in a minute.">
-<figcaption aria-hidden="true">Briefly unavailable for scheduled
-maintenance. Check back in a minute.</figcaption>
-</figure>
-<h3 id="原因">原因：</h3>
-<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
-unavailable for scheduled maintenance. Check back in a minute.”</p>
 <span id="more"></span>
-<h3 id="解决方法">解决方法：</h3>
-<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
-的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
-即可</p>
-<ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除
-<strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
-文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
-<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
-<strong>.maintenance</strong> 文件，然后删除即可。</li>
-</ul>
-<p>重新访问网站，发现一切正常<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 感谢阅读！</p>
+<figure>
+<img src="http://img.ifish.ink/figure/xitang.png" alt="西塘">
+<figcaption aria-hidden="true">西塘</figcaption>
+</figure>
 <hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+<p>撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷， 我希望逢着
+一个丁香一样的 结着愁怨的姑娘。 她是有 丁香一样的颜色， 丁香一样的芬芳，
+丁香一样的忧愁， 在雨中哀怨， 哀怨又彷徨； 她彷徨在这寂寥的雨巷，
+撑着油纸伞 像我一样， 像我一样地 默默彳亍着， 冷漠，凄清，又惆怅。
+她静默地走近 走近，又投出 太息一般的眼光， 她飘过 像梦一般的，
+像梦一般的凄婉迷茫。 像梦中飘过 一枝丁香的， 我身旁飘过这女郎；
+她静默地远了，远了， 到了颓圮的篱墙， 走尽这雨巷。 在雨的哀曲里，
+消了她的颜色， 散了她的芬芳 消散了，甚至她的 太息般的眼光，
+丁香般的惆怅。 撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷，
+我希望飘过 一个丁香一样的 结着愁怨的姑娘。</p>
 ]]></content>
       <categories>
-        <category>教程</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>原创</tag>
-        <tag>wordpress</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -991,36 +1018,6 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
         <tag>原创</tag>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一直都好喜欢这首诗啊！《雨巷》--戴望舒</title>
-    <url>/post/d517eeb6.html</url>
-    <content><![CDATA[<blockquote>
-<p>一直都好喜欢这首诗啊！《雨巷》--戴望舒</p>
-</blockquote>
-<span id="more"></span>
-<figure>
-<img src="http://img.ifish.ink/figure/xitang.png" alt="西塘">
-<figcaption aria-hidden="true">西塘</figcaption>
-</figure>
-<hr>
-<p>撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷， 我希望逢着
-一个丁香一样的 结着愁怨的姑娘。 她是有 丁香一样的颜色， 丁香一样的芬芳，
-丁香一样的忧愁， 在雨中哀怨， 哀怨又彷徨； 她彷徨在这寂寥的雨巷，
-撑着油纸伞 像我一样， 像我一样地 默默彳亍着， 冷漠，凄清，又惆怅。
-她静默地走近 走近，又投出 太息一般的眼光， 她飘过 像梦一般的，
-像梦一般的凄婉迷茫。 像梦中飘过 一枝丁香的， 我身旁飘过这女郎；
-她静默地远了，远了， 到了颓圮的篱墙， 走尽这雨巷。 在雨的哀曲里，
-消了她的颜色， 散了她的芬芳 消散了，甚至她的 太息般的眼光，
-丁香般的惆怅。 撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷，
-我希望飘过 一个丁香一样的 结着愁怨的姑娘。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -1321,62 +1318,6 @@ figure
       </tags>
   </entry>
   <entry>
-    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
-    <url>/post/d033f67a.html</url>
-    <content><![CDATA[<h4 id="c实现2维多边形均值重心坐标代码可能有冗余未优化代码">c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
-<blockquote>
-<p>关于3维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/4d3c170c.html" title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
-Value Coordinates In 3D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 2D
-/// @details    
-/// @param[in]  p,postiveity
-/// @return     
-/// @attention  
-*/</span>
-VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
-        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
-        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
-        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>图形学</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>算法实现</tag>
-        <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
     <url>/post/4d3c170c.html</url>
     <content><![CDATA[<h4 id="c实现">c++实现：</h4>
@@ -1458,71 +1399,129 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
       </tags>
   </entry>
   <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
-uBlock Origin</p>
-</blockquote>
-<h3 id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
-<span id="more"></span>
-<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
-<p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock
-Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
-Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
-Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
-截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
-Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
-<hr>
-<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
-Origin插件</h3>
-<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
-<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
+    <url>/post/d033f67a.html</url>
+    <content><![CDATA[<h4 id="c实现2维多边形均值重心坐标代码可能有冗余未优化代码">c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
 <blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
-store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+<p>关于3维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/4d3c170c.html" title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
+Value Coordinates In 3D代码实现</a></p>
 </blockquote>
-<ol type="1">
-<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
-<img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
-</ol>
-<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
-<ol type="1">
-<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
-Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome://extensions/</a>
-后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p></li>
-<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
-<img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p></li>
-<li><p>在Chrome右上角点击uBlock
-Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
-<img src="http://img.ifish.ink/img/uo4.png"></p></li>
-</ol>
-<hr>
-<h3 id="三测试">三、测试</h3>
-<ul>
-<li><p>未启用uBlock
-Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p></li>
-<li><p>启用uBlock
-Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p></li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p></li>
-</ul>
-<hr>
-<h3 id="四参考">四、参考：</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
-维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<span id="more"></span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 2D
+/// @details    
+/// @param[in]  p,postiveity
+/// @return     
+/// @attention  
+*/</span>
+VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
+        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
+        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
+        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <hr>
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>图形学</category>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>神器</tag>
+        <tag>算法实现</tag>
+        <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(m\)</span>个样本点为<span class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span class="math inline">\(m\)</span>个样本嵌入到低维空间<span class="math inline">\(\mathbb{R}^{d}\)</span>，<span class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding">
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列元素为<span class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span class="math inline">\(k\)</span>个非零特征值，分别为<span class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span class="math inline">\({ V}\)</span>的第<span class="math inline">\(i\)</span>列是特征值<span class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br>
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span class="math inline">\(V_*\)</span>。即<span class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding">
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1662,73 +1661,71 @@ out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
     <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin</p>
 </blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(m\)</span>个样本点为<span class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span class="math inline">\(m\)</span>个样本嵌入到低维空间<span class="math inline">\(\mathbb{R}^{d}\)</span>，<span class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
+<h3 id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
 <span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列元素为<span class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span class="math inline">\(k\)</span>个非零特征值，分别为<span class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span class="math inline">\({ V}\)</span>的第<span class="math inline">\(i\)</span>列是特征值<span class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br>
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span class="math inline">\(V_*\)</span>。即<span class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
+<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
+<p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock
+Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
+Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
+Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
+截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
+Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr>
+<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
+Origin插件</h3>
+<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
+<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+<blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
+store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol type="1">
+<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
+<img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
+</ol>
+<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
+<ol type="1">
+<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
+Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome://extensions/</a>
+后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p></li>
+<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
+<img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p></li>
+<li><p>在Chrome右上角点击uBlock
+Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
+<img src="http://img.ifish.ink/img/uo4.png"></p></li>
+</ol>
+<hr>
+<h3 id="三测试">三、测试</h3>
+<ul>
+<li><p>未启用uBlock
+Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p></li>
+<li><p>启用uBlock
+Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p></li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p></li>
+</ul>
+<hr>
+<h3 id="四参考">四、参考：</h3>
+<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
+维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>数学学习</category>
-        <category>算法</category>
+        <category>生活</category>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>算法</tag>
+        <tag>神器</tag>
       </tags>
   </entry>
   <entry>
@@ -1877,6 +1874,44 @@ Hormann教授的邀请和邓重阳教授的支持让我有了这次国外学习�
         <tag>随笔</tag>
         <tag>游记</tag>
         <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git clone 速度慢？</title>
+    <url>/post/ec4bf4f5.html</url>
+    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
+<h2 id="方法1">方法1：</h2>
+<h3 id="查询ip地址">查询IP地址</h3>
+<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com" title="https://www.ipaddress.com">https://www.ipaddress.com</a>
+分别输入如下网址查看对应的IP地址</p>
+<span id="more"></span>
+<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
+或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
+<h3 id="修改hosts文件">修改hosts文件</h3>
+<p>得到对应的IP后，在hosts文件后追加如下两行
+Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
+Linux用户：<code>sudo gedit /etc/hosts</code>
+（xxx替换为你得到的对应的IP地址）</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
+xxx.xxx.xxx.xxx github.com</code></pre>
+<h3 id="刷新dns">刷新DNS</h3>
+<p>Windows用户：<code>ipconfig /flushdns</code>
+Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
+<h2 id="方法2">方法2：</h2>
+<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>git</tag>
+        <tag>github</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
 </search>
