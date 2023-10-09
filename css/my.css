@@ -319,4 +319,5 @@
 .MathJax_Display {
     overflow-x: auto;
     white-space: nowrap;
+    max-width: 100%;
 }
