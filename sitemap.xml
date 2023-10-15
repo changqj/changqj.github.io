@@ -458,7 +458,21 @@
   </url>
   
   <url>
-    <loc>https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</loc>
+    <loc>https://www.ifish.ink/tags/wordpress/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ifish.ink/tags/SEO/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ifish.ink/tags/sitemap/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -486,21 +500,7 @@
   </url>
   
   <url>
-    <loc>https://www.ifish.ink/tags/wordpress/</loc>
-    <lastmod>2023-10-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ifish.ink/tags/SEO/</loc>
-    <lastmod>2023-10-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ifish.ink/tags/sitemap/</loc>
+    <loc>https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -535,14 +535,14 @@
   </url>
   
   <url>
-    <loc>https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/</loc>
+    <loc>https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
