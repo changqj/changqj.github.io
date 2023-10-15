@@ -438,7 +438,7 @@
     <link rel="stylesheet" href="/css/postcard.css">
     <link rel="stylesheet" href="/">
     <style>
-        .pagination {
+        .pagination, .typetitle {
             text-align: center;
             /* display: flex; */
             /* justify-content: center; */
@@ -446,7 +446,7 @@
 
         }
         .inout {
-            text-align: center;
+            text-align: left;
         }
 
         .btn-prev, .btn-next, .sent, .received {
@@ -528,6 +528,8 @@
         <div class="container">
             
             
+
+            <h3 class="typetitle"></h3>
             
             <!-- Add a container for the page content -->
             <div id="myContentContainer" class="postcard-wrapper row">
@@ -571,6 +573,11 @@
         var contentContainerIdxPage = document.querySelector('.page-index');
         contentContainerIdxPage.textContent = "第"+currentPage+"/"+totalPages+"页";
 
+        contentContainerIdxPage = document.querySelector('.typetitle');
+        if(type==0) contentContainerIdxPage.textContent = "收件箱";
+        if(type==1) contentContainerIdxPage.textContent = "寄件箱";
+
+
 
         // Function to update the page content
         function updatePageContent() {
@@ -582,10 +589,10 @@
             var cardElement0 = document.createElement('div');
             cardElement0.className = 'inout';
             if (type==0) {   
-                cardElement0.innerHTML = `<p><a href="./sent" class="sent" title="去寄件箱"><i class="fa-solid fa-download"></i> 收件箱</a></p>`;
+                cardElement0.innerHTML = `<p><a href="./sent" class="sent" title="去寄件箱"><i class="fa-solid fa-upload"></i> 寄件箱</a></p>`;
             }
             if (type == 1) {
-                cardElement0.innerHTML = `<p><a href="./" class="received" title="去收件箱"><i class="fa-solid fa-upload"></i> 寄件箱</a></p>`;
+                cardElement0.innerHTML = `<p><a href="./" class="received" title="去收件箱"><i class="fa-solid fa-download"></i> 收件箱</a></p>`;
             }
             contentContainer.appendChild(cardElement0);
             for (var i = startIdx; i < endIdx; i++) {
