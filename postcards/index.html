@@ -448,7 +448,7 @@
             text-align: left;
         }
 
-        .btn-prev, .btn-next, .sent, .received {
+        .btn-prev, .btn-next, .sent, .received, .btn-first, .btn-last {
             display: inline-block;
             margin: 10px; /* 根据需要调整按钮之间的间距 */
             padding: 10px 10px; /* 根据需要调整按钮的内边距 */
@@ -460,7 +460,7 @@
             transition: background-color 0.3s; /* 添加按钮鼠标悬停时的过渡效果 */
         }
 
-        .btn-prev:hover, .btn-next:hover, .sent:hover, .received:hover {
+        .btn-prev:hover, .btn-next:hover, .sent:hover, .received:hover, .btn-first:hover, .btn-last:hover {
             background-color: #4a92de; /* 按钮悬停时的背景颜色 */
         }
     </style>
@@ -538,9 +538,11 @@
             
             <br>
             <div class="pagination">
-                <a href="" class="btn-prev"><i class="fa-solid fa-circle-arrow-left"></i> 上一页</a>
+                <a href="" class="btn-first"><i class="fa-solid fa-angles-left"></i> 首页</a>
+                <a href="" class="btn-prev"><i class="fa-solid fa-angle-left"></i> 上一页</a>
                 <a class="page-index"></a>
-                <a href="" class="btn-next">下一页 <i class="fa-solid fa-circle-arrow-right"></i></a>
+                <a href="" class="btn-next">下一页 <i class="fa-solid fa-angle-right"></i></a>
+                <a href="" class="btn-last">尾页 <i class="fa-solid fa-angles-right"></i></a>
             </div>
         </div>
     </main>
@@ -558,12 +560,12 @@
 
 
         if(currentPage==1){
-            var contentContainerBtn = document.getElementsByClassName('btn-prev');
-            contentContainerBtn[0].style.visibility = 'hidden';
+            document.getElementsByClassName('btn-prev')[0].style.visibility = 'hidden';
+            document.getElementsByClassName('btn-first')[0].style.visibility = 'hidden';
         }
         if(currentPage==totalPages){
-            var contentContainerBtn = document.getElementsByClassName('btn-next');
-            contentContainerBtn[0].style.visibility = 'hidden';
+            document.getElementsByClassName('btn-next')[0].style.visibility = 'hidden';
+            document.getElementsByClassName('btn-last')[0].style.visibility = 'hidden';
         }
 
         var contentContainerIdxPage = document.querySelector('.page-index');
@@ -616,13 +618,23 @@
 
         // Function to handle button clicks
         document.addEventListener("click", function(e) {
-            if ((e.target.classList.contains("btn-prev") || e.target.classList.contains("fa-circle-arrow-left")) && currentPage > 1) {
+            if ((e.target.classList.contains("btn-prev") || e.target.classList.contains("fa-angle-left")) && currentPage > 1) {
                 currentPage--;
                 updatePageContent(); // Update the page content for the new currentPage
                 updateURLParameter('page', currentPage); // 更新 URL 参数
             }
-            if ((e.target.classList.contains("btn-next") || e.target.classList.contains("fa-circle-arrow-right")) && currentPage < totalPages) {
+            if ((e.target.classList.contains("btn-next") || e.target.classList.contains("fa-angle-right")) && currentPage < totalPages) {
                 currentPage++;
+                updatePageContent(); // Update the page content for the new currentPage
+                updateURLParameter('page', currentPage); // 更新 URL 参数
+            }
+            if ((e.target.classList.contains("btn-first") || e.target.classList.contains("fa-angles-left")) && currentPage > 1) {
+                currentPage = 1;
+                updatePageContent(); // Update the page content for the new currentPage
+                updateURLParameter('page', currentPage); // 更新 URL 参数
+            }
+            if ((e.target.classList.contains("btn-last") || e.target.classList.contains("fa-angles-right")) && currentPage < totalPages) {
+                currentPage = totalPages;
                 updatePageContent(); // Update the page content for the new currentPage
                 updateURLParameter('page', currentPage); // 更新 URL 参数
             }
