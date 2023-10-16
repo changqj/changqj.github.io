@@ -48,7 +48,10 @@
 .flag-CD{background-position:-208px -42px}
 .flag-CF{background-position:-234px -42px}
 .flag-CG{background-position:-260px -42px}
-.flag-CH{background-position:-286px -42px}
+.flag-CH{
+    width: 11px !important;
+    background-position:-286px -42px;
+}
 .flag-CI{background-position:-312px -42px}
 .flag-CK{background-position:-338px -42px}
 .flag-CL{background-position:-364px -42px}
