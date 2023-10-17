@@ -133,8 +133,8 @@ grid on<span class="token punctuation">,</span>hold on
         <category>数学学习</category>
       </categories>
       <tags>
-        <tag>MATLAB代码</tag>
         <tag>原创</tag>
+        <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
       </tags>
   </entry>
@@ -206,8 +206,8 @@ end</code></pre>
         <category>数学学习</category>
       </categories>
       <tags>
-        <tag>MATLAB代码</tag>
         <tag>原创</tag>
+        <tag>MATLAB代码</tag>
       </tags>
   </entry>
   <entry>
@@ -242,6 +242,385 @@ fork了别人的代码 本地更新主分支代码</h3>
         <tag>原创</tag>
         <tag>git</tag>
         <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction to Data Science (0)</title>
+    <url>/post/ids0.html</url>
+    <content><![CDATA[<blockquote>
+<p>在这个系列开始之前先附上几种常用的概率分布律、期望和方差。</p>
+<p>参考书籍：《概率论与数理统计》 浙大第四版</p>
+</blockquote>
+<h3 id="离散型随机变量">离散型随机变量</h3>
+<p>随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为<strong>离散型随机变量</strong>。</p>
+<h4 id="分布">(0-1)分布</h4>
+<p>(0-1)分布的随机变量<span class="math inline">\(X\)</span>只可能取0与1，如果概率满足 <span class="math display">\[
+P_k=P\{X=k\}=p^k(1-p)^{1-k},\quad k=0,1\qquad (0&lt;p&lt;1),
+\]</span> 称<span class="math inline">\(X\)</span>服从参数为<span class="math inline">\(p\)</span>的(0-1)分布。</p>
+<ul>
+<li><p>分布律：<span class="math inline">\(P\{X=k\}=p^k(1-p)^{1-k},\quad
+k=0,1\qquad (0&lt;p&lt;1)\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(X\)</span></th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(P_k\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1-p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>期望：<span class="math inline">\(\text{E}[X]=p\)</span></p></li>
+<li><p>方差：<span class="math inline">\(\text{V}[X]=p(1-p)\)</span></p></li>
+</ul>
+<hr>
+<h4 id="几何分布">几何分布</h4>
+<p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现一次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(p\)</span>的几何分布。</p>
+<ul>
+<li>分布律：<span class="math inline">\(P\{X=k\}=(1-p)^{k-1}p,\quad
+k=1,2,\dots\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=\frac{1}{p}\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\frac{1-p}{p^2}\)</span></li>
+</ul>
+<hr>
+<h4 id="伯努利分布二项分布">伯努利分布/二项分布</h4>
+<p>设试验<span class="math inline">\(E\)</span>只有两个可能的结果：<span class="math inline">\(A\)</span>与<span class="math inline">\(\bar{A}\)</span>，则称<span class="math inline">\(E\)</span>为伯努利试验。设<span class="math inline">\(P(A)=p~(0&lt;p&lt;1)\)</span>。将<span class="math inline">\(E\)</span>独立重复地进行<span class="math inline">\(n\)</span>次，则称这一串重复的独立试验为<span class="math inline">\(n\)</span>重伯努利试验。</p>
+<ul>
+<li>分布律：<span class="math inline">\(P\{X=k\}=\binom{n}{k}p^k(1-p)^{n-k},\quad
+k=0,1,\dots,n\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=np\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=np(1-p)\)</span></li>
+</ul>
+<hr>
+<h4 id="巴斯卡分布负二项分布">巴斯卡分布（负二项分布）</h4>
+<p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现<span class="math inline">\(r\)</span>次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(r,p\)</span>的巴斯卡（负二项）分布。</p>
+<ul>
+<li>分布律：<span class="math inline">\(P\{X=k\}=\binom{k-1}{r-1}p^r(1-p)^{k-r},\quad
+k=r,r+1,\dots\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=\frac{r}{p}\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\frac{r(1-p)}{p^2}\)</span></li>
+</ul>
+<hr>
+<h4 id="泊松分布">泊松分布</h4>
+<p>设随机变量<span class="math inline">\(X\)</span>所有可能取的值为<span class="math inline">\(0,1,2,\dots\)</span>，取各个值的概率为 <span class="math display">\[
+P\{X=k\}=\frac{\lambda^ke^{-\lambda}}{k!},\quad \lambda&gt;0,\quad
+k=0,1,2,\dots
+\]</span> 称<span class="math inline">\(X\)</span>是服从<span class="math inline">\(\lambda\)</span>的泊松分布。特别地， <span class="math display">\[\sum_{k=0}^\infty
+P\{X=k\}=\sum_{k=0}^\infty\frac{\lambda^ke^{-\lambda}}{k!}=e^{-\lambda}\sum_{k=0}^\infty\frac{\lambda^k}{k!}=e^{-\lambda}e^\lambda=1.\]</span></p>
+<ul>
+<li>分布律：<span class="math inline">\(P\{X=k\}=\frac{\lambda^ke^{-\lambda}}{k!},\quad
+k=0,1,\dots\)</span></li>
+<li>期望：<span class="math inline">\(\text{E}[X]=\lambda\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\lambda\)</span></li>
+</ul>
+<blockquote>
+<p>当伯努利分布(二项分布)的试验次数<span class="math inline">\(n\)</span>足够多，其分布近似于以<span class="math inline">\(\lambda=np\)</span>为参数的泊松分布，即<strong>泊松定理</strong>：设<span class="math inline">\(\lambda&gt;0\)</span>是常数，<span class="math inline">\(n\)</span>是任意正整数，设<span class="math inline">\(\lambda=np\)</span>，则对非负整数<span class="math inline">\(k\le n\)</span>，有 <span class="math display">\[\lim_{n\to\infty}\binom{n}{k}p^k(1-p)^{n-k}=\frac{\lambda^ke^{-\lambda}}{k!}\]</span></p>
+</blockquote>
+<hr>
+<h3 id="连续型随机变量">连续型随机变量</h3>
+<p>如果对于随机变量<span class="math inline">\(X\)</span>的分布函数<span class="math inline">\(F(x)\)</span>，存在非负函数<span class="math inline">\(f(x)\)</span>，使得对于任意实数<span class="math inline">\(x\)</span>，有 <span class="math display">\[F(x)=P\{X\le x\}=\int_{-\infty}^x f(t)dt\]</span>
+则称<span class="math inline">\(X\)</span>为<strong>连续型随机变量</strong>，其中<span class="math inline">\(f(x)\)</span>称为<span class="math inline">\(X\)</span>的<strong>概率密度函数</strong>。</p>
+<h4 id="均匀分布">均匀分布</h4>
+<p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
+f(x) =
+\begin{cases}
+  \frac{1}{b-a}, &amp; a&lt;x&lt;b, \\
+  0, &amp; \text{else}
+\end{cases}
+\end{equation}\]</span> 则称<span class="math inline">\(X\)</span>在区间<span class="math inline">\((a,b)\)</span>上的服从均匀分布。</p>
+<ul>
+<li>期望：<span class="math inline">\(\text{E}[X]=\frac{a+b}{2}\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\frac{(b-a)^2}{12}\)</span></li>
+</ul>
+<hr>
+<h4 id="指数分布">指数分布</h4>
+<p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
+f(x) =
+\begin{cases}
+  \frac{1}{\theta}e^{\frac{-x}{\theta}}, &amp; x&gt;0, \\
+  0, &amp; \text{else}
+\end{cases}
+\end{equation}\]</span> 则称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(\theta\)</span>的指数分布。</p>
+<ul>
+<li>期望：<span class="math inline">\(\text{E}[X]=\theta\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\theta^2\)</span></li>
+</ul>
+<hr>
+<h4 id="正态高斯分布">正态（高斯）分布</h4>
+<p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
+f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
+-\infty&lt;x&lt;\infty,
+\end{equation}\]</span> 其中<span class="math inline">\(\mu,\sigma~(\sigma&gt;0)\)</span>为常数，则称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(\mu,\sigma\)</span>的正态分布（高斯分布）。</p>
+<ul>
+<li>期望：<span class="math inline">\(\text{E}[X]=\mu\)</span></li>
+<li>方差：<span class="math inline">\(\text{V}[X]=\sigma^2\)</span></li>
+</ul>
+<blockquote>
+<p>特别地，当<span class="math inline">\(\mu=0\)</span>，<span class="math inline">\(\sigma=1\)</span>时称随机变量<span class="math inline">\(X\)</span>服从<strong>标准正态分布</strong>。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction to Data Science (1)</title>
+    <url>/post/ids1.html</url>
+    <content><![CDATA[<blockquote>
+<p>本节将简要介绍参数估计，主要讨论矩估计(method of
+moments)和极大似然估计(maximum likelihood estimation)。</p>
+<p>参考书籍：《概率论与数理统计》 浙大第四版</p>
+</blockquote>
+<h4 id="矩估计">矩估计</h4>
+<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，其中参数<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>为待估计参数。总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩为 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\sum_{x\in
+R_X}x^mp(x;\theta_1,\theta_2,\dots,\theta_k),\]</span> 其中<span class="math inline">\(R_X\)</span>是<span class="math inline">\(X\)</span>可能的取值范围。如果随机变量<span class="math inline">\(X\)</span>是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>的连续型随机变量，假设总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩是 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\int_{-\infty}^{\infty}x^mf(x;\theta_1,\theta_2,\dots,\theta_k)dx.\]</span>
+如果<span class="math inline">\(X\)</span>的前<span class="math inline">\(k\)</span>阶矩存在。由于样本矩<span class="math inline">\(A_m=\frac{1}{n}\sum_{i=1}^nX_i^m\)</span>依概率收敛于相应的总体矩<span class="math inline">\(\mu_m\)</span>。用样本矩作为相应的总体矩的估计量。对于<span class="math inline">\(m=1,2,\dots,k\)</span>，可以建立如下方程组： <span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\mu_1(\theta_1,\dots,\theta_k)=A_1,\\
+\mu_2(\theta_1,\dots,\theta_k)=A_2,\\
+\vdots\\
+\mu_k(\theta_1,\dots,\theta_k)=A_k
+\end{array}
+\right.
+\end{equation*}\]</span> 通过求解出<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>。这样的估计量被称为<strong>矩估计量</strong>。</p>
+<hr>
+<h4 id="极大似然估计">极大似然估计</h4>
+<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，则<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>的联合分布律为 <span class="math display">\[\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k),\]</span>
+假如已知样本<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>对应的样本值是<span class="math inline">\(x_1,x_2,\dots,x_n\)</span>，则事件<span class="math inline">\(\{X_i=x_i,~i=1,\dots,n\}\)</span>的概率为 <span class="math display">\[P\{X_i=x_i,~i=1,\dots,n\}=\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k)=L(\theta_1,\dots,\theta_k)，\]</span>
+由于该事件为观测值对应的事件，其已经发生，表明这个概率值较大，给予该原则最大化函数<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>，该函数被称为样本的<strong>似然函数</strong>。则极大似然估计值为
+<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k).\]</span>
+对于连续型随机变量，假设其对应的概率密度函数为是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>，同理有极大似然估计量为
+<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^nf(x_i;\theta_1,\dots,\theta_k).\]</span>
+对于该优化问题的求解，当<span class="math inline">\(p(x_i;\theta_1,\dots,\theta_k)\)</span>或<span class="math inline">\(f(x_i;\theta_1,\dots,\theta_k)\)</span>关于<span class="math inline">\(\theta_j\)</span>可微，则极大似然估计值可从方程组
+<span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\frac{\partial}{\partial\theta_1}L(\theta_1,\dots,\theta_k)=0,\\
+\frac{\partial}{\partial\theta_2}L(\theta_1,\dots,\theta_k)=0,\\
+\vdots\\
+\frac{\partial}{\partial\theta_k}L(\theta_1,\dots,\theta_k)=0
+\end{array}
+\right.
+\end{equation*}\]</span> 求得。由于<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>与<span class="math inline">\(\log
+L(\theta_1,\dots,\theta_k)\)</span>在同一处取得极值，因此极大似然估计值亦可通过求解下面的<strong>对数似然方程组</strong>获得。
+<span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\frac{\partial}{\partial\theta_1}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+p(x_1;\theta_1,\dots,\theta_k)=0,\\
+\frac{\partial}{\partial\theta_2}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+p(x_1;\theta_1,\dots,\theta_k)=0,\\
+\vdots\\
+\frac{\partial}{\partial\theta_k}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+p(x_1;\theta_1,\dots,\theta_k)=0
+\end{array}
+\right.\qquad \text{（离散型随机变量）}
+\end{equation*}\]</span> 或 <span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\frac{\partial}{\partial\theta_1}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+f(x_1;\theta_1,\dots,\theta_k)=0,\\
+\frac{\partial}{\partial\theta_2}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+f(x_1;\theta_1,\dots,\theta_k)=0,\\
+\vdots\\
+\frac{\partial}{\partial\theta_k}\log
+L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
+f(x_1;\theta_1,\dots,\theta_k)=0
+\end{array}
+\right.\qquad \text{（连续型随机变量）}
+\end{equation*}\]</span></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction to Data Science (2)</title>
+    <url>/post/ids2.html</url>
+    <content><![CDATA[<blockquote>
+<p>本节介绍无偏估计、平均二次误差以及Cramér-Rao下界。</p>
+<p>参考书籍：<em>Statistical Inference</em>, Casella and Berger,
+Duxbury, 2th edition.</p>
+</blockquote>
+<h4 id="无偏性unbiasedness">无偏性(Unbiasedness)</h4>
+<p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>是无偏的，即： <span class="math display">\[\text{E}[\hat{\theta}(X)]=\theta_0,\]</span>
+其中<span class="math inline">\(\theta_0\)</span>是真实参数。将<span class="math inline">\(\text{Bias}_{\theta_0}[\hat{\theta}(X)]=\text{E}[\hat{\theta}(X)]-\theta_0\)</span>称之为偏差。</p>
+<ul>
+<li>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，其极大似然估计和矩估计均为<span class="math inline">\(\hat{\theta}(X)=\frac{1}{n}\sum\limits_{i=1}^nX_i=\bar{X}\)</span>，是无偏估计量。
+<span class="math display">\[\text{E}[\hat{\theta}(X)]=\text{E}\left[\frac{1}{n}\sum_{i=1}^nX_i\right]=\frac{1}{n}\text{E}\left[\sum_{i=1}^nX_i\right]=\frac{1}{n}\sum_{i=1}^n\text{E}\left[X_i\right]=\frac{1}{n}
+\cdot n\cdot\theta_0=\theta_0.\]</span></li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(\text{E}[a\cdot
+X]=a\cdot\text{E}[X]\)</span></p>
+<p><span class="math inline">\(\text{E}[X+Y]=\text{E}[X]+\text{E}[Y]\)</span></p>
+<p><span class="math inline">\(\text{E}[X]=\int_{-\infty}^{\infty}x\cdot
+f(x)dx\)</span></p>
+<p><span class="math inline">\(\text{V}[X]=\text{E}[(X-\text{E}[X])^2]=\text{E}[X^2]-\text{E}^2[X]\)</span></p>
+</blockquote>
+<hr>
+<h4 id="平均二次误差mean-squared-error">平均二次误差(Mean Squared
+Error)</h4>
+<p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>的评估二次误差是关于<span class="math inline">\(\theta_0\)</span>的函数，被定义为：<span class="math inline">\(\text{E}_{\theta_0}[(\hat{\theta}(X)-\theta_0)^2]\)</span>。</p>
+<ul>
+<li>🌰例2. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，参数估计量<span class="math inline">\(\hat{\theta}(X)=\bar{X}\)</span>，该参数估计量的平均二次误差为
+<span class="math display">\[\text{MSE}=\text{E}[(\hat{\theta}(X)-\theta_0)^2]=\text{E}[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])]=\text{V}[\hat{\theta}(X)]=\frac{1}{n^2}\sum_{i=1}^n\text{V}[X_i]=\frac{1}{n^2}\cdot
+n\cdot \theta_0(1-\theta_0)=\frac{\theta_0(1-\theta_0)}{n}\]</span>
+注：当<span class="math inline">\(n\to\infty\)</span>时，平均二次误差<span class="math inline">\(\text{MSE}\)</span>趋于0，即估计量趋近于真实值<span class="math inline">\(\theta_0\)</span>。</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(\text{V}[a\cdot X]=a^2\cdot
+\text{V}[X]\)</span></p>
+<p><span class="math inline">\(\text{V}[X+Y]=\text{V}[X]+\text{V}[Y]+2\cdot\text{Cov}[X,Y]\)</span></p>
+</blockquote>
+<p>平均二次误差可以被拆分成两部分： <span class="math display">\[\begin{align}
+\text{MSE}&amp;=\text{E}[(\hat{\theta}(X)-\theta_0)^2]\\
+&amp;=\text{E}\left[\left(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)]+\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\right]\\
+&amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2+2(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])(\text{E}[\hat{\theta}(X)]-\theta_0)+(\text{E}[\hat{\theta}(X)]-\theta_0)^2\right]\\
+&amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2\right]+2(\text{E}[\hat{\theta}(X)]-\theta_0)\cdot\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])\right]+\left(\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\\
+&amp;=\text{V}[\hat{\theta}(X)]+\text{Bisa}_{\theta_0}^2[\hat{\theta}(X)]
+\end{align}\]</span>
+即平均二次误差为估计量的方差与与偏差的平方之和。</p>
+<hr>
+<h4 id="cramér-rao下界">Cramér-Rao下界</h4>
+<p>如果<span class="math inline">\(X_1,\dots,X_n\)</span>是互相独立，服从密度函数为<span class="math inline">\(f(x;\theta)\)</span>的分布。则任何无偏估计量<span class="math inline">\(\hat{\theta}\)</span>的方差满足： <span class="math display">\[\text{V}[\hat{\theta}(X)]\ge\frac{1}{n\cdot
+I_{X_1}(\theta)}\]</span> 其中<span class="math inline">\(I_{X_1}(\theta)\)</span>被称为Fisher信息，定义为：
+<span class="math display">\[\begin{align}
+I_{X_1}(\theta)&amp;=\text{E}\left[\left(\frac{\partial}{\partial\theta}l_{X_1}(x;\theta)\right)^2\right]:=\text{E}[l'_{X_1}(\theta)^2]\\
+&amp;=-\text{E}\left[\frac{\partial^2}{\partial\theta^2}l_{X_1}(x;\theta)\right]:=-\text{E}[l''_{X_1}(\theta)].
+\end{align}\]</span> 其中<span class="math inline">\(l_{X_1}(\theta)=\log
+f_{X_1}(x;\theta)\)</span></p>
+<ul>
+<li><em>证明</em>：令<span class="math inline">\(Y=\hat{\theta}(X)\)</span>，<span class="math inline">\(Z=l'_X(\theta)\)</span>，由于<span class="math inline">\(Y,Z\)</span>的相关系数介于<span class="math inline">\([-1,1]\)</span>，即 <span class="math display">\[-1\le\frac{\text{Cov}[Y,Z]}{\sqrt{\text{V}[Y]\cdot\text{V}[Z]}}\le
+1,\]</span> 由此可得 <span class="math display">\[\begin{equation}
+\text{V}[Y]=\text{V}[\hat{\theta}(X)]\ge\frac{\text{Cov}^2[Y,Z]}{\text{V}[Z]},
+\end{equation}\]</span> 观察上式，现需替换分子<span class="math inline">\(\text{Cov}^2[Y,Z]\)</span>和分母<span class="math inline">\(\text{V}[Z]\)</span>，首先<span class="math inline">\(\text{V}[Z]\)</span>可以被写作 <span class="math display">\[\begin{align}
+\text{V}[Z]&amp;=\text{V}[l'_X(\theta)]=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log
+f_X(x;\theta)\right]}_{对数似然函数}=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^nf_{X_i}(x;\theta)\right]}_{\log(ab)=\log
+a+\log b}\\
+&amp;=\underbrace{\text{V}\left[\sum_{i=1}^n\frac{\partial}{\partial\theta}\log
+f_{X_i}(x;\theta)\right]}_{X\text{是相互独立的}}=\sum_{i=1}^n\text{V}\left[\frac{\partial}{\partial\theta}\log
+f_{X_i}(x;\theta)\right]\\
+&amp;=n\cdot\text{V}[l'_{X_1}(\theta)]=n\cdot\left\{\text{E}[l'_{X_1}(\theta)^2]-\text{E}^2[l'_{X_1}(\theta)]\right\}
+\end{align}\]</span> 由期望的定义有 <span class="math display">\[\begin{align}
+&amp;\text{E}[l'_{X_1}(\theta)]=\int_{-\infty}^{\infty}l'_{X_1}(\theta)f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}\frac{\partial}{\partial\theta}\log
+f_{X_1}(x;\theta)\cdot f_{X_1}(x;\theta)dx\\
+=&amp;\int_{-\infty}^{\infty}\frac{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}{f_{X_1}(x;\theta)}f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}dx=\frac{\partial}{\partial\theta}\underbrace{\int_{-\infty}^{\infty}f_{X_1}(x;\theta)dx}_{\text{概率密度函数积分为1}}=0,
+\end{align}\]</span> 即<span class="math inline">\(\text{V}[Z]=n\cdot\text{E}[l'_{X_1}(\theta)^2]=n\cdot
+I_{X_1}(\theta)\)</span>，根据协方差定义 <span class="math display">\[\begin{align}
+\text{Cov}[Y,Z]&amp;=\text{Cov}[\hat{\theta}(X),l'_X(\theta)]=\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot\text{E}[l'_X(\theta)]\\
+&amp;=\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot
+n\cdot\underbrace{\text{E}[l'_{X_1}(\theta)]}_{0}=\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)],
+\end{align}\]</span> 再由定义 <span class="math display">\[\begin{align}
+\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)]=\int_{-\infty}^{\infty}\hat{\theta}(X)\frac{\frac{\partial}{\partial\theta}f_X(x;\theta)}{f_X(x;\theta)}f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}\hat{\theta}\cdot
+f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\text{E}[\hat{\theta}(X)]=1,
+\end{align}\]</span> 即<span class="math inline">\(\text{Cov}[Y,Z]=1\)</span>，综上有<span class="math inline">\(\text{V}[\hat{\theta}(X)]\ge\left(n\cdot
+I_{X_i}(\theta)\right)^{-1}\)</span>，得证。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenSubdiv + Visual Studio环境配置</title>
+    <url>/post/a507e481.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
+</blockquote>
+<blockquote>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
+<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
+） （先前条件：<strong>win7系统</strong> 已安装<strong><a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
+Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
+</blockquote>
+<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
+<p>需要的资源文件有<a href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
+​&nbsp;<strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
+<img src="http://img.ifish.ink/figure/1.png" alt="fig1"> ​
+&nbsp;<strong>cmake的安装</strong>：可直接从<a href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
+<img src="http://img.ifish.ink/figure/2.png" alt="fig2"></p>
+<ul>
+<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
+<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
+<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
+user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
+CMake to the system PATH for the current user</em>”）</p></li>
+<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
+如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
+</ul>
+<p><img src="http://img.ifish.ink/figure/2.png" alt="fig3"> <img src="http://img.ifish.ink/figure/4.png" alt="fig4"> ​
+<strong>glfw</strong>：GLfW ：<a href="http://www.glfw.org/">http://www.glfw.org/</a>
+如图所示可以下载压缩文件，或者用git克隆也可。 <img src="http://img.ifish.ink/figure/5.png" alt="fig5"> <img src="http://img.ifish.ink/figure/6.png" alt="fig6"></p>
+<hr>
+<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
+<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
+GUI选择源代码目录和构建路径：</h4>
+<p><img src="http://img.ifish.ink/figure/7.png" alt="fig7"> <img src="http://img.ifish.ink/figure/8.png" alt="fig8"></p>
+<h4 id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
+<p><img src="http://img.ifish.ink/figure/9.png" alt="fig9"> <img src="http://img.ifish.ink/figure/10.png" alt="fig10"></p>
+<h4 id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
+done’即可</h4>
+<p><img src="http://img.ifish.ink/figure/11.png" alt="fig11"> <img src="http://img.ifish.ink/figure/12.png" alt="fig12"></p>
+<h4 id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
+done完成</h4>
+<figure>
+<img src="http://img.ifish.ink/figure/13.png" alt="fig13">
+<figcaption aria-hidden="true">fig13</figcaption>
+</figure>
+<hr>
+<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
+<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
+<pre class="language-none"><code class="language-none">"d:/Cmake3.8.0/bin/cmake.exe" -G "Visual Studio 14 Win64" -DGLEW_LOCATION=[d:/glew/lib/Release/x64] -DGLEW_INCLUDE_DIR=[d:\glew\include\] -DGLEW_LIBRARY=[d:\glew\lib\] -DGLFW_LOCATION=[d:/glfw/bd/src/Release] -DNO_PTEX=1 -DNO_DOC=1 -DNO_OMP=1 -DNO_TBB=1 -DNO_CUDA=1 -DNO_OPENCL=1 -DNO_CLEW=1</code></pre>
+<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
+<img src="http://img.ifish.ink/figure/14.png" alt="fig14">
+按下回车键： <img src="http://img.ifish.ink/figure/15.png" alt="fig15"> 完成！！！</p>
+<hr>
+<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
+<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
+Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
+点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img src="http://img.ifish.ink/figure/17.png" alt="fig17">
+生成过程需要一点时间，请耐心等待…… <img src="http://img.ifish.ink/figure/18.png" alt="fig18"> 生成成功 <img src="http://img.ifish.ink/figure/19.png" alt="fig19">
+测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
+<img src="http://img.ifish.ink/figure/20.png" alt="fig20">
+运行后如图所示： <img src="http://img.ifish.ink/figure/21.png" alt="fig21"> 其余例子也可同理运行。 谢谢阅读！！！</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -333,31 +712,6 @@ Thanks. (Applause)</p>
       </tags>
   </entry>
   <entry>
-    <title>WordPress站点地图自动更新</title>
-    <url>/post/943451b1.html</url>
-    <content><![CDATA[<blockquote>
-<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
-</blockquote>
-<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长">
-<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png" alt="google">
-现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
-<img src="http://img.ifish.ink/img/2.png" alt="google">
-在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>SEO</tag>
-        <tag>sitemap</tag>
-        <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
     <url>/post/563c2d.html</url>
     <content><![CDATA[<blockquote>
@@ -396,6 +750,31 @@ unavailable for scheduled maintenance. Check back in a minute.”</p>
       <tags>
         <tag>原创</tag>
         <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress站点地图自动更新</title>
+    <url>/post/943451b1.html</url>
+    <content><![CDATA[<blockquote>
+<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
+</blockquote>
+<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
+<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长">
+<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png" alt="google">
+现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
+<img src="http://img.ifish.ink/img/2.png" alt="google">
+在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>wordpress</tag>
+        <tag>SEO</tag>
+        <tag>sitemap</tag>
       </tags>
   </entry>
   <entry>
@@ -455,8 +834,8 @@ to download and Install laTex (TeXstudio+texlive2017) full</a></p>
         <category>教程</category>
       </categories>
       <tags>
-        <tag>摘</tag>
         <tag>环境配置</tag>
+        <tag>摘</tag>
       </tags>
   </entry>
   <entry>
@@ -674,8 +1053,8 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
         <category>数学学习</category>
       </categories>
       <tags>
-        <tag>MATLAB代码</tag>
         <tag>原创</tag>
+        <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
       </tags>
   </entry>
@@ -821,9 +1200,65 @@ out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
         <category>数学学习</category>
       </categories>
       <tags>
+        <tag>原创</tag>
         <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
+    <url>/post/d033f67a.html</url>
+    <content><![CDATA[<h4 id="c实现2维多边形均值重心坐标代码可能有冗余未优化代码">c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
+<blockquote>
+<p>关于3维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/4d3c170c.html" title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
+Value Coordinates In 3D代码实现</a></p>
+</blockquote>
+<span id="more"></span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 2D
+/// @details    
+/// @param[in]  p,postiveity
+/// @return     
+/// @attention  
+*/</span>
+VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
+        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
+        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
+        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>图形学</category>
+      </categories>
+      <tags>
         <tag>原创</tag>
         <tag>算法实现</tag>
+        <tag>C++代码</tag>
       </tags>
   </entry>
   <entry>
@@ -868,7 +1303,7 @@ T}\)</span>，求稀疏解线性方程组： <img src="http://img.ifish.ink/2020
 </ol>
 <h2 id="matlab代码">MATLAB代码</h2>
 <blockquote>
-<p>下面代码仅使用与开网格 建议在桌面端浏览器或大屏移动端查看代码</p>
+<p>下面代码仅适用于开网格 建议在桌面端浏览器或大屏移动端查看代码</p>
 </blockquote>
 <ul>
 <li><p>首先导入模型文件：</p>
@@ -969,306 +1404,11 @@ figure
         <category>图形学</category>
       </categories>
       <tags>
-        <tag>MATLAB代码</tag>
         <tag>原创</tag>
+        <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
         <tag>参数化</tag>
         <tag>均值重心坐标</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
-    <url>/post/d033f67a.html</url>
-    <content><![CDATA[<h4 id="c实现2维多边形均值重心坐标代码可能有冗余未优化代码">c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
-<blockquote>
-<p>关于3维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/4d3c170c.html" title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
-Value Coordinates In 3D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 2D
-/// @details    
-/// @param[in]  p,postiveity
-/// @return     
-/// @attention  
-*/</span>
-VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
-        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
-        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
-        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>图形学</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>算法实现</tag>
-        <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenSubdiv + Visual Studio环境配置</title>
-    <url>/post/a507e481.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
-</blockquote>
-<blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
-<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
-） （先前条件：<strong>win7系统</strong> 已安装<strong><a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
-Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
-</blockquote>
-<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
-<p>需要的资源文件有<a href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
-​&nbsp;<strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
-<img src="http://img.ifish.ink/figure/1.png" alt="fig1"> ​
-&nbsp;<strong>cmake的安装</strong>：可直接从<a href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
-<img src="http://img.ifish.ink/figure/2.png" alt="fig2"></p>
-<ul>
-<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
-<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
-<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
-user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
-CMake to the system PATH for the current user</em>”）</p></li>
-<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
-如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
-</ul>
-<p><img src="http://img.ifish.ink/figure/2.png" alt="fig3"> <img src="http://img.ifish.ink/figure/4.png" alt="fig4"> ​
-<strong>glfw</strong>：GLfW ：<a href="http://www.glfw.org/">http://www.glfw.org/</a>
-如图所示可以下载压缩文件，或者用git克隆也可。 <img src="http://img.ifish.ink/figure/5.png" alt="fig5"> <img src="http://img.ifish.ink/figure/6.png" alt="fig6"></p>
-<hr>
-<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
-<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
-GUI选择源代码目录和构建路径：</h4>
-<p><img src="http://img.ifish.ink/figure/7.png" alt="fig7"> <img src="http://img.ifish.ink/figure/8.png" alt="fig8"></p>
-<h4 id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
-<p><img src="http://img.ifish.ink/figure/9.png" alt="fig9"> <img src="http://img.ifish.ink/figure/10.png" alt="fig10"></p>
-<h4 id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
-done’即可</h4>
-<p><img src="http://img.ifish.ink/figure/11.png" alt="fig11"> <img src="http://img.ifish.ink/figure/12.png" alt="fig12"></p>
-<h4 id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
-done完成</h4>
-<figure>
-<img src="http://img.ifish.ink/figure/13.png" alt="fig13">
-<figcaption aria-hidden="true">fig13</figcaption>
-</figure>
-<hr>
-<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
-<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
-<pre class="language-none"><code class="language-none">"d:/Cmake3.8.0/bin/cmake.exe" -G "Visual Studio 14 Win64" -DGLEW_LOCATION=[d:/glew/lib/Release/x64] -DGLEW_INCLUDE_DIR=[d:\glew\include\] -DGLEW_LIBRARY=[d:\glew\lib\] -DGLFW_LOCATION=[d:/glfw/bd/src/Release] -DNO_PTEX=1 -DNO_DOC=1 -DNO_OMP=1 -DNO_TBB=1 -DNO_CUDA=1 -DNO_OPENCL=1 -DNO_CLEW=1</code></pre>
-<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
-<img src="http://img.ifish.ink/figure/14.png" alt="fig14">
-按下回车键： <img src="http://img.ifish.ink/figure/15.png" alt="fig15"> 完成！！！</p>
-<hr>
-<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
-<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
-Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
-点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img src="http://img.ifish.ink/figure/17.png" alt="fig17">
-生成过程需要一点时间，请耐心等待…… <img src="http://img.ifish.ink/figure/18.png" alt="fig18"> 生成成功 <img src="http://img.ifish.ink/figure/19.png" alt="fig19">
-测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
-<img src="http://img.ifish.ink/figure/20.png" alt="fig20">
-运行后如图所示： <img src="http://img.ifish.ink/figure/21.png" alt="fig21"> 其余例子也可同理运行。 谢谢阅读！！！</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>环境配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(m\)</span>个样本点为<span class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span class="math inline">\(m\)</span>个样本嵌入到低维空间<span class="math inline">\(\mathbb{R}^{d}\)</span>，<span class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列元素为<span class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span class="math inline">\(k\)</span>个非零特征值，分别为<span class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span class="math inline">\({ V}\)</span>的第<span class="math inline">\(i\)</span>列是特征值<span class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br>
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span class="math inline">\(V_*\)</span>。即<span class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding">
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Introduction to Data Science (2)</title>
-    <url>/post/ids2.html</url>
-    <content><![CDATA[<blockquote>
-<p>本节介绍无偏估计、平均二次误差以及Cramér-Rao下界。</p>
-<p>参考书籍：<em>Statistical Inference</em>, Casella and Berger,
-Duxbury, 2th edition.</p>
-</blockquote>
-<h4 id="无偏性unbiasedness">无偏性(Unbiasedness)</h4>
-<p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>是无偏的，即： <span class="math display">\[\text{E}[\hat{\theta}(X)]=\theta_0,\]</span>
-其中<span class="math inline">\(\theta_0\)</span>是真实参数。将<span class="math inline">\(\text{Bias}_{\theta_0}[\hat{\theta}(X)]=\text{E}[\hat{\theta}(X)]-\theta_0\)</span>称之为偏差。</p>
-<ul>
-<li>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，其极大似然估计和矩估计均为<span class="math inline">\(\hat{\theta}(X)=\frac{1}{n}\sum\limits_{i=1}^nX_i=\bar{X}\)</span>，是无偏估计量。
-<span class="math display">\[\text{E}[\hat{\theta}(X)]=\text{E}\left[\frac{1}{n}\sum_{i=1}^nX_i\right]=\frac{1}{n}\text{E}\left[\sum_{i=1}^nX_i\right]=\frac{1}{n}\sum_{i=1}^n\text{E}\left[X_i\right]=\frac{1}{n}
-\cdot n\cdot\theta_0=\theta_0.\]</span></li>
-</ul>
-<blockquote>
-<p><span class="math inline">\(\text{E}[a\cdot
-X]=a\cdot\text{E}[X]\)</span></p>
-<p><span class="math inline">\(\text{E}[X+Y]=\text{E}[X]+\text{E}[Y]\)</span></p>
-<p><span class="math inline">\(\text{E}[X]=\int_{-\infty}^{\infty}x\cdot
-f(x)dx\)</span></p>
-<p><span class="math inline">\(\text{V}[X]=\text{E}[(X-\text{E}[X])^2]=\text{E}[X^2]-\text{E}^2[X]\)</span></p>
-</blockquote>
-<hr>
-<h4 id="平均二次误差mean-squared-error">平均二次误差(Mean Squared
-Error)</h4>
-<p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>的评估二次误差是关于<span class="math inline">\(\theta_0\)</span>的函数，被定义为：<span class="math inline">\(\text{E}_{\theta_0}[(\hat{\theta}(X)-\theta_0)^2]\)</span>。</p>
-<ul>
-<li>🌰例2. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，参数估计量<span class="math inline">\(\hat{\theta}(X)=\bar{X}\)</span>，该参数估计量的平均二次误差为
-<span class="math display">\[\text{MSE}=\text{E}[(\hat{\theta}(X)-\theta_0)^2]=\text{E}[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])]=\text{V}[\hat{\theta}(X)]=\frac{1}{n^2}\sum_{i=1}^n\text{V}[X_i]=\frac{1}{n^2}\cdot
-n\cdot \theta_0(1-\theta_0)=\frac{\theta_0(1-\theta_0)}{n}\]</span>
-注：当<span class="math inline">\(n\to\infty\)</span>时，平均二次误差<span class="math inline">\(\text{MSE}\)</span>趋于0，即估计量趋近于真实值<span class="math inline">\(\theta_0\)</span>。</li>
-</ul>
-<blockquote>
-<p><span class="math inline">\(\text{V}[a\cdot X]=a^2\cdot
-\text{V}[X]\)</span></p>
-<p><span class="math inline">\(\text{V}[X+Y]=\text{V}[X]+\text{V}[Y]+2\cdot\text{Cov}[X,Y]\)</span></p>
-</blockquote>
-<p>平均二次误差可以被拆分成两部分： <span class="math display">\[\begin{align}
-\text{MSE}&amp;=\text{E}[(\hat{\theta}(X)-\theta_0)^2]\\
-&amp;=\text{E}\left[\left(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)]+\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\right]\\
-&amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2+2(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])(\text{E}[\hat{\theta}(X)]-\theta_0)+(\text{E}[\hat{\theta}(X)]-\theta_0)^2\right]\\
-&amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2\right]+2(\text{E}[\hat{\theta}(X)]-\theta_0)\cdot\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])\right]+\left(\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\\
-&amp;=\text{V}[\hat{\theta}(X)]+\text{Bisa}_{\theta_0}^2[\hat{\theta}(X)]
-\end{align}\]</span>
-即平均二次误差为估计量的方差与与偏差的平方之和。</p>
-<hr>
-<h4 id="cramér-rao下界">Cramér-Rao下界</h4>
-<p>如果<span class="math inline">\(X_1,\dots,X_n\)</span>服从密度函数为<span class="math inline">\(f(x;\theta)\)</span>的分布。则任何无偏估计量<span class="math inline">\(\hat{\theta}\)</span>的方差满足： <span class="math display">\[\text{V}[\hat{\theta}(X)]\ge\frac{1}{n\cdot
-I_{X_1}(\theta)}\]</span> 其中<span class="math inline">\(I_{X_1}(\theta)\)</span>被称为Fisher信息，定义为：
-<span class="math display">\[\begin{align}
-I_{X_1}(\theta)&amp;=\text{E}\left[\left(\frac{\partial}{\partial\theta}l_{X_1}(x;\theta)\right)^2\right]:=\text{E}[l'_{X_1}(\theta)^2]\\
-&amp;=-\text{E}\left[\frac{\partial^2}{\partial\theta^2}l_{X_1}(x;\theta)\right]:=-\text{E}[l''_{X_1}(\theta)].
-\end{align}\]</span> 其中<span class="math inline">\(l_{X_1}(\theta)=\log
-f_{X_1}(x;\theta)\)</span></p>
-<ul>
-<li><em>证明</em>：令<span class="math inline">\(Y=\hat{\theta}(X)\)</span>，<span class="math inline">\(Z=l'_X(\theta)\)</span>，由于<span class="math inline">\(Y,Z\)</span>的相关系数介于<span class="math inline">\([-1,1]\)</span>，即 <span class="math display">\[-1\le\frac{\text{Cov}[Y,Z]}{\sqrt{\text{V}[Y]\cdot\text{V}[Z]}}\le
-1,\]</span> 由此可得 <span class="math display">\[\begin{equation}
-\text{V}[Y]=\text{V}[\hat{\theta}(X)]\ge\frac{\text{Cov}^2[Y,Z]}{\text{V}[Z]},
-\end{equation}\]</span> 观察上式，现需替换分子<span class="math inline">\(\text{Cov}^2[Y,Z]\)</span>和分母<span class="math inline">\(\text{V}[Z]\)</span>，首先<span class="math inline">\(\text{V}[Z]\)</span>可以被写作 <span class="math display">\[\begin{align}
-\text{V}[Z]&amp;=\text{V}[l'_X(\theta)]=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log
-f_X(x;\theta)\right]}_{对数似然函数}=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^nf_{X_i}(x;\theta)\right]}_{\log(ab)=\log
-a+\log b}\\
-&amp;=\underbrace{\text{V}\left[\sum_{i=1}^n\frac{\partial}{\partial\theta}\log
-f_{X_i}(x;\theta)\right]}_{X\text{是相互独立的}}=\sum_{i=1}^n\text{V}\left[\frac{\partial}{\partial\theta}\log
-f_{X_i}(x;\theta)\right]\\
-&amp;=n\cdot\text{V}[l'_{X_1}(\theta)]=n\cdot\left\{\text{E}[l'_{X_1}(\theta)^2]-\text{E}^2[l'_{X_1}(\theta)]\right\}
-\end{align}\]</span> 由期望的定义有 <span class="math display">\[\begin{align}
-&amp;\text{E}[l'_{X_1}(\theta)]=\int_{-\infty}^{\infty}l'_{X_1}(\theta)f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}\frac{\partial}{\partial\theta}\log
-f_{X_1}(x;\theta)\cdot f_{X_1}(x;\theta)dx\\
-=&amp;\int_{-\infty}^{\infty}\frac{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}{f_{X_1}(x;\theta)}f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}dx=\frac{\partial}{\partial\theta}\underbrace{\int_{-\infty}^{\infty}f_{X_1}(x;\theta)dx}_{\text{概率密度函数积分为1}}=0,
-\end{align}\]</span> 即<span class="math inline">\(\text{V}[Z]=n\cdot\text{E}[l'_{X_1}(\theta)^2]=n\cdot
-I_{X_1}(\theta)\)</span>，根据协方差定义 <span class="math display">\[\begin{align}
-\text{Cov}[Y,Z]&amp;=\text{Cov}[\hat{\theta}(X),l'_X(\theta)]=\text{E}[\hat{\theta}(X)\cdot
-l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot\text{E}[l'_X(\theta)]\\
-&amp;=\text{E}[\hat{\theta}(X)\cdot
-l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot
-n\cdot\underbrace{\text{E}[l'_{X_1}(\theta)]}_{0}=\text{E}[\hat{\theta}(X)\cdot
-l'_X(\theta)],
-\end{align}\]</span> 再由定义 <span class="math display">\[\begin{align}
-\text{E}[\hat{\theta}(X)\cdot
-l'_X(\theta)]=\int_{-\infty}^{\infty}\hat{\theta}(X)\frac{\frac{\partial}{\partial\theta}f_X(x;\theta)}{f_X(x;\theta)}f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}\hat{\theta}\cdot
-f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\text{E}[\hat{\theta}(X)]=1,
-\end{align}\]</span> 即<span class="math inline">\(\text{Cov}[Y,Z]=1\)</span>，综上有<span class="math inline">\(\text{V}[\hat{\theta}(X)]\ge\left(n\cdot
-I_{X_i}(\theta)\right)^{-1}\)</span>，得证。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>统计</tag>
       </tags>
   </entry>
   <entry>
@@ -1350,6 +1490,76 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
         <tag>原创</tag>
         <tag>算法实现</tag>
         <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span class="math inline">\(\mathbb{R}^n\)</span>中的<span class="math inline">\(m\)</span>个样本点为<span class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span class="math inline">\(m\)</span>个样本嵌入到低维空间<span class="math inline">\(\mathbb{R}^{d}\)</span>，<span class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" alt="embedding">
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span class="math inline">\(i\)</span>行第<span class="math inline">\(j\)</span>列元素为<span class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span class="math inline">\(k\)</span>个非零特征值，分别为<span class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span class="math inline">\({ V}\)</span>的第<span class="math inline">\(i\)</span>列是特征值<span class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br>
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span class="math inline">\(V_*\)</span>。即<span class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding">
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1483,9 +1693,77 @@ out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
         <category>数学学习</category>
       </categories>
       <tags>
-        <tag>MATLAB代码</tag>
         <tag>原创</tag>
+        <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
+    <content><![CDATA[<blockquote>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin</p>
+</blockquote>
+<h3 id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
+<span id="more"></span>
+<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
+<p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock
+Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
+Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
+Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
+截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
+Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr>
+<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
+Origin插件</h3>
+<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
+<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+<blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
+store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol type="1">
+<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
+<img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
+</ol>
+<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
+<ol type="1">
+<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
+Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome://extensions/</a>
+后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p></li>
+<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
+<img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p></li>
+<li><p>在Chrome右上角点击uBlock
+Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
+<img src="http://img.ifish.ink/img/uo4.png"></p></li>
+</ol>
+<hr>
+<h3 id="三测试">三、测试</h3>
+<ul>
+<li><p>未启用uBlock
+Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p></li>
+<li><p>启用uBlock
+Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p></li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p></li>
+</ul>
+<hr>
+<h3 id="四参考">四、参考：</h3>
+<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
+维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>神器</tag>
       </tags>
   </entry>
   <entry>
@@ -1634,284 +1912,6 @@ Hormann教授的邀请和邓重阳教授的支持让我有了这次国外学习�
         <tag>随笔</tag>
         <tag>游记</tag>
         <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Introduction to Data Science (0)</title>
-    <url>/post/ids0.html</url>
-    <content><![CDATA[<blockquote>
-<p>在这个系列开始之前先附上几种常用的概率分布律、期望和方差。</p>
-<p>参考书籍：《概率论与数理统计》 浙大第四版</p>
-</blockquote>
-<h3 id="离散型随机变量">离散型随机变量</h3>
-<p>随机变量全部可能取到的值是有限个或者可列无限多个（可数），这种随机变量称为<strong>离散型随机变量</strong>。</p>
-<h4 id="分布">(0-1)分布</h4>
-<p>(0-1)分布的随机变量<span class="math inline">\(X\)</span>只可能取0与1，如果概率满足 <span class="math display">\[
-P_k=P\{X=k\}=p^k(1-p)^{1-k},\quad k=0,1\qquad (0&lt;p&lt;1),
-\]</span> 称<span class="math inline">\(X\)</span>服从参数为<span class="math inline">\(p\)</span>的(0-1)分布。</p>
-<ul>
-<li><p>分布律：<span class="math inline">\(P\{X=k\}=p^k(1-p)^{1-k},\quad
-k=0,1\qquad (0&lt;p&lt;1)\)</span></p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(X\)</span></th>
-<th style="text-align: center;">0</th>
-<th style="text-align: center;">1</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(P_k\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(1-p\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
-</tr>
-</tbody>
-</table></li>
-<li><p>期望：<span class="math inline">\(\text{E}[X]=p\)</span></p></li>
-<li><p>方差：<span class="math inline">\(\text{V}[X]=p(1-p)\)</span></p></li>
-</ul>
-<hr>
-<h4 id="几何分布">几何分布</h4>
-<p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现一次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(p\)</span>的几何分布。</p>
-<ul>
-<li>分布律：<span class="math inline">\(P\{X=k\}=(1-p)^{k-1}p,\quad
-k=1,2,\dots\)</span></li>
-<li>期望：<span class="math inline">\(\text{E}[X]=\frac{1}{p}\)</span></li>
-<li>方差：<span class="math inline">\(\text{V}[X]=\frac{1-p}{p^2}\)</span></li>
-</ul>
-<hr>
-<h4 id="伯努利分布二项分布">伯努利分布/二项分布</h4>
-<p>设试验<span class="math inline">\(E\)</span>只有两个可能的结果：<span class="math inline">\(A\)</span>与<span class="math inline">\(\bar{A}\)</span>，则称<span class="math inline">\(E\)</span>为伯努利试验。设<span class="math inline">\(P(A)=p~(0&lt;p&lt;1)\)</span>。将<span class="math inline">\(E\)</span>独立重复地进行<span class="math inline">\(n\)</span>次，则称这一串重复的独立试验为<span class="math inline">\(n\)</span>重伯努利试验。</p>
-<ul>
-<li>分布律：<span class="math inline">\(P\{X=k\}=\binom{n}{k}p^k(1-p)^{n-k},\quad
-k=0,1,\dots,n\)</span></li>
-<li>期望：<span class="math inline">\(\text{E}[X]=np\)</span></li>
-<li>方差：<span class="math inline">\(\text{V}[X]=np(1-p)\)</span></li>
-</ul>
-<hr>
-<h4 id="巴斯卡分布负二项分布">巴斯卡分布（负二项分布）</h4>
-<p>进行重复独立试验，设每次试验的成功概率为<span class="math inline">\(p~(0&lt;p&lt;1)\)</span>，失败概率为<span class="math inline">\(q=1-p\)</span>，将试验进行到出现<span class="math inline">\(r\)</span>次成功为止，所需的试验次数的记为<span class="math inline">\(X\)</span>，称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(r,p\)</span>的巴斯卡（负二项）分布。</p>
-<ul>
-<li>分布律：<span class="math inline">\(P\{X=k\}=\binom{k-1}{r-1}p^r(1-p)^{k-r},\quad
-k=r,r+1,\dots\)</span></li>
-<li>期望：<span class="math inline">\(\text{E}[X]=\frac{r}{p}\)</span></li>
-<li>方差：<span class="math inline">\(\text{V}[X]=\frac{r(1-p)}{p^2}\)</span></li>
-</ul>
-<hr>
-<h4 id="泊松分布">泊松分布</h4>
-<p>设随机变量<span class="math inline">\(X\)</span>所有可能取的值为<span class="math inline">\(0,1,2,\dots\)</span>，取各个值的概率为 <span class="math display">\[
-P\{X=k\}=\frac{\lambda^ke^{-\lambda}}{k!},\quad \lambda&gt;0,\quad
-k=0,1,2,\dots
-\]</span> 称<span class="math inline">\(X\)</span>是服从<span class="math inline">\(\lambda\)</span>的泊松分布。特别地， <span class="math display">\[\sum_{k=0}^\infty
-P\{X=k\}=\sum_{k=0}^\infty\frac{\lambda^ke^{-\lambda}}{k!}=e^{-\lambda}\sum_{k=0}^\infty\frac{\lambda^k}{k!}=e^{-\lambda}e^\lambda=1.\]</span></p>
-<ul>
-<li>分布律：<span class="math inline">\(P\{X=k\}=\frac{\lambda^ke^{-\lambda}}{k!},\quad
-k=0,1,\dots\)</span></li>
-<li>期望：<span class="math inline">\(\text{E}[X]=\lambda\)</span></li>
-<li>方差：<span class="math inline">\(\text{V}[X]=\lambda\)</span></li>
-</ul>
-<blockquote>
-<p>当伯努利分布(二项分布)的试验次数<span class="math inline">\(n\)</span>足够多，其分布近似于以<span class="math inline">\(\lambda=np\)</span>为参数的泊松分布，即<strong>泊松定理</strong>：设<span class="math inline">\(\lambda&gt;0\)</span>是常数，<span class="math inline">\(n\)</span>是任意正整数，设<span class="math inline">\(\lambda=np\)</span>，则对非负整数<span class="math inline">\(k\le n\)</span>，有 <span class="math display">\[\lim_{n\to\infty}\binom{n}{k}p^k(1-p)^{n-k}=\frac{\lambda^ke^{-\lambda}}{k!}\]</span></p>
-</blockquote>
-<hr>
-<h3 id="连续型随机变量">连续型随机变量</h3>
-<p>如果对于随机变量<span class="math inline">\(X\)</span>的分布函数<span class="math inline">\(F(x)\)</span>，存在非负函数<span class="math inline">\(f(x)\)</span>，使得对于任意实数<span class="math inline">\(x\)</span>，有 <span class="math display">\[F(x)=P\{X\le x\}=\int_{-\infty}^x f(t)dt\]</span>
-则称<span class="math inline">\(X\)</span>为<strong>连续型随机变量</strong>，其中<span class="math inline">\(f(x)\)</span>称为<span class="math inline">\(X\)</span>的<strong>概率密度函数</strong>。</p>
-<h4 id="均匀分布">均匀分布</h4>
-<p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
-f(x) =
-\begin{cases}
-  \frac{1}{b-a}, &amp; a&lt;x&lt;b, \\
-  0, &amp; \text{else}
-\end{cases}
-\end{equation}\]</span> 则称<span class="math inline">\(X\)</span>在区间<span class="math inline">\((a,b)\)</span>上的服从均匀分布。</p>
-<ul>
-<li>期望：<span class="math inline">\(\text{E}[X]=\frac{a+b}{2}\)</span></li>
-<li>方差：<span class="math inline">\(\text{V}[X]=\frac{(b-a)^2}{12}\)</span></li>
-</ul>
-<hr>
-<h4 id="指数分布">指数分布</h4>
-<p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
-f(x) =
-\begin{cases}
-  \frac{1}{\theta}e^{\frac{-x}{\theta}}, &amp; x&gt;0, \\
-  0, &amp; \text{else}
-\end{cases}
-\end{equation}\]</span> 则称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(\theta\)</span>的指数分布。</p>
-<ul>
-<li>期望：<span class="math inline">\(\text{E}[X]=\theta\)</span></li>
-<li>方差：<span class="math inline">\(\text{V}[X]=\theta^2\)</span></li>
-</ul>
-<hr>
-<h4 id="正态高斯分布">正态（高斯）分布</h4>
-<p>如果连续型随机变量<span class="math inline">\(X\)</span>具有概率密度函数 <span class="math display">\[\begin{equation}
-f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
--\infty&lt;x&lt;\infty,
-\end{equation}\]</span> 其中<span class="math inline">\(\mu,\sigma~(\sigma&gt;0)\)</span>为常数，则称<span class="math inline">\(X\)</span>是服从参数为<span class="math inline">\(\mu,\sigma\)</span>的正态分布（高斯分布）。</p>
-<ul>
-<li>期望：<span class="math inline">\(\text{E}[X]=\mu\)</span></li>
-<li>方差：<span class="math inline">\(\text{V}[X]=\sigma^2\)</span></li>
-</ul>
-<blockquote>
-<p>特别地，当<span class="math inline">\(\mu=0\)</span>，<span class="math inline">\(\sigma=1\)</span>时称随机变量<span class="math inline">\(X\)</span>服从<strong>标准正态分布</strong>。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>统计</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Introduction to Data Science (1)</title>
-    <url>/post/ids1.html</url>
-    <content><![CDATA[<blockquote>
-<p>本节将简要介绍参数估计，主要讨论矩估计(method of
-moments)和极大似然估计(maximum likelihood estimation)。</p>
-<p>参考书籍：《概率论与数理统计》 浙大第四版</p>
-</blockquote>
-<h4 id="矩估计">矩估计</h4>
-<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，其中参数<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>为待估计参数。总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩为 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\sum_{x\in
-R_X}x^mp(x;\theta_1,\theta_2,\dots,\theta_k),\]</span> 其中<span class="math inline">\(R_X\)</span>是<span class="math inline">\(X\)</span>可能的取值范围。如果随机变量<span class="math inline">\(X\)</span>是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>的连续型随机变量，假设总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩是 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\int_{-\infty}^{\infty}x^mf(x;\theta_1,\theta_2,\dots,\theta_k)dx.\]</span>
-如果<span class="math inline">\(X\)</span>的前<span class="math inline">\(k\)</span>阶矩存在。由于样本矩<span class="math inline">\(A_m=\frac{1}{n}\sum_{i=1}^nX_i^m\)</span>依概率收敛于相应的总体矩<span class="math inline">\(\mu_m\)</span>。用样本矩作为相应的总体矩的估计量。对于<span class="math inline">\(m=1,2,\dots,k\)</span>，可以建立如下方程组： <span class="math display">\[\begin{equation*}
-\left\{
-\begin{array}{c}
-\mu_1(\theta_1,\dots,\theta_k)=A_1,\\
-\mu_2(\theta_1,\dots,\theta_k)=A_2,\\
-\vdots\\
-\mu_k(\theta_1,\dots,\theta_k)=A_k
-\end{array}
-\right.
-\end{equation*}\]</span> 通过求解出<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>。这样的估计量被称为<strong>矩估计量</strong>。</p>
-<hr>
-<h4 id="极大似然估计">极大似然估计</h4>
-<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，则<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>的联合分布律为 <span class="math display">\[\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k),\]</span>
-假如已知样本<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>对应的样本值是<span class="math inline">\(x_1,x_2,\dots,x_n\)</span>，则事件<span class="math inline">\(\{X_i=x_i,~i=1,\dots,n\}\)</span>的概率为 <span class="math display">\[P\{X_i=x_i,~i=1,\dots,n\}=\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k)=L(\theta_1,\dots,\theta_k)，\]</span>
-由于该事件为观测值对应的事件，其已经发生，表明这个概率值较大，给予该原则最大化函数<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>，该函数被称为样本的<strong>似然函数</strong>。则极大似然估计值为
-<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k).\]</span>
-对于连续型随机变量，假设其对应的概率密度函数为是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>，同理有极大似然估计量为
-<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^nf(x_i;\theta_1,\dots,\theta_k).\]</span>
-对于该优化问题的求解，当<span class="math inline">\(p(x_i;\theta_1,\dots,\theta_k)\)</span>或<span class="math inline">\(f(x_i;\theta_1,\dots,\theta_k)\)</span>关于<span class="math inline">\(\theta_j\)</span>可微，则极大似然估计值可从方程组
-<span class="math display">\[\begin{equation*}
-\left\{
-\begin{array}{c}
-\frac{\partial}{\partial\theta_1}L(\theta_1,\dots,\theta_k)=0,\\
-\frac{\partial}{\partial\theta_2}L(\theta_1,\dots,\theta_k)=0,\\
-\vdots\\
-\frac{\partial}{\partial\theta_k}L(\theta_1,\dots,\theta_k)=0
-\end{array}
-\right.
-\end{equation*}\]</span> 求得。由于<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>与<span class="math inline">\(\log
-L(\theta_1,\dots,\theta_k)\)</span>在同一处取得极值，因此极大似然估计值亦可通过求解下面的<strong>对数似然方程组</strong>获得。
-<span class="math display">\[\begin{equation*}
-\left\{
-\begin{array}{c}
-\frac{\partial}{\partial\theta_1}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-p(x_1;\theta_1,\dots,\theta_k)=0,\\
-\frac{\partial}{\partial\theta_2}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-p(x_1;\theta_1,\dots,\theta_k)=0,\\
-\vdots\\
-\frac{\partial}{\partial\theta_k}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-p(x_1;\theta_1,\dots,\theta_k)=0
-\end{array}
-\right.\qquad \text{（离散型随机变量）}
-\end{equation*}\]</span> 或 <span class="math display">\[\begin{equation*}
-\left\{
-\begin{array}{c}
-\frac{\partial}{\partial\theta_1}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-f(x_1;\theta_1,\dots,\theta_k)=0,\\
-\frac{\partial}{\partial\theta_2}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-f(x_1;\theta_1,\dots,\theta_k)=0,\\
-\vdots\\
-\frac{\partial}{\partial\theta_k}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-f(x_1;\theta_1,\dots,\theta_k)=0
-\end{array}
-\right.\qquad \text{（连续型随机变量）}
-\end{equation*}\]</span></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>统计</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
-uBlock Origin</p>
-</blockquote>
-<h3 id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
-<span id="more"></span>
-<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
-<p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock
-Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
-Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
-Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
-截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
-Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
-<hr>
-<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
-Origin插件</h3>
-<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
-<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
-<blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
-store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
-</blockquote>
-<ol type="1">
-<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
-<img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
-</ol>
-<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
-<ol type="1">
-<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
-Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome://extensions/</a>
-后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p></li>
-<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
-<img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p></li>
-<li><p>在Chrome右上角点击uBlock
-Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
-<img src="http://img.ifish.ink/img/uo4.png"></p></li>
-</ol>
-<hr>
-<h3 id="三测试">三、测试</h3>
-<ul>
-<li><p>未启用uBlock
-Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p></li>
-<li><p>启用uBlock
-Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p></li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p></li>
-</ul>
-<hr>
-<h3 id="四参考">四、参考：</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
-维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>神器</tag>
       </tags>
   </entry>
 </search>
