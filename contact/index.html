@@ -524,6 +524,10 @@
 </div>
 
 
+<script>
+    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
+</script>
+
 
     </div>
 </div>
@@ -619,9 +623,9 @@
                     //发送弹幕
                     function  run(){
                         let info = $('input[name=info]').val();
-                        (info === '' ) ?  info='hello world' : info=info;
+                        (info === '' ) ?  info='哈喽，常常' : info=info;
                         let href = $('input[name=href]').val();
-                        (href === '' ) ?  href='https://github.com/blinkfox/hexo-theme-matery' : href=href;
+                        (href === '' ) ?  href='' : href=href;
                         let speed = parseInt($('input[name=speed]').val());
                         if(speed > 20 || speed < 5)
                             speed = Math.floor(Math.random() * 10) + 5;
