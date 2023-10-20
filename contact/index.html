@@ -573,7 +573,7 @@
                                         文字：<input class="form-control" name="info" type="text" placeholder="哈喽, 常常"/>
                                     </div>
                                     <div class="form-group">
-                                        速度：<input  class="form-control"  name="speed" type="text" placeholder="5~20" value="10" />
+                                        速度：<input  class="form-control"  name="speed" type="text" placeholder="10~20" value="15" />
                                     </div>
                                 </form>
                                 <div class="form-group">
@@ -624,19 +624,19 @@
                     function  run(){
                         let info = $('input[name=info]').val();
                         (info === '' ) ?  info='哈喽，常常' : info=info;
-                        let href = $('input[name=href]').val();
-                        (href === '' ) ?  href='' : href=href;
+                        // let href = $('input[name=href]').val();
+                        // (href === '' ) ?  href='' : href=href;
                         let speed = parseInt($('input[name=speed]').val());
-                        if(speed > 20 || speed < 5)
-                            speed = Math.floor(Math.random() * 10) + 5;
+                        if(speed > 20 || speed < 10)
+                            speed = Math.floor(Math.random() * 10) + 10;
                         const Barrager = AV.Object.extend('barrager');
                         const barrager = new Barrager();
-                        barrager.set('href', href);
+                        // barrager.set('href', href);
                         barrager.set('info', info);
                         barrager.set('speed', speed);
                         barrager.save().then((todo) => {
                             $(" input[ name='info' ] ").val("")
-                            $(" input[ name='href' ] ").val("")
+                            // $(" input[ name='href' ] ").val("")
                             $(" input[ name='speed' ] ").val("")
                         });
                     }
