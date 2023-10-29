@@ -139,75 +139,37 @@ grid on<span class="token punctuation">,</span>hold on
       </tags>
   </entry>
   <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title('Bezier曲线拟合');
-questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
+    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
+    <url>/post/8f4cbc0c.html</url>
+    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
+fork了别人的代码 本地更新主分支代码</h3>
+<ul>
+<li><p>查看本地仓库项目目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
+<li><p>添加上游项目地址：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">&gt;</span></code></pre>
 <span id="more"></span>
-<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
-while 1
-    i = i+1;
-    tip = ['请选择第',num2str(i),'个数据点'];
-    xlabel(tip);
-    try
-    [x,y,button] = ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,'o');
-    dataPoints(:,i) = [x;y];
-    h1 = plot(dataPoints(1,:),dataPoints(2,:),'b');
-    if button ~= 1
-        xlabel('');
-        break;
-    end
-end
-
-
-for i = 0:0.01:1
-    newData(:,int32(i*100)+1) = cqj_GetBezier3Point(dataPoints,i);
-end
-h2 = plot(newData(1,:),newData(2,:),'.-r');
-legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data = dataPoints;
-while 1
-    if size(data,2) == 1
-        break;
-    end
-    temp = zeros(size(data,1),size(data,2)-1);
-    for i = 1:size(data,2)-1
-        temp(:,i) = (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data = temp;
-end
-end</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
+<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
+</ul>
 <hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
+<ul>
+<li><p>从上游提取：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span></code></pre></li>
+<li><p>合并：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">&gt;</span></code></pre></li>
+<li><p>上传：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
+</ul>
 ]]></content>
       <categories>
-        <category>数学学习</category>
+        <category>教程</category>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>MATLAB代码</tag>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -340,37 +302,75 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
       </tags>
   </entry>
   <entry>
-    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
-    <url>/post/8f4cbc0c.html</url>
-    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
-fork了别人的代码 本地更新主分支代码</h3>
-<ul>
-<li><p>查看本地仓库项目目录：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
-<li><p>添加上游项目地址：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">&gt;</span></code></pre>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title('Bezier曲线拟合');
+questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
 <span id="more"></span>
-<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
-</ul>
+<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
+while 1
+    i = i+1;
+    tip = ['请选择第',num2str(i),'个数据点'];
+    xlabel(tip);
+    try
+    [x,y,button] = ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,'o');
+    dataPoints(:,i) = [x;y];
+    h1 = plot(dataPoints(1,:),dataPoints(2,:),'b');
+    if button ~= 1
+        xlabel('');
+        break;
+    end
+end
+
+
+for i = 0:0.01:1
+    newData(:,int32(i*100)+1) = cqj_GetBezier3Point(dataPoints,i);
+end
+h2 = plot(newData(1,:),newData(2,:),'.-r');
+legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data = dataPoints;
+while 1
+    if size(data,2) == 1
+        break;
+    end
+    temp = zeros(size(data,1),size(data,2)-1);
+    for i = 1:size(data,2)-1
+        temp(:,i) = (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data = temp;
+end
+end</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
 <hr>
-<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
-<ul>
-<li><p>从上游提取：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span></code></pre></li>
-<li><p>合并：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">&gt;</span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">&gt;</span></code></pre></li>
-<li><p>上传：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
-</ul>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>教程</category>
+        <category>数学学习</category>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>git</tag>
-        <tag>github</tag>
+        <tag>MATLAB代码</tag>
       </tags>
   </entry>
   <entry>
@@ -452,6 +452,79 @@ f(x_1;\theta_1,\dots,\theta_k)=0
       <tags>
         <tag>原创</tag>
         <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenSubdiv + Visual Studio环境配置</title>
+    <url>/post/a507e481.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
+</blockquote>
+<blockquote>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
+<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
+） （先前条件：<strong>win7系统</strong> 已安装<strong><a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
+Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
+</blockquote>
+<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
+<p>需要的资源文件有<a href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
+​&nbsp;<strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
+<img src="http://img.ifish.ink/figure/1.png" alt="fig1"> ​
+&nbsp;<strong>cmake的安装</strong>：可直接从<a href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
+<img src="http://img.ifish.ink/figure/2.png" alt="fig2"></p>
+<ul>
+<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
+<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
+<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
+user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
+CMake to the system PATH for the current user</em>”）</p></li>
+<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
+如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
+</ul>
+<p><img src="http://img.ifish.ink/figure/2.png" alt="fig3"> <img src="http://img.ifish.ink/figure/4.png" alt="fig4"> ​
+<strong>glfw</strong>：GLfW ：<a href="http://www.glfw.org/">http://www.glfw.org/</a>
+如图所示可以下载压缩文件，或者用git克隆也可。 <img src="http://img.ifish.ink/figure/5.png" alt="fig5"> <img src="http://img.ifish.ink/figure/6.png" alt="fig6"></p>
+<hr>
+<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
+<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
+GUI选择源代码目录和构建路径：</h4>
+<p><img src="http://img.ifish.ink/figure/7.png" alt="fig7"> <img src="http://img.ifish.ink/figure/8.png" alt="fig8"></p>
+<h4 id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
+<p><img src="http://img.ifish.ink/figure/9.png" alt="fig9"> <img src="http://img.ifish.ink/figure/10.png" alt="fig10"></p>
+<h4 id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
+done’即可</h4>
+<p><img src="http://img.ifish.ink/figure/11.png" alt="fig11"> <img src="http://img.ifish.ink/figure/12.png" alt="fig12"></p>
+<h4 id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
+done完成</h4>
+<figure>
+<img src="http://img.ifish.ink/figure/13.png" alt="fig13">
+<figcaption aria-hidden="true">fig13</figcaption>
+</figure>
+<hr>
+<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
+<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
+<pre class="language-none"><code class="language-none">"d:/Cmake3.8.0/bin/cmake.exe" -G "Visual Studio 14 Win64" -DGLEW_LOCATION=[d:/glew/lib/Release/x64] -DGLEW_INCLUDE_DIR=[d:\glew\include\] -DGLEW_LIBRARY=[d:\glew\lib\] -DGLFW_LOCATION=[d:/glfw/bd/src/Release] -DNO_PTEX=1 -DNO_DOC=1 -DNO_OMP=1 -DNO_TBB=1 -DNO_CUDA=1 -DNO_OPENCL=1 -DNO_CLEW=1</code></pre>
+<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
+<img src="http://img.ifish.ink/figure/14.png" alt="fig14">
+按下回车键： <img src="http://img.ifish.ink/figure/15.png" alt="fig15"> 完成！！！</p>
+<hr>
+<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
+<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
+Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
+点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img src="http://img.ifish.ink/figure/17.png" alt="fig17">
+生成过程需要一点时间，请耐心等待…… <img src="http://img.ifish.ink/figure/18.png" alt="fig18"> 生成成功 <img src="http://img.ifish.ink/figure/19.png" alt="fig19">
+测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
+<img src="http://img.ifish.ink/figure/20.png" alt="fig20">
+运行后如图所示： <img src="http://img.ifish.ink/figure/21.png" alt="fig21"> 其余例子也可同理运行。 谢谢阅读！！！</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -548,79 +621,6 @@ I_{X_i}(\theta)\right)^{-1}\)</span>，得证。</li>
       <tags>
         <tag>原创</tag>
         <tag>统计</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenSubdiv + Visual Studio环境配置</title>
-    <url>/post/a507e481.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
-</blockquote>
-<blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
-<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
-） （先前条件：<strong>win7系统</strong> 已安装<strong><a href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
-Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
-</blockquote>
-<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
-<p>需要的资源文件有<a href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
-​&nbsp;<strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
-<img src="http://img.ifish.ink/figure/1.png" alt="fig1"> ​
-&nbsp;<strong>cmake的安装</strong>：可直接从<a href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
-<img src="http://img.ifish.ink/figure/2.png" alt="fig2"></p>
-<ul>
-<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
-<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
-<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
-user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
-CMake to the system PATH for the current user</em>”）</p></li>
-<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
-如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
-</ul>
-<p><img src="http://img.ifish.ink/figure/2.png" alt="fig3"> <img src="http://img.ifish.ink/figure/4.png" alt="fig4"> ​
-<strong>glfw</strong>：GLfW ：<a href="http://www.glfw.org/">http://www.glfw.org/</a>
-如图所示可以下载压缩文件，或者用git克隆也可。 <img src="http://img.ifish.ink/figure/5.png" alt="fig5"> <img src="http://img.ifish.ink/figure/6.png" alt="fig6"></p>
-<hr>
-<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
-<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
-GUI选择源代码目录和构建路径：</h4>
-<p><img src="http://img.ifish.ink/figure/7.png" alt="fig7"> <img src="http://img.ifish.ink/figure/8.png" alt="fig8"></p>
-<h4 id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
-<p><img src="http://img.ifish.ink/figure/9.png" alt="fig9"> <img src="http://img.ifish.ink/figure/10.png" alt="fig10"></p>
-<h4 id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
-done’即可</h4>
-<p><img src="http://img.ifish.ink/figure/11.png" alt="fig11"> <img src="http://img.ifish.ink/figure/12.png" alt="fig12"></p>
-<h4 id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
-done完成</h4>
-<figure>
-<img src="http://img.ifish.ink/figure/13.png" alt="fig13">
-<figcaption aria-hidden="true">fig13</figcaption>
-</figure>
-<hr>
-<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
-<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
-<pre class="language-none"><code class="language-none">"d:/Cmake3.8.0/bin/cmake.exe" -G "Visual Studio 14 Win64" -DGLEW_LOCATION=[d:/glew/lib/Release/x64] -DGLEW_INCLUDE_DIR=[d:\glew\include\] -DGLEW_LIBRARY=[d:\glew\lib\] -DGLFW_LOCATION=[d:/glfw/bd/src/Release] -DNO_PTEX=1 -DNO_DOC=1 -DNO_OMP=1 -DNO_TBB=1 -DNO_CUDA=1 -DNO_OPENCL=1 -DNO_CLEW=1</code></pre>
-<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
-<img src="http://img.ifish.ink/figure/14.png" alt="fig14">
-按下回车键： <img src="http://img.ifish.ink/figure/15.png" alt="fig15"> 完成！！！</p>
-<hr>
-<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
-<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
-Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
-点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img src="http://img.ifish.ink/figure/17.png" alt="fig17">
-生成过程需要一点时间，请耐心等待…… <img src="http://img.ifish.ink/figure/18.png" alt="fig18"> 生成成功 <img src="http://img.ifish.ink/figure/19.png" alt="fig19">
-测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
-<img src="http://img.ifish.ink/figure/20.png" alt="fig20">
-运行后如图所示： <img src="http://img.ifish.ink/figure/21.png" alt="fig21"> 其余例子也可同理运行。 谢谢阅读！！！</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -778,44 +778,6 @@ unavailable for scheduled maintenance. Check back in a minute.”</p>
       </tags>
   </entry>
   <entry>
-    <title>git clone 速度慢？</title>
-    <url>/post/ec4bf4f5.html</url>
-    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
-<h2 id="方法1">方法1：</h2>
-<h3 id="查询ip地址">查询IP地址</h3>
-<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com" title="https://www.ipaddress.com">https://www.ipaddress.com</a>
-分别输入如下网址查看对应的IP地址</p>
-<span id="more"></span>
-<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
-或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
-<h3 id="修改hosts文件">修改hosts文件</h3>
-<p>得到对应的IP后，在hosts文件后追加如下两行
-Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
-Linux用户：<code>sudo gedit /etc/hosts</code>
-（xxx替换为你得到的对应的IP地址）</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
-xxx.xxx.xxx.xxx github.com</code></pre>
-<h3 id="刷新dns">刷新DNS</h3>
-<p>Windows用户：<code>ipconfig /flushdns</code>
-Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
-<h2 id="方法2">方法2：</h2>
-<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
-<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>git</tag>
-        <tag>github</tag>
-        <tag>环境配置</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TexLive2017+TexStudio in Windows</title>
     <url>/post/c4cb1247.html</url>
     <content><![CDATA[<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建</p>
@@ -871,6 +833,44 @@ LVDS-1 和 HDMI-1
         <tag>环境配置</tag>
         <tag>ubuntu</tag>
         <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git clone 速度慢？</title>
+    <url>/post/ec4bf4f5.html</url>
+    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
+<h2 id="方法1">方法1：</h2>
+<h3 id="查询ip地址">查询IP地址</h3>
+<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com" title="https://www.ipaddress.com">https://www.ipaddress.com</a>
+分别输入如下网址查看对应的IP地址</p>
+<span id="more"></span>
+<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
+或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
+<h3 id="修改hosts文件">修改hosts文件</h3>
+<p>得到对应的IP后，在hosts文件后追加如下两行
+Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
+Linux用户：<code>sudo gedit /etc/hosts</code>
+（xxx替换为你得到的对应的IP地址）</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
+xxx.xxx.xxx.xxx github.com</code></pre>
+<h3 id="刷新dns">刷新DNS</h3>
+<p>Windows用户：<code>ipconfig /flushdns</code>
+Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
+<h2 id="方法2">方法2：</h2>
+<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>git</tag>
+        <tag>github</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -1059,153 +1059,6 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
       </tags>
   </entry>
   <entry>
-    <title>三对角矩阵的类雅可比迭代程序</title>
-    <url>/post/f9428d51.html</url>
-    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
-<span id="more"></span>
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
-% init_X：初始值
-% coefficient_mat：系数矩阵
-% b_mat：b
-% maxNum：最大迭代次数
-% epsilon：精度
-output_args = [];
-flag = 0;
-
-%% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~= size(coefficient_mat,2)
-    disp('系数矩阵格式错误(需要方阵)');
-    return;
-end
-if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
-    disp('AX=b中的b必须为行向量或者列向量');
-    return;
-end
-if size(b_mat,1) == 1
-    b_mat = b_mat';
-end
-if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
-    disp('初始值必须为行向量或者列向量');
-    return;
-end
-if size(init_X,1) == 1
-    init_X = init_X';
-end
-if size(init_X,1) ~= size(coefficient_mat,1)
-    disp('初始值与系数矩阵维数不一致');
-    return;
-end
-if size(init_X,1) ~= size(b_mat,1)
-    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
-    return;
-end
-if ~exist('maxNum', 'var')
-    maxNum = 500; % 默认值
-end
-if ~exist('epsilon', 'var')
-    epsilon = 1e-14; % 默认值
-end
-
-%% 三对角线
-a = diag(coefficient_mat,-1)';
-b = diag(coefficient_mat)';
-c = diag(coefficient_mat,1)';
-D = diag(a,-1)+diag(b)+diag(c,1);
-
-% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
-[~,D_inv] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
-if isempty(D_inv)
-    disp('系数矩阵不可逆');
-    return;
-end
-%% 开始迭代
-% 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) = init_X;
-% for k = 1:maxNum
-%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
-%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag = 1;
-%         break;
-%     end
-% end
-x = init_X;
-%%
-% 迭代公式：
-% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
-% 
-for k = 1:maxNum
-    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
-    if norm(temp-x) &lt; epsilon
-        flag = 1;
-        x = temp;
-        break;
-    end
-    x = temp;
-end
-
-
-%% 结果
-text(0,0.95,'方程：','Color','red','FontSize',14);
-str1 = '\left[\begin{array}';
-% 正则表达式
-str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    '[\s\[\]]',''),'0','c'); 
-mat_start = @(X) [str1 '{' str2(X) '}'];
-my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    ' *','&amp;'),';','\\\'),'[\[\]]','');
-mat_end = '\end{array}\right]';
-str5 = '\times X=';
-% LaTex 输出
-text('Interpreter','latex', 'String',['$$'...
-    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
-    'Position',[0.1 0.7],'FontSize',10);
-text(0,0.5,'三对角类雅可比迭代的结果：','Color','red','FontSize',14);
-if flag == 1  %好的结果
-    output_args.itrNum = k;
-    output_args.result = x;
-    fprintf('迭代次数：%d\n',output_args.itrNum);
-%     disp(x(:,k));
-    disp('解：');
-    disp(x);
-    text('Interpreter','latex', 'String',['$$X^*=' ...
-        mat_start(x) my_mat2str(x) mat_end '$$'],...
-        'Position',[0.1 0.3],'FontSize',10);
-    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
-    'Color','k','FontSize',10);
-    return;
-end
-text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
-    'Color','k','FontSize',10);
-fprintf('迭代%d次后暂未收敛\n',maxNum);
-end</code></pre>
-<ul>
-<li>测试程序</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat = [-1 -5 2 -1];
-init_X = zeros(size(b_mat));
-out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-<ul>
-<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
-</ul>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>三角网格曲面参数化</title>
     <url>/post/bcf65292.html</url>
     <content><![CDATA[<blockquote>
@@ -1353,6 +1206,153 @@ figure
         <tag>算法实现</tag>
         <tag>参数化</tag>
         <tag>均值重心坐标</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <url>/post/f9428d51.html</url>
+    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
+<span id="more"></span>
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
+% init_X：初始值
+% coefficient_mat：系数矩阵
+% b_mat：b
+% maxNum：最大迭代次数
+% epsilon：精度
+output_args = [];
+flag = 0;
+
+%% 预处理 检查用户调用函数时参数格式是否传错
+if size(coefficient_mat,1) ~= size(coefficient_mat,2)
+    disp('系数矩阵格式错误(需要方阵)');
+    return;
+end
+if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
+    disp('AX=b中的b必须为行向量或者列向量');
+    return;
+end
+if size(b_mat,1) == 1
+    b_mat = b_mat';
+end
+if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
+    disp('初始值必须为行向量或者列向量');
+    return;
+end
+if size(init_X,1) == 1
+    init_X = init_X';
+end
+if size(init_X,1) ~= size(coefficient_mat,1)
+    disp('初始值与系数矩阵维数不一致');
+    return;
+end
+if size(init_X,1) ~= size(b_mat,1)
+    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
+    return;
+end
+if ~exist('maxNum', 'var')
+    maxNum = 500; % 默认值
+end
+if ~exist('epsilon', 'var')
+    epsilon = 1e-14; % 默认值
+end
+
+%% 三对角线
+a = diag(coefficient_mat,-1)';
+b = diag(coefficient_mat)';
+c = diag(coefficient_mat,1)';
+D = diag(a,-1)+diag(b)+diag(c,1);
+
+% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
+[~,D_inv] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
+if isempty(D_inv)
+    disp('系数矩阵不可逆');
+    return;
+end
+%% 开始迭代
+% 下面代码段也行 但是对内存的消耗比较大 
+% x(:,0) = init_X;
+% for k = 1:maxNum
+%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
+%         flag = 1;
+%         break;
+%     end
+% end
+x = init_X;
+%%
+% 迭代公式：
+% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
+% 
+for k = 1:maxNum
+    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
+    if norm(temp-x) &lt; epsilon
+        flag = 1;
+        x = temp;
+        break;
+    end
+    x = temp;
+end
+
+
+%% 结果
+text(0,0.95,'方程：','Color','red','FontSize',14);
+str1 = '\left[\begin{array}';
+% 正则表达式
+str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    '[\s\[\]]',''),'0','c'); 
+mat_start = @(X) [str1 '{' str2(X) '}'];
+my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    ' *','&amp;'),';','\\\'),'[\[\]]','');
+mat_end = '\end{array}\right]';
+str5 = '\times X=';
+% LaTex 输出
+text('Interpreter','latex', 'String',['$$'...
+    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
+    'Position',[0.1 0.7],'FontSize',10);
+text(0,0.5,'三对角类雅可比迭代的结果：','Color','red','FontSize',14);
+if flag == 1  %好的结果
+    output_args.itrNum = k;
+    output_args.result = x;
+    fprintf('迭代次数：%d\n',output_args.itrNum);
+%     disp(x(:,k));
+    disp('解：');
+    disp(x);
+    text('Interpreter','latex', 'String',['$$X^*=' ...
+        mat_start(x) my_mat2str(x) mat_end '$$'],...
+        'Position',[0.1 0.3],'FontSize',10);
+    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
+    'Color','k','FontSize',10);
+    return;
+end
+text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
+    'Color','k','FontSize',10);
+fprintf('迭代%d次后暂未收敛\n',maxNum);
+end</code></pre>
+<ul>
+<li>测试程序</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat = [-1 -5 2 -1];
+init_X = zeros(size(b_mat));
+out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+<ul>
+<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
+</ul>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
       </tags>
   </entry>
   <entry>
