@@ -1087,8 +1087,8 @@ x_{j_k}-x_i\Vert \]</span></p></li>
 <ol start="3" type="1">
 <li><p>计算<span class="math inline">\(p\)</span>关于该平面多边形的广义重心坐标。这里采用均值重心坐标[<a href="https://www.mn.uio.no/math/english/people/aca/michaelf/papers/mean_value.pdf" title="Mean value coordinates">1</a>] 均值重心坐标的计算方式如下：</p>
 <blockquote>
-<p>c++实现均值重心坐标可参考我的另一篇文章：<a href="http://www.ifish.ink/?p=611">均值重心坐标Mean Value Coordinates In
-2D代码实现</a></p>
+<p>c++实现均值重心坐标可参考我的另一篇文章：<a href="http://www.ifish.ink/d033f67a.html">均值重心坐标Mean Value
+Coordinates In 2D代码实现</a></p>
 </blockquote>
 <p><img src="http://img.ifish.ink/20201031/2.jpg"></p></li>
 <li><p>在第3步可计算出投影到平面域中的每个内部点关于1-ring点的广义重心坐标。
