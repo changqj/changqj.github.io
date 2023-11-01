@@ -65,9 +65,9 @@ moments)和极大似然估计(maximum likelihood estimation)。
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
 
 
@@ -555,7 +555,7 @@ moments)和极大似然估计(maximum likelihood estimation)。
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    873
+                    897
                 </div>
                 
 
@@ -623,30 +623,30 @@ L(\theta_1,\dots,\theta_k)\)</span>在同一处取得极值，因此极大似然
 \left\{
 \begin{array}{c}
 \frac{\partial}{\partial\theta_1}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-p(x_1;\theta_1,\dots,\theta_k)=0,\\
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_1}\sum_{i=1}^n\log
+p(x_i;\theta_1,\dots,\theta_k)=0,\\
 \frac{\partial}{\partial\theta_2}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-p(x_1;\theta_1,\dots,\theta_k)=0,\\
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_2}\sum_{i=1}^n\log
+p(x_i;\theta_1,\dots,\theta_k)=0,\\
 \vdots\\
 \frac{\partial}{\partial\theta_k}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-p(x_1;\theta_1,\dots,\theta_k)=0
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_k}\sum_{i=1}^n\log
+p(x_i;\theta_1,\dots,\theta_k)=0
 \end{array}
 \right.\qquad \text{（离散型随机变量）}
 \end{equation*}\]</span> 或 <span class="math display">\[\begin{equation*}
 \left\{
 \begin{array}{c}
 \frac{\partial}{\partial\theta_1}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-f(x_1;\theta_1,\dots,\theta_k)=0,\\
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_1}\sum_{i=1}^n\log
+f(x_i;\theta_1,\dots,\theta_k)=0,\\
 \frac{\partial}{\partial\theta_2}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-f(x_1;\theta_1,\dots,\theta_k)=0,\\
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_2}\sum_{i=1}^n\log
+f(x_i;\theta_1,\dots,\theta_k)=0,\\
 \vdots\\
 \frac{\partial}{\partial\theta_k}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-f(x_1;\theta_1,\dots,\theta_k)=0
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_k}\sum_{i=1}^n\log
+f(x_i;\theta_1,\dots,\theta_k)=0
 \end{array}
 \right.\qquad \text{（连续型随机变量）}
 \end{equation*}\]</span></p>

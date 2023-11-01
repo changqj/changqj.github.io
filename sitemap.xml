@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.ifish.ink/post/ids1.html</loc>
+    
+    <lastmod>2023-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.ifish.ink/post/bcf65292.html</loc>
     
     <lastmod>2023-10-31</lastmod>
@@ -41,15 +50,6 @@
     <loc>https://www.ifish.ink/qjchang/index-zh.html</loc>
     
     <lastmod>2023-10-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ifish.ink/post/ids1.html</loc>
-    
-    <lastmod>2023-10-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

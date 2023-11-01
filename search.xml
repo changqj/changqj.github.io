@@ -418,30 +418,30 @@ L(\theta_1,\dots,\theta_k)\)</span>在同一处取得极值，因此极大似然
 \left\{
 \begin{array}{c}
 \frac{\partial}{\partial\theta_1}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-p(x_1;\theta_1,\dots,\theta_k)=0,\\
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_1}\sum_{i=1}^n\log
+p(x_i;\theta_1,\dots,\theta_k)=0,\\
 \frac{\partial}{\partial\theta_2}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-p(x_1;\theta_1,\dots,\theta_k)=0,\\
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_2}\sum_{i=1}^n\log
+p(x_i;\theta_1,\dots,\theta_k)=0,\\
 \vdots\\
 \frac{\partial}{\partial\theta_k}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-p(x_1;\theta_1,\dots,\theta_k)=0
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_k}\sum_{i=1}^n\log
+p(x_i;\theta_1,\dots,\theta_k)=0
 \end{array}
 \right.\qquad \text{（离散型随机变量）}
 \end{equation*}\]</span> 或 <span class="math display">\[\begin{equation*}
 \left\{
 \begin{array}{c}
 \frac{\partial}{\partial\theta_1}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-f(x_1;\theta_1,\dots,\theta_k)=0,\\
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_1}\sum_{i=1}^n\log
+f(x_i;\theta_1,\dots,\theta_k)=0,\\
 \frac{\partial}{\partial\theta_2}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-f(x_1;\theta_1,\dots,\theta_k)=0,\\
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_2}\sum_{i=1}^n\log
+f(x_i;\theta_1,\dots,\theta_k)=0,\\
 \vdots\\
 \frac{\partial}{\partial\theta_k}\log
-L(\theta_1,\dots,\theta_k)=\sum_{i=1}^n\log
-f(x_1;\theta_1,\dots,\theta_k)=0
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_k}\sum_{i=1}^n\log
+f(x_i;\theta_1,\dots,\theta_k)=0
 \end{array}
 \right.\qquad \text{（连续型随机变量）}
 \end{equation*}\]</span></p>
