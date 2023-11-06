@@ -139,6 +139,78 @@ grid on<span class="token punctuation">,</span>hold on
       </tags>
   </entry>
   <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title('Bezier曲线拟合');
+questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
+<span id="more"></span>
+<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
+while 1
+    i = i+1;
+    tip = ['请选择第',num2str(i),'个数据点'];
+    xlabel(tip);
+    try
+    [x,y,button] = ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,'o');
+    dataPoints(:,i) = [x;y];
+    h1 = plot(dataPoints(1,:),dataPoints(2,:),'b');
+    if button ~= 1
+        xlabel('');
+        break;
+    end
+end
+
+
+for i = 0:0.01:1
+    newData(:,int32(i*100)+1) = cqj_GetBezier3Point(dataPoints,i);
+end
+h2 = plot(newData(1,:),newData(2,:),'.-r');
+legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data = dataPoints;
+while 1
+    if size(data,2) == 1
+        break;
+    end
+    temp = zeros(size(data,1),size(data,2)-1);
+    for i = 1:size(data,2)-1
+        temp(:,i) = (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data = temp;
+end
+end</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>MATLAB代码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github上 fork了别人的代码 本地更新主分支代码</title>
     <url>/post/8f4cbc0c.html</url>
     <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
@@ -170,6 +242,183 @@ fork了别人的代码 本地更新主分支代码</h3>
         <tag>原创</tag>
         <tag>git</tag>
         <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction to Data Science (2)</title>
+    <url>/post/ids2.html</url>
+    <content><![CDATA[<blockquote>
+<p>本节介绍无偏估计、平均二次误差以及Cramér-Rao下界。</p>
+<p>参考书籍：<em>Statistical Inference</em>, Casella and Berger,
+Duxbury, 2th edition.</p>
+</blockquote>
+<h4 id="无偏性unbiasedness">无偏性(Unbiasedness)</h4>
+<p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>是无偏的，即： <span class="math display">\[\text{E}[\hat{\theta}(X)]=\theta_0,\]</span>
+其中<span class="math inline">\(\theta_0\)</span>是真实参数。将<span class="math inline">\(\text{Bias}_{\theta_0}[\hat{\theta}(X)]=\text{E}[\hat{\theta}(X)]-\theta_0\)</span>称之为偏差。</p>
+<ul>
+<li>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，其极大似然估计和矩估计均为<span class="math inline">\(\hat{\theta}(X)=\frac{1}{n}\sum\limits_{i=1}^nX_i=\bar{X}\)</span>，是无偏估计量。
+<span class="math display">\[\text{E}[\hat{\theta}(X)]=\text{E}\left[\frac{1}{n}\sum_{i=1}^nX_i\right]=\frac{1}{n}\text{E}\left[\sum_{i=1}^nX_i\right]=\frac{1}{n}\sum_{i=1}^n\text{E}\left[X_i\right]=\frac{1}{n}
+\cdot n\cdot\theta_0=\theta_0.\]</span></li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(\text{E}[a\cdot
+X]=a\cdot\text{E}[X]\)</span></p>
+<p><span class="math inline">\(\text{E}[X+Y]=\text{E}[X]+\text{E}[Y]\)</span></p>
+<p><span class="math inline">\(\text{E}[X]=\int_{-\infty}^{\infty}x\cdot
+f(x)dx\)</span></p>
+<p><span class="math inline">\(\text{V}[X]=\text{E}[(X-\text{E}[X])^2]=\text{E}[X^2]-\text{E}^2[X]\)</span></p>
+</blockquote>
+<hr>
+<h4 id="平均二次误差mean-squared-error">平均二次误差(Mean Squared
+Error)</h4>
+<p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>的评估二次误差是关于<span class="math inline">\(\theta_0\)</span>的函数，被定义为：<span class="math inline">\(\text{E}_{\theta_0}[(\hat{\theta}(X)-\theta_0)^2]\)</span>。</p>
+<ul>
+<li>🌰例2. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，参数估计量<span class="math inline">\(\hat{\theta}(X)=\bar{X}\)</span>，该参数估计量的平均二次误差为
+<span class="math display">\[\text{MSE}=\text{E}[(\hat{\theta}(X)-\theta_0)^2]=\text{E}[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])]=\text{V}[\hat{\theta}(X)]=\frac{1}{n^2}\sum_{i=1}^n\text{V}[X_i]=\frac{1}{n^2}\cdot
+n\cdot \theta_0(1-\theta_0)=\frac{\theta_0(1-\theta_0)}{n}\]</span>
+注：当<span class="math inline">\(n\to\infty\)</span>时，平均二次误差<span class="math inline">\(\text{MSE}\)</span>趋于0，即估计量趋近于真实值<span class="math inline">\(\theta_0\)</span>。</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(\text{V}[a\cdot X]=a^2\cdot
+\text{V}[X]\)</span></p>
+<p><span class="math inline">\(\text{V}[X+Y]=\text{V}[X]+\text{V}[Y]+2\cdot\text{Cov}[X,Y]\)</span></p>
+</blockquote>
+<p>平均二次误差可以被拆分成两部分： <span class="math display">\[\begin{align}
+\text{MSE}&amp;=\text{E}[(\hat{\theta}(X)-\theta_0)^2]\\
+&amp;=\text{E}\left[\left(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)]+\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\right]\\
+&amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2+2(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])(\text{E}[\hat{\theta}(X)]-\theta_0)+(\text{E}[\hat{\theta}(X)]-\theta_0)^2\right]\\
+&amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2\right]+2(\text{E}[\hat{\theta}(X)]-\theta_0)\cdot\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])\right]+\left(\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\\
+&amp;=\text{V}[\hat{\theta}(X)]+\text{Bisa}_{\theta_0}^2[\hat{\theta}(X)]
+\end{align}\]</span>
+即平均二次误差为估计量的方差与与偏差的平方之和。</p>
+<hr>
+<h4 id="cramér-rao下界">Cramér-Rao下界</h4>
+<p>如果<span class="math inline">\(X_1,\dots,X_n\)</span>是互相独立，服从密度函数为<span class="math inline">\(f(x;\theta)\)</span>的分布。则任何无偏估计量<span class="math inline">\(\hat{\theta}\)</span>的方差满足： <span class="math display">\[\text{V}[\hat{\theta}(X)]\ge\frac{1}{n\cdot
+I_{X_1}(\theta)}\]</span> 其中<span class="math inline">\(I_{X_1}(\theta)\)</span>被称为Fisher信息，定义为：
+<span class="math display">\[\begin{align}
+I_{X_1}(\theta)&amp;=\text{E}\left[\left(\frac{\partial}{\partial\theta}l_{X_1}(x;\theta)\right)^2\right]:=\text{E}[l'_{X_1}(\theta)^2]\\
+&amp;=-\text{E}\left[\frac{\partial^2}{\partial\theta^2}l_{X_1}(x;\theta)\right]:=-\text{E}[l''_{X_1}(\theta)].
+\end{align}\]</span> 其中<span class="math inline">\(l_{X_1}(\theta)=\log
+f_{X_1}(x;\theta)\)</span></p>
+<ul>
+<li><em>证明</em>：令<span class="math inline">\(Y=\hat{\theta}(X)\)</span>，<span class="math inline">\(Z=l'_X(\theta)\)</span>，由于<span class="math inline">\(Y,Z\)</span>的相关系数介于<span class="math inline">\([-1,1]\)</span>，即 <span class="math display">\[-1\le\frac{\text{Cov}[Y,Z]}{\sqrt{\text{V}[Y]\cdot\text{V}[Z]}}\le
+1,\]</span> 由此可得 <span class="math display">\[\begin{equation}
+\text{V}[Y]=\text{V}[\hat{\theta}(X)]\ge\frac{\text{Cov}^2[Y,Z]}{\text{V}[Z]},
+\end{equation}\]</span> 观察上式，现需替换分子<span class="math inline">\(\text{Cov}^2[Y,Z]\)</span>和分母<span class="math inline">\(\text{V}[Z]\)</span>，首先<span class="math inline">\(\text{V}[Z]\)</span>可以被写作 <span class="math display">\[\begin{align}
+\text{V}[Z]&amp;=\text{V}[l'_X(\theta)]=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log
+f_X(x;\theta)\right]}_{对数似然函数}=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^nf_{X_i}(x;\theta)\right]}_{\log(ab)=\log
+a+\log b}\\
+&amp;=\underbrace{\text{V}\left[\sum_{i=1}^n\frac{\partial}{\partial\theta}\log
+f_{X_i}(x;\theta)\right]}_{X\text{是相互独立的}}=\sum_{i=1}^n\text{V}\left[\frac{\partial}{\partial\theta}\log
+f_{X_i}(x;\theta)\right]\\
+&amp;=n\cdot\text{V}[l'_{X_1}(\theta)]=n\cdot\left\{\text{E}[l'_{X_1}(\theta)^2]-\text{E}^2[l'_{X_1}(\theta)]\right\}
+\end{align}\]</span> 由期望的定义有 <span class="math display">\[\begin{align}
+&amp;\text{E}[l'_{X_1}(\theta)]=\int_{-\infty}^{\infty}l'_{X_1}(\theta)f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}\frac{\partial}{\partial\theta}\log
+f_{X_1}(x;\theta)\cdot f_{X_1}(x;\theta)dx\\
+=&amp;\int_{-\infty}^{\infty}\frac{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}{f_{X_1}(x;\theta)}f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}dx=\frac{\partial}{\partial\theta}\underbrace{\int_{-\infty}^{\infty}f_{X_1}(x;\theta)dx}_{\text{概率密度函数积分为1}}=0,
+\end{align}\]</span> 即<span class="math inline">\(\text{V}[Z]=n\cdot\text{E}[l'_{X_1}(\theta)^2]=n\cdot
+I_{X_1}(\theta)\)</span>，根据协方差定义 <span class="math display">\[\begin{align}
+\text{Cov}[Y,Z]&amp;=\text{Cov}[\hat{\theta}(X),l'_X(\theta)]=\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot\text{E}[l'_X(\theta)]\\
+&amp;=\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot
+n\cdot\underbrace{\text{E}[l'_{X_1}(\theta)]}_{0}=\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)],
+\end{align}\]</span> 再由定义 <span class="math display">\[\begin{align}
+\text{E}[\hat{\theta}(X)\cdot
+l'_X(\theta)]=\int_{-\infty}^{\infty}\hat{\theta}(X)\frac{\frac{\partial}{\partial\theta}f_X(x;\theta)}{f_X(x;\theta)}f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}\hat{\theta}\cdot
+f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\text{E}[\hat{\theta}(X)]=1,
+\end{align}\]</span> 即<span class="math inline">\(\text{Cov}[Y,Z]=1\)</span>，综上有<span class="math inline">\(\text{V}[\hat{\theta}(X)]\ge\left(n\cdot
+I_{X_i}(\theta)\right)^{-1}\)</span>，得证。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction to Data Science (1)</title>
+    <url>/post/ids1.html</url>
+    <content><![CDATA[<blockquote>
+<p>本节将简要介绍参数估计，主要讨论矩估计(method of
+moments)和极大似然估计(maximum likelihood estimation)。</p>
+<p>参考书籍：《概率论与数理统计》 浙大第四版</p>
+</blockquote>
+<h4 id="矩估计">矩估计</h4>
+<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，其中参数<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>为待估计参数。总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩为 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\sum_{x\in
+R_X}x^mp(x;\theta_1,\theta_2,\dots,\theta_k),\]</span> 其中<span class="math inline">\(R_X\)</span>是<span class="math inline">\(X\)</span>可能的取值范围。如果随机变量<span class="math inline">\(X\)</span>是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>的连续型随机变量，假设总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩是 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\int_{-\infty}^{\infty}x^mf(x;\theta_1,\theta_2,\dots,\theta_k)dx.\]</span>
+如果<span class="math inline">\(X\)</span>的前<span class="math inline">\(k\)</span>阶矩存在。由于样本矩<span class="math inline">\(A_m=\frac{1}{n}\sum_{i=1}^nX_i^m\)</span>依概率收敛于相应的总体矩<span class="math inline">\(\mu_m\)</span>。用样本矩作为相应的总体矩的估计量。对于<span class="math inline">\(m=1,2,\dots,k\)</span>，可以建立如下方程组： <span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\mu_1(\theta_1,\dots,\theta_k)=A_1,\\
+\mu_2(\theta_1,\dots,\theta_k)=A_2,\\
+\vdots\\
+\mu_k(\theta_1,\dots,\theta_k)=A_k
+\end{array}
+\right.
+\end{equation*}\]</span> 通过求解出<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>。这样的估计量被称为<strong>矩估计量</strong>。</p>
+<hr>
+<h4 id="极大似然估计">极大似然估计</h4>
+<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，则<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>的联合分布律为 <span class="math display">\[\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k),\]</span>
+假如已知样本<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>对应的样本值是<span class="math inline">\(x_1,x_2,\dots,x_n\)</span>，则事件<span class="math inline">\(\{X_i=x_i,~i=1,\dots,n\}\)</span>的概率为 <span class="math display">\[P\{X_i=x_i,~i=1,\dots,n\}=\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k)=L(\theta_1,\dots,\theta_k)，\]</span>
+由于该事件为观测值对应的事件，其已经发生，表明这个概率值较大，给予该原则最大化函数<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>，该函数被称为样本的<strong>似然函数</strong>。则极大似然估计值为
+<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k).\]</span>
+对于连续型随机变量，假设其对应的概率密度函数为是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>，同理有极大似然估计量为
+<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^nf(x_i;\theta_1,\dots,\theta_k).\]</span>
+对于该优化问题的求解，当<span class="math inline">\(p(x_i;\theta_1,\dots,\theta_k)\)</span>或<span class="math inline">\(f(x_i;\theta_1,\dots,\theta_k)\)</span>关于<span class="math inline">\(\theta_j\)</span>可微，则极大似然估计值可从方程组
+<span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\frac{\partial}{\partial\theta_1}L(\theta_1,\dots,\theta_k)=0,\\
+\frac{\partial}{\partial\theta_2}L(\theta_1,\dots,\theta_k)=0,\\
+\vdots\\
+\frac{\partial}{\partial\theta_k}L(\theta_1,\dots,\theta_k)=0
+\end{array}
+\right.
+\end{equation*}\]</span> 求得。由于<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>与<span class="math inline">\(\log
+L(\theta_1,\dots,\theta_k)\)</span>在同一处取得极值，因此极大似然估计值亦可通过求解下面的<strong>对数似然方程组</strong>获得。
+<span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\frac{\partial}{\partial\theta_1}\log
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_1}\sum_{i=1}^n\log
+p(x_i;\theta_1,\dots,\theta_k)=0,\\
+\frac{\partial}{\partial\theta_2}\log
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_2}\sum_{i=1}^n\log
+p(x_i;\theta_1,\dots,\theta_k)=0,\\
+\vdots\\
+\frac{\partial}{\partial\theta_k}\log
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_k}\sum_{i=1}^n\log
+p(x_i;\theta_1,\dots,\theta_k)=0
+\end{array}
+\right.\qquad \text{（离散型随机变量）}
+\end{equation*}\]</span> 或 <span class="math display">\[\begin{equation*}
+\left\{
+\begin{array}{c}
+\frac{\partial}{\partial\theta_1}\log
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_1}\sum_{i=1}^n\log
+f(x_i;\theta_1,\dots,\theta_k)=0,\\
+\frac{\partial}{\partial\theta_2}\log
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_2}\sum_{i=1}^n\log
+f(x_i;\theta_1,\dots,\theta_k)=0,\\
+\vdots\\
+\frac{\partial}{\partial\theta_k}\log
+L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_k}\sum_{i=1}^n\log
+f(x_i;\theta_1,\dots,\theta_k)=0
+\end{array}
+\right.\qquad \text{（连续型随机变量）}
+\end{equation*}\]</span></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>统计</tag>
       </tags>
   </entry>
   <entry>
@@ -302,159 +551,6 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad
       </tags>
   </entry>
   <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title('Bezier曲线拟合');
-questdlg('1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点','操作','ok','ok');</code></pre>
-<span id="more"></span>
-<p><img src="http://img.ifish.ink/figure/main_01.png"></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i = 0;
-while 1
-    i = i+1;
-    tip = ['请选择第',num2str(i),'个数据点'];
-    xlabel(tip);
-    try
-    [x,y,button] = ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,'o');
-    dataPoints(:,i) = [x;y];
-    h1 = plot(dataPoints(1,:),dataPoints(2,:),'b');
-    if button ~= 1
-        xlabel('');
-        break;
-    end
-end
-
-
-for i = 0:0.01:1
-    newData(:,int32(i*100)+1) = cqj_GetBezier3Point(dataPoints,i);
-end
-h2 = plot(newData(1,:),newData(2,:),'.-r');
-legend([h1,h2],'原始点','3次Bezier曲线')</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_02.png"></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] = cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data = dataPoints;
-while 1
-    if size(data,2) == 1
-        break;
-    end
-    temp = zeros(size(data,1),size(data,2)-1);
-    for i = 1:size(data,2)-1
-        temp(:,i) = (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data = temp;
-end
-end</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_03.png"></p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>MATLAB代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Introduction to Data Science (1)</title>
-    <url>/post/ids1.html</url>
-    <content><![CDATA[<blockquote>
-<p>本节将简要介绍参数估计，主要讨论矩估计(method of
-moments)和极大似然估计(maximum likelihood estimation)。</p>
-<p>参考书籍：《概率论与数理统计》 浙大第四版</p>
-</blockquote>
-<h4 id="矩估计">矩估计</h4>
-<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，其中参数<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>为待估计参数。总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩为 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\sum_{x\in
-R_X}x^mp(x;\theta_1,\theta_2,\dots,\theta_k),\]</span> 其中<span class="math inline">\(R_X\)</span>是<span class="math inline">\(X\)</span>可能的取值范围。如果随机变量<span class="math inline">\(X\)</span>是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>的连续型随机变量，假设总体<span class="math inline">\(X\)</span>的<span class="math inline">\(m\)</span>阶矩是 <span class="math display">\[\mu_m(\theta_1,\dots,\theta_k)=\text{E}[X^m]=\int_{-\infty}^{\infty}x^mf(x;\theta_1,\theta_2,\dots,\theta_k)dx.\]</span>
-如果<span class="math inline">\(X\)</span>的前<span class="math inline">\(k\)</span>阶矩存在。由于样本矩<span class="math inline">\(A_m=\frac{1}{n}\sum_{i=1}^nX_i^m\)</span>依概率收敛于相应的总体矩<span class="math inline">\(\mu_m\)</span>。用样本矩作为相应的总体矩的估计量。对于<span class="math inline">\(m=1,2,\dots,k\)</span>，可以建立如下方程组： <span class="math display">\[\begin{equation*}
-\left\{
-\begin{array}{c}
-\mu_1(\theta_1,\dots,\theta_k)=A_1,\\
-\mu_2(\theta_1,\dots,\theta_k)=A_2,\\
-\vdots\\
-\mu_k(\theta_1,\dots,\theta_k)=A_k
-\end{array}
-\right.
-\end{equation*}\]</span> 通过求解出<span class="math inline">\(\theta_1,\dots,\theta_k\)</span>。这样的估计量被称为<strong>矩估计量</strong>。</p>
-<hr>
-<h4 id="极大似然估计">极大似然估计</h4>
-<p>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自随机变量<span class="math inline">\(X\)</span>的样本，如果<span class="math inline">\(X\)</span>是分布律为<span class="math inline">\(P\{X=x\}=p(x;\theta_1,\dots,\theta_k)\)</span>的离散型随机变量，则<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>的联合分布律为 <span class="math display">\[\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k),\]</span>
-假如已知样本<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>对应的样本值是<span class="math inline">\(x_1,x_2,\dots,x_n\)</span>，则事件<span class="math inline">\(\{X_i=x_i,~i=1,\dots,n\}\)</span>的概率为 <span class="math display">\[P\{X_i=x_i,~i=1,\dots,n\}=\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k)=L(\theta_1,\dots,\theta_k)，\]</span>
-由于该事件为观测值对应的事件，其已经发生，表明这个概率值较大，给予该原则最大化函数<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>，该函数被称为样本的<strong>似然函数</strong>。则极大似然估计值为
-<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^np(x_i;\theta_1,\dots,\theta_k).\]</span>
-对于连续型随机变量，假设其对应的概率密度函数为是概率密度为<span class="math inline">\(f(x;\theta_1,\theta_2,\dots,\theta_k)\)</span>，同理有极大似然估计量为
-<span class="math display">\[(\hat{\theta}_1,\dots,\hat{\theta}_k)=\max_{\theta_1,\dots,\theta_k}\prod_{i=1}^nf(x_i;\theta_1,\dots,\theta_k).\]</span>
-对于该优化问题的求解，当<span class="math inline">\(p(x_i;\theta_1,\dots,\theta_k)\)</span>或<span class="math inline">\(f(x_i;\theta_1,\dots,\theta_k)\)</span>关于<span class="math inline">\(\theta_j\)</span>可微，则极大似然估计值可从方程组
-<span class="math display">\[\begin{equation*}
-\left\{
-\begin{array}{c}
-\frac{\partial}{\partial\theta_1}L(\theta_1,\dots,\theta_k)=0,\\
-\frac{\partial}{\partial\theta_2}L(\theta_1,\dots,\theta_k)=0,\\
-\vdots\\
-\frac{\partial}{\partial\theta_k}L(\theta_1,\dots,\theta_k)=0
-\end{array}
-\right.
-\end{equation*}\]</span> 求得。由于<span class="math inline">\(L(\theta_1,\dots,\theta_k)\)</span>与<span class="math inline">\(\log
-L(\theta_1,\dots,\theta_k)\)</span>在同一处取得极值，因此极大似然估计值亦可通过求解下面的<strong>对数似然方程组</strong>获得。
-<span class="math display">\[\begin{equation*}
-\left\{
-\begin{array}{c}
-\frac{\partial}{\partial\theta_1}\log
-L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_1}\sum_{i=1}^n\log
-p(x_i;\theta_1,\dots,\theta_k)=0,\\
-\frac{\partial}{\partial\theta_2}\log
-L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_2}\sum_{i=1}^n\log
-p(x_i;\theta_1,\dots,\theta_k)=0,\\
-\vdots\\
-\frac{\partial}{\partial\theta_k}\log
-L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_k}\sum_{i=1}^n\log
-p(x_i;\theta_1,\dots,\theta_k)=0
-\end{array}
-\right.\qquad \text{（离散型随机变量）}
-\end{equation*}\]</span> 或 <span class="math display">\[\begin{equation*}
-\left\{
-\begin{array}{c}
-\frac{\partial}{\partial\theta_1}\log
-L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_1}\sum_{i=1}^n\log
-f(x_i;\theta_1,\dots,\theta_k)=0,\\
-\frac{\partial}{\partial\theta_2}\log
-L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_2}\sum_{i=1}^n\log
-f(x_i;\theta_1,\dots,\theta_k)=0,\\
-\vdots\\
-\frac{\partial}{\partial\theta_k}\log
-L(\theta_1,\dots,\theta_k)=\frac{\partial}{\partial\theta_k}\sum_{i=1}^n\log
-f(x_i;\theta_1,\dots,\theta_k)=0
-\end{array}
-\right.\qquad \text{（连续型随机变量）}
-\end{equation*}\]</span></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>统计</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenSubdiv + Visual Studio环境配置</title>
     <url>/post/a507e481.html</url>
     <content><![CDATA[<blockquote>
@@ -528,99 +624,312 @@ Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
       </tags>
   </entry>
   <entry>
-    <title>Introduction to Data Science (2)</title>
-    <url>/post/ids2.html</url>
+    <title>git clone 速度慢？</title>
+    <url>/post/ec4bf4f5.html</url>
+    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
+<h2 id="方法1">方法1：</h2>
+<h3 id="查询ip地址">查询IP地址</h3>
+<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com" title="https://www.ipaddress.com">https://www.ipaddress.com</a>
+分别输入如下网址查看对应的IP地址</p>
+<span id="more"></span>
+<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
+或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
+<h3 id="修改hosts文件">修改hosts文件</h3>
+<p>得到对应的IP后，在hosts文件后追加如下两行
+Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
+Linux用户：<code>sudo gedit /etc/hosts</code>
+（xxx替换为你得到的对应的IP地址）</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
+xxx.xxx.xxx.xxx github.com</code></pre>
+<h3 id="刷新dns">刷新DNS</h3>
+<p>Windows用户：<code>ipconfig /flushdns</code>
+Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
+<h2 id="方法2">方法2：</h2>
+<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>git</tag>
+        <tag>github</tag>
+        <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TexLive2017+TexStudio in Windows</title>
+    <url>/post/c4cb1247.html</url>
+    <content><![CDATA[<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建</p>
+<span id="more"></span>
+<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱：
+qingjun.cn@gmail.com</p>
+<hr>
+<p>百度云资源下载：<a href="https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag">链接：https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag
+提取码：uyed</a> 清华镜像下载：<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">texlive下载</a>
+视频源：<a href="https://www.youtube.com/watch?v=82bF7uzgFes&amp;list=PLFCWA3cnJDPVQuYFhrU0Lu9r1wogsAkdv">How
+to download and Install laTex (TeXstudio+texlive2017) full</a></p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+        <tag>摘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress站点地图自动更新</title>
+    <url>/post/943451b1.html</url>
     <content><![CDATA[<blockquote>
-<p>本节介绍无偏估计、平均二次误差以及Cramér-Rao下界。</p>
-<p>参考书籍：<em>Statistical Inference</em>, Casella and Berger,
-Duxbury, 2th edition.</p>
+<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
 </blockquote>
-<h4 id="无偏性unbiasedness">无偏性(Unbiasedness)</h4>
-<p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>是无偏的，即： <span class="math display">\[\text{E}[\hat{\theta}(X)]=\theta_0,\]</span>
-其中<span class="math inline">\(\theta_0\)</span>是真实参数。将<span class="math inline">\(\text{Bias}_{\theta_0}[\hat{\theta}(X)]=\text{E}[\hat{\theta}(X)]-\theta_0\)</span>称之为偏差。</p>
-<ul>
-<li>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，其极大似然估计和矩估计均为<span class="math inline">\(\hat{\theta}(X)=\frac{1}{n}\sum\limits_{i=1}^nX_i=\bar{X}\)</span>，是无偏估计量。
-<span class="math display">\[\text{E}[\hat{\theta}(X)]=\text{E}\left[\frac{1}{n}\sum_{i=1}^nX_i\right]=\frac{1}{n}\text{E}\left[\sum_{i=1}^nX_i\right]=\frac{1}{n}\sum_{i=1}^n\text{E}\left[X_i\right]=\frac{1}{n}
-\cdot n\cdot\theta_0=\theta_0.\]</span></li>
-</ul>
-<blockquote>
-<p><span class="math inline">\(\text{E}[a\cdot
-X]=a\cdot\text{E}[X]\)</span></p>
-<p><span class="math inline">\(\text{E}[X+Y]=\text{E}[X]+\text{E}[Y]\)</span></p>
-<p><span class="math inline">\(\text{E}[X]=\int_{-\infty}^{\infty}x\cdot
-f(x)dx\)</span></p>
-<p><span class="math inline">\(\text{V}[X]=\text{E}[(X-\text{E}[X])^2]=\text{E}[X^2]-\text{E}^2[X]\)</span></p>
-</blockquote>
+<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
+<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长">
+<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png" alt="google">
+现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
+<img src="http://img.ifish.ink/img/2.png" alt="google">
+在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
 <hr>
-<h4 id="平均二次误差mean-squared-error">平均二次误差(Mean Squared
-Error)</h4>
-<p>参数<span class="math inline">\(\theta\)</span>的估计量<span class="math inline">\(\hat{\theta}\)</span>的评估二次误差是关于<span class="math inline">\(\theta_0\)</span>的函数，被定义为：<span class="math inline">\(\text{E}_{\theta_0}[(\hat{\theta}(X)-\theta_0)^2]\)</span>。</p>
-<ul>
-<li>🌰例2. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的(0-1)分布，参数估计量<span class="math inline">\(\hat{\theta}(X)=\bar{X}\)</span>，该参数估计量的平均二次误差为
-<span class="math display">\[\text{MSE}=\text{E}[(\hat{\theta}(X)-\theta_0)^2]=\text{E}[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])]=\text{V}[\hat{\theta}(X)]=\frac{1}{n^2}\sum_{i=1}^n\text{V}[X_i]=\frac{1}{n^2}\cdot
-n\cdot \theta_0(1-\theta_0)=\frac{\theta_0(1-\theta_0)}{n}\]</span>
-注：当<span class="math inline">\(n\to\infty\)</span>时，平均二次误差<span class="math inline">\(\text{MSE}\)</span>趋于0，即估计量趋近于真实值<span class="math inline">\(\theta_0\)</span>。</li>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>SEO</tag>
+        <tag>sitemap</tag>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu 外接显示与内置显示切换</title>
+    <url>/post/83277084.html</url>
+    <content><![CDATA[<ul>
+<li>查看显示器设备名称
+在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
+LVDS-1 和 HDMI-1
+(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
 </ul>
-<blockquote>
-<p><span class="math inline">\(\text{V}[a\cdot X]=a^2\cdot
-\text{V}[X]\)</span></p>
-<p><span class="math inline">\(\text{V}[X+Y]=\text{V}[X]+\text{V}[Y]+2\cdot\text{Cov}[X,Y]\)</span></p>
-</blockquote>
-<p>平均二次误差可以被拆分成两部分： <span class="math display">\[\begin{align}
-\text{MSE}&amp;=\text{E}[(\hat{\theta}(X)-\theta_0)^2]\\
-&amp;=\text{E}\left[\left(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)]+\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\right]\\
-&amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2+2(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])(\text{E}[\hat{\theta}(X)]-\theta_0)+(\text{E}[\hat{\theta}(X)]-\theta_0)^2\right]\\
-&amp;=\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])^2\right]+2(\text{E}[\hat{\theta}(X)]-\theta_0)\cdot\text{E}\left[(\hat{\theta}(X)-\text{E}[\hat{\theta}(X)])\right]+\left(\text{E}[\hat{\theta}(X)]-\theta_0\right)^2\\
-&amp;=\text{V}[\hat{\theta}(X)]+\text{Bisa}_{\theta_0}^2[\hat{\theta}(X)]
-\end{align}\]</span>
-即平均二次误差为估计量的方差与与偏差的平方之和。</p>
+<span id="more"></span>
+<p><img src="http://img.ifish.ink/img/display_1.png"></p>
+<ul>
+<li><p>关闭外接显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off</code>
+(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>打开外接显示器，关闭内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>关闭外接显示器，打开内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+</ul>
 <hr>
-<h4 id="cramér-rao下界">Cramér-Rao下界</h4>
-<p>如果<span class="math inline">\(X_1,\dots,X_n\)</span>是互相独立，服从密度函数为<span class="math inline">\(f(x;\theta)\)</span>的分布。则任何无偏估计量<span class="math inline">\(\hat{\theta}\)</span>的方差满足： <span class="math display">\[\text{V}[\hat{\theta}(X)]\ge\frac{1}{n\cdot
-I_{X_1}(\theta)}\]</span> 其中<span class="math inline">\(I_{X_1}(\theta)\)</span>被称为Fisher信息，定义为：
-<span class="math display">\[\begin{align}
-I_{X_1}(\theta)&amp;=\text{E}\left[\left(\frac{\partial}{\partial\theta}l_{X_1}(x;\theta)\right)^2\right]:=\text{E}[l'_{X_1}(\theta)^2]\\
-&amp;=-\text{E}\left[\frac{\partial^2}{\partial\theta^2}l_{X_1}(x;\theta)\right]:=-\text{E}[l''_{X_1}(\theta)].
-\end{align}\]</span> 其中<span class="math inline">\(l_{X_1}(\theta)=\log
-f_{X_1}(x;\theta)\)</span></p>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>环境配置</tag>
+        <tag>ubuntu</tag>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <url>/post/563c2d.html</url>
+    <content><![CDATA[<blockquote>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
+<strong>Briefly unavailable for scheduled maintenance. Check back in a
+minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+</blockquote>
+<figure>
+<img src="http://img.ifish.ink/img/20190703103139.png" title="Briefly unavailable for scheduled maintenance. Check back in a minute." alt="Briefly unavailable for scheduled maintenance. Check back in a minute.">
+<figcaption aria-hidden="true">Briefly unavailable for scheduled
+maintenance. Check back in a minute.</figcaption>
+</figure>
+<h3 id="原因">原因：</h3>
+<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
+unavailable for scheduled maintenance. Check back in a minute.”</p>
+<span id="more"></span>
+<h3 id="解决方法">解决方法：</h3>
+<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
+的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
+即可</p>
 <ul>
-<li><em>证明</em>：令<span class="math inline">\(Y=\hat{\theta}(X)\)</span>，<span class="math inline">\(Z=l'_X(\theta)\)</span>，由于<span class="math inline">\(Y,Z\)</span>的相关系数介于<span class="math inline">\([-1,1]\)</span>，即 <span class="math display">\[-1\le\frac{\text{Cov}[Y,Z]}{\sqrt{\text{V}[Y]\cdot\text{V}[Z]}}\le
-1,\]</span> 由此可得 <span class="math display">\[\begin{equation}
-\text{V}[Y]=\text{V}[\hat{\theta}(X)]\ge\frac{\text{Cov}^2[Y,Z]}{\text{V}[Z]},
-\end{equation}\]</span> 观察上式，现需替换分子<span class="math inline">\(\text{Cov}^2[Y,Z]\)</span>和分母<span class="math inline">\(\text{V}[Z]\)</span>，首先<span class="math inline">\(\text{V}[Z]\)</span>可以被写作 <span class="math display">\[\begin{align}
-\text{V}[Z]&amp;=\text{V}[l'_X(\theta)]=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log
-f_X(x;\theta)\right]}_{对数似然函数}=\underbrace{\text{V}\left[\frac{\partial}{\partial\theta}\log\prod_{i=1}^nf_{X_i}(x;\theta)\right]}_{\log(ab)=\log
-a+\log b}\\
-&amp;=\underbrace{\text{V}\left[\sum_{i=1}^n\frac{\partial}{\partial\theta}\log
-f_{X_i}(x;\theta)\right]}_{X\text{是相互独立的}}=\sum_{i=1}^n\text{V}\left[\frac{\partial}{\partial\theta}\log
-f_{X_i}(x;\theta)\right]\\
-&amp;=n\cdot\text{V}[l'_{X_1}(\theta)]=n\cdot\left\{\text{E}[l'_{X_1}(\theta)^2]-\text{E}^2[l'_{X_1}(\theta)]\right\}
-\end{align}\]</span> 由期望的定义有 <span class="math display">\[\begin{align}
-&amp;\text{E}[l'_{X_1}(\theta)]=\int_{-\infty}^{\infty}l'_{X_1}(\theta)f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}\frac{\partial}{\partial\theta}\log
-f_{X_1}(x;\theta)\cdot f_{X_1}(x;\theta)dx\\
-=&amp;\int_{-\infty}^{\infty}\frac{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}{f_{X_1}(x;\theta)}f_{X_1}(x;\theta)dx=\int_{-\infty}^{\infty}{\frac{\partial}{\partial\theta}f_{X_1}(x;\theta)}dx=\frac{\partial}{\partial\theta}\underbrace{\int_{-\infty}^{\infty}f_{X_1}(x;\theta)dx}_{\text{概率密度函数积分为1}}=0,
-\end{align}\]</span> 即<span class="math inline">\(\text{V}[Z]=n\cdot\text{E}[l'_{X_1}(\theta)^2]=n\cdot
-I_{X_1}(\theta)\)</span>，根据协方差定义 <span class="math display">\[\begin{align}
-\text{Cov}[Y,Z]&amp;=\text{Cov}[\hat{\theta}(X),l'_X(\theta)]=\text{E}[\hat{\theta}(X)\cdot
-l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot\text{E}[l'_X(\theta)]\\
-&amp;=\text{E}[\hat{\theta}(X)\cdot
-l'_X(\theta)]-\text{E}[\hat{\theta}(X)]\cdot
-n\cdot\underbrace{\text{E}[l'_{X_1}(\theta)]}_{0}=\text{E}[\hat{\theta}(X)\cdot
-l'_X(\theta)],
-\end{align}\]</span> 再由定义 <span class="math display">\[\begin{align}
-\text{E}[\hat{\theta}(X)\cdot
-l'_X(\theta)]=\int_{-\infty}^{\infty}\hat{\theta}(X)\frac{\frac{\partial}{\partial\theta}f_X(x;\theta)}{f_X(x;\theta)}f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\int_{-\infty}^{\infty}\hat{\theta}\cdot
-f_X(x;\theta)dx=\frac{\partial}{\partial\theta}\text{E}[\hat{\theta}(X)]=1,
-\end{align}\]</span> 即<span class="math inline">\(\text{Cov}[Y,Z]=1\)</span>，综上有<span class="math inline">\(\text{V}[\hat{\theta}(X)]\ge\left(n\cdot
-I_{X_i}(\theta)\right)^{-1}\)</span>，得证。</li>
+<li>用FTP或者从终端进入WordPress的根目录下，删除
+<strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
+文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
+<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
+<strong>.maintenance</strong> 文件，然后删除即可。</li>
 </ul>
+<p>重新访问网站，发现一切正常<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 感谢阅读！</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <url>/post/f9428d51.html</url>
+    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
+<span id="more"></span>
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
+% init_X：初始值
+% coefficient_mat：系数矩阵
+% b_mat：b
+% maxNum：最大迭代次数
+% epsilon：精度
+output_args = [];
+flag = 0;
+
+%% 预处理 检查用户调用函数时参数格式是否传错
+if size(coefficient_mat,1) ~= size(coefficient_mat,2)
+    disp('系数矩阵格式错误(需要方阵)');
+    return;
+end
+if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
+    disp('AX=b中的b必须为行向量或者列向量');
+    return;
+end
+if size(b_mat,1) == 1
+    b_mat = b_mat';
+end
+if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
+    disp('初始值必须为行向量或者列向量');
+    return;
+end
+if size(init_X,1) == 1
+    init_X = init_X';
+end
+if size(init_X,1) ~= size(coefficient_mat,1)
+    disp('初始值与系数矩阵维数不一致');
+    return;
+end
+if size(init_X,1) ~= size(b_mat,1)
+    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
+    return;
+end
+if ~exist('maxNum', 'var')
+    maxNum = 500; % 默认值
+end
+if ~exist('epsilon', 'var')
+    epsilon = 1e-14; % 默认值
+end
+
+%% 三对角线
+a = diag(coefficient_mat,-1)';
+b = diag(coefficient_mat)';
+c = diag(coefficient_mat,1)';
+D = diag(a,-1)+diag(b)+diag(c,1);
+
+% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
+[~,D_inv] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
+if isempty(D_inv)
+    disp('系数矩阵不可逆');
+    return;
+end
+%% 开始迭代
+% 下面代码段也行 但是对内存的消耗比较大 
+% x(:,0) = init_X;
+% for k = 1:maxNum
+%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
+%         flag = 1;
+%         break;
+%     end
+% end
+x = init_X;
+%%
+% 迭代公式：
+% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
+% 
+for k = 1:maxNum
+    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
+    if norm(temp-x) &lt; epsilon
+        flag = 1;
+        x = temp;
+        break;
+    end
+    x = temp;
+end
+
+
+%% 结果
+text(0,0.95,'方程：','Color','red','FontSize',14);
+str1 = '\left[\begin{array}';
+% 正则表达式
+str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    '[\s\[\]]',''),'0','c'); 
+mat_start = @(X) [str1 '{' str2(X) '}'];
+my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    ' *','&amp;'),';','\\\'),'[\[\]]','');
+mat_end = '\end{array}\right]';
+str5 = '\times X=';
+% LaTex 输出
+text('Interpreter','latex', 'String',['$$'...
+    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
+    'Position',[0.1 0.7],'FontSize',10);
+text(0,0.5,'三对角类雅可比迭代的结果：','Color','red','FontSize',14);
+if flag == 1  %好的结果
+    output_args.itrNum = k;
+    output_args.result = x;
+    fprintf('迭代次数：%d\n',output_args.itrNum);
+%     disp(x(:,k));
+    disp('解：');
+    disp(x);
+    text('Interpreter','latex', 'String',['$$X^*=' ...
+        mat_start(x) my_mat2str(x) mat_end '$$'],...
+        'Position',[0.1 0.3],'FontSize',10);
+    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
+    'Color','k','FontSize',10);
+    return;
+end
+text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
+    'Color','k','FontSize',10);
+fprintf('迭代%d次后暂未收敛\n',maxNum);
+end</code></pre>
+<ul>
+<li>测试程序</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat = [-1 -5 2 -1];
+init_X = zeros(size(b_mat));
+out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+<ul>
+<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
+</ul>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
         <category>数学学习</category>
       </categories>
       <tags>
         <tag>原创</tag>
-        <tag>统计</tag>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
       </tags>
   </entry>
   <entry>
@@ -706,200 +1015,8 @@ Thanks. (Applause)</p>
         <category>视频</category>
       </categories>
       <tags>
+        <tag>摘</tag>
         <tag>TED</tag>
-        <tag>摘</tag>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <url>/post/563c2d.html</url>
-    <content><![CDATA[<blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
-<strong>Briefly unavailable for scheduled maintenance. Check back in a
-minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
-</blockquote>
-<figure>
-<img src="http://img.ifish.ink/img/20190703103139.png" title="Briefly unavailable for scheduled maintenance. Check back in a minute." alt="Briefly unavailable for scheduled maintenance. Check back in a minute.">
-<figcaption aria-hidden="true">Briefly unavailable for scheduled
-maintenance. Check back in a minute.</figcaption>
-</figure>
-<h3 id="原因">原因：</h3>
-<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
-unavailable for scheduled maintenance. Check back in a minute.”</p>
-<span id="more"></span>
-<h3 id="解决方法">解决方法：</h3>
-<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
-的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
-即可</p>
-<ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除
-<strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
-文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
-<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
-<strong>.maintenance</strong> 文件，然后删除即可。</li>
-</ul>
-<p>重新访问网站，发现一切正常<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 感谢阅读！</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress站点地图自动更新</title>
-    <url>/post/943451b1.html</url>
-    <content><![CDATA[<blockquote>
-<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
-</blockquote>
-<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长">
-<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png" alt="google">
-现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
-<img src="http://img.ifish.ink/img/2.png" alt="google">
-在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>wordpress</tag>
-        <tag>SEO</tag>
-        <tag>sitemap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TexLive2017+TexStudio in Windows</title>
-    <url>/post/c4cb1247.html</url>
-    <content><![CDATA[<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建</p>
-<span id="more"></span>
-<p>本文主要讲述了win7系统下的TexLive+TexStudio环境搭建，联系邮箱：
-qingjun.cn@gmail.com</p>
-<hr>
-<p>百度云资源下载：<a href="https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag">链接：https://pan.baidu.com/s/1PWysfuI255wz9-APFXJpag
-提取码：uyed</a> 清华镜像下载：<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">texlive下载</a>
-视频源：<a href="https://www.youtube.com/watch?v=82bF7uzgFes&amp;list=PLFCWA3cnJDPVQuYFhrU0Lu9r1wogsAkdv">How
-to download and Install laTex (TeXstudio+texlive2017) full</a></p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>环境配置</tag>
-        <tag>摘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu 外接显示与内置显示切换</title>
-    <url>/post/83277084.html</url>
-    <content><![CDATA[<ul>
-<li>查看显示器设备名称
-在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
-LVDS-1 和 HDMI-1
-(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
-</ul>
-<span id="more"></span>
-<p><img src="http://img.ifish.ink/img/display_1.png"></p>
-<ul>
-<li><p>关闭外接显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off</code>
-(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>打开外接显示器，关闭内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>关闭外接显示器，打开内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-</ul>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>环境配置</tag>
-        <tag>ubuntu</tag>
-        <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git clone 速度慢？</title>
-    <url>/post/ec4bf4f5.html</url>
-    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
-<h2 id="方法1">方法1：</h2>
-<h3 id="查询ip地址">查询IP地址</h3>
-<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com" title="https://www.ipaddress.com">https://www.ipaddress.com</a>
-分别输入如下网址查看对应的IP地址</p>
-<span id="more"></span>
-<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
-或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
-<h3 id="修改hosts文件">修改hosts文件</h3>
-<p>得到对应的IP后，在hosts文件后追加如下两行
-Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
-Linux用户：<code>sudo gedit /etc/hosts</code>
-（xxx替换为你得到的对应的IP地址）</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
-xxx.xxx.xxx.xxx github.com</code></pre>
-<h3 id="刷新dns">刷新DNS</h3>
-<p>Windows用户：<code>ipconfig /flushdns</code>
-Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
-<h2 id="方法2">方法2：</h2>
-<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
-<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>git</tag>
-        <tag>github</tag>
-        <tag>环境配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一直都好喜欢这首诗啊！《雨巷》--戴望舒</title>
-    <url>/post/d517eeb6.html</url>
-    <content><![CDATA[<blockquote>
-<p>一直都好喜欢这首诗啊！《雨巷》--戴望舒</p>
-</blockquote>
-<span id="more"></span>
-<figure>
-<img src="http://img.ifish.ink/figure/xitang.png" alt="西塘">
-<figcaption aria-hidden="true">西塘</figcaption>
-</figure>
-<hr>
-<p>撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷， 我希望逢着
-一个丁香一样的 结着愁怨的姑娘。 她是有 丁香一样的颜色， 丁香一样的芬芳，
-丁香一样的忧愁， 在雨中哀怨， 哀怨又彷徨； 她彷徨在这寂寥的雨巷，
-撑着油纸伞 像我一样， 像我一样地 默默彳亍着， 冷漠，凄清，又惆怅。
-她静默地走近 走近，又投出 太息一般的眼光， 她飘过 像梦一般的，
-像梦一般的凄婉迷茫。 像梦中飘过 一枝丁香的， 我身旁飘过这女郎；
-她静默地远了，远了， 到了颓圮的篱墙， 走尽这雨巷。 在雨的哀曲里，
-消了她的颜色， 散了她的芬芳 消散了，甚至她的 太息般的眼光，
-丁香般的惆怅。 撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷，
-我希望飘过 一个丁香一样的 结着愁怨的姑娘。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
         <tag>随笔</tag>
       </tags>
   </entry>
@@ -1059,6 +1176,36 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
       </tags>
   </entry>
   <entry>
+    <title>一直都好喜欢这首诗啊！《雨巷》--戴望舒</title>
+    <url>/post/d517eeb6.html</url>
+    <content><![CDATA[<blockquote>
+<p>一直都好喜欢这首诗啊！《雨巷》--戴望舒</p>
+</blockquote>
+<span id="more"></span>
+<figure>
+<img src="http://img.ifish.ink/figure/xitang.png" alt="西塘">
+<figcaption aria-hidden="true">西塘</figcaption>
+</figure>
+<hr>
+<p>撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷， 我希望逢着
+一个丁香一样的 结着愁怨的姑娘。 她是有 丁香一样的颜色， 丁香一样的芬芳，
+丁香一样的忧愁， 在雨中哀怨， 哀怨又彷徨； 她彷徨在这寂寥的雨巷，
+撑着油纸伞 像我一样， 像我一样地 默默彳亍着， 冷漠，凄清，又惆怅。
+她静默地走近 走近，又投出 太息一般的眼光， 她飘过 像梦一般的，
+像梦一般的凄婉迷茫。 像梦中飘过 一枝丁香的， 我身旁飘过这女郎；
+她静默地远了，远了， 到了颓圮的篱墙， 走尽这雨巷。 在雨的哀曲里，
+消了她的颜色， 散了她的芬芳 消散了，甚至她的 太息般的眼光，
+丁香般的惆怅。 撑着油纸伞，独自 彷徨在悠长，悠长 又寂寥的雨巷，
+我希望飘过 一个丁香一样的 结着愁怨的姑娘。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>三角网格曲面参数化</title>
     <url>/post/bcf65292.html</url>
     <content><![CDATA[<blockquote>
@@ -1209,209 +1356,6 @@ figure
       </tags>
   </entry>
   <entry>
-    <title>三对角矩阵的类雅可比迭代程序</title>
-    <url>/post/f9428d51.html</url>
-    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
-<span id="more"></span>
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
-% init_X：初始值
-% coefficient_mat：系数矩阵
-% b_mat：b
-% maxNum：最大迭代次数
-% epsilon：精度
-output_args = [];
-flag = 0;
-
-%% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~= size(coefficient_mat,2)
-    disp('系数矩阵格式错误(需要方阵)');
-    return;
-end
-if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
-    disp('AX=b中的b必须为行向量或者列向量');
-    return;
-end
-if size(b_mat,1) == 1
-    b_mat = b_mat';
-end
-if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
-    disp('初始值必须为行向量或者列向量');
-    return;
-end
-if size(init_X,1) == 1
-    init_X = init_X';
-end
-if size(init_X,1) ~= size(coefficient_mat,1)
-    disp('初始值与系数矩阵维数不一致');
-    return;
-end
-if size(init_X,1) ~= size(b_mat,1)
-    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
-    return;
-end
-if ~exist('maxNum', 'var')
-    maxNum = 500; % 默认值
-end
-if ~exist('epsilon', 'var')
-    epsilon = 1e-14; % 默认值
-end
-
-%% 三对角线
-a = diag(coefficient_mat,-1)';
-b = diag(coefficient_mat)';
-c = diag(coefficient_mat,1)';
-D = diag(a,-1)+diag(b)+diag(c,1);
-
-% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
-[~,D_inv] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
-if isempty(D_inv)
-    disp('系数矩阵不可逆');
-    return;
-end
-%% 开始迭代
-% 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) = init_X;
-% for k = 1:maxNum
-%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
-%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag = 1;
-%         break;
-%     end
-% end
-x = init_X;
-%%
-% 迭代公式：
-% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
-% 
-for k = 1:maxNum
-    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
-    if norm(temp-x) &lt; epsilon
-        flag = 1;
-        x = temp;
-        break;
-    end
-    x = temp;
-end
-
-
-%% 结果
-text(0,0.95,'方程：','Color','red','FontSize',14);
-str1 = '\left[\begin{array}';
-% 正则表达式
-str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    '[\s\[\]]',''),'0','c'); 
-mat_start = @(X) [str1 '{' str2(X) '}'];
-my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    ' *','&amp;'),';','\\\'),'[\[\]]','');
-mat_end = '\end{array}\right]';
-str5 = '\times X=';
-% LaTex 输出
-text('Interpreter','latex', 'String',['$$'...
-    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
-    'Position',[0.1 0.7],'FontSize',10);
-text(0,0.5,'三对角类雅可比迭代的结果：','Color','red','FontSize',14);
-if flag == 1  %好的结果
-    output_args.itrNum = k;
-    output_args.result = x;
-    fprintf('迭代次数：%d\n',output_args.itrNum);
-%     disp(x(:,k));
-    disp('解：');
-    disp(x);
-    text('Interpreter','latex', 'String',['$$X^*=' ...
-        mat_start(x) my_mat2str(x) mat_end '$$'],...
-        'Position',[0.1 0.3],'FontSize',10);
-    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
-    'Color','k','FontSize',10);
-    return;
-end
-text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
-    'Color','k','FontSize',10);
-fprintf('迭代%d次后暂未收敛\n',maxNum);
-end</code></pre>
-<ul>
-<li>测试程序</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat = [-1 -5 2 -1];
-init_X = zeros(size(b_mat));
-out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-<ul>
-<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
-</ul>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
-    <url>/post/d033f67a.html</url>
-    <content><![CDATA[<h4 id="c实现2维多边形均值重心坐标代码可能有冗余未优化代码">c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
-<blockquote>
-<p>关于3维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/4d3c170c.html" title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
-Value Coordinates In 3D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 2D
-/// @details    
-/// @param[in]  p,postiveity
-/// @return     
-/// @attention  
-*/</span>
-VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
-        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
-        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
-        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>图形学</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>算法实现</tag>
-        <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
     <url>/post/4d3c170c.html</url>
     <content><![CDATA[<h4 id="c实现">c++实现：</h4>
@@ -1478,6 +1422,62 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
     <span class="token punctuation">}</span>
     mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>图形学</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>算法实现</tag>
+        <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
+    <url>/post/d033f67a.html</url>
+    <content><![CDATA[<h4 id="c实现2维多边形均值重心坐标代码可能有冗余未优化代码">c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
+<blockquote>
+<p>关于3维中均值重心坐标的实现可参考我的另一篇博客：<a href="https://www.ifish.ink/post/4d3c170c.html" title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
+Value Coordinates In 3D代码实现</a></p>
+</blockquote>
+<span id="more"></span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 2D
+/// @details    
+/// @param[in]  p,postiveity
+/// @return     
+/// @attention  
+*/</span>
+VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
+        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
+        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
+        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <hr>
