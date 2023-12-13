@@ -1914,4 +1914,100 @@ Hormann教授的邀请和邓重阳教授的支持让我有了这次国外学习�
         <tag>生活</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Introduction to Data Science (3)</title>
+    <url>/post/ids3.html</url>
+    <content><![CDATA[<blockquote>
+<p>本节介绍估计值的相合性（一致性）、有效性以及渐进正太的极大似然估计。</p>
+<p>参考书籍：<em>Statistical Inference</em>, Casella and Berger,
+Duxbury, 2th edition; 《概率论与数理统计》 浙大第四版</p>
+</blockquote>
+<h4 id="相合性consistency">相合性(Consistency)</h4>
+<p>设<span class="math inline">\(\hat{\theta}(X_1,\dots,X_n)\)</span>是参数<span class="math inline">\(\theta\)</span>的估计量，若对于任意<span class="math inline">\(\theta\in\Theta\)</span>，当<span class="math inline">\(n\to\infty\)</span>时，<span class="math inline">\(\hat{\theta}(X_1,\dots,X_n)\)</span>依概率收敛于<span class="math inline">\(\theta\)</span>，则称<span class="math inline">\(\hat{\theta}\)</span>为<span class="math inline">\(\theta\)</span>的<strong>相合估计量</strong>，即，若对于任意<span class="math inline">\(\theta\in\Theta\)</span>都满足：对于任意<span class="math inline">\(\epsilon&gt;0\)</span>，有 <span class="math display">\[\lim_{n\to\infty}P\{|\hat{\theta}-\theta|&lt;\epsilon\}=1.\]</span>
+如果估计量不具有相合性，则不论将样本容量<span class="math inline">\(n\)</span>取多么大，都不能将<span class="math inline">\(\theta\)</span>估计得足够准确。</p>
+<p>设<span class="math inline">\(Y_1,\dots,Y_n,\dots\)</span>是一个随机变量序列，<span class="math inline">\(a\)</span>是一个常数。若对于任意正数<span class="math inline">\(\epsilon\)</span>，有 <span class="math display">\[\lim_{n\to\infty}P\{|Y_n-a|&lt;\epsilon\}=1,\]</span>
+则称序列<span class="math inline">\(Y_1,\dots,Y_n,\dots\)</span><strong>依概率收敛</strong>于<span class="math inline">\(a\)</span>，记为<span class="math inline">\(Y_n\xrightarrow{P}a\)</span>。</p>
+<ul>
+<li><p>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的伯努利分布，参数估计量 <span class="math display">\[\hat{\theta}_n=\frac{X_1+\dots+X_n}{n}\]</span>
+则<span class="math inline">\(\hat{\theta}_n\)</span>是无偏估计且达到Cramér-Rao下界。</p>
+<p><em>证明</em>：对于无偏性，容易验证：<span class="math inline">\(\text{E}[\hat{\theta}_n]=\frac{1}{n}\sum_{i=1}^n\text{E}[X_i]=\text{E}[X_1]=\theta_0\)</span>。</p>
+<p>对于Cramér-Rao下界，可通过以下方式计算 <span class="math display">\[\begin{align}
+    l_{X_1}(\theta)&amp; = \log
+f_{X_1}(x_1;\theta)=\log[\theta^{x_1}(1-\theta)^{1-x_1}] =
+x_1\log\theta+(1-x_1)\log(1-\theta),
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+    l'_{X_1}(\theta) =
+\frac{\partial}{\partial\theta}l_{X_1}(\theta)=\frac{x_1}{\theta}-\frac{1-x_1}{1-\theta},
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+    l''_{X_1}(\theta) =
+\frac{\partial^2}{\partial\theta^2}l_{X_1}(\theta)=-\frac{x_1}{\theta^2}-\frac{1-x_1}{(1-\theta)^2},
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+    I_{X_1}(\theta) = -\text{E}[l''_{X_1}(\theta_0)] =
+\text{E}\left[\frac{X_1}{\theta_0^2}+\frac{1-X_1}{(1-\theta)^2}\right]=\frac{\text{E}[X_1]}{\theta_0^2}+\frac{1-\text{E}[X_1]}{(1-\theta_0)^2}=\frac{1}{\theta_0(1-\theta_0)},
+  \end{align}\]</span> 因此Cramér-Rao下界为 <span class="math display">\[CRLB=\frac{1}{n\cdot
+I_{X_1}(\theta)}=\frac{\theta_0(1-\theta_0)}{n},\]</span>
+另一方面估计量<span class="math inline">\(\hat{\theta}_n\)</span>的方差为 <span class="math display">\[\begin{align}
+    \text{V}[\hat{\theta}_n] = \frac{1}{n^2}\sum_{i=1}^n\text{V}[X_i] =
+\frac{1}{n}\text{V}[X_1] = \frac{1}{n}(\text{E}[X_1^2]-\text{E}^2[X_1])
+= \frac{1}{n}(\theta_0-\theta_0^2)=\frac{\theta_0(1-\theta_0)}{n},
+  \end{align}\]</span>
+即估计量的方差达到Cramér-Rao下界。对于该例，应用大数定理可知：估计量<span class="math inline">\(\hat{\theta}\)</span>是<span class="math inline">\(\theta_0\)</span>的相合估计量。</p>
+<blockquote>
+<p><strong>弱大数定理</strong>（辛钦大数定理） 设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且具有数学期望<span class="math inline">\(\text{E}[X_k]=\mu
+(k=1,2,\dots)\)</span>，则序列<span class="math inline">\(\bar{X}=\frac{1}{n}\sum_{k=1}^nX_k\)</span>依概率收敛于<span class="math inline">\(\mu\)</span>，即<span class="math inline">\(\bar{X}\xrightarrow{P}\mu\)</span>。</p>
+</blockquote>
+<p>另一方面，由于期望<span class="math inline">\(\text{E}[X_i]=\theta_0\)</span>和方差<span class="math inline">\(\text{V}[X_i]=\theta_0(1-\theta_0)\le
+1\)</span>，可以由切比雪夫不等式得到当<span class="math inline">\(n\)</span>趋近于无穷时，有<span class="math inline">\(P(|\hat{\theta}_n-\theta_0|&gt;\epsilon)\)</span>趋于0。</p>
+<blockquote>
+<p><strong>切比雪夫(Chebyshev)不等式</strong> 设随机变量<span class="math inline">\(X\)</span>具有数学期望<span class="math inline">\(\text{E}[X]=\mu\)</span>，方差<span class="math inline">\(\text{V}[X]=\sigma^2\)</span>，则对任意正数<span class="math inline">\(\epsilon\)</span>，不等式 <span class="math display">\[P(|x-\mu|\ge\epsilon)\le\frac{\sigma^2}{\epsilon^2}\]</span>
+成立，该不等式被称为切比雪夫不等式。</p>
+</blockquote>
+<p>因此在该例中，有<span class="math inline">\(P(|\hat{\theta}_n-\text{E}[\hat{\theta}_n]|\ge\epsilon)\le\frac{\text{V}[\hat{\theta}_n]}{\epsilon^2}\)</span>，即
+<span class="math display">\[P(|\hat{\theta}_n-\theta_0|\ge\epsilon)\le\frac{\theta_0(1-\theta_0)}{n\cdot\epsilon^2}\to
+0,\quad n\to\infty.\]</span></p></li>
+</ul>
+<blockquote>
+<p><strong>推论</strong>：如果<span class="math inline">\(\theta_0\)</span>的估计量<span class="math inline">\(\{\hat{\theta}_n\}\)</span>是无偏的，即对于任意<span class="math inline">\(n\in\mathbf{N}\)</span>有<span class="math inline">\(\text{E}[\hat{\theta}_n]=\theta_0\)</span>，且当<span class="math inline">\(n\)</span>趋近于无穷时，无偏估计量的方差<span class="math inline">\(\text{V}[\hat{\theta}_n]\to 0\)</span>，则<span class="math inline">\(\{\hat{\theta}_n\}\)</span>是相合估计量。</p>
+</blockquote>
+<hr>
+<p>是否能够找到一种估计，使得其满足：1.无偏性，2.达到Cramér-Rao下界，3.具有相合性？
+几乎可以：前两个条件能渐近满足。</p>
+<blockquote>
+<p><strong>定理</strong>：设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且<span class="math inline">\(f_{\theta_0}\)</span>，如果</p>
+<ul>
+<li><span class="math inline">\(f_{\theta}\)</span>不依赖于<span class="math inline">\(\theta\)</span></li>
+<li><span class="math inline">\(f_{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>三次连续可微</li>
+<li>参数空间<span class="math inline">\(\Theta\)</span>是紧的</li>
+</ul>
+<p>则有随机变量<span class="math inline">\(\sqrt{n}(\hat{\theta}_{MLE}-\theta_0)\)</span>近似于服从正态分布<span class="math inline">\(N(0,[I(\theta_0)]^{-1})\)</span></p>
+</blockquote>
+<p><em>证明</em>：（下面用<span class="math inline">\(\hat{\theta}\)</span>简单表示<span class="math inline">\(\hat{\theta}_{MLE}\)</span>）</p>
+<p>将<span class="math inline">\(l'_X(\hat{\theta})\)</span>在<span class="math inline">\(\theta = \theta_0\)</span>处泰勒展开可得： <span class="math display">\[l'_X(\hat{\theta})\approx
+l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
+由于<span class="math inline">\(\hat{\theta}\)</span>是极大似然估计的参数，即似然函数在此处一介导为0，即
+<span class="math display">\[0\approx
+l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
+<span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\approx\sqrt{n}\cdot\frac{-l'_X(\theta_0)}{l''_X(\theta_0)}=\frac{-\frac{1}{\sqrt{n}}l'_X(\theta_0)}{\frac{1}{n}l''_X(\theta_0)},\]</span>
+对于上式的分母有 <span class="math display">\[\frac{1}{n}l''_X(\theta_0)=\frac{1}{n}\sum_{i=1}^n
+l''_{X_i}(\theta_0)=\text{E}[l''_{X_1}(\theta_0)]=I(\theta_0),\]</span>
+对于分子部分 <span class="math display">\[-\frac{1}{\sqrt{n}}l'_X(\theta_0)=-\frac{1}{\sqrt{n}}\sum_{i=1}^{n}l'_{X_i}(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\]</span></p>
+<blockquote>
+<p><strong>中心极限定理</strong> 设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且具有数学期望<span class="math inline">\(\text{E}[X_k]=\mu\)</span>，方差<span class="math inline">\(\text{V}[X_k]=\sigma^2,~(k=1,2,\dots)\)</span>，则
+<span class="math display">\[\sqrt{n}\cdot\left(\frac{1}{n}\sum_{k=1}^nX_k-\mu\right)\to
+N(0,\sigma^2).\]</span></p>
+</blockquote>
+<p>由于 <span class="math display">\[\text{E}[l'_{X_1}(\theta_0)]=0,\quad
+\text{V}[l'_{X_1}(\theta_0)]=\text{E}[l'_{X_1}(\theta_0)^2]=I(\theta_0),\]</span>
+因此<span class="math inline">\(-\frac{1}{\sqrt{n}}l'_X(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\to
+N(0,I(\theta_0))\)</span>，有 <span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\to
+N\left(0,\frac{1}{I(\theta_0)}\right).\]</span></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>统计</tag>
+      </tags>
+  </entry>
 </search>
