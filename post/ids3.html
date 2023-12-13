@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Introduction to Data Science (3), ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
     <meta name="description" content="
-本节介绍估计值的相合性（一致性）、有效性以及渐进正太的极大似然估计。
+本节介绍估计值的相合性（一致性）、有效性以及渐进正态分布的极大似然估计。
 参考书籍：Statistical Inference, Casella and Berger,
-Duxbury, 2th edition; 《概率论与数理统计》 浙大第">
+Duxbury, 2th edition; 《概率论与数理统计》 浙">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -552,7 +552,7 @@ Duxbury, 2th edition; 《概率论与数理统计》 浙大第">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.4k
                 </div>
                 
 
@@ -579,7 +579,7 @@ Duxbury, 2th edition; 《概率论与数理统计》 浙大第">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>本节介绍估计值的相合性（一致性）、有效性以及渐进正太的极大似然估计。</p>
+<p>本节介绍估计值的相合性（一致性）、有效性以及渐进正态分布的极大似然估计。</p>
 <p>参考书籍：<em>Statistical Inference</em>, Casella and Berger,
 Duxbury, 2th edition; 《概率论与数理统计》 浙大第四版</p>
 </blockquote>
@@ -650,18 +650,22 @@ l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
 l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
 <span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\approx\sqrt{n}\cdot\frac{-l'_X(\theta_0)}{l''_X(\theta_0)}=\frac{-\frac{1}{\sqrt{n}}l'_X(\theta_0)}{\frac{1}{n}l''_X(\theta_0)},\]</span>
 对于上式的分母有 <span class="math display">\[\frac{1}{n}l''_X(\theta_0)=\frac{1}{n}\sum_{i=1}^n
-l''_{X_i}(\theta_0)=\text{E}[l''_{X_1}(\theta_0)]=I(\theta_0),\]</span>
-对于分子部分 <span class="math display">\[-\frac{1}{\sqrt{n}}l'_X(\theta_0)=-\frac{1}{\sqrt{n}}\sum_{i=1}^{n}l'_{X_i}(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\]</span></p>
+l''_{X_i}(\theta_0)=\text{E}[l''_{X_1}(\theta_0)]=I_{X_1}(\theta_0),\]</span>
+对于分子部分 <span class="math display">\[-\frac{1}{\sqrt{n}}\cdot
+l'_X(\theta_0)=-\frac{1}{\sqrt{n}}\sum_{i=1}^{n}l'_{X_i}(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\]</span></p>
 <blockquote>
 <p><strong>中心极限定理</strong> 设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且具有数学期望<span class="math inline">\(\text{E}[X_k]=\mu\)</span>，方差<span class="math inline">\(\text{V}[X_k]=\sigma^2,~(k=1,2,\dots)\)</span>，则
 <span class="math display">\[\sqrt{n}\cdot\left(\frac{1}{n}\sum_{k=1}^nX_k-\mu\right)\to
 N(0,\sigma^2).\]</span></p>
 </blockquote>
 <p>由于 <span class="math display">\[\text{E}[l'_{X_1}(\theta_0)]=0,\quad
-\text{V}[l'_{X_1}(\theta_0)]=\text{E}[l'_{X_1}(\theta_0)^2]=I(\theta_0),\]</span>
-因此<span class="math inline">\(-\frac{1}{\sqrt{n}}l'_X(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\to
-N(0,I(\theta_0))\)</span>，有 <span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\to
-N\left(0,\frac{1}{I(\theta_0)}\right).\]</span></p>
+\text{V}[l'_{X_1}(\theta_0)]=\text{E}[l'_{X_1}(\theta_0)^2]=I_{X_1}(\theta_0),\]</span>
+因此<span class="math inline">\(-\frac{1}{\sqrt{n}}\cdot
+l'_X(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\to
+N(0,I_{X_1}(\theta_0))\)</span>，有 <span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\to
+N\left(0,\frac{1}{I_{X_1}(\theta_0)}\right),\]</span> 进而有 <span class="math display">\[\hat{\theta}\to N\left(\theta_0,\frac{1}{n\cdot
+I_{X_1}(\theta_0)}\right),\]</span> 即对于任意<span class="math inline">\(n\)</span>，<span class="math inline">\(\hat{\theta}\)</span>的均值为<span class="math inline">\(\theta_0\)</span>，具有无偏性。且方差<span class="math inline">\(\text{V}[\hat{\theta}]=(n\cdot
+I_{X_1}(\theta_0))^{-1}\)</span>达到Cramér-Rao下界。当<span class="math inline">\(n\)</span>趋近于无穷，方差趋近于0，即满足相合性。</p>
 
                 
             </div>

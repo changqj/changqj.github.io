@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2023-12-13T22:22:30.013Z</updated>
+  <updated>2023-12-13T22:41:45.864Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.ifish.ink/post/ids3.html"/>
     <id>https://www.ifish.ink/post/ids3.html</id>
     <published>2023-12-13T22:26:42.000Z</published>
-    <updated>2023-12-13T22:22:30.013Z</updated>
+    <updated>2023-12-13T22:41:45.864Z</updated>
     
     
       
@@ -29,7 +29,7 @@
         
         
     <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本节介绍估计值的相合性（一致性）、有效性以及渐进正太的极大似然估计。&lt;/p&gt;
+&lt;p&gt;本节介绍估计值的相合性（一致性）、有效性以及渐进正态分布的极大似然估计。&lt;/p&gt;
 &lt;p&gt;参考书籍：&lt;em&gt;Statistical Inference&lt;/em&gt;, Casella and Berger,
 Duxbury, 2th edition;</summary>
         
@@ -480,11 +480,11 @@ Origin插件已经一年多时间了，在这之前用过各种各样的去广�
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
     
+    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
+    
     <category term="SEO" scheme="https://www.ifish.ink/tags/SEO/"/>
     
     <category term="sitemap" scheme="https://www.ifish.ink/tags/sitemap/"/>
-    
-    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
     
   </entry>
   
