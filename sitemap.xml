@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.ifish.ink/post/ids3.html</loc>
-    
-    <lastmod>2023-12-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.ifish.ink/post/ids1.html</loc>
     
     <lastmod>2023-11-01</lastmod>
@@ -530,6 +521,20 @@
   </url>
   
   <url>
+    <loc>https://www.ifish.ink/tags/%E5%8F%82%E6%95%B0%E5%8C%96/</loc>
+    <lastmod>2023-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/</loc>
+    <lastmod>2023-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/</loc>
     <lastmod>2023-12-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -538,13 +543,6 @@
   
   <url>
     <loc>https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2023-12-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ifish.ink/tags/%E7%A5%9E%E5%99%A8/</loc>
     <lastmod>2023-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -565,14 +563,7 @@
   </url>
   
   <url>
-    <loc>https://www.ifish.ink/tags/%E5%8F%82%E6%95%B0%E5%8C%96/</loc>
-    <lastmod>2023-12-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/</loc>
+    <loc>https://www.ifish.ink/tags/%E7%A5%9E%E5%99%A8/</loc>
     <lastmod>2023-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
