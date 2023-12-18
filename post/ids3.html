@@ -4,8 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签: sitemap, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
-    <meta name="description" content="记录学习，吐槽生活。">
+    <meta name="keywords" content="Introduction to Data Science (3), ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
+    <meta name="description" content="
+本节介绍估计值的相合性（一致性）、有效性以及渐进正态分布的极大似然估计。
+参考书籍：Statistical Inference, Casella and Berger,
+Duxbury, 2th edition; 《概率论与数理统计》 浙">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -28,7 +31,7 @@
 </script>
 
 
-    <title>标签: sitemap | IFISH.INK</title>
+    <title>Introduction to Data Science (3) | IFISH.INK</title>
     <link rel="icon" type="image/png" href="/images/chang.png">
     
 
@@ -49,9 +52,7 @@
 
 
 
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
     <link rel="stylesheet" href="/css/post.css">
-
 
 
 
@@ -480,312 +481,436 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                Stand on the shoulders of giants
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "路曼曼其脩远兮，吾将上下而求索。",
-                            
-                                "世溷浊而嫉贤兮，好蔽美而称恶。",
-                            
-                                "闺中既以邃远兮，哲王又不寤。",
-                            
-                                "怀朕情而不发兮，余焉能忍与此终古！",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg'); ">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Introduction to Data Science (3)</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
-    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
-</script>
 
 
-    </div>
-</div>
-
-<main class="content">
+<main class="container content">
 
     
-
-<div id="tags" class="container chip-container">
+    <!-- 文章内容详情 -->
+<div id="artDetail">
     <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
-            </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/%E5%8E%9F%E5%88%9B/" title="原创: 21">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="原创" style="background-color: #F9EBEA;">原创
-                        <span class="tag-length">21</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%BB%9F%E8%AE%A1/" title="统计: 4">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="统计" style="background-color: #F5EEF8;">统计
-                        <span class="tag-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/" title="MATLAB代码: 6">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="MATLAB代码" style="background-color: #D5F5E3;">MATLAB代码
-                        <span class="tag-length">6</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/" title="算法实现: 7">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="算法实现" style="background-color: #E8F8F5;">算法实现
-                        <span class="tag-length">7</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/git/" title="git: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="git" style="background-color: #FEF9E7;">git
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/github/" title="github: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="github" style="background-color: #F8F9F9;">github
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="环境配置: 4">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="环境配置" style="background-color: #82E0AA;">环境配置
-                        <span class="tag-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/TED/" title="TED: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="TED" style="background-color: #D7BDE2;">TED
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%91%98/" title="摘: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="摘" style="background-color: #A3E4D7;">摘
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="随笔" style="background-color: #85C1E9;">随笔
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/wordpress/" title="wordpress: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="wordpress" style="background-color: #F8C471;">wordpress
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/SEO/" title="SEO: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="SEO" style="background-color: #F9E79F;">SEO
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/sitemap/" title="sitemap: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="sitemap" style="background-color: #D7BDE2;">sitemap
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/ubuntu/" title="ubuntu: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="ubuntu" style="background-color: #F9EBEA;">ubuntu
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%96%B9%E6%B3%95/" title="方法: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="方法" style="background-color: #FFF;">方法
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%8F%82%E6%95%B0%E5%8C%96/" title="参数化: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="参数化" style="background-color: #82E0AA;">参数化
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/" title="均值重心坐标: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="均值重心坐标" style="background-color: #E8F8F5;">均值重心坐标
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/C-%E4%BB%A3%E7%A0%81/" title="C++代码: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="C++代码" style="background-color: #F8C471;">C++代码
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="算法" style="background-color: #F9EBEA;">算法
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%B8%B8%E8%AE%B0/" title="游记: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="游记" style="background-color: #F5EEF8;">游记
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%94%9F%E6%B4%BB/" title="生活: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="生活" style="background-color: #FFF;">生活
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%A5%9E%E5%99%A8/" title="神器: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="神器" style="background-color: #D7BDE2;">神器
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
+        <div class="card-content article-info">
             
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="原创, wordpress, SEO, sitemap" data-aos="fade-up">
-                <div class="card">
-                    <a href="/post/943451b1.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="WordPress站点地图自动更新">
-                            
-                            <span class="card-title">WordPress站点地图自动更新</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-10
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                教程
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                <span class="chip bg-color">原创</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BB%9F%E8%AE%A1/">
+                                <span class="chip bg-color">统计</span>
+                            </a>
+                        
                     </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                数学学习
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
             
+
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-12-13
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    6 分
+                </div>
+                
+
+                
+            </div>
+            
         </div>
-    </article>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>本节介绍估计值的相合性（一致性）、有效性以及渐进正态分布的极大似然估计。</p>
+<p>参考书籍：<em>Statistical Inference</em>, Casella and Berger,
+Duxbury, 2th edition; 《概率论与数理统计》 浙大第四版</p>
+</blockquote>
+<h4 id="相合性consistency">相合性(Consistency)</h4>
+<p>设<span class="math inline">\(\hat{\theta}(X_1,\dots,X_n)\)</span>是参数<span class="math inline">\(\theta\)</span>的估计量，若对于任意<span class="math inline">\(\theta\in\Theta\)</span>，当<span class="math inline">\(n\to\infty\)</span>时，<span class="math inline">\(\hat{\theta}(X_1,\dots,X_n)\)</span>依概率收敛于<span class="math inline">\(\theta\)</span>，则称<span class="math inline">\(\hat{\theta}\)</span>为<span class="math inline">\(\theta\)</span>的<strong>相合估计量</strong>，即，若对于任意<span class="math inline">\(\theta\in\Theta\)</span>都满足：对于任意<span class="math inline">\(\epsilon&gt;0\)</span>，有 <span class="math display">\[\lim_{n\to\infty}P\{|\hat{\theta}-\theta|&lt;\epsilon\}=1.\]</span>
+如果估计量不具有相合性，则不论将样本容量<span class="math inline">\(n\)</span>取多么大，都不能将<span class="math inline">\(\theta\)</span>估计得足够准确。</p>
+<p>设<span class="math inline">\(Y_1,\dots,Y_n,\dots\)</span>是一个随机变量序列，<span class="math inline">\(a\)</span>是一个常数。若对于任意正数<span class="math inline">\(\epsilon\)</span>，有 <span class="math display">\[\lim_{n\to\infty}P\{|Y_n-a|&lt;\epsilon\}=1,\]</span>
+则称序列<span class="math inline">\(Y_1,\dots,Y_n,\dots\)</span><strong>依概率收敛</strong>于<span class="math inline">\(a\)</span>，记为<span class="math inline">\(Y_n\xrightarrow{P}a\)</span>。</p>
+<ul>
+<li><p>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的伯努利分布，参数估计量 <span class="math display">\[\hat{\theta}_n=\frac{X_1+\dots+X_n}{n}\]</span>
+则<span class="math inline">\(\hat{\theta}_n\)</span>是无偏估计且达到Cramér-Rao下界。</p>
+<p><em>证明</em>：对于无偏性，容易验证：<span class="math inline">\(\text{E}[\hat{\theta}_n]=\frac{1}{n}\sum_{i=1}^n\text{E}[X_i]=\text{E}[X_1]=\theta_0\)</span>。</p>
+<p>对于Cramér-Rao下界，可通过以下方式计算 <span class="math display">\[\begin{align}
+    l_{X_1}(\theta)&amp; = \log
+f_{X_1}(x_1;\theta)=\log[\theta^{x_1}(1-\theta)^{1-x_1}] =
+x_1\log\theta+(1-x_1)\log(1-\theta),
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+    l'_{X_1}(\theta) =
+\frac{\partial}{\partial\theta}l_{X_1}(\theta)=\frac{x_1}{\theta}-\frac{1-x_1}{1-\theta},
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+    l''_{X_1}(\theta) =
+\frac{\partial^2}{\partial\theta^2}l_{X_1}(\theta)=-\frac{x_1}{\theta^2}-\frac{1-x_1}{(1-\theta)^2},
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+    I_{X_1}(\theta) = -\text{E}[l''_{X_1}(\theta_0)] =
+\text{E}\left[\frac{X_1}{\theta_0^2}+\frac{1-X_1}{(1-\theta)^2}\right]=\frac{\text{E}[X_1]}{\theta_0^2}+\frac{1-\text{E}[X_1]}{(1-\theta_0)^2}=\frac{1}{\theta_0(1-\theta_0)},
+  \end{align}\]</span> 因此Cramér-Rao下界为 <span class="math display">\[CRLB=\frac{1}{n\cdot
+I_{X_1}(\theta)}=\frac{\theta_0(1-\theta_0)}{n},\]</span>
+另一方面估计量<span class="math inline">\(\hat{\theta}_n\)</span>的方差为 <span class="math display">\[\begin{align}
+    \text{V}[\hat{\theta}_n] = \frac{1}{n^2}\sum_{i=1}^n\text{V}[X_i] =
+\frac{1}{n}\text{V}[X_1] = \frac{1}{n}(\text{E}[X_1^2]-\text{E}^2[X_1])
+= \frac{1}{n}(\theta_0-\theta_0^2)=\frac{\theta_0(1-\theta_0)}{n},
+  \end{align}\]</span>
+即估计量的方差达到Cramér-Rao下界。对于该例，应用大数定理可知：估计量<span class="math inline">\(\hat{\theta}\)</span>是<span class="math inline">\(\theta_0\)</span>的相合估计量。</p>
+<blockquote>
+<p><strong>弱大数定理</strong>（辛钦大数定理） 设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且具有数学期望<span class="math inline">\(\text{E}[X_k]=\mu
+(k=1,2,\dots)\)</span>，则序列<span class="math inline">\(\bar{X}=\frac{1}{n}\sum_{k=1}^nX_k\)</span>依概率收敛于<span class="math inline">\(\mu\)</span>，即<span class="math inline">\(\bar{X}\xrightarrow{P}\mu\)</span>。</p>
+</blockquote>
+<p>另一方面，由于期望<span class="math inline">\(\text{E}[X_i]=\theta_0\)</span>和方差<span class="math inline">\(\text{V}[X_i]=\theta_0(1-\theta_0)\le
+1\)</span>，可以由切比雪夫不等式得到当<span class="math inline">\(n\)</span>趋近于无穷时，有<span class="math inline">\(P(|\hat{\theta}_n-\theta_0|&gt;\epsilon)\)</span>趋于0。</p>
+<blockquote>
+<p><strong>切比雪夫(Chebyshev)不等式</strong> 设随机变量<span class="math inline">\(X\)</span>具有数学期望<span class="math inline">\(\text{E}[X]=\mu\)</span>，方差<span class="math inline">\(\text{V}[X]=\sigma^2\)</span>，则对任意正数<span class="math inline">\(\epsilon\)</span>，不等式 <span class="math display">\[P(|x-\mu|\ge\epsilon)\le\frac{\sigma^2}{\epsilon^2}\]</span>
+成立，该不等式被称为切比雪夫不等式。</p>
+</blockquote>
+<p>因此在该例中，有<span class="math inline">\(P(|\hat{\theta}_n-\text{E}[\hat{\theta}_n]|\ge\epsilon)\le\frac{\text{V}[\hat{\theta}_n]}{\epsilon^2}\)</span>，即
+<span class="math display">\[P(|\hat{\theta}_n-\theta_0|\ge\epsilon)\le\frac{\theta_0(1-\theta_0)}{n\cdot\epsilon^2}\to
+0,\quad n\to\infty.\]</span></p></li>
+</ul>
+<blockquote>
+<p><strong>推论</strong>：如果<span class="math inline">\(\theta_0\)</span>的估计量<span class="math inline">\(\{\hat{\theta}_n\}\)</span>是无偏的，即对于任意<span class="math inline">\(n\in\mathbf{N}\)</span>有<span class="math inline">\(\text{E}[\hat{\theta}_n]=\theta_0\)</span>，且当<span class="math inline">\(n\)</span>趋近于无穷时，无偏估计量的方差<span class="math inline">\(\text{V}[\hat{\theta}_n]\to 0\)</span>，则<span class="math inline">\(\{\hat{\theta}_n\}\)</span>是相合估计量。</p>
+</blockquote>
+<hr>
+<p>是否能够找到一种估计，使得其满足：1.无偏性，2.达到Cramér-Rao下界，3.具有相合性？
+几乎可以：前两个条件能渐近满足。</p>
+<blockquote>
+<p><strong>定理</strong>：设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且<span class="math inline">\(f_{\theta_0}\)</span>，如果</p>
+<ul>
+<li><span class="math inline">\(f_{\theta}\)</span>不依赖于<span class="math inline">\(\theta\)</span></li>
+<li><span class="math inline">\(f_{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>三次连续可微</li>
+<li>参数空间<span class="math inline">\(\Theta\)</span>是紧的</li>
+</ul>
+<p>则有随机变量<span class="math inline">\(\sqrt{n}(\hat{\theta}_{MLE}-\theta_0)\)</span>近似于服从正态分布<span class="math inline">\(N(0,[I(\theta_0)]^{-1})\)</span></p>
+</blockquote>
+<p><em>证明</em>：（下面用<span class="math inline">\(\hat{\theta}\)</span>简单表示<span class="math inline">\(\hat{\theta}_{MLE}\)</span>）</p>
+<p>将<span class="math inline">\(l'_X(\hat{\theta})\)</span>在<span class="math inline">\(\theta = \theta_0\)</span>处泰勒展开可得： <span class="math display">\[l'_X(\hat{\theta})\approx
+l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
+由于<span class="math inline">\(\hat{\theta}\)</span>是极大似然估计的参数，即似然函数在此处一介导为0，即
+<span class="math display">\[0\approx
+l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
+<span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\approx\sqrt{n}\cdot\frac{-l'_X(\theta_0)}{l''_X(\theta_0)}=\frac{-\frac{1}{\sqrt{n}}l'_X(\theta_0)}{\frac{1}{n}l''_X(\theta_0)},\]</span>
+对于上式的分母有 <span class="math display">\[\frac{1}{n}l''_X(\theta_0)=\frac{1}{n}\sum_{i=1}^n
+l''_{X_i}(\theta_0)=\text{E}[l''_{X_1}(\theta_0)]=I_{X_1}(\theta_0),\]</span>
+对于分子部分 <span class="math display">\[-\frac{1}{\sqrt{n}}\cdot
+l'_X(\theta_0)=-\frac{1}{\sqrt{n}}\sum_{i=1}^{n}l'_{X_i}(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\]</span></p>
+<blockquote>
+<p><strong>中心极限定理</strong> 设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且具有数学期望<span class="math inline">\(\text{E}[X_k]=\mu\)</span>，方差<span class="math inline">\(\text{V}[X_k]=\sigma^2,~(k=1,2,\dots)\)</span>，则
+<span class="math display">\[\sqrt{n}\cdot\left(\frac{1}{n}\sum_{k=1}^nX_k-\mu\right)\to
+N(0,\sigma^2).\]</span></p>
+</blockquote>
+<p>由于 <span class="math display">\[\text{E}[l'_{X_1}(\theta_0)]=0,\quad
+\text{V}[l'_{X_1}(\theta_0)]=\text{E}[l'_{X_1}(\theta_0)^2]=I_{X_1}(\theta_0),\]</span>
+因此<span class="math inline">\(-\frac{1}{\sqrt{n}}\cdot
+l'_X(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\to
+N(0,I_{X_1}(\theta_0))\)</span>，有 <span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\to
+N\left(0,\frac{1}{I_{X_1}(\theta_0)}\right),\]</span> 进而有 <span class="math display">\[\hat{\theta}\to N\left(\theta_0,\frac{1}{n\cdot
+I_{X_1}(\theta_0)}\right),\]</span> 即对于任意<span class="math inline">\(n\)</span>，<span class="math inline">\(\hat{\theta}\)</span>的均值为<span class="math inline">\(\theta_0\)</span>，具有无偏性。且方差<span class="math inline">\(\text{V}[\hat{\theta}]=(n\cdot
+I_{X_1}(\theta_0))^{-1}\)</span>达到Cramér-Rao下界。当<span class="math inline">\(n\)</span>趋近于无穷，方差趋近于0，即满足相合性。</p>
+
+                
+            </div>
+            <hr/>
+            
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                                    <span class="chip bg-color">原创</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BB%9F%E8%AE%A1/">
+                                    <span class="chip bg-color">统计</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+    
+    
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '4b7ca90b03dcff43cb0b',
+        clientSecret: 'a38eedc2fe1ab77d18e4ad2b9633ce4093d886c2',
+        repo: 'Comments',
+        owner: 'changqj',
+        admin: "changqj",
+        id: '2023-12-13T23-26-42',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/post/ids3.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Introduction to Data Science (3)">
+                        
+                        <span class="card-title">Introduction to Data Science (3)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    数学学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">原创</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BB%9F%E8%AE%A1/">
+                        <span class="chip bg-color">统计</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/post/ids2.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Introduction to Data Science (2)">
+                        
+                        <span class="card-title">Introduction to Data Science (2)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    数学学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">原创</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BB%9F%E8%AE%A1/">
+                        <span class="chip bg-color">统计</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+    
+    
+</div>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    
+
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 

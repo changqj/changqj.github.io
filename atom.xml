@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2023-10-16T20:53:58.732Z</updated>
+  <updated>2023-12-18T21:42:35.184Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Introduction to Data Science (3)</title>
+    <link href="https://www.ifish.ink/post/ids3.html"/>
+    <id>https://www.ifish.ink/post/ids3.html</id>
+    <published>2023-12-13T22:26:42.000Z</published>
+    <updated>2023-12-18T21:42:35.184Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本节介绍估计值的相合性（一致性）、有效性以及渐进正态分布的极大似然估计。&lt;/p&gt;
+&lt;p&gt;参考书籍：&lt;em&gt;Statistical Inference&lt;/em&gt;, Casella and Berger,
+Duxbury, 2th edition;</summary>
+        
+      
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="统计" scheme="https://www.ifish.ink/tags/%E7%BB%9F%E8%AE%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>Introduction to Data Science (2)</title>
@@ -575,38 +605,6 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
     
     <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <link href="https://www.ifish.ink/post/7741e06a.html"/>
-    <id>https://www.ifish.ink/post/7741e06a.html</id>
-    <published>2017-10-31T08:54:18.000Z</published>
-    <updated>2023-09-23T15:55:36.695Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Bezier曲线拟合数据点的几何作图法MATLAB程序。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;contents&quot;&gt;Contents&lt;/h1&gt;
-&lt;h3 id=&quot;左键选择点右键或中间结束&quot;&gt;左键选择点，右键或中间结束&lt;/h3&gt;
-&lt;pre class=&quot;language-MATLAB&quot; data-language=&quot;MATLAB&quot;&gt;&lt;code class=&quot;language-MATLAB&quot;&gt;clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title(&#39;Bezier曲线拟合&#39;);
-questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);&lt;/code&gt;&lt;/pre&gt;</summary>
-    
-    
-    
-    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
-    
-    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
     
   </entry>
   
