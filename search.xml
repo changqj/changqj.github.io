@@ -2014,4 +2014,25 @@ I_{X_1}(\theta_0))^{-1}\)</span>达到Cramér-Rao下界。当<span class="math i
         <tag>统计</tag>
       </tags>
   </entry>
+  <entry>
+    <title>从复平面上域的多项式函数生成调和函数</title>
+    <url>/post/harmonic.html</url>
+    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span class="math inline">\(z=x+yi\)</span>的多项式函数<span class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span class="math inline">\((x,y)\)</span>的二元调和函数。</p>
+<p>这里我们用Matlab可视化 </p><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+[x,y] = meshgrid(linspace(-1,1,100));
+p = @(x,y) complex(x,y).^2-complex(x,y)/2;
+z = real(p(x,y));
+surf(x,y,z,'linestyle','none');
+axis off;</code></pre><p></p>
+<p><img src="http://img.ifish.ink/figure/har.gif"></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>MATLAB代码</tag>
+      </tags>
+  </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2023-12-18T21:42:35.184Z</updated>
+  <updated>2023-12-20T21:52:01.912Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从复平面上域的多项式函数生成调和函数</title>
+    <link href="https://www.ifish.ink/post/harmonic.html"/>
+    <id>https://www.ifish.ink/post/harmonic.html</id>
+    <published>2023-12-20T21:03:35.000Z</published>
+    <updated>2023-12-20T21:52:01.912Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数&lt;span class=&quot;math inline&quot;&gt;\(z=x+yi\)&lt;/span&gt;的多项式函数&lt;span class=&quot;math</summary>
+        
+      
+    
+    
+    
+    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>Introduction to Data Science (3)</title>
@@ -568,32 +595,6 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     
     
     <summary type="html">&lt;h2 id=&quot;三对角矩阵的类雅可比迭代算法解线性方程组&quot;&gt;三对角矩阵的类雅可比迭代算法解线性方程组&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
-    
-    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
-    
-    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三对角矩阵求逆的算法-实现</title>
-    <link href="https://www.ifish.ink/post/891db679.html"/>
-    <id>https://www.ifish.ink/post/891db679.html</id>
-    <published>2017-11-09T09:17:04.000Z</published>
-    <updated>2023-09-23T15:30:25.485Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本文实现的是论文《三对角矩阵求逆的算法》
-论文作者：冉瑞生、黄延祝等人&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
     
     
     
