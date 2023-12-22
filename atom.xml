@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2023-12-20T21:52:01.912Z</updated>
+  <updated>2023-12-22T21:07:28.778Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于极大似然坐标的图像变形的MATLAB实现</title>
+    <link href="https://www.ifish.ink/post/mlc2d.html"/>
+    <id>https://www.ifish.ink/post/mlc2d.html</id>
+    <published>2023-12-22T20:39:00.000Z</published>
+    <updated>2023-12-22T21:07:28.778Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/teaser.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;This is an implementation of the</summary>
+        
+      
+    
+    
+    
+    <category term="图形学" scheme="https://www.ifish.ink/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>从复平面上域的多项式函数生成调和函数</title>
@@ -520,7 +550,7 @@ Origin插件已经一年多时间了，在这之前用过各种各样的去广�
     <link href="https://www.ifish.ink/post/4d3c170c.html"/>
     <id>https://www.ifish.ink/post/4d3c170c.html</id>
     <published>2019-05-09T14:08:51.000Z</published>
-    <updated>2023-09-23T15:30:51.940Z</updated>
+    <updated>2023-12-22T20:50:14.271Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;c实现&quot;&gt;c++实现：&lt;/h4&gt;
@@ -572,29 +602,6 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     
     
     <summary type="html">&lt;h3 id=&quot;标准雅可比迭代算法解线性方程组-算法实现&quot;&gt;标准雅可比迭代算法解线性方程组-算法实现&lt;/h3&gt;</summary>
-    
-    
-    
-    <category term="数学学习" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
-    
-    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
-    
-    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三对角矩阵的类雅可比迭代程序</title>
-    <link href="https://www.ifish.ink/post/f9428d51.html"/>
-    <id>https://www.ifish.ink/post/f9428d51.html</id>
-    <published>2017-11-09T09:43:58.000Z</published>
-    <updated>2023-09-23T15:30:30.410Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;三对角矩阵的类雅可比迭代算法解线性方程组&quot;&gt;三对角矩阵的类雅可比迭代算法解线性方程组&lt;/h2&gt;</summary>
     
     
     
