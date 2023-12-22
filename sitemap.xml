@@ -492,6 +492,13 @@
   </url>
   
   <url>
+    <loc>https://www.ifish.ink/tags/wordpress/</loc>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.ifish.ink/tags/TED/</loc>
     <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -507,13 +514,6 @@
   
   <url>
     <loc>https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2023-12-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ifish.ink/tags/wordpress/</loc>
     <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -576,6 +576,13 @@
   </url>
   
   <url>
+    <loc>https://www.ifish.ink/tags/%E7%A5%9E%E5%99%A8/</loc>
+    <lastmod>2023-12-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.ifish.ink/tags/%E6%B8%B8%E8%AE%B0/</loc>
     <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -584,13 +591,6 @@
   
   <url>
     <loc>https://www.ifish.ink/tags/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2023-12-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.ifish.ink/tags/%E7%A5%9E%E5%99%A8/</loc>
     <lastmod>2023-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -551,6 +551,106 @@ I_{X_i}(\theta)\right)^{-1}\)</span>，得证。</li>
       </tags>
   </entry>
   <entry>
+    <title>Introduction to Data Science (3)</title>
+    <url>/post/ids3.html</url>
+    <content><![CDATA[<blockquote>
+<p>本节介绍估计值的相合性（一致性）、有效性以及渐进正态分布的极大似然估计。</p>
+<p>参考书籍：<em>Statistical Inference</em>, Casella and Berger,
+Duxbury, 2th edition; 《概率论与数理统计》 浙大第四版</p>
+</blockquote>
+<h4 id="相合性consistency">相合性(Consistency)</h4>
+<p>设<span class="math inline">\(\hat{\theta}(X_1,\dots,X_n)\)</span>是参数<span class="math inline">\(\theta\)</span>的估计量，若对于任意<span class="math inline">\(\theta\in\Theta\)</span>，当<span class="math inline">\(n\to\infty\)</span>时，<span class="math inline">\(\hat{\theta}(X_1,\dots,X_n)\)</span>依概率收敛于<span class="math inline">\(\theta\)</span>，则称<span class="math inline">\(\hat{\theta}\)</span>为<span class="math inline">\(\theta\)</span>的<strong>相合估计量</strong>，即，若对于任意<span class="math inline">\(\theta\in\Theta\)</span>都满足：对于任意<span class="math inline">\(\epsilon&gt;0\)</span>，有 <span class="math display">\[\lim_{n\to\infty}P\{|\hat{\theta}-\theta|&lt;\epsilon\}=1.\]</span>
+如果估计量不具有相合性，则不论将样本容量<span class="math inline">\(n\)</span>取多么大，都不能将<span class="math inline">\(\theta\)</span>估计得足够准确。</p>
+<p>设<span class="math inline">\(Y_1,\dots,Y_n,\dots\)</span>是一个随机变量序列，<span class="math inline">\(a\)</span>是一个常数。若对于任意正数<span class="math inline">\(\epsilon\)</span>，有 <span class="math display">\[\lim_{n\to\infty}P\{|Y_n-a|&lt;\epsilon\}=1,\]</span>
+则称序列<span class="math inline">\(Y_1,\dots,Y_n,\dots\)</span><strong>依概率收敛</strong>于<span class="math inline">\(a\)</span>，记为<span class="math inline">\(Y_n\xrightarrow{P}a\)</span>。</p>
+<ul>
+<li><p>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的伯努利分布，参数估计量 <span class="math display">\[\hat{\theta}_n=\frac{X_1+\dots+X_n}{n}\]</span>
+则<span class="math inline">\(\hat{\theta}_n\)</span>是无偏估计且达到Cramér-Rao下界。</p>
+<p><em>证明</em>：对于无偏性，容易验证：<span class="math inline">\(\text{E}[\hat{\theta}_n]=\frac{1}{n}\sum_{i=1}^n\text{E}[X_i]=\text{E}[X_1]=\theta_0\)</span>。</p>
+<p>对于Cramér-Rao下界，可通过以下方式计算 <span class="math display">\[\begin{align}
+    l_{X_1}(\theta)&amp; = \log
+f_{X_1}(x_1;\theta)=\log[\theta^{x_1}(1-\theta)^{1-x_1}] =
+x_1\log\theta+(1-x_1)\log(1-\theta),
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+    l'_{X_1}(\theta) =
+\frac{\partial}{\partial\theta}l_{X_1}(\theta)=\frac{x_1}{\theta}-\frac{1-x_1}{1-\theta},
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+    l''_{X_1}(\theta) =
+\frac{\partial^2}{\partial\theta^2}l_{X_1}(\theta)=-\frac{x_1}{\theta^2}-\frac{1-x_1}{(1-\theta)^2},
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+    I_{X_1}(\theta) = -\text{E}[l''_{X_1}(\theta_0)] =
+\text{E}\left[\frac{X_1}{\theta_0^2}+\frac{1-X_1}{(1-\theta)^2}\right]=\frac{\text{E}[X_1]}{\theta_0^2}+\frac{1-\text{E}[X_1]}{(1-\theta_0)^2}=\frac{1}{\theta_0(1-\theta_0)},
+  \end{align}\]</span> 因此Cramér-Rao下界为 <span class="math display">\[CRLB=\frac{1}{n\cdot
+I_{X_1}(\theta)}=\frac{\theta_0(1-\theta_0)}{n},\]</span>
+另一方面估计量<span class="math inline">\(\hat{\theta}_n\)</span>的方差为 <span class="math display">\[\begin{align}
+    \text{V}[\hat{\theta}_n] = \frac{1}{n^2}\sum_{i=1}^n\text{V}[X_i] =
+\frac{1}{n}\text{V}[X_1] = \frac{1}{n}(\text{E}[X_1^2]-\text{E}^2[X_1])
+= \frac{1}{n}(\theta_0-\theta_0^2)=\frac{\theta_0(1-\theta_0)}{n},
+  \end{align}\]</span>
+即估计量的方差达到Cramér-Rao下界。对于该例，应用大数定理可知：估计量<span class="math inline">\(\hat{\theta}\)</span>是<span class="math inline">\(\theta_0\)</span>的相合估计量。</p>
+<blockquote>
+<p><strong>弱大数定理</strong>（辛钦大数定理） 设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且具有数学期望<span class="math inline">\(\text{E}[X_k]=\mu
+(k=1,2,\dots)\)</span>，则序列<span class="math inline">\(\bar{X}=\frac{1}{n}\sum_{k=1}^nX_k\)</span>依概率收敛于<span class="math inline">\(\mu\)</span>，即<span class="math inline">\(\bar{X}\xrightarrow{P}\mu\)</span>。</p>
+</blockquote>
+<p>另一方面，由于期望<span class="math inline">\(\text{E}[X_i]=\theta_0\)</span>和方差<span class="math inline">\(\text{V}[X_i]=\theta_0(1-\theta_0)\le
+1\)</span>，可以由切比雪夫不等式得到当<span class="math inline">\(n\)</span>趋近于无穷时，有<span class="math inline">\(P(|\hat{\theta}_n-\theta_0|&gt;\epsilon)\)</span>趋于0。</p>
+<blockquote>
+<p><strong>切比雪夫(Chebyshev)不等式</strong> 设随机变量<span class="math inline">\(X\)</span>具有数学期望<span class="math inline">\(\text{E}[X]=\mu\)</span>，方差<span class="math inline">\(\text{V}[X]=\sigma^2\)</span>，则对任意正数<span class="math inline">\(\epsilon\)</span>，不等式 <span class="math display">\[P(|x-\mu|\ge\epsilon)\le\frac{\sigma^2}{\epsilon^2}\]</span>
+成立，该不等式被称为切比雪夫不等式。</p>
+</blockquote>
+<p>因此在该例中，有<span class="math inline">\(P(|\hat{\theta}_n-\text{E}[\hat{\theta}_n]|\ge\epsilon)\le\frac{\text{V}[\hat{\theta}_n]}{\epsilon^2}\)</span>，即
+<span class="math display">\[P(|\hat{\theta}_n-\theta_0|\ge\epsilon)\le\frac{\theta_0(1-\theta_0)}{n\cdot\epsilon^2}\to
+0,\quad n\to\infty.\]</span></p></li>
+</ul>
+<blockquote>
+<p><strong>推论</strong>：如果<span class="math inline">\(\theta_0\)</span>的估计量<span class="math inline">\(\{\hat{\theta}_n\}\)</span>是无偏的，即对于任意<span class="math inline">\(n\in\mathbf{N}\)</span>有<span class="math inline">\(\text{E}[\hat{\theta}_n]=\theta_0\)</span>，且当<span class="math inline">\(n\)</span>趋近于无穷时，无偏估计量的方差<span class="math inline">\(\text{V}[\hat{\theta}_n]\to 0\)</span>，则<span class="math inline">\(\{\hat{\theta}_n\}\)</span>是相合估计量。</p>
+</blockquote>
+<hr>
+<p>是否能够找到一种估计，使得其满足：1.无偏性，2.达到Cramér-Rao下界，3.具有相合性？
+几乎可以：前两个条件能渐近满足。</p>
+<blockquote>
+<p><strong>定理</strong>：设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且<span class="math inline">\(f_{\theta_0}\)</span>，如果</p>
+<ul>
+<li><span class="math inline">\(f_{\theta}\)</span>不依赖于<span class="math inline">\(\theta\)</span></li>
+<li><span class="math inline">\(f_{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>三次连续可微</li>
+<li>参数空间<span class="math inline">\(\Theta\)</span>是紧的</li>
+</ul>
+<p>则有随机变量<span class="math inline">\(\sqrt{n}(\hat{\theta}_{MLE}-\theta_0)\)</span>近似于服从正态分布<span class="math inline">\(N(0,[I(\theta_0)]^{-1})\)</span></p>
+</blockquote>
+<p><em>证明</em>：（下面用<span class="math inline">\(\hat{\theta}\)</span>简单表示<span class="math inline">\(\hat{\theta}_{MLE}\)</span>）</p>
+<p>将<span class="math inline">\(l'_X(\hat{\theta})\)</span>在<span class="math inline">\(\theta = \theta_0\)</span>处泰勒展开可得： <span class="math display">\[l'_X(\hat{\theta})\approx
+l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
+由于<span class="math inline">\(\hat{\theta}\)</span>是极大似然估计的参数，即似然函数在此处一介导为0，即
+<span class="math display">\[0\approx
+l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
+<span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\approx\sqrt{n}\cdot\frac{-l'_X(\theta_0)}{l''_X(\theta_0)}=\frac{-\frac{1}{\sqrt{n}}l'_X(\theta_0)}{\frac{1}{n}l''_X(\theta_0)},\]</span>
+对于上式的分母有 <span class="math display">\[\frac{1}{n}l''_X(\theta_0)=\frac{1}{n}\sum_{i=1}^n
+l''_{X_i}(\theta_0)=\text{E}[l''_{X_1}(\theta_0)]=I_{X_1}(\theta_0),\]</span>
+对于分子部分 <span class="math display">\[-\frac{1}{\sqrt{n}}\cdot
+l'_X(\theta_0)=-\frac{1}{\sqrt{n}}\sum_{i=1}^{n}l'_{X_i}(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\]</span></p>
+<blockquote>
+<p><strong>中心极限定理</strong> 设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且具有数学期望<span class="math inline">\(\text{E}[X_k]=\mu\)</span>，方差<span class="math inline">\(\text{V}[X_k]=\sigma^2,~(k=1,2,\dots)\)</span>，则
+<span class="math display">\[\sqrt{n}\cdot\left(\frac{1}{n}\sum_{k=1}^nX_k-\mu\right)\to
+N(0,\sigma^2).\]</span></p>
+</blockquote>
+<p>由于 <span class="math display">\[\text{E}[l'_{X_1}(\theta_0)]=0,\quad
+\text{V}[l'_{X_1}(\theta_0)]=\text{E}[l'_{X_1}(\theta_0)^2]=I_{X_1}(\theta_0),\]</span>
+因此<span class="math inline">\(-\frac{1}{\sqrt{n}}\cdot
+l'_X(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\to
+N(0,I_{X_1}(\theta_0))\)</span>，有 <span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\to
+N\left(0,\frac{1}{I_{X_1}(\theta_0)}\right),\]</span> 进而有 <span class="math display">\[\hat{\theta}\to N\left(\theta_0,\frac{1}{n\cdot
+I_{X_1}(\theta_0)}\right),\]</span> 即对于任意<span class="math inline">\(n\)</span>，<span class="math inline">\(\hat{\theta}\)</span>的均值为<span class="math inline">\(\theta_0\)</span>，具有无偏性。且方差<span class="math inline">\(\text{V}[\hat{\theta}]=(n\cdot
+I_{X_1}(\theta_0))^{-1}\)</span>达到Cramér-Rao下界。当<span class="math inline">\(n\)</span>趋近于无穷，方差趋近于0，即满足相合性。</p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenSubdiv + Visual Studio环境配置</title>
     <url>/post/a507e481.html</url>
     <content><![CDATA[<blockquote>
@@ -621,6 +721,47 @@ Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png" alt="fig16">
       <tags>
         <tag>原创</tag>
         <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <url>/post/563c2d.html</url>
+    <content><![CDATA[<blockquote>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
+<strong>Briefly unavailable for scheduled maintenance. Check back in a
+minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+</blockquote>
+<figure>
+<img src="http://img.ifish.ink/img/20190703103139.png" title="Briefly unavailable for scheduled maintenance. Check back in a minute." alt="Briefly unavailable for scheduled maintenance. Check back in a minute.">
+<figcaption aria-hidden="true">Briefly unavailable for scheduled
+maintenance. Check back in a minute.</figcaption>
+</figure>
+<h3 id="原因">原因：</h3>
+<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
+unavailable for scheduled maintenance. Check back in a minute.”</p>
+<span id="more"></span>
+<h3 id="解决方法">解决方法：</h3>
+<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
+的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
+即可</p>
+<ul>
+<li>用FTP或者从终端进入WordPress的根目录下，删除
+<strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
+文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
+<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
+<strong>.maintenance</strong> 文件，然后删除即可。</li>
+</ul>
+<p>重新访问网站，发现一切正常<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 感谢阅读！</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>wordpress</tag>
       </tags>
   </entry>
   <entry>
@@ -709,47 +850,6 @@ Thanks. (Applause)</p>
         <tag>TED</tag>
         <tag>摘</tag>
         <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <url>/post/563c2d.html</url>
-    <content><![CDATA[<blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
-<strong>Briefly unavailable for scheduled maintenance. Check back in a
-minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
-</blockquote>
-<figure>
-<img src="http://img.ifish.ink/img/20190703103139.png" title="Briefly unavailable for scheduled maintenance. Check back in a minute." alt="Briefly unavailable for scheduled maintenance. Check back in a minute.">
-<figcaption aria-hidden="true">Briefly unavailable for scheduled
-maintenance. Check back in a minute.</figcaption>
-</figure>
-<h3 id="原因">原因：</h3>
-<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
-unavailable for scheduled maintenance. Check back in a minute.”</p>
-<span id="more"></span>
-<h3 id="解决方法">解决方法：</h3>
-<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
-的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
-即可</p>
-<ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除
-<strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
-文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
-<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
-<strong>.maintenance</strong> 文件，然后删除即可。</li>
-</ul>
-<p>重新访问网站，发现一切正常<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 感谢阅读！</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>wordpress</tag>
       </tags>
   </entry>
   <entry>
@@ -1059,6 +1159,153 @@ c <span class="token operator">=</span> <span class="token punctuation">[</span>
       </tags>
   </entry>
   <entry>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <url>/post/f9428d51.html</url>
+    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
+<span id="more"></span>
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
+% init_X：初始值
+% coefficient_mat：系数矩阵
+% b_mat：b
+% maxNum：最大迭代次数
+% epsilon：精度
+output_args = [];
+flag = 0;
+
+%% 预处理 检查用户调用函数时参数格式是否传错
+if size(coefficient_mat,1) ~= size(coefficient_mat,2)
+    disp('系数矩阵格式错误(需要方阵)');
+    return;
+end
+if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
+    disp('AX=b中的b必须为行向量或者列向量');
+    return;
+end
+if size(b_mat,1) == 1
+    b_mat = b_mat';
+end
+if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
+    disp('初始值必须为行向量或者列向量');
+    return;
+end
+if size(init_X,1) == 1
+    init_X = init_X';
+end
+if size(init_X,1) ~= size(coefficient_mat,1)
+    disp('初始值与系数矩阵维数不一致');
+    return;
+end
+if size(init_X,1) ~= size(b_mat,1)
+    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
+    return;
+end
+if ~exist('maxNum', 'var')
+    maxNum = 500; % 默认值
+end
+if ~exist('epsilon', 'var')
+    epsilon = 1e-14; % 默认值
+end
+
+%% 三对角线
+a = diag(coefficient_mat,-1)';
+b = diag(coefficient_mat)';
+c = diag(coefficient_mat,1)';
+D = diag(a,-1)+diag(b)+diag(c,1);
+
+% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
+[~,D_inv] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
+if isempty(D_inv)
+    disp('系数矩阵不可逆');
+    return;
+end
+%% 开始迭代
+% 下面代码段也行 但是对内存的消耗比较大 
+% x(:,0) = init_X;
+% for k = 1:maxNum
+%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
+%         flag = 1;
+%         break;
+%     end
+% end
+x = init_X;
+%%
+% 迭代公式：
+% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
+% 
+for k = 1:maxNum
+    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
+    if norm(temp-x) &lt; epsilon
+        flag = 1;
+        x = temp;
+        break;
+    end
+    x = temp;
+end
+
+
+%% 结果
+text(0,0.95,'方程：','Color','red','FontSize',14);
+str1 = '\left[\begin{array}';
+% 正则表达式
+str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    '[\s\[\]]',''),'0','c'); 
+mat_start = @(X) [str1 '{' str2(X) '}'];
+my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    ' *','&amp;'),';','\\\'),'[\[\]]','');
+mat_end = '\end{array}\right]';
+str5 = '\times X=';
+% LaTex 输出
+text('Interpreter','latex', 'String',['$$'...
+    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
+    'Position',[0.1 0.7],'FontSize',10);
+text(0,0.5,'三对角类雅可比迭代的结果：','Color','red','FontSize',14);
+if flag == 1  %好的结果
+    output_args.itrNum = k;
+    output_args.result = x;
+    fprintf('迭代次数：%d\n',output_args.itrNum);
+%     disp(x(:,k));
+    disp('解：');
+    disp(x);
+    text('Interpreter','latex', 'String',['$$X^*=' ...
+        mat_start(x) my_mat2str(x) mat_end '$$'],...
+        'Position',[0.1 0.3],'FontSize',10);
+    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
+    'Color','k','FontSize',10);
+    return;
+end
+text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
+    'Color','k','FontSize',10);
+fprintf('迭代%d次后暂未收敛\n',maxNum);
+end</code></pre>
+<ul>
+<li>测试程序</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat = [-1 -5 2 -1];
+init_X = zeros(size(b_mat));
+out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+<ul>
+<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
+</ul>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>数学学习</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>三角网格曲面参数化</title>
     <url>/post/bcf65292.html</url>
     <content><![CDATA[<blockquote>
@@ -1209,142 +1456,17 @@ figure
       </tags>
   </entry>
   <entry>
-    <title>三对角矩阵的类雅可比迭代程序</title>
-    <url>/post/f9428d51.html</url>
-    <content><![CDATA[<h2 id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
-<span id="more"></span>
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
-% init_X：初始值
-% coefficient_mat：系数矩阵
-% b_mat：b
-% maxNum：最大迭代次数
-% epsilon：精度
-output_args = [];
-flag = 0;
-
-%% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~= size(coefficient_mat,2)
-    disp('系数矩阵格式错误(需要方阵)');
-    return;
-end
-if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
-    disp('AX=b中的b必须为行向量或者列向量');
-    return;
-end
-if size(b_mat,1) == 1
-    b_mat = b_mat';
-end
-if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
-    disp('初始值必须为行向量或者列向量');
-    return;
-end
-if size(init_X,1) == 1
-    init_X = init_X';
-end
-if size(init_X,1) ~= size(coefficient_mat,1)
-    disp('初始值与系数矩阵维数不一致');
-    return;
-end
-if size(init_X,1) ~= size(b_mat,1)
-    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
-    return;
-end
-if ~exist('maxNum', 'var')
-    maxNum = 500; % 默认值
-end
-if ~exist('epsilon', 'var')
-    epsilon = 1e-14; % 默认值
-end
-
-%% 三对角线
-a = diag(coefficient_mat,-1)';
-b = diag(coefficient_mat)';
-c = diag(coefficient_mat,1)';
-D = diag(a,-1)+diag(b)+diag(c,1);
-
-% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
-[~,D_inv] = cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
-if isempty(D_inv)
-    disp('系数矩阵不可逆');
-    return;
-end
-%% 开始迭代
-% 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) = init_X;
-% for k = 1:maxNum
-%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
-%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag = 1;
-%         break;
-%     end
-% end
-x = init_X;
-%%
-% 迭代公式：
-% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
-% 
-for k = 1:maxNum
-    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
-    if norm(temp-x) &lt; epsilon
-        flag = 1;
-        x = temp;
-        break;
-    end
-    x = temp;
-end
-
-
-%% 结果
-text(0,0.95,'方程：','Color','red','FontSize',14);
-str1 = '\left[\begin{array}';
-% 正则表达式
-str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    '[\s\[\]]',''),'0','c'); 
-mat_start = @(X) [str1 '{' str2(X) '}'];
-my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    ' *','&amp;'),';','\\\'),'[\[\]]','');
-mat_end = '\end{array}\right]';
-str5 = '\times X=';
-% LaTex 输出
-text('Interpreter','latex', 'String',['$$'...
-    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
-    'Position',[0.1 0.7],'FontSize',10);
-text(0,0.5,'三对角类雅可比迭代的结果：','Color','red','FontSize',14);
-if flag == 1  %好的结果
-    output_args.itrNum = k;
-    output_args.result = x;
-    fprintf('迭代次数：%d\n',output_args.itrNum);
-%     disp(x(:,k));
-    disp('解：');
-    disp(x);
-    text('Interpreter','latex', 'String',['$$X^*=' ...
-        mat_start(x) my_mat2str(x) mat_end '$$'],...
-        'Position',[0.1 0.3],'FontSize',10);
-    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
-    'Color','k','FontSize',10);
-    return;
-end
-text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
-    'Color','k','FontSize',10);
-fprintf('迭代%d次后暂未收敛\n',maxNum);
-end</code></pre>
-<ul>
-<li>测试程序</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat = [-1 -5 2 -1];
-init_X = zeros(size(b_mat));
-out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-<ul>
-<li>文档 <a href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
-</ul>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+    <title>从复平面上域的多项式函数生成调和函数</title>
+    <url>/post/harmonic.html</url>
+    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span class="math inline">\(z=x+yi\)</span>的多项式函数<span class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span class="math inline">\((x,y)\)</span>的二元调和函数。</p>
+<p>这里我们用Matlab可视化 </p><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+[x,y] = meshgrid(linspace(-1,1,100));
+p = @(x,y) complex(x,y).^2-complex(x,y)/2;
+z = real(p(x,y));
+surf(x,y,z,'linestyle','none');
+axis off;</code></pre><p></p>
+<p><img src="http://img.ifish.ink/figure/har.gif"></p>
 ]]></content>
       <categories>
         <category>数学学习</category>
@@ -1352,7 +1474,6 @@ out_QuasiJacobi = cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
       <tags>
         <tag>原创</tag>
         <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
       </tags>
   </entry>
   <entry>
@@ -1409,6 +1530,154 @@ VectorXd <span class="token class-name">MyPolygon</span><span class="token doubl
         <tag>原创</tag>
         <tag>算法实现</tag>
         <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于极大似然坐标的图像变形的MATLAB实现</title>
+    <url>/post/mlc2d.html</url>
+    <content><![CDATA[<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/teaser.jpg"></p>
+<p>This is an implementation of the paper "<a href="https://doi.org/10.1111/cgf.14908">Maximum likelihood
+coordinates</a>".</p>
+<h2 id="usage">Usage</h2>
+<p>Start by cloning this repository, making sure to pass the
+<code>--recursive</code> flag to grab all the dependencies. If you
+forgot, then you can <code>git submodule update --init</code> instead.
+</p><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token parameter variable">--recursive</span> https://github.com/changqj/Maximum-Likelihood-Coordinates-2D.git mlc2d</code></pre><p></p>
+<p>Now, you can directly run the <code>main.m</code> program in MATLAB,
+after a few seconds you will see a GUI interface. Then you can set a
+target polygon by loading from file or dragging the vertices with the
+mouse. Select the type of barycentric coordinates through the buttons
+below.</p>
+<figure>
+<img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G.gif" alt="loading from file">
+<figcaption aria-hidden="true">loading from file</figcaption>
+</figure>
+<figure>
+<img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G0.gif" alt="dragging">
+<figcaption aria-hidden="true">dragging</figcaption>
+</figure>
+<p>Due to the rough processing in MATLAB GUI, the visualization image in
+the MATLAB GUI is blurry, but a clear image can be obtained in MeshLab
+(or other visualization tools) through <code>.obj</code>, the deformed
+image file will be generated in real time in <code>/data/</code> folder
+and stored in textured <code>.obj</code> format.</p>
+<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/1.png"></p>
+<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/6.png"></p>
+<h2 id="example">Example</h2>
+<table>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_source.png"></th>
+<th><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MVC.png"></th>
+<th><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_IC.png"></th>
+<th><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_HBC.png"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>source image</td>
+<td>mean value coordinates</td>
+<td>iterative coordinates</td>
+<td>harmonic coordinates</td>
+</tr>
+<tr class="even">
+<td><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MEC1.png"></td>
+<td><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MEC2.png"></td>
+<td><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MLC.png"></td>
+<td><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MLC_WITHOUT_S.png"></td>
+</tr>
+<tr class="odd">
+<td>maximum entropy coordinates (prior 1)</td>
+<td>maximum entropy coordinates (prior 2)</td>
+<td>maximum likelihood coordinates</td>
+<td>maximum likelihood without scaling</td>
+</tr>
+</tbody>
+</table>
+<h3 id="basis-function">Basis function</h3>
+<p>You can visualize the basis functions in two ways:</p>
+<ul>
+<li><p>diaplay through the figure window of MATLAB</p>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token function">showbase</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span>mlcoors<span class="token punctuation">,</span><span class="token function">tri</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>xx<span class="token punctuation">,</span>yy<span class="token punctuation">,</span>v0<span class="token punctuation">)</span></code></pre>
+<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/2.png"></p></li>
+<li><p>display with other visualization software by generating textured
+<code>.obj</code> file.</p>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">% to plot the base functions</span>
+
+
+name <span class="token operator">=</span> <span class="token string">'mlc'</span><span class="token punctuation">;</span>
+
+z <span class="token operator">=</span> mlcoors<span class="token operator">'</span><span class="token punctuation">;</span>   <span class="token comment">% n x #</span>
+
+<span class="token comment">% set a mtl file</span>
+fid <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data/base_texture.obj.mtl'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'# Generated by MATLAB\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'# Wavefront material file\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'newmtl material_0\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Ka 0.200000 0.200000 0.200000\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Kd 0.752941 0.752941 0.752941\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Ks 1.000000 1.000000 1.000000\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Tr 1.000000\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'illum 2\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Ns 0.000000\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'map_Kd %s\n'</span><span class="token punctuation">,</span><span class="token punctuation">[</span> <span class="token string">'./gbc_bar.png'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fclose</span><span class="token punctuation">(</span>fid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'colorbar_mlc.mat'</span><span class="token punctuation">)</span>
+colorbar_mlc <span class="token operator">=</span> <span class="token function">colorbar_mlc</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bar <span class="token operator">=</span> colorbar_mlc<span class="token operator">'</span><span class="token punctuation">;</span>
+bar<span class="token operator">=</span> <span class="token function">repmat</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bar <span class="token operator">=</span> <span class="token function">reshape</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bar <span class="token operator">=</span> <span class="token function">reshape</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bar <span class="token operator">=</span> <span class="token function">permute</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bar<span class="token operator">=</span> <span class="token function">repmat</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">imwrite</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'data/gbc_bar.png'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% close(2)</span>
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">size</span><span class="token punctuation">(</span>z<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+    bar_uv <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>xx<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token function">z</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">writeOBJ</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data/'</span> name <span class="token string">'_bf_'</span> <span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token string">'.obj'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span>xx <span class="token number">1</span><span class="token operator">-</span>yy <span class="token punctuation">...</span>
+        <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>xx<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">...</span>
+        <span class="token function">tri</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">4</span> <span class="token number">3</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>bar_uv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    fid <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data/'</span> name <span class="token string">'_bf_'</span> <span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token string">'.obj'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'mtllib ./'</span><span class="token punctuation">,</span><span class="token string">'base_texture.obj.mtl\n'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">fclose</span><span class="token punctuation">(</span>fid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">end</span></code></pre>
+<p>After executing the above code, the <code>.obj</code> file of the
+basis functions will be in the <code>/data/</code> folder.</p>
+<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/3.png"></p>
+<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/4.png"></p>
+<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5.png"></p></li>
+</ul>
+<h2 id="citation">Citation</h2>
+<pre class="language-bibtex" data-language="bibtex"><code class="language-bibtex">@Article{Chang:2023:MLC,
+	author	=	{Qingjun Chang and Chongyang Deng and Kai Hormann},
+	title 	= 	{Maximum likelihood coordinates},
+	journal	=	{Computer Graphics Forum},
+	volume	=	42,
+	number	=	5,
+	month	=	aug,
+	year	=	2023,
+	pages	=	{Article e14908, 13 pages},
+	note	=	{Proceedings of SGP}
+} </code></pre>
+]]></content>
+      <categories>
+        <category>图形学</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
       </tags>
   </entry>
   <entry>
@@ -1699,6 +1968,74 @@ out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
+    <content><![CDATA[<blockquote>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin</p>
+</blockquote>
+<h3 id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
+<span id="more"></span>
+<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
+<p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock
+Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
+Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
+Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
+截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
+Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr>
+<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
+Origin插件</h3>
+<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
+<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+<blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
+store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol type="1">
+<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
+<img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
+</ol>
+<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
+<ol type="1">
+<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
+Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome://extensions/</a>
+后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p></li>
+<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
+<img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p></li>
+<li><p>在Chrome右上角点击uBlock
+Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
+<img src="http://img.ifish.ink/img/uo4.png"></p></li>
+</ol>
+<hr>
+<h3 id="三测试">三、测试</h3>
+<ul>
+<li><p>未启用uBlock
+Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p></li>
+<li><p>启用uBlock
+Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p></li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p></li>
+</ul>
+<hr>
+<h3 id="四参考">四、参考：</h3>
+<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
+维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<hr>
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>原创</tag>
+        <tag>神器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>瑞士意大利语区大学访学记录</title>
     <url>/post/f29efa2.html</url>
     <content><![CDATA[<blockquote>
@@ -1844,343 +2181,6 @@ Hormann教授的邀请和邓重阳教授的支持让我有了这次国外学习�
         <tag>随笔</tag>
         <tag>游记</tag>
         <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
-uBlock Origin</p>
-</blockquote>
-<h3 id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
-<span id="more"></span>
-<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
-<p><img src="http://img.ifish.ink/img/uo.png" alt="uBlock Origin Logo"> uBlock
-Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
-Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
-Origin的目标是为用户提供自行实施内容过滤的选择。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
-截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
-Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
-<hr>
-<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
-Origin插件</h3>
-<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
-<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
-<blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
-store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
-</blockquote>
-<ol type="1">
-<li><a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
-<img src="http://img.ifish.ink/img/uo5.png"> <img src="http://img.ifish.ink/img/uo2.png"></li>
-</ol>
-<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
-<ol type="1">
-<li><p>从百度云盘<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
-Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a href="chrome://extensions/">chrome://extensions/</a>
-后回车，可以看到类似下图页面 <img src="http://img.ifish.ink/img/1.png" alt="chrome://extensions"></p></li>
-<li><p>将第1步中下载的<a href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
-<img src="http://img.ifish.ink/img/uo2.png"> <img src="http://img.ifish.ink/img/uo3.png"></p></li>
-<li><p>在Chrome右上角点击uBlock
-Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
-<img src="http://img.ifish.ink/img/uo4.png"></p></li>
-</ol>
-<hr>
-<h3 id="三测试">三、测试</h3>
-<ul>
-<li><p>未启用uBlock
-Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(可以看到靠前的内容几乎都是广告) <img src="http://img.ifish.ink/img/uo6.png"></p></li>
-<li><p>启用uBlock
-Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(广告明显减少) <img src="http://img.ifish.ink/img/uo7.png"></p></li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img src="http://img.ifish.ink/img/uo.gif"></p></li>
-</ul>
-<hr>
-<h3 id="四参考">四、参考：</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin" title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
-维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
-<hr>
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>神器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Introduction to Data Science (3)</title>
-    <url>/post/ids3.html</url>
-    <content><![CDATA[<blockquote>
-<p>本节介绍估计值的相合性（一致性）、有效性以及渐进正态分布的极大似然估计。</p>
-<p>参考书籍：<em>Statistical Inference</em>, Casella and Berger,
-Duxbury, 2th edition; 《概率论与数理统计》 浙大第四版</p>
-</blockquote>
-<h4 id="相合性consistency">相合性(Consistency)</h4>
-<p>设<span class="math inline">\(\hat{\theta}(X_1,\dots,X_n)\)</span>是参数<span class="math inline">\(\theta\)</span>的估计量，若对于任意<span class="math inline">\(\theta\in\Theta\)</span>，当<span class="math inline">\(n\to\infty\)</span>时，<span class="math inline">\(\hat{\theta}(X_1,\dots,X_n)\)</span>依概率收敛于<span class="math inline">\(\theta\)</span>，则称<span class="math inline">\(\hat{\theta}\)</span>为<span class="math inline">\(\theta\)</span>的<strong>相合估计量</strong>，即，若对于任意<span class="math inline">\(\theta\in\Theta\)</span>都满足：对于任意<span class="math inline">\(\epsilon&gt;0\)</span>，有 <span class="math display">\[\lim_{n\to\infty}P\{|\hat{\theta}-\theta|&lt;\epsilon\}=1.\]</span>
-如果估计量不具有相合性，则不论将样本容量<span class="math inline">\(n\)</span>取多么大，都不能将<span class="math inline">\(\theta\)</span>估计得足够准确。</p>
-<p>设<span class="math inline">\(Y_1,\dots,Y_n,\dots\)</span>是一个随机变量序列，<span class="math inline">\(a\)</span>是一个常数。若对于任意正数<span class="math inline">\(\epsilon\)</span>，有 <span class="math display">\[\lim_{n\to\infty}P\{|Y_n-a|&lt;\epsilon\}=1,\]</span>
-则称序列<span class="math inline">\(Y_1,\dots,Y_n,\dots\)</span><strong>依概率收敛</strong>于<span class="math inline">\(a\)</span>，记为<span class="math inline">\(Y_n\xrightarrow{P}a\)</span>。</p>
-<ul>
-<li><p>🌰例1. <span class="math inline">\(X_1,\dots,X_n\)</span>服从参数为<span class="math inline">\(\theta_0\)</span>的伯努利分布，参数估计量 <span class="math display">\[\hat{\theta}_n=\frac{X_1+\dots+X_n}{n}\]</span>
-则<span class="math inline">\(\hat{\theta}_n\)</span>是无偏估计且达到Cramér-Rao下界。</p>
-<p><em>证明</em>：对于无偏性，容易验证：<span class="math inline">\(\text{E}[\hat{\theta}_n]=\frac{1}{n}\sum_{i=1}^n\text{E}[X_i]=\text{E}[X_1]=\theta_0\)</span>。</p>
-<p>对于Cramér-Rao下界，可通过以下方式计算 <span class="math display">\[\begin{align}
-    l_{X_1}(\theta)&amp; = \log
-f_{X_1}(x_1;\theta)=\log[\theta^{x_1}(1-\theta)^{1-x_1}] =
-x_1\log\theta+(1-x_1)\log(1-\theta),
-  \end{align}\]</span> <span class="math display">\[\begin{align}
-    l'_{X_1}(\theta) =
-\frac{\partial}{\partial\theta}l_{X_1}(\theta)=\frac{x_1}{\theta}-\frac{1-x_1}{1-\theta},
-  \end{align}\]</span> <span class="math display">\[\begin{align}
-    l''_{X_1}(\theta) =
-\frac{\partial^2}{\partial\theta^2}l_{X_1}(\theta)=-\frac{x_1}{\theta^2}-\frac{1-x_1}{(1-\theta)^2},
-  \end{align}\]</span> <span class="math display">\[\begin{align}
-    I_{X_1}(\theta) = -\text{E}[l''_{X_1}(\theta_0)] =
-\text{E}\left[\frac{X_1}{\theta_0^2}+\frac{1-X_1}{(1-\theta)^2}\right]=\frac{\text{E}[X_1]}{\theta_0^2}+\frac{1-\text{E}[X_1]}{(1-\theta_0)^2}=\frac{1}{\theta_0(1-\theta_0)},
-  \end{align}\]</span> 因此Cramér-Rao下界为 <span class="math display">\[CRLB=\frac{1}{n\cdot
-I_{X_1}(\theta)}=\frac{\theta_0(1-\theta_0)}{n},\]</span>
-另一方面估计量<span class="math inline">\(\hat{\theta}_n\)</span>的方差为 <span class="math display">\[\begin{align}
-    \text{V}[\hat{\theta}_n] = \frac{1}{n^2}\sum_{i=1}^n\text{V}[X_i] =
-\frac{1}{n}\text{V}[X_1] = \frac{1}{n}(\text{E}[X_1^2]-\text{E}^2[X_1])
-= \frac{1}{n}(\theta_0-\theta_0^2)=\frac{\theta_0(1-\theta_0)}{n},
-  \end{align}\]</span>
-即估计量的方差达到Cramér-Rao下界。对于该例，应用大数定理可知：估计量<span class="math inline">\(\hat{\theta}\)</span>是<span class="math inline">\(\theta_0\)</span>的相合估计量。</p>
-<blockquote>
-<p><strong>弱大数定理</strong>（辛钦大数定理） 设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且具有数学期望<span class="math inline">\(\text{E}[X_k]=\mu
-(k=1,2,\dots)\)</span>，则序列<span class="math inline">\(\bar{X}=\frac{1}{n}\sum_{k=1}^nX_k\)</span>依概率收敛于<span class="math inline">\(\mu\)</span>，即<span class="math inline">\(\bar{X}\xrightarrow{P}\mu\)</span>。</p>
-</blockquote>
-<p>另一方面，由于期望<span class="math inline">\(\text{E}[X_i]=\theta_0\)</span>和方差<span class="math inline">\(\text{V}[X_i]=\theta_0(1-\theta_0)\le
-1\)</span>，可以由切比雪夫不等式得到当<span class="math inline">\(n\)</span>趋近于无穷时，有<span class="math inline">\(P(|\hat{\theta}_n-\theta_0|&gt;\epsilon)\)</span>趋于0。</p>
-<blockquote>
-<p><strong>切比雪夫(Chebyshev)不等式</strong> 设随机变量<span class="math inline">\(X\)</span>具有数学期望<span class="math inline">\(\text{E}[X]=\mu\)</span>，方差<span class="math inline">\(\text{V}[X]=\sigma^2\)</span>，则对任意正数<span class="math inline">\(\epsilon\)</span>，不等式 <span class="math display">\[P(|x-\mu|\ge\epsilon)\le\frac{\sigma^2}{\epsilon^2}\]</span>
-成立，该不等式被称为切比雪夫不等式。</p>
-</blockquote>
-<p>因此在该例中，有<span class="math inline">\(P(|\hat{\theta}_n-\text{E}[\hat{\theta}_n]|\ge\epsilon)\le\frac{\text{V}[\hat{\theta}_n]}{\epsilon^2}\)</span>，即
-<span class="math display">\[P(|\hat{\theta}_n-\theta_0|\ge\epsilon)\le\frac{\theta_0(1-\theta_0)}{n\cdot\epsilon^2}\to
-0,\quad n\to\infty.\]</span></p></li>
-</ul>
-<blockquote>
-<p><strong>推论</strong>：如果<span class="math inline">\(\theta_0\)</span>的估计量<span class="math inline">\(\{\hat{\theta}_n\}\)</span>是无偏的，即对于任意<span class="math inline">\(n\in\mathbf{N}\)</span>有<span class="math inline">\(\text{E}[\hat{\theta}_n]=\theta_0\)</span>，且当<span class="math inline">\(n\)</span>趋近于无穷时，无偏估计量的方差<span class="math inline">\(\text{V}[\hat{\theta}_n]\to 0\)</span>，则<span class="math inline">\(\{\hat{\theta}_n\}\)</span>是相合估计量。</p>
-</blockquote>
-<hr>
-<p>是否能够找到一种估计，使得其满足：1.无偏性，2.达到Cramér-Rao下界，3.具有相合性？
-几乎可以：前两个条件能渐近满足。</p>
-<blockquote>
-<p><strong>定理</strong>：设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且<span class="math inline">\(f_{\theta_0}\)</span>，如果</p>
-<ul>
-<li><span class="math inline">\(f_{\theta}\)</span>不依赖于<span class="math inline">\(\theta\)</span></li>
-<li><span class="math inline">\(f_{\theta}\)</span>关于<span class="math inline">\(\theta\)</span>三次连续可微</li>
-<li>参数空间<span class="math inline">\(\Theta\)</span>是紧的</li>
-</ul>
-<p>则有随机变量<span class="math inline">\(\sqrt{n}(\hat{\theta}_{MLE}-\theta_0)\)</span>近似于服从正态分布<span class="math inline">\(N(0,[I(\theta_0)]^{-1})\)</span></p>
-</blockquote>
-<p><em>证明</em>：（下面用<span class="math inline">\(\hat{\theta}\)</span>简单表示<span class="math inline">\(\hat{\theta}_{MLE}\)</span>）</p>
-<p>将<span class="math inline">\(l'_X(\hat{\theta})\)</span>在<span class="math inline">\(\theta = \theta_0\)</span>处泰勒展开可得： <span class="math display">\[l'_X(\hat{\theta})\approx
-l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
-由于<span class="math inline">\(\hat{\theta}\)</span>是极大似然估计的参数，即似然函数在此处一介导为0，即
-<span class="math display">\[0\approx
-l'_X(\theta_0)+(\hat{\theta}-\theta_0)l''_X(\theta_0),\]</span>
-<span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\approx\sqrt{n}\cdot\frac{-l'_X(\theta_0)}{l''_X(\theta_0)}=\frac{-\frac{1}{\sqrt{n}}l'_X(\theta_0)}{\frac{1}{n}l''_X(\theta_0)},\]</span>
-对于上式的分母有 <span class="math display">\[\frac{1}{n}l''_X(\theta_0)=\frac{1}{n}\sum_{i=1}^n
-l''_{X_i}(\theta_0)=\text{E}[l''_{X_1}(\theta_0)]=I_{X_1}(\theta_0),\]</span>
-对于分子部分 <span class="math display">\[-\frac{1}{\sqrt{n}}\cdot
-l'_X(\theta_0)=-\frac{1}{\sqrt{n}}\sum_{i=1}^{n}l'_{X_i}(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\]</span></p>
-<blockquote>
-<p><strong>中心极限定理</strong> 设随机变量<span class="math inline">\(X_1,\dots,X_n,\dots\)</span>相互独立，服从同一分布且具有数学期望<span class="math inline">\(\text{E}[X_k]=\mu\)</span>，方差<span class="math inline">\(\text{V}[X_k]=\sigma^2,~(k=1,2,\dots)\)</span>，则
-<span class="math display">\[\sqrt{n}\cdot\left(\frac{1}{n}\sum_{k=1}^nX_k-\mu\right)\to
-N(0,\sigma^2).\]</span></p>
-</blockquote>
-<p>由于 <span class="math display">\[\text{E}[l'_{X_1}(\theta_0)]=0,\quad
-\text{V}[l'_{X_1}(\theta_0)]=\text{E}[l'_{X_1}(\theta_0)^2]=I_{X_1}(\theta_0),\]</span>
-因此<span class="math inline">\(-\frac{1}{\sqrt{n}}\cdot
-l'_X(\theta_0)=-\sqrt{n}\cdot\overline{l'_{X_1}(\theta_0)}\to
-N(0,I_{X_1}(\theta_0))\)</span>，有 <span class="math display">\[\sqrt{n}(\hat{\theta}-\theta_0)\to
-N\left(0,\frac{1}{I_{X_1}(\theta_0)}\right),\]</span> 进而有 <span class="math display">\[\hat{\theta}\to N\left(\theta_0,\frac{1}{n\cdot
-I_{X_1}(\theta_0)}\right),\]</span> 即对于任意<span class="math inline">\(n\)</span>，<span class="math inline">\(\hat{\theta}\)</span>的均值为<span class="math inline">\(\theta_0\)</span>，具有无偏性。且方差<span class="math inline">\(\text{V}[\hat{\theta}]=(n\cdot
-I_{X_1}(\theta_0))^{-1}\)</span>达到Cramér-Rao下界。当<span class="math inline">\(n\)</span>趋近于无穷，方差趋近于0，即满足相合性。</p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>统计</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从复平面上域的多项式函数生成调和函数</title>
-    <url>/post/harmonic.html</url>
-    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span class="math inline">\(z=x+yi\)</span>的多项式函数<span class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span class="math inline">\((x,y)\)</span>的二元调和函数。</p>
-<p>这里我们用Matlab可视化 </p><pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-[x,y] = meshgrid(linspace(-1,1,100));
-p = @(x,y) complex(x,y).^2-complex(x,y)/2;
-z = real(p(x,y));
-surf(x,y,z,'linestyle','none');
-axis off;</code></pre><p></p>
-<p><img src="http://img.ifish.ink/figure/har.gif"></p>
-]]></content>
-      <categories>
-        <category>数学学习</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>MATLAB代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于极大似然坐标的图像变形的MATLAB实现</title>
-    <url>/post/mlc2d.html</url>
-    <content><![CDATA[<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/teaser.jpg"></p>
-<p>This is an implementation of the paper "<a href="https://doi.org/10.1111/cgf.14908">Maximum likelihood
-coordinates</a>".</p>
-<h2 id="usage">Usage</h2>
-<p>Start by cloning this repository, making sure to pass the
-<code>--recursive</code> flag to grab all the dependencies. If you
-forgot, then you can <code>git submodule update --init</code> instead.
-</p><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token parameter variable">--recursive</span> https://github.com/changqj/Maximum-Likelihood-Coordinates-2D.git mlc2d</code></pre><p></p>
-<p>Now, you can directly run the <code>main.m</code> program in MATLAB,
-after a few seconds you will see a GUI interface. Then you can set a
-target polygon by loading from file or dragging the vertices with the
-mouse. Select the type of barycentric coordinates through the buttons
-below.</p>
-<figure>
-<img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G.gif" alt="loading from file">
-<figcaption aria-hidden="true">loading from file</figcaption>
-</figure>
-<figure>
-<img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G0.gif" alt="dragging">
-<figcaption aria-hidden="true">dragging</figcaption>
-</figure>
-<p>Due to the rough processing in MATLAB GUI, the visualization image in
-the MATLAB GUI is blurry, but a clear image can be obtained in MeshLab
-(or other visualization tools) through <code>.obj</code>, the deformed
-image file will be generated in real time in <code>/data/</code> folder
-and stored in textured <code>.obj</code> format.</p>
-<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/1.png"></p>
-<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/6.png"></p>
-<h2 id="example">Example</h2>
-<table>
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_source.png"></th>
-<th><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MVC.png"></th>
-<th><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_IC.png"></th>
-<th><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_HBC.png"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>source image</td>
-<td>mean value coordinates</td>
-<td>iterative coordinates</td>
-<td>harmonic coordinates</td>
-</tr>
-<tr class="even">
-<td><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MEC1.png"></td>
-<td><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MEC2.png"></td>
-<td><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MLC.png"></td>
-<td><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/G_MLC_WITHOUT_S.png"></td>
-</tr>
-<tr class="odd">
-<td>maximum entropy coordinates (prior 1)</td>
-<td>maximum entropy coordinates (prior 2)</td>
-<td>maximum likelihood coordinates</td>
-<td>maximum likelihood without scaling</td>
-</tr>
-</tbody>
-</table>
-<h3 id="basis-function">Basis function</h3>
-<p>You can visualize the basis functions in two ways:</p>
-<ul>
-<li><p>diaplay through the figure window of MATLAB</p>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token function">showbase</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span>mlcoors<span class="token punctuation">,</span><span class="token function">tri</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>xx<span class="token punctuation">,</span>yy<span class="token punctuation">,</span>v0<span class="token punctuation">)</span></code></pre>
-<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/2.png"></p></li>
-<li><p>display with other visualization software by generating textured
-<code>.obj</code> file.</p>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">% to plot the base functions</span>
-
-
-name <span class="token operator">=</span> <span class="token string">'mlc'</span><span class="token punctuation">;</span>
-
-z <span class="token operator">=</span> mlcoors<span class="token operator">'</span><span class="token punctuation">;</span>   <span class="token comment">% n x #</span>
-
-<span class="token comment">% set a mtl file</span>
-fid <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data/base_texture.obj.mtl'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'# Generated by MATLAB\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'# Wavefront material file\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'newmtl material_0\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Ka 0.200000 0.200000 0.200000\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Kd 0.752941 0.752941 0.752941\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Ks 1.000000 1.000000 1.000000\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Tr 1.000000\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'illum 2\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'Ns 0.000000\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token string">'map_Kd %s\n'</span><span class="token punctuation">,</span><span class="token punctuation">[</span> <span class="token string">'./gbc_bar.png'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fclose</span><span class="token punctuation">(</span>fid<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'colorbar_mlc.mat'</span><span class="token punctuation">)</span>
-colorbar_mlc <span class="token operator">=</span> <span class="token function">colorbar_mlc</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-bar <span class="token operator">=</span> colorbar_mlc<span class="token operator">'</span><span class="token punctuation">;</span>
-bar<span class="token operator">=</span> <span class="token function">repmat</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-bar <span class="token operator">=</span> <span class="token function">reshape</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-bar <span class="token operator">=</span> <span class="token function">reshape</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-bar <span class="token operator">=</span> <span class="token function">permute</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">3</span> <span class="token number">2</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-bar<span class="token operator">=</span> <span class="token function">repmat</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">imwrite</span><span class="token punctuation">(</span>bar<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'data/gbc_bar.png'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">% close(2)</span>
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">size</span><span class="token punctuation">(</span>z<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
-
-    bar_uv <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>xx<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token function">z</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">writeOBJ</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data/'</span> name <span class="token string">'_bf_'</span> <span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token string">'.obj'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span>xx <span class="token number">1</span><span class="token operator">-</span>yy <span class="token punctuation">...</span>
-        <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>xx<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">...</span>
-        <span class="token function">tri</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">4</span> <span class="token number">3</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>bar_uv<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    fid <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data/'</span> name <span class="token string">'_bf_'</span> <span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token string">'.obj'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">fprintf</span><span class="token punctuation">(</span>fid<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'mtllib ./'</span><span class="token punctuation">,</span><span class="token string">'base_texture.obj.mtl\n'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">fclose</span><span class="token punctuation">(</span>fid<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-
-<span class="token keyword">end</span></code></pre>
-<p>After executing the above code, the <code>.obj</code> file of the
-basis functions will be in the <code>/data/</code> folder.</p>
-<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/3.png"></p>
-<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/4.png"></p>
-<p><img src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5.png"></p></li>
-</ul>
-<h2 id="citation">Citation</h2>
-<pre class="language-bibtex" data-language="bibtex"><code class="language-bibtex">@Article{Chang:2023:MLC,
-	author	=	{Qingjun Chang and Chongyang Deng and Kai Hormann},
-	title 	= 	{Maximum likelihood coordinates},
-	journal	=	{Computer Graphics Forum},
-	volume	=	42,
-	number	=	5,
-	month	=	aug,
-	year	=	2023,
-	pages	=	{Article e14908, 13 pages},
-	note	=	{Proceedings of SGP}
-} </code></pre>
-]]></content>
-      <categories>
-        <category>图形学</category>
-      </categories>
-      <tags>
-        <tag>原创</tag>
-        <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
       </tags>
   </entry>
 </search>
