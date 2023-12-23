@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2023-12-23T16:04:02.332Z</updated>
+  <updated>2023-12-23T20:09:50.805Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.ifish.ink/post/mlc2d.html"/>
     <id>https://www.ifish.ink/post/mlc2d.html</id>
     <published>2023-12-22T20:39:00.000Z</published>
-    <updated>2023-12-23T16:04:02.332Z</updated>
+    <updated>2023-12-23T20:09:50.805Z</updated>
     
     
       
@@ -35,9 +35,7 @@
     
     
     
-    <category term="几何" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/"/>
-    
-    <category term="算法" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/%E7%AE%97%E6%B3%95/"/>
+    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
     
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
@@ -53,7 +51,7 @@
     <link href="https://www.ifish.ink/post/harmonic.html"/>
     <id>https://www.ifish.ink/post/harmonic.html</id>
     <published>2023-12-20T21:03:35.000Z</published>
-    <updated>2023-12-23T16:03:37.970Z</updated>
+    <updated>2023-12-23T20:18:43.042Z</updated>
     
     
       
@@ -66,9 +64,7 @@
     
     
     
-    <category term="分析" scheme="https://www.ifish.ink/categories/%E5%88%86%E6%9E%90/"/>
-    
-    <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%88%86%E6%9E%90/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
+    <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
     
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
@@ -199,11 +195,39 @@ moments)和极大似然估计(maximum likelihood estimation)。&lt;/p&gt;
   </entry>
   
   <entry>
+    <title>三次样条插值</title>
+    <link href="https://www.ifish.ink/post/cubicspline.html"/>
+    <id>https://www.ifish.ink/post/cubicspline.html</id>
+    <published>2020-11-10T20:30:10.000Z</published>
+    <updated>2023-12-23T21:58:37.664Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;三次样条函数&quot;&gt;三次样条函数&lt;/h3&gt;
+&lt;p&gt;对于给定&lt;span class=&quot;math inline&quot;&gt;\(\mathbb{R}^2\)&lt;/span&gt;域内一组有序点&lt;span class=&quot;math</summary>
+        
+      
+    
+    
+    
+    <category term="曲线曲面" scheme="https://www.ifish.ink/categories/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
+    
+    
+    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+    <category term="C/C++" scheme="https://www.ifish.ink/tags/C-C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>多维放缩MDS算法</title>
     <link href="https://www.ifish.ink/post/94abe0b4.html"/>
     <id>https://www.ifish.ink/post/94abe0b4.html</id>
     <published>2020-11-09T18:43:19.000Z</published>
-    <updated>2023-12-23T16:00:51.042Z</updated>
+    <updated>2023-12-23T20:10:12.641Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -220,9 +244,7 @@ n\)&lt;/span&gt;，使得高维空间中两样本点的度量距离在低维空�
     
     
     
-    <category term="几何" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/"/>
-    
-    <category term="算法" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/%E7%AE%97%E6%B3%95/"/>
+    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
     
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
@@ -236,7 +258,7 @@ n\)&lt;/span&gt;，使得高维空间中两样本点的度量距离在低维空�
     <link href="https://www.ifish.ink/post/56c1b7a3.html"/>
     <id>https://www.ifish.ink/post/56c1b7a3.html</id>
     <published>2020-11-03T15:14:00.000Z</published>
-    <updated>2023-12-23T16:01:47.827Z</updated>
+    <updated>2023-12-23T20:07:44.215Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -268,7 +290,7 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     
     
     
-    <category term="几何" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/"/>
+    <category term="曲线曲面" scheme="https://www.ifish.ink/categories/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
     
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
@@ -313,7 +335,7 @@ fork了别人的代码 本地更新主分支代码&lt;/h3&gt;
     <link href="https://www.ifish.ink/post/bcf65292.html"/>
     <id>https://www.ifish.ink/post/bcf65292.html</id>
     <published>2020-10-31T14:26:08.000Z</published>
-    <updated>2023-12-23T16:02:55.285Z</updated>
+    <updated>2023-12-23T20:08:56.974Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -328,9 +350,7 @@ triangulations&lt;/em&gt; 中的保形参数化算法，并给出MATLAB程序
     
     
     
-    <category term="几何" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/"/>
-    
-    <category term="算法" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/%E7%AE%97%E6%B3%95/"/>
+    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
     
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
@@ -409,7 +429,7 @@ LVDS-1 和 HDMI-1
     <link href="https://www.ifish.ink/post/f29efa2.html"/>
     <id>https://www.ifish.ink/post/f29efa2.html</id>
     <published>2020-04-08T11:20:30.000Z</published>
-    <updated>2023-12-23T16:05:04.235Z</updated>
+    <updated>2023-12-23T20:15:57.259Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -423,7 +443,7 @@ LVDS-1 和 HDMI-1
     
     
     
-    <category term="生活" scheme="https://www.ifish.ink/categories/%E7%94%9F%E6%B4%BB/"/>
+    <category term="其他" scheme="https://www.ifish.ink/categories/%E5%85%B6%E4%BB%96/"/>
     
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
@@ -441,7 +461,7 @@ LVDS-1 和 HDMI-1
     <link href="https://www.ifish.ink/post/d033f67a.html"/>
     <id>https://www.ifish.ink/post/d033f67a.html</id>
     <published>2019-10-06T16:02:20.000Z</published>
-    <updated>2023-12-23T16:03:46.876Z</updated>
+    <updated>2023-12-23T20:09:40.759Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;c实现2维多边形均值重心坐标代码可能有冗余未优化代码&quot;&gt;c++实现2维多边形均值重心坐标（代码可能有冗余，未优化代码！）：&lt;/h4&gt;
@@ -452,9 +472,7 @@ Value Coordinates In 3D代码实现&lt;/a&gt;&lt;/p&gt;
     
     
     
-    <category term="几何" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/"/>
-    
-    <category term="算法" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/%E7%AE%97%E6%B3%95/"/>
+    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
     
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
@@ -558,7 +576,7 @@ Origin插件已经一年多时间了，在这之前用过各种各样的去广�
     <link href="https://www.ifish.ink/post/4d3c170c.html"/>
     <id>https://www.ifish.ink/post/4d3c170c.html</id>
     <published>2019-05-09T14:08:51.000Z</published>
-    <updated>2023-12-23T16:03:53.015Z</updated>
+    <updated>2023-12-23T20:09:45.322Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;c实现&quot;&gt;c++实现：&lt;/h4&gt;
@@ -569,9 +587,7 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     
     
     
-    <category term="几何" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/"/>
-    
-    <category term="算法" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95/%E7%AE%97%E6%B3%95/"/>
+    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
     
     
     <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
@@ -587,7 +603,7 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     <link href="https://www.ifish.ink/post/c4cb1247.html"/>
     <id>https://www.ifish.ink/post/c4cb1247.html</id>
     <published>2018-06-10T03:26:16.000Z</published>
-    <updated>2023-12-23T15:58:43.544Z</updated>
+    <updated>2023-12-23T20:03:05.227Z</updated>
     
     
     <summary type="html">&lt;p&gt;本文主要讲述了win7系统下的TexLive+TexStudio环境搭建&lt;/p&gt;</summary>
@@ -600,29 +616,6 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     
     <category term="摘" scheme="https://www.ifish.ink/tags/%E6%91%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>标准雅可比迭代算法-实现</title>
-    <link href="https://www.ifish.ink/post/5d0495ae.html"/>
-    <id>https://www.ifish.ink/post/5d0495ae.html</id>
-    <published>2017-11-09T11:16:19.000Z</published>
-    <updated>2023-12-23T16:04:20.508Z</updated>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;标准雅可比迭代算法解线性方程组-算法实现&quot;&gt;标准雅可比迭代算法解线性方程组-算法实现&lt;/h3&gt;</summary>
-    
-    
-    
-    <category term="数值分析" scheme="https://www.ifish.ink/categories/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/"/>
-    
-    
-    <category term="原创" scheme="https://www.ifish.ink/tags/%E5%8E%9F%E5%88%9B/"/>
-    
-    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
-    
-    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
