@@ -460,11 +460,11 @@ LVDS-1 和 HDMI-1
     <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
     
     
-    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    
     <category term="git" scheme="https://www.ifish.ink/tags/git/"/>
     
     <category term="github" scheme="https://www.ifish.ink/tags/github/"/>
+    
+    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
