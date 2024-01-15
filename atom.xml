@@ -76,119 +76,6 @@
   </entry>
   
   <entry>
-    <title>Introduction to Data Science (3)</title>
-    <link href="https://www.ifish.ink/post/ids3.html"/>
-    <id>https://www.ifish.ink/post/ids3.html</id>
-    <published>2023-12-13T22:26:42.000Z</published>
-    <updated>2023-12-24T09:36:46.338Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本节介绍估计值的相合性（一致性）、有效性以及渐进正态分布的极大似然估计。&lt;/p&gt;
-&lt;p&gt;参考书籍：&lt;em&gt;Statistical Inference&lt;/em&gt;, Casella and Berger,
-Duxbury, 2th edition;</summary>
-        
-      
-    
-    
-    
-    <category term="数理统计" scheme="https://www.ifish.ink/categories/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
-    
-    
-    <category term="统计" scheme="https://www.ifish.ink/tags/%E7%BB%9F%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Introduction to Data Science (2)</title>
-    <link href="https://www.ifish.ink/post/ids2.html"/>
-    <id>https://www.ifish.ink/post/ids2.html</id>
-    <published>2023-10-08T22:01:40.000Z</published>
-    <updated>2023-12-24T09:36:42.809Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本节介绍无偏估计、平均二次误差以及Cramér-Rao下界。&lt;/p&gt;
-&lt;p&gt;参考书籍：&lt;em&gt;Statistical Inference&lt;/em&gt;, Casella and Berger,
-Duxbury, 2th</summary>
-        
-      
-    
-    
-    
-    <category term="数理统计" scheme="https://www.ifish.ink/categories/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
-    
-    
-    <category term="统计" scheme="https://www.ifish.ink/tags/%E7%BB%9F%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Introduction to Data Science (1)</title>
-    <link href="https://www.ifish.ink/post/ids1.html"/>
-    <id>https://www.ifish.ink/post/ids1.html</id>
-    <published>2023-10-07T15:21:45.000Z</published>
-    <updated>2023-12-24T09:36:39.287Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本节将简要介绍参数估计，主要讨论矩估计(method of
-moments)和极大似然估计(maximum likelihood estimation)。&lt;/p&gt;
-&lt;p&gt;参考书籍：《概率论与数理统计》</summary>
-        
-      
-    
-    
-    
-    <category term="数理统计" scheme="https://www.ifish.ink/categories/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
-    
-    
-    <category term="统计" scheme="https://www.ifish.ink/tags/%E7%BB%9F%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Introduction to Data Science (0)</title>
-    <link href="https://www.ifish.ink/post/ids0.html"/>
-    <id>https://www.ifish.ink/post/ids0.html</id>
-    <published>2023-10-07T12:02:20.000Z</published>
-    <updated>2023-12-24T09:36:35.135Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;在这个系列开始之前先附上几种常用的概率分布律、期望和方差。&lt;/p&gt;
-&lt;p&gt;参考书籍：《概率论与数理统计》 浙大第四版&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3</summary>
-        
-      
-    
-    
-    
-    <category term="数理统计" scheme="https://www.ifish.ink/categories/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
-    
-    
-    <category term="统计" scheme="https://www.ifish.ink/tags/%E7%BB%9F%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
     <title>简单细分曲线</title>
     <link href="https://www.ifish.ink/post/subdivcurve.html"/>
     <id>https://www.ifish.ink/post/subdivcurve.html</id>
@@ -606,6 +493,99 @@ Origin插件已经一年多时间了，在这之前用过各种各样的去广�
     <category term="SEO" scheme="https://www.ifish.ink/tags/SEO/"/>
     
     <category term="sitemap" scheme="https://www.ifish.ink/tags/sitemap/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
+    <link href="https://www.ifish.ink/post/4d3c170c.html"/>
+    <id>https://www.ifish.ink/post/4d3c170c.html</id>
+    <published>2019-05-09T14:08:51.000Z</published>
+    <updated>2023-12-24T09:40:04.326Z</updated>
+    
+    
+    <summary type="html">&lt;h4 id=&quot;c实现&quot;&gt;c++实现：&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关于2维中均值重心坐标的实现可参考我的另一篇博客：&lt;a href=&quot;https://www.ifish.ink/post/d033f67a.html&quot; title=&quot;均值重心坐标Mean Value Coordinates In 2D代码实现&quot;&gt;均值重心坐标Mean
+Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
+    
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
+    
+    <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>标准雅可比迭代算法-实现</title>
+    <link href="https://www.ifish.ink/post/5d0495ae.html"/>
+    <id>https://www.ifish.ink/post/5d0495ae.html</id>
+    <published>2017-11-09T11:16:19.000Z</published>
+    <updated>2023-12-24T09:40:50.918Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;标准雅可比迭代算法解线性方程组-算法实现&quot;&gt;标准雅可比迭代算法解线性方程组-算法实现&lt;/h3&gt;</summary>
+    
+    
+    
+    <category term="代数" scheme="https://www.ifish.ink/categories/%E4%BB%A3%E6%95%B0/"/>
+    
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <link href="https://www.ifish.ink/post/f9428d51.html"/>
+    <id>https://www.ifish.ink/post/f9428d51.html</id>
+    <published>2017-11-09T09:43:58.000Z</published>
+    <updated>2023-12-24T09:37:20.869Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;三对角矩阵的类雅可比迭代算法解线性方程组&quot;&gt;三对角矩阵的类雅可比迭代算法解线性方程组&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="代数" scheme="https://www.ifish.ink/categories/%E4%BB%A3%E6%95%B0/"/>
+    
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三对角矩阵求逆的算法-实现</title>
+    <link href="https://www.ifish.ink/post/891db679.html"/>
+    <id>https://www.ifish.ink/post/891db679.html</id>
+    <published>2017-11-09T09:17:04.000Z</published>
+    <updated>2023-12-24T09:37:16.972Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文实现的是论文《三对角矩阵求逆的算法》
+论文作者：冉瑞生、黄延祝等人&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="代数" scheme="https://www.ifish.ink/categories/%E4%BB%A3%E6%95%B0/"/>
+    
+    
+    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
