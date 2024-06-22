@@ -61,9 +61,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
 
 
@@ -584,7 +584,8 @@
                     <a href="/post/harmonic.html">
                         <div class="card-image tag-image">
                             
-                            <img src="http://img.ifish.ink/figure/har.gif" class="responsive-img" alt="从复平面上域的多项式函数生成调和函数">
+                            
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="从复平面上域的多项式函数生成调和函数">
                             
                             <span class="card-title">从复平面上域的多项式函数生成调和函数</span>
                         </div>
@@ -592,7 +593,7 @@
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数\(z=x+yi\)的多项式函数\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)在复数域上是全纯的。则\(p_n(z)\
+                                本文介绍了如何从复平面上的多项式函数生成调和函数，通过Matlab代码可视化了多项式函数的实部和虚部，展示了调和函数的特性。
                             
                         </div>
                         <div class="publish-info">
@@ -637,7 +638,7 @@
                     <a href="/post/subdivcurve.html">
                         <div class="card-image tag-image">
                             
-                            <img src="/images/imgs/1224_2.png" class="responsive-img" alt="简单细分曲线">
+                            <img src="/images/imgs/1224_3.png" class="responsive-img" alt="简单细分曲线">
                             
                             <span class="card-title">简单细分曲线</span>
                         </div>
@@ -645,12 +646,7 @@
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                细分曲线
-对于给定\(\mathbb{R}^2\)内一组有序点\(\{\mathbf{Q}_i\}_{i=0}^n\)，构成简单多边形，找到一条与之关联的光滑曲线。
-Chaikin细分曲线（二次B-spline曲线细分）
-拓扑规则：
-
-点分
+                                本文介绍了简单细分曲线，特别关注于Chaikin方法生成的二次B-spline曲线细分。通过点分裂成边的拓扑规则，文章阐述了如何从一组有序点构成的多边形中逼近生成光滑曲线。
                             
                         </div>
                         <div class="publish-info">
@@ -691,7 +687,7 @@ Chaikin细分曲线（二次B-spline曲线细分）
                     <a href="/post/cubicspline.html">
                         <div class="card-image tag-image">
                             
-                            <img src="/images/imgs/1223_3.png" class="responsive-img" alt="三次样条插值">
+                            <img src="/images/imgs/1223_1.png" class="responsive-img" alt="三次样条插值">
                             
                             <span class="card-title">三次样条插值</span>
                         </div>
@@ -699,9 +695,7 @@ Chaikin细分曲线（二次B-spline曲线细分）
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                三次样条函数
-对于给定\(\mathbb{R}^2\)域内一组有序点\(\{\mathbf{Q}_i\}_{i=0}^n\)，对应参数为\(\{t_i\}_{i=0}^n\)，找到一组分段三次多项式函数插值每个数据点。
-考虑插值点处\(C^
+                                本文介绍了三次样条插值的原理和实现，主要包括$C^2$连续、$C^0$连续和$G^1$连续三种情况。通过高斯-塞德尔迭代求解三对角线性系统，实现了三次样条插值的可视化。
                             
                         </div>
                         <div class="publish-info">
@@ -750,16 +744,7 @@ Chaikin细分曲线（二次B-spline曲线细分）
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                
-在之前的一篇 “Bezier曲线拟合数据点的几何作图法”
-博客基础上添加鼠标移动控制顶点交互的功能。
-
-交互选择控制顶点，并画出初始曲线
-clear
-close all
-grid on,hold on
-% axis equal
-globa
+                                在之前的一篇 “Bezier曲线拟合数据点的几何作图法” 博客基础上添加鼠标移动控制顶点交互的功能。
                             
                         </div>
                         <div class="publish-info">
@@ -812,8 +797,7 @@ globa
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                曲线参数化
-对于给定\(\mathbb{R}^2\)内一组有序点\(\{\mathbf{P}_i=(x_i,y_i)\}_{i=1}^n\)，找到一组合适的实数\(\{t_i\}_{i=1}^n\)，使得\(t_i\)与点\(\mathbf
+                                本文介绍了曲线参数化和拟合的基本概念，主要包括均匀参数化、弦长参数化、中心参数化、Foley-Nielsen参数化、拉格朗日型参数曲线拟合、高斯基函数型参数曲线拟合、RBF算法拟合参数曲线、最小二乘型参数曲线拟合、岭回归型参数曲线拟合等内容。
                             
                         </div>
                         <div class="publish-info">
@@ -866,17 +850,7 @@ globa
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                
-Bezier曲线拟合数据点的几何作图法MATLAB程序。
-
-Contents
-左键选择点，右键或中间结束
-clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title('Bezier曲
+                                可交互的Bezier曲线拟合数据点的几何作图法的MATLAB程序。
                             
                         </div>
                         <div class="publish-info">

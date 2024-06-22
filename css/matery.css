@@ -231,7 +231,7 @@ mark {
 }
 
 .card .card-image img {
-    border-radius: 8px 8px 0 0;
+    border-radius: 0 0 0 0;
     /* 修改文章列表图片填充样式为 cover 以覆盖整个区域而不会被缩放 */
     object-fit: cover;
 }
@@ -891,21 +891,21 @@ article .card {
 
 article .card-image {
     background-color: #222;
-    border-radius: 8px;
+    border-radius: 0px;
 }
 
 article .card-image img {
-    height: 220px;
-    border-radius: 0.3rem;
+    height: 200px;
+    border-radius: 0rem;
     opacity: .7;
 }
 
 article .tag-image img {
-    height: 220px;
+    height: 200px;
 }
 
 article .card .card-content {
-    padding: 15px 15px 12px 18px;
+    padding: 0 15px 12px 18px;
 }
 
 article .article-content .summary {

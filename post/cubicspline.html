@@ -5,9 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="三次样条插值, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
-    <meta name="description" content="三次样条函数
-对于给定\(\mathbb{R}^2\)域内一组有序点\(\{\mathbf{Q}_i\}_{i=0}^n\)，对应参数为\(\{t_i\}_{i=0}^n\)，找到一组分段三次多项式函数插值每个数据点。
-考虑插值点处\(C^">
+    <meta name="description" content="本文介绍了三次样条插值的原理和实现，主要包括$C^2$连续、$C^0$连续和$G^1$连续三种情况。通过高斯-塞德尔迭代求解三对角线性系统，实现了三次样条插值的可视化。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -61,9 +59,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
 </head>
 
 
@@ -780,7 +778,7 @@ i=1,2,\dots,n-1\]</span> 这里我们引入中间变量弯矩，参考<a target=
                 <a href="/post/subdivcurve.html">
                     <div class="card-image">
                         
-                        <img src="/images/imgs/1224_2.png" class="responsive-img" alt="简单细分曲线">
+                        <img src="/images/imgs/1224_3.png" class="responsive-img" alt="简单细分曲线">
                         
                         <span class="card-title">简单细分曲线</span>
                     </div>
@@ -788,7 +786,7 @@ i=1,2,\dots,n-1\]</span> 这里我们引入中间变量弯矩，参考<a target=
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            本文介绍了简单细分曲线，特别关注于Chaikin方法生成的二次B-spline曲线细分。通过点分裂成边的拓扑规则，文章阐述了如何从一组有序点构成的多边形中逼近生成光滑曲线。
                         
                     </div>
                     <div class="publish-info">
@@ -832,7 +830,8 @@ i=1,2,\dots,n-1\]</span> 这里我们引入中间变量弯矩，参考<a target=
                 <a href="/post/94abe0b4.html">
                     <div class="card-image">
                         
-                        <img src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000" class="responsive-img" alt="多维放缩MDS算法">
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="多维放缩MDS算法">
                         
                         <span class="card-title">多维放缩MDS算法</span>
                     </div>
@@ -840,12 +839,7 @@ i=1,2,\dots,n-1\]</span> 这里我们引入中间变量弯矩，参考<a target=
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。
-
-问题
-给定高维空间\(\mathbb{R}^n\
+                            在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。 “embedding”也应用在计算机图形学的参数化领域中。
                         
                     </div>
                     <div class="publish-info">
