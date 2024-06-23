@@ -13,5 +13,8 @@ Disallow: /contact/index.html
 Disallow: /postcards/*
 
 Disallow: /tags/*
+Disallow: /categories/*
+Disallow: /archives/*
+Disallow: /files/*
 
 Sitemap: https://www.ifish.ink/sitemap.xml
