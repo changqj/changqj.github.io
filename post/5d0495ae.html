@@ -16,7 +16,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142108938-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=368556514"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() {
@@ -24,7 +24,7 @@
     }
 
     gtag('js', new Date());
-    gtag('config', 'UA-142108938-1');
+    gtag('config', '368556514');
 </script>
 
 
@@ -60,8 +60,6 @@
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
-
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
 
@@ -549,14 +547,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    648
+                    827
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -575,128 +573,130 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="标准雅可比迭代算法解线性方程组-算法实现">标准雅可比迭代算法解线性方程组-算法实现</h3>
+                <h3
+id="标准雅可比迭代算法解线性方程组-算法实现">标准雅可比迭代算法解线性方程组-算法实现</h3>
 <span id="more"></span>
 <ul>
 <li>函数实现</li>
 </ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] = cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
 % 雅可比迭代法
 % init_X：初始值
 % coefficient_mat：系数矩阵
 % b_mat：b
 % maxNum：最大迭代次数
 % epsilon：精度
-output_args = [];
-flag = 0;
+output_args &#x3D; [];
+flag &#x3D; 0;
 %% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~= size(coefficient_mat,2)
-    disp('系数矩阵格式错误(需要方阵)');
+if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
+    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
     return;
 end
-if size(b_mat,1) ~= 1 &amp;&amp; size(b_mat,2) ~= 1
-    disp('AX=b中的b必须为行向量或者列向量');
+if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
+    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
     return;
 end
-if size(b_mat,1) == 1
-    b_mat = b_mat';
+if size(b_mat,1) &#x3D;&#x3D; 1
+    b_mat &#x3D; b_mat&#39;;
 end
-if size(init_X,1) ~= 1 &amp;&amp; size(init_X,2) ~= 1
-    disp('初始值必须为行向量或者列向量');
+if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
+    disp(&#39;初始值必须为行向量或者列向量&#39;);
     return;
 end
-if size(init_X,1) == 1
-    init_X = init_X';
+if size(init_X,1) &#x3D;&#x3D; 1
+    init_X &#x3D; init_X&#39;;
 end
-if size(init_X,1) ~= size(coefficient_mat,1)
-    disp('初始值与系数矩阵维数不一致');
+if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
+    disp(&#39;初始值与系数矩阵维数不一致&#39;);
     return;
 end
-if size(init_X,1) ~= size(b_mat,1)
-    disp('AX=b中的b向量维数错误(需与系数矩阵的维数一致');
+if size(init_X,1) ~&#x3D; size(b_mat,1)
+    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
     return;
 end
-if ~exist('maxNum', 'var')
-    maxNum = 500; % 默认值
+if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
+    maxNum &#x3D; 500; % 默认值
 end
-if ~exist('epsilon', 'var')
-    epsilon = 1e-14; % 默认值
+if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
+    epsilon &#x3D; 1e-14; % 默认值
 end
 %% 对角线
-D = diag(diag(coefficient_mat));
+D &#x3D; diag(diag(coefficient_mat));
 % 可能matlab的源码inv函数对角函数求逆会像普通函数一样处理，
 % 这种特殊函数求逆会比较快
-D_inv = diag(1./diag(coefficient_mat));
+D_inv &#x3D; diag(1.&#x2F;diag(coefficient_mat));
 %% 开始迭代
 % 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) = init_X;
-% for k = 1:maxNum
-%     x(:,k) = D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+% x(:,0) &#x3D; init_X;
+% for k &#x3D; 1:maxNum
+%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
 %     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag = 1;
+%         flag &#x3D; 1;
 %         break;
 %     end
 % end
-x = init_X;
+x &#x3D; init_X;
 %%
 % 迭代公式：
-% $$x_{k+1}=D^{-1}(b-(L+U)x_k),k=0,1,2,\cdots$
+% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
 % 
-for k = 1:maxNum
-    temp = D_inv*(b_mat-(coefficient_mat-D)*x);
+for k &#x3D; 1:maxNum
+    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
     if norm(temp-x) &lt; epsilon
-        flag = 1;
-        x = temp;
+        flag &#x3D; 1;
+        x &#x3D; temp;
         break;
     end
-    x = temp;
+    x &#x3D; temp;
 end
 %% 结果
-text(0,0.95,'方程：','Color','red','FontSize',14);
-str1 = '\left[\begin{array}';
+text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
 % 正则表达式
-str2 = @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    '[\s\[\]]',''),'0','c'); 
-mat_start = @(X) [str1 '{' str2(X) '}'];
-my_mat2str = @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    ' *','&amp;'),';','\\\'),'[\[\]]','');
-mat_end = '\end{array}\right]';
-str5 = '\times X=';
+str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
+mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
+my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
+mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
+str5 &#x3D; &#39;\times X&#x3D;&#39;;
 % LaTex 输出
-text('Interpreter','latex', 'String',['$$'...
+text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
     mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end '$$'],...
-    'Position',[0.1 0.7],'FontSize',10);
-text(0,0.5,'标准雅可比迭代结果：','Color','red','FontSize',14);
-if flag == 1  %好的结果
-    output_args.itrNum = k;
-    output_args.result = x;
-    fprintf('迭代次数：%d\n',output_args.itrNum);
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
+    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
+text(0,0.5,&#39;标准雅可比迭代结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+if flag &#x3D;&#x3D; 1  %好的结果
+    output_args.itrNum &#x3D; k;
+    output_args.result &#x3D; x;
+    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
 %     disp(x(:,k));
-    disp('解：');
+    disp(&#39;解：&#39;);
     disp(x);
-    text('Interpreter','latex', 'String',['$$X^*=' ...
-        mat_start(x) my_mat2str(x) mat_end '$$'],...
-        'Position',[0.1 0.3],'FontSize',10);
-    text(0.1,0.1,['迭代次数：' num2str(output_args.itrNum)],...
-    'Color','k','FontSize',10);
+    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
+        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
+        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
+    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
     return;
 end
-text(0.1,0.3,['迭代' num2str(maxNum) '次后未收敛'],...
-    'Color','k','FontSize',10);
-fprintf('迭代%d次后暂未收敛\n',maxNum);
+text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
 end</code></pre>
 <ul>
 <li>测试代码</li>
 </ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat = [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat = [-1 -5 2 -1];
-init_X = zeros(size(b_mat));
-out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat &#x3D; [-1 -5 2 -1];
+init_X &#x3D; zeros(size(b_mat));
+out_Jacobi &#x3D; cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
 <ul>
-<li>文档 <a target="_blank" rel="noopener" href="https://img.ifish.ink/Standard_Jacobian_Iterative_Algorithm_Procedure.pdf">文档原文</a></li>
+<li>文档 <a
+target="_blank" rel="noopener" href="https://img.ifish.ink/Standard_Jacobian_Iterative_Algorithm_Procedure.pdf">文档原文</a></li>
 </ul>
-<hr>
+<hr />
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 
                 
@@ -836,12 +836,12 @@ out_Jacobi = cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
                         <span class="chip bg-color">算法实现</span>
                     </a>
                     
-                    <a href="/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/">
-                        <span class="chip bg-color">均值重心坐标</span>
-                    </a>
-                    
                     <a href="/tags/C-%E4%BB%A3%E7%A0%81/">
                         <span class="chip bg-color">C++代码</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/">
+                        <span class="chip bg-color">均值重心坐标</span>
                     </a>
                     
                 </div>

@@ -28,8 +28,9 @@
       
         
         
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/teaser.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;This is an implementation of the</summary>
+    <summary type="html">&lt;p&gt;&lt;img
+src=&quot;https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/teaser.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;This is an implementation of</summary>
         
       
     
@@ -58,7 +59,9 @@
       
         
         
-    <summary type="html">&lt;p&gt;调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数&lt;span class=&quot;math inline&quot;&gt;\(z=x+yi\)&lt;/span&gt;的多项式函数&lt;span class=&quot;math</summary>
+    <summary type="html">&lt;p&gt;调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数&lt;span
+class=&quot;math inline&quot;&gt;&#92;(z=x+yi&#92;)&lt;/span&gt;的多项式函数&lt;span
+class=&quot;math</summary>
         
       
     
@@ -88,7 +91,9 @@
         
         
     <summary type="html">&lt;h3 id=&quot;细分曲线&quot;&gt;细分曲线&lt;/h3&gt;
-&lt;p&gt;对于给定&lt;span class=&quot;math inline&quot;&gt;\(\mathbb{R}^2\)&lt;/span&gt;内一组有序点&lt;span class=&quot;math</summary>
+&lt;p&gt;对于给定&lt;span
+class=&quot;math inline&quot;&gt;&#92;(&#92;mathbb{R}^2&#92;)&lt;/span&gt;内一组有序点&lt;span
+class=&quot;math</summary>
         
       
     
@@ -116,7 +121,9 @@
         
         
     <summary type="html">&lt;h3 id=&quot;三次样条函数&quot;&gt;三次样条函数&lt;/h3&gt;
-&lt;p&gt;对于给定&lt;span class=&quot;math inline&quot;&gt;\(\mathbb{R}^2\)&lt;/span&gt;域内一组有序点&lt;span class=&quot;math</summary>
+&lt;p&gt;对于给定&lt;span
+class=&quot;math inline&quot;&gt;&#92;(&#92;mathbb{R}^2&#92;)&lt;/span&gt;域内一组有序点&lt;span
+class=&quot;math</summary>
         
       
     
@@ -144,10 +151,18 @@
 “embedding”也应用在计算机图形学的参数化领域中。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;问题&quot;&gt;问题&lt;/h3&gt;
-&lt;p&gt;给定高维空间&lt;span class=&quot;math inline&quot;&gt;\(\mathbb{R}^n\)&lt;/span&gt;中的&lt;span class=&quot;math inline&quot;&gt;\(m\)&lt;/span&gt;个样本点为&lt;span class=&quot;math inline&quot;&gt;\(\{X_i\}_{i=1}^m\)&lt;/span&gt;，考虑是否可以将&lt;span class=&quot;math inline&quot;&gt;\(m\)&lt;/span&gt;个样本嵌入到低维空间&lt;span class=&quot;math inline&quot;&gt;\(\mathbb{R}^{d}\)&lt;/span&gt;，&lt;span class=&quot;math inline&quot;&gt;\(d&amp;lt;
-n\)&lt;/span&gt;，使得高维空间中两样本点的度量距离在低维空间中保持不变。&lt;/p&gt;
+&lt;p&gt;给定高维空间&lt;span
+class=&quot;math inline&quot;&gt;&#92;(&#92;mathbb{R}^n&#92;)&lt;/span&gt;中的&lt;span
+class=&quot;math inline&quot;&gt;&#92;(m&#92;)&lt;/span&gt;个样本点为&lt;span
+class=&quot;math inline&quot;&gt;&#92;(&#92;{X_i&#92;}_{i=1}^m&#92;)&lt;/span&gt;，考虑是否可以将&lt;span
+class=&quot;math inline&quot;&gt;&#92;(m&#92;)&lt;/span&gt;个样本嵌入到低维空间&lt;span
+class=&quot;math inline&quot;&gt;&#92;(&#92;mathbb{R}^{d}&#92;)&lt;/span&gt;，&lt;span
+class=&quot;math inline&quot;&gt;&#92;(d&amp;lt;
+n&#92;)&lt;/span&gt;，使得高维空间中两样本点的度量距离在低维空间中保持不变。&lt;/p&gt;
 &lt;figure&gt;
-&lt;img src=&quot;http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000&quot; alt=&quot;embedding&quot;&gt;
+&lt;img
+src=&quot;http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000&quot;
+alt=&quot;embedding&quot; /&gt;
 &lt;figcaption aria-hidden=&quot;true&quot;&gt;embedding&lt;/figcaption&gt;
 &lt;/figure&gt;</summary>
     
@@ -171,10 +186,12 @@ n\)&lt;/span&gt;，使得高维空间中两样本点的度量距离在低维空�
     
     
     <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;在之前的一篇 &lt;a href=&quot;https://www.ifish.ink/post/7741e06a.html&quot;&gt;“Bezier曲线拟合数据点的几何作图法”&lt;/a&gt;
+&lt;p&gt;在之前的一篇 &lt;a
+href=&quot;https://www.ifish.ink/post/7741e06a.html&quot;&gt;“Bezier曲线拟合数据点的几何作图法”&lt;/a&gt;
 博客基础上添加鼠标移动控制顶点交互的功能。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;交互选择控制顶点并画出初始曲线&quot;&gt;交互选择控制顶点，并画出初始曲线&lt;/h3&gt;
+&lt;h3
+id=&quot;交互选择控制顶点并画出初始曲线&quot;&gt;交互选择控制顶点，并画出初始曲线&lt;/h3&gt;
 &lt;pre class=&quot;language-matlab&quot; data-language=&quot;matlab&quot;&gt;&lt;code class=&quot;language-matlab&quot;&gt;clear
 close all
 grid on&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;hold on
@@ -190,11 +207,11 @@ h1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&q
 &lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;h1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;visible&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;off&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 text__ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cell&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ctrl_points&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ctrl_points&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    text__&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;num2str&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    text__&lt;span class=&quot;token punctuation&quot;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;num2str&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
 
 myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ctrl_points&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ctrl_points&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;text__&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;gcf&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;WindowButtonDownFcn&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;@&lt;/span&gt;ButtonDownFcn&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;h&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;myText&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;h_bezier&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;gcf&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;WindowButtonDownFcn&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;@&lt;/span&gt;ButtonDownFcn&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;h&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;myText&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;h_bezier&lt;span class=&quot;token punctuation&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;gcf&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;WindowButtonUpFcn&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;@&lt;/span&gt;ButtonUpFcn&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
     
     
@@ -204,9 +221,9 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     
     <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
     
-    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
-    
     <category term="拟合" scheme="https://www.ifish.ink/tags/%E6%8B%9F%E5%90%88/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
@@ -224,7 +241,7 @@ fork了别人的代码 本地更新主分支代码&lt;/h3&gt;
 &lt;li&gt;&lt;p&gt;查看本地仓库项目目录：&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote &lt;span class=&quot;token parameter variable&quot;&gt;-v&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;添加上游项目地址：&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;remote-name&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;your upstream URL&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+&lt;pre class=&quot;language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;remote-name&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;your upstream URL&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</summary>
     
     
     
@@ -248,12 +265,16 @@ fork了别人的代码 本地更新主分支代码&lt;/h3&gt;
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;本文介绍文章 &lt;em&gt;Parametrization and smooth approximation of surface
 triangulations&lt;/em&gt; 中的保形参数化算法，并给出MATLAB程序
-曲面参数化问题：对于给定的三角网格曲面&lt;span class=&quot;math inline&quot;&gt;\(\mathbf{S}\)&lt;/span&gt;，找到一个映射&lt;span class=&quot;math inline&quot;&gt;\(\phi(u,v):
-\mathbb{R}^2\longmapsto\mathbb{R}^3\)&lt;/span&gt;，使得平面参数域中的点与曲面网格的点一一对应，求解参数&lt;span class=&quot;math inline&quot;&gt;\((u,v)\)&lt;/span&gt;，即&lt;span class=&quot;math inline&quot;&gt;\(\phi^{-1}\)&lt;/span&gt;的过程称为参数化。&lt;/p&gt;
+曲面参数化问题：对于给定的三角网格曲面&lt;span
+class=&quot;math inline&quot;&gt;&#92;(&#92;mathbf{S}&#92;)&lt;/span&gt;，找到一个映射&lt;span
+class=&quot;math inline&quot;&gt;&#92;(&#92;phi(u,v):
+&#92;mathbb{R}^2&#92;longmapsto&#92;mathbb{R}^3&#92;)&lt;/span&gt;，使得平面参数域中的点与曲面网格的点一一对应，求解参数&lt;span
+class=&quot;math inline&quot;&gt;&#92;((u,v)&#92;)&lt;/span&gt;，即&lt;span
+class=&quot;math inline&quot;&gt;&#92;(&#92;phi^{-1}&#92;)&lt;/span&gt;的过程称为参数化。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;hr&gt;
+&lt;hr /&gt;
 &lt;h2 id=&quot;算法描述&quot;&gt;算法描述&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;http://img.ifish.ink/20201031/1.png&quot;&gt;&lt;/p&gt;</summary>
+&lt;p&gt;&lt;img src=&quot;http://img.ifish.ink/20201031/1.png&quot; /&gt;&lt;/p&gt;</summary>
     
     
     
@@ -264,9 +285,9 @@ triangulations&lt;/em&gt; 中的保形参数化算法，并给出MATLAB程序
     
     <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
-    <category term="参数化" scheme="https://www.ifish.ink/tags/%E5%8F%82%E6%95%B0%E5%8C%96/"/>
-    
     <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
+    
+    <category term="参数化" scheme="https://www.ifish.ink/tags/%E5%8F%82%E6%95%B0%E5%8C%96/"/>
     
   </entry>
   
@@ -283,7 +304,9 @@ triangulations&lt;/em&gt; 中的保形参数化算法，并给出MATLAB程序
         
         
     <summary type="html">&lt;h3 id=&quot;曲线参数化&quot;&gt;曲线参数化&lt;/h3&gt;
-&lt;p&gt;对于给定&lt;span class=&quot;math inline&quot;&gt;\(\mathbb{R}^2\)&lt;/span&gt;内一组有序点&lt;span class=&quot;math</summary>
+&lt;p&gt;对于给定&lt;span
+class=&quot;math inline&quot;&gt;&#92;(&#92;mathbb{R}^2&#92;)&lt;/span&gt;内一组有序点&lt;span
+class=&quot;math</summary>
         
       
     
@@ -339,7 +362,8 @@ LVDS-1 和 HDMI-1
     <summary type="html">&lt;p&gt;&lt;code&gt;$ git clone https://xxxx&lt;/code&gt; 克隆速度慢的解决方法：&lt;/p&gt;
 &lt;h2 id=&quot;方法1&quot;&gt;方法1：&lt;/h2&gt;
 &lt;h3 id=&quot;查询ip地址&quot;&gt;查询IP地址&lt;/h3&gt;
-&lt;p&gt;进入域名IP地址查看工具： &lt;a href=&quot;https://www.ipaddress.com&quot; title=&quot;https://www.ipaddress.com&quot;&gt;https://www.ipaddress.com&lt;/a&gt;
+&lt;p&gt;进入域名IP地址查看工具： &lt;a href=&quot;https://www.ipaddress.com&quot;
+title=&quot;https://www.ipaddress.com&quot;&gt;https://www.ipaddress.com&lt;/a&gt;
 分别输入如下网址查看对应的IP地址&lt;/p&gt;</summary>
     
     
@@ -368,7 +392,7 @@ LVDS-1 和 HDMI-1
 第一次写这种游记，主要是想介绍一下我此次欧洲之行的感受。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;figure&gt;
-&lt;img src=&quot;http://img.ifish.ink/img/Switzerland.jpg&quot; alt=&quot;瑞士&quot;&gt;
+&lt;img src=&quot;http://img.ifish.ink/img/Switzerland.jpg&quot; alt=&quot;瑞士&quot; /&gt;
 &lt;figcaption aria-hidden=&quot;true&quot;&gt;瑞士&lt;/figcaption&gt;
 &lt;/figure&gt;</summary>
     
@@ -393,9 +417,12 @@ LVDS-1 和 HDMI-1
     <updated>2024-06-22T19:48:14.235Z</updated>
     
     
-    <summary type="html">&lt;h4 id=&quot;c实现二维多边形均值重心坐标代码可能有冗余未优化代码&quot;&gt;c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：&lt;/h4&gt;
+    <summary type="html">&lt;h4
+id=&quot;c实现二维多边形均值重心坐标代码可能有冗余未优化代码&quot;&gt;c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;关于三维中均值重心坐标的实现可参考我的另一篇博客：&lt;a href=&quot;https://www.ifish.ink/post/4d3c170c.html&quot; title=&quot;均值重心坐标Mean Value Coordinates In 3D代码实现&quot;&gt;均值重心坐标Mean
+&lt;p&gt;关于三维中均值重心坐标的实现可参考我的另一篇博客：&lt;a
+href=&quot;https://www.ifish.ink/post/4d3c170c.html&quot;
+title=&quot;均值重心坐标Mean Value Coordinates In 3D代码实现&quot;&gt;均值重心坐标Mean
 Value Coordinates In 3D代码实现&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</summary>
     
@@ -406,9 +433,9 @@ Value Coordinates In 3D代码实现&lt;/a&gt;&lt;/p&gt;
     
     <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
-    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
-    
     <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
     
   </entry>
   
@@ -426,7 +453,9 @@ Value Coordinates In 3D代码实现&lt;/a&gt;&lt;/p&gt;
 minute.&lt;/strong&gt; ，导致我们的WordPress站点不能正常使用&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;figure&gt;
-&lt;img src=&quot;http://img.ifish.ink/img/20190703103139.png&quot; title=&quot;Briefly unavailable for scheduled maintenance. Check back in a minute.&quot; alt=&quot;Briefly unavailable for scheduled maintenance. Check back in a minute.&quot;&gt;
+&lt;img src=&quot;http://img.ifish.ink/img/20190703103139.png&quot;
+title=&quot;Briefly unavailable for scheduled maintenance. Check back in a minute.&quot;
+alt=&quot;Briefly unavailable for scheduled maintenance. Check back in a minute.&quot; /&gt;
 &lt;figcaption aria-hidden=&quot;true&quot;&gt;Briefly unavailable for scheduled
 maintenance. Check back in a minute.&lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -455,7 +484,8 @@ unavailable for scheduled maintenance. Check back in a minute.”&lt;/p&gt;</sum
 &lt;p&gt;相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
 uBlock Origin&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件&quot;&gt;小编使用uBlock
+&lt;h3
+id=&quot;小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件&quot;&gt;小编使用uBlock
 Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件&lt;/h3&gt;</summary>
     
     
@@ -481,7 +511,7 @@ Origin插件已经一年多时间了，在这之前用过各种各样的去广�
 &lt;p&gt;站点地图可以各个搜索引擎能够爬取到我们网站上页面。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-&lt;img src=&quot;http://img.ifish.ink/img/baiduzhanzhang.png&quot; alt=&quot;百度站长&quot;&gt;&lt;/p&gt;</summary>
+&lt;img src=&quot;http://img.ifish.ink/img/baiduzhanzhang.png&quot; alt=&quot;百度站长&quot; /&gt;</summary>
     
     
     
@@ -506,7 +536,9 @@ Origin插件已经一年多时间了，在这之前用过各种各样的去广�
     
     <summary type="html">&lt;h4 id=&quot;c实现&quot;&gt;c++实现：&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;关于二维中均值重心坐标的实现可参考我的另一篇博客：&lt;a href=&quot;https://www.ifish.ink/post/d033f67a.html&quot; title=&quot;均值重心坐标Mean Value Coordinates In 2D代码实现&quot;&gt;均值重心坐标Mean
+&lt;p&gt;关于二维中均值重心坐标的实现可参考我的另一篇博客：&lt;a
+href=&quot;https://www.ifish.ink/post/d033f67a.html&quot;
+title=&quot;均值重心坐标Mean Value Coordinates In 2D代码实现&quot;&gt;均值重心坐标Mean
 Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</summary>
     
@@ -517,9 +549,9 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     
     <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
-    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
-    
     <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
     
   </entry>
   
@@ -531,7 +563,8 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     <updated>2024-06-22T19:49:07.197Z</updated>
     
     
-    <summary type="html">&lt;h3 id=&quot;标准雅可比迭代算法解线性方程组-算法实现&quot;&gt;标准雅可比迭代算法解线性方程组-算法实现&lt;/h3&gt;</summary>
+    <summary type="html">&lt;h3
+id=&quot;标准雅可比迭代算法解线性方程组-算法实现&quot;&gt;标准雅可比迭代算法解线性方程组-算法实现&lt;/h3&gt;</summary>
     
     
     
@@ -552,7 +585,8 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     <updated>2024-06-22T19:46:15.951Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;三对角矩阵的类雅可比迭代算法解线性方程组&quot;&gt;三对角矩阵的类雅可比迭代算法解线性方程组&lt;/h2&gt;</summary>
+    <summary type="html">&lt;h2
+id=&quot;三对角矩阵的类雅可比迭代算法解线性方程组&quot;&gt;三对角矩阵的类雅可比迭代算法解线性方程组&lt;/h2&gt;</summary>
     
     
     

@@ -16,7 +16,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142108938-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=368556514"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() {
@@ -24,7 +24,7 @@
     }
 
     gtag('js', new Date());
-    gtag('config', 'UA-142108938-1');
+    gtag('config', '368556514');
 </script>
 
 
@@ -60,8 +60,6 @@
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="IFISH.INK" type="application/atom+xml">
-
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
 
@@ -513,12 +511,12 @@
                                 <span class="chip bg-color">MATLAB代码</span>
                             </a>
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
-                                <span class="chip bg-color">算法实现</span>
-                            </a>
-                        
                             <a href="/tags/%E6%8B%9F%E5%90%88/">
                                 <span class="chip bg-color">拟合</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+                                <span class="chip bg-color">算法实现</span>
                             </a>
                         
                     </div>
@@ -553,7 +551,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    637
+                    643
                 </div>
                 
 
@@ -580,10 +578,12 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>在之前的一篇 <a href="https://www.ifish.ink/post/7741e06a.html">“Bezier曲线拟合数据点的几何作图法”</a>
+<p>在之前的一篇 <a
+href="https://www.ifish.ink/post/7741e06a.html">“Bezier曲线拟合数据点的几何作图法”</a>
 博客基础上添加鼠标移动控制顶点交互的功能。</p>
 </blockquote>
-<h3 id="交互选择控制顶点并画出初始曲线">交互选择控制顶点，并画出初始曲线</h3>
+<h3
+id="交互选择控制顶点并画出初始曲线">交互选择控制顶点，并画出初始曲线</h3>
 <pre class="language-matlab" data-language="matlab"><code class="language-matlab">clear
 close all
 grid on<span class="token punctuation">,</span>hold on
@@ -599,11 +599,11 @@ h1 <span class="token operator">=</span> <span class="token function">plot</span
 <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'visible'</span><span class="token punctuation">,</span><span class="token string">'off'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 text__ <span class="token operator">=</span> <span class="token function">cell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token function">size</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">size</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
-    text__<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    text__<span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span>
 
 myText <span class="token operator">=</span> <span class="token function">text</span><span class="token punctuation">(</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span>text__<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonDownFcn'</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token operator">@</span>ButtonDownFcn<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonDownFcn'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token operator">@</span>ButtonDownFcn<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonUpFcn'</span><span class="token punctuation">,</span><span class="token operator">@</span>ButtonUpFcn<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <span id="more"></span>
 <h3 id="bezier曲线几何作图法">Bezier曲线几何作图法</h3>
@@ -655,7 +655,7 @@ distance <span class="token operator">=</span> <span class="token function">vecn
     <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'xdata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>ind<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'ydata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span>ind<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'visible'</span><span class="token punctuation">,</span><span class="token string">'on'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonMotionFcn'</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token operator">@</span>ButtonMotionFcn<span class="token punctuation">,</span>ind<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">%设置鼠标移动响应</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonMotionFcn'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token operator">@</span>ButtonMotionFcn<span class="token punctuation">,</span>ind<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">%设置鼠标移动响应</span>
 <span class="token keyword">end</span>
 <span class="token keyword">end</span></code></pre>
 <h3 id="封装了一个选择点的方法">封装了一个选择点的方法</h3>
@@ -703,7 +703,7 @@ grid on<span class="token punctuation">,</span>hold on
 <span class="token keyword">end</span>
 <span class="token keyword">end</span></code></pre>
 <h3 id="结果">结果</h3>
-<p><img src="http://img.ifish.ink/2020/1103_1.gif"></p>
+<p><img src="http://img.ifish.ink/2020/1103_1.gif" /></p>
 
                 
             </div>
@@ -722,12 +722,12 @@ grid on<span class="token punctuation">,</span>hold on
                                     <span class="chip bg-color">MATLAB代码</span>
                                 </a>
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
-                                    <span class="chip bg-color">算法实现</span>
-                                </a>
-                            
                                 <a href="/tags/%E6%8B%9F%E5%90%88/">
                                     <span class="chip bg-color">拟合</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+                                    <span class="chip bg-color">算法实现</span>
                                 </a>
                             
                         </div>
