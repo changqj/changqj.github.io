@@ -1028,6 +1028,10 @@
     width: 20% !important; /* 设置图片宽度 */
 }
 
+.publication .img-item .img-shadow {
+    box-shadow: none;
+}
+
 .publication-info {
     width: 75%; /* 设置信息块宽度 */
 }
