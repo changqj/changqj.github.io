@@ -1058,6 +1058,14 @@
     overflow: hidden;
 }
 
+.post-info .post-info-left {
+    width: 65%;
+}
+
+.post-info .post-info-right {
+    width: 35%;
+}
+
 
 @media screen and (max-width: 580px) {
     .publication .img-item {
@@ -1070,6 +1078,15 @@
     
     .publication-info {
         width: 100%; /* 设置信息块宽度 */
+    }
+
+    .post-info .post-info-left {
+        width: 100% !important;
+    }
+
+    .post-info .post-info-right {
+        width: 0 !important;
+        display: none !important;
     }
 }
 

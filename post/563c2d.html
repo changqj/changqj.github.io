@@ -836,6 +836,25 @@ Origin插件已经一年多时间了，在这之前用过各种各样的去广�
 
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取类名为'post-info-right'的div
+        var childDiv = document.querySelector('.post-info-right');
+        // 获取该div的父元素
+        var parentDiv = childDiv.parentElement;
+        // 获取父元素的高度
+        var parentHeight = parentDiv.offsetHeight;
+        // 设置图片的高度为父元素的高度
+        var img = document.getElementById('personalPhoto');
+        img.style.height = parentHeight + 'px';
+        img.style.objectFit = 'cover';
+        // 为图片添加圆形边框和阴影
+        img.style.borderRadius = '10%'; // 使图片变为圆形
+        img.style.border = '3px solid #fff'; // 设置边框颜色为白色
+        img.style.boxShadow = '0 0 8px rgba(0, 0, 0, 0.6)'; // 添加阴影效果
+        // console.log('Parent div height:', parentHeight);
+    });
+</script>
     
 
 </main>
