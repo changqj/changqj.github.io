@@ -285,9 +285,9 @@ class=&quot;math inline&quot;&gt;&#92;(&#92;phi^{-1}&#92;)&lt;/span&gt;的过程
     
     <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
-    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
-    
     <category term="参数化" scheme="https://www.ifish.ink/tags/%E5%8F%82%E6%95%B0%E5%8C%96/"/>
+    
+    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
     
   </entry>
   
@@ -371,11 +371,11 @@ title=&quot;https://www.ipaddress.com&quot;&gt;https://www.ipaddress.com&lt;/a&g
     <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
     
     
-    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    
     <category term="git" scheme="https://www.ifish.ink/tags/git/"/>
     
     <category term="github" scheme="https://www.ifish.ink/tags/github/"/>
+    
+    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
@@ -433,9 +433,9 @@ Value Coordinates In 3D代码实现&lt;/a&gt;&lt;/p&gt;
     
     <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
-    <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
-    
     <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
+    
+    <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
     
   </entry>
   
@@ -549,9 +549,9 @@ Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
     
     <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
-    <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
-    
     <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
+    
+    <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
     
   </entry>
   
