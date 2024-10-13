@@ -588,9 +588,9 @@
     const button1 = document.querySelector('.btn-prevCountry');
     const button2 = document.querySelector('.btn-nextCountry');
     button1.innerHTML = `<i class="fa-solid fa-circle-arrow-left"></i> ${prevCountry} <i class="flag flag-${prevflag}"></i>`;
-    button1.href = `../${prevCountry}`;
+    button1.href = `/galleries/${prevCountry}`;
     button2.innerHTML = `<i class="flag flag-${nextflag}"></i> ${nextCountry} <i class="fa-solid fa-circle-arrow-right"></i>`;
-    button2.href = `../${nextCountry}`;
+    button2.href = `/galleries/${nextCountry}`;
 
     var photos = currentGallery.photos;
     var photopath = currentGallery.photopath;

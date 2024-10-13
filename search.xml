@@ -141,39 +141,6 @@ grid on<span class="token punctuation">,</span>hold on
       </tags>
   </entry>
   <entry>
-    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
-    <url>/post/8f4cbc0c.html</url>
-    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
-fork了别人的代码 本地更新主分支代码</h3>
-<ul>
-<li><p>查看本地仓库项目目录：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
-<li><p>添加上游项目地址：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
-<span id="more"></span>
-<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
-</ul>
-<hr />
-<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
-<ul>
-<li><p>从上游提取：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
-<li><p>合并：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
-<li><p>上传：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/7741e06a.html</url>
     <content><![CDATA[<blockquote>
@@ -246,45 +213,36 @@ end</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <url>/post/563c2d.html</url>
-    <content><![CDATA[<blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
-<strong>Briefly unavailable for scheduled maintenance. Check back in a
-minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
-</blockquote>
-<figure>
-<img src="http://img.ifish.ink/img/20190703103139.png"
-title="Briefly unavailable for scheduled maintenance. Check back in a minute."
-alt="Briefly unavailable for scheduled maintenance. Check back in a minute." />
-<figcaption aria-hidden="true">Briefly unavailable for scheduled
-maintenance. Check back in a minute.</figcaption>
-</figure>
-<h3 id="原因">原因：</h3>
-<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
-unavailable for scheduled maintenance. Check back in a minute.”</p>
-<span id="more"></span>
-<h3 id="解决方法">解决方法：</h3>
-<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
-的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
-即可</p>
+    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
+    <url>/post/8f4cbc0c.html</url>
+    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
+fork了别人的代码 本地更新主分支代码</h3>
 <ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除
-<strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
-文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
-<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
-<strong>.maintenance</strong> 文件，然后删除即可。</li>
+<li><p>查看本地仓库项目目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
+<li><p>添加上游项目地址：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
+<span id="more"></span>
+<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
 </ul>
-<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
 <hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
+<ul>
+<li><p>从上游提取：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
+<li><p>合并：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
+<li><p>上传：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
+</ul>
 ]]></content>
       <categories>
         <category>工具技能</category>
       </categories>
       <tags>
-        <tag>wordpress</tag>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -373,69 +331,6 @@ std<span class="token double-colon punctuation">::</span>cout <span class="token
         <tag>ImGui</tag>
         <tag>视网膜屏幕</tag>
         <tag>坐标转换</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress站点地图自动更新</title>
-    <url>/post/943451b1.html</url>
-    <content><![CDATA[<blockquote>
-<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
-</blockquote>
-<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长" />
-<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png"
-alt="google" />
-现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
-<img src="http://img.ifish.ink/img/2.png" alt="google" />
-在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
-        <tag>SEO</tag>
-        <tag>sitemap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git clone 速度慢？</title>
-    <url>/post/ec4bf4f5.html</url>
-    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
-<h2 id="方法1">方法1：</h2>
-<h3 id="查询ip地址">查询IP地址</h3>
-<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com"
-title="https://www.ipaddress.com">https://www.ipaddress.com</a>
-分别输入如下网址查看对应的IP地址</p>
-<span id="more"></span>
-<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
-或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
-<h3 id="修改hosts文件">修改hosts文件</h3>
-<p>得到对应的IP后，在hosts文件后追加如下两行
-Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
-Linux用户：<code>sudo gedit /etc/hosts</code>
-（xxx替换为你得到的对应的IP地址）</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
-xxx.xxx.xxx.xxx github.com</code></pre>
-<h3 id="刷新dns">刷新DNS</h3>
-<p>Windows用户：<code>ipconfig /flushdns</code>
-Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
-<h2 id="方法2">方法2：</h2>
-<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
-<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -529,6 +424,111 @@ alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
         <category>工具技能</category>
       </categories>
       <tags>
+        <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <url>/post/563c2d.html</url>
+    <content><![CDATA[<blockquote>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
+<strong>Briefly unavailable for scheduled maintenance. Check back in a
+minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+</blockquote>
+<figure>
+<img src="http://img.ifish.ink/img/20190703103139.png"
+title="Briefly unavailable for scheduled maintenance. Check back in a minute."
+alt="Briefly unavailable for scheduled maintenance. Check back in a minute." />
+<figcaption aria-hidden="true">Briefly unavailable for scheduled
+maintenance. Check back in a minute.</figcaption>
+</figure>
+<h3 id="原因">原因：</h3>
+<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
+unavailable for scheduled maintenance. Check back in a minute.”</p>
+<span id="more"></span>
+<h3 id="解决方法">解决方法：</h3>
+<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
+的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
+即可</p>
+<ul>
+<li>用FTP或者从终端进入WordPress的根目录下，删除
+<strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
+文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
+<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
+<strong>.maintenance</strong> 文件，然后删除即可。</li>
+</ul>
+<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress站点地图自动更新</title>
+    <url>/post/943451b1.html</url>
+    <content><![CDATA[<blockquote>
+<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
+</blockquote>
+<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
+<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长" />
+<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png"
+alt="google" />
+现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
+<img src="http://img.ifish.ink/img/2.png" alt="google" />
+在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+        <tag>SEO</tag>
+        <tag>sitemap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git clone 速度慢？</title>
+    <url>/post/ec4bf4f5.html</url>
+    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
+<h2 id="方法1">方法1：</h2>
+<h3 id="查询ip地址">查询IP地址</h3>
+<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com"
+title="https://www.ipaddress.com">https://www.ipaddress.com</a>
+分别输入如下网址查看对应的IP地址</p>
+<span id="more"></span>
+<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
+或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
+<h3 id="修改hosts文件">修改hosts文件</h3>
+<p>得到对应的IP后，在hosts文件后追加如下两行
+Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
+Linux用户：<code>sudo gedit /etc/hosts</code>
+（xxx替换为你得到的对应的IP地址）</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
+xxx.xxx.xxx.xxx github.com</code></pre>
+<h3 id="刷新dns">刷新DNS</h3>
+<p>Windows用户：<code>ipconfig /flushdns</code>
+Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
+<h2 id="方法2">方法2：</h2>
+<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
         <tag>环境配置</tag>
       </tags>
   </entry>
@@ -1195,6 +1195,32 @@ src="http://img.ifish.ink/20201031/4.png" /></p>
         <tag>算法实现</tag>
         <tag>参数化</tag>
         <tag>均值重心坐标</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从复平面上域的多项式函数生成调和函数</title>
+    <url>/post/harmonic.html</url>
+    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
+class="math inline">\(z=x+yi\)</span>的多项式函数<span
+class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
+class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
+class="math inline">\((x,y)\)</span>的二元调和函数。</p>
+<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+[x,y] &#x3D; meshgrid(linspace(-1,1,100));
+p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
+z &#x3D; real(p(x,y));
+surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
+axis off;</code></pre></p>
+<p><img src="http://img.ifish.ink/figure/har.gif" /></p>
+]]></content>
+      <categories>
+        <category>曲线曲面</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>调和函数</tag>
+        <tag>极小曲面</tag>
       </tags>
   </entry>
   <entry>
@@ -1967,133 +1993,6 @@ src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5
       </tags>
   </entry>
   <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span
-class="math inline">\(\mathbb{R}^n\)</span>中的<span
-class="math inline">\(m\)</span>个样本点为<span
-class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
-class="math inline">\(m\)</span>个样本嵌入到低维空间<span
-class="math inline">\(\mathbb{R}^{d}\)</span>，<span
-class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img
-src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
-alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
-class="math inline">\(i\)</span>行第<span
-class="math inline">\(j\)</span>列元素为<span
-class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
-class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
-class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
-class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
-class="math inline">\(k\)</span>个非零特征值，分别为<span
-class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
-class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
-class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
-class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
-class="math inline">\({ V}\)</span>的第<span
-class="math inline">\(i\)</span>列是特征值<span
-class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
-class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
-class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span
-class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
-class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br />
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
-class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
-class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
-class="math inline">\(V_*\)</span>。即<span
-class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
-class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
-class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>几何处理</category>
-      </categories>
-      <tags>
-        <tag>曲面参数化</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从复平面上域的多项式函数生成调和函数</title>
-    <url>/post/harmonic.html</url>
-    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
-class="math inline">\(z=x+yi\)</span>的多项式函数<span
-class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
-class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
-class="math inline">\((x,y)\)</span>的二元调和函数。</p>
-<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-[x,y] &#x3D; meshgrid(linspace(-1,1,100));
-p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
-z &#x3D; real(p(x,y));
-surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
-axis off;</code></pre></p>
-<p><img src="http://img.ifish.ink/figure/har.gif" /></p>
-]]></content>
-      <categories>
-        <category>曲线曲面</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>调和函数</tag>
-        <tag>极小曲面</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>标准雅可比迭代算法-实现</title>
     <url>/post/5d0495ae.html</url>
     <content><![CDATA[<h3
@@ -2228,6 +2127,107 @@ href="https://img.ifish.ink/Standard_Jacobian_Iterative_Algorithm_Procedure.pdf"
       <tags>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span
+class="math inline">\(\mathbb{R}^n\)</span>中的<span
+class="math inline">\(m\)</span>个样本点为<span
+class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
+class="math inline">\(m\)</span>个样本嵌入到低维空间<span
+class="math inline">\(\mathbb{R}^{d}\)</span>，<span
+class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img
+src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
+alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
+class="math inline">\(i\)</span>行第<span
+class="math inline">\(j\)</span>列元素为<span
+class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
+class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
+class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
+class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
+class="math inline">\(k\)</span>个非零特征值，分别为<span
+class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
+class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
+class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
+class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
+class="math inline">\({ V}\)</span>的第<span
+class="math inline">\(i\)</span>列是特征值<span
+class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
+class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
+class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span
+class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
+class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br />
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
+class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
+class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
+class="math inline">\(V_*\)</span>。即<span
+class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
+class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
+class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>几何处理</category>
+      </categories>
+      <tags>
+        <tag>曲面参数化</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
