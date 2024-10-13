@@ -636,16 +636,13 @@ Ratio）</strong>。例如，对于 2x 的视网膜屏幕，缩放因子为
 <li>使用如下公式进行转换：</li>
 </ol>
 <pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-
-这里的 x_ndc 和 y_ndc 分别在 <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span> 范围内，代表 OpenGL 的标准化设备坐标。通过这种转换，你可以得到对应的 ImGui 坐标。
-
-### ImGui 坐标到 OpenGL 坐标
-
-反过来，如果你想将 ImGui 坐标转换回 OpenGL 坐标，可以使用以下公式：
-
-```cpp
-x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
+y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span></code></pre>
+<p>这里的 x_ndc 和 y_ndc 分别在 [-1, 1] 范围内，代表 OpenGL
+的标准化设备坐标。通过这种转换，你可以得到对应的 ImGui 坐标。</p>
+<h3 id="imgui-坐标到-opengl-坐标">ImGui 坐标到 OpenGL 坐标</h3>
+<p>反过来，如果你想将 ImGui 坐标转换回 OpenGL
+坐标，可以使用以下公式：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
 y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span></code></pre>
 <p>这将把 ImGui 的像素坐标映射回 OpenGL 的标准化设备坐标。</p>
 <h2 id="示例代码">5. 示例代码</h2>
