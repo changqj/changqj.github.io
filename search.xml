@@ -2438,7 +2438,44 @@ Ratio）</strong>。例如，对于 2x 的视网膜屏幕，缩放因子为
 <li>使用如下公式进行转换：</li>
 </ol>
 <pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span></code></pre>
+y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+
+这里的 x_ndc 和 y_ndc 分别在 <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span> 范围内，代表 OpenGL 的标准化设备坐标。通过这种转换，你可以得到对应的 ImGui 坐标。
+
+### ImGui 坐标到 OpenGL 坐标
+
+反过来，如果你想将 ImGui 坐标转换回 OpenGL 坐标，可以使用以下公式：
+
+```cpp
+x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
+y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span></code></pre>
+<p>这将把 ImGui 的像素坐标映射回 OpenGL 的标准化设备坐标。</p>
+<h2 id="示例代码">5. 示例代码</h2>
+<p>以下是一个简单的代码片段，演示了如何在视网膜屏幕上进行 OpenGL 和
+ImGui 坐标的转换：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 假设 pixel_ratio = 2.0f (视网膜屏幕)</span>
+<span class="token comment">// 假设窗口的逻辑分辨率为 1440x900</span>
+<span class="token keyword">float</span> width_logical <span class="token operator">=</span> <span class="token number">1440.0f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> height_logical <span class="token operator">=</span> <span class="token number">900.0f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> pixel_ratio <span class="token operator">=</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
+
+<span class="token comment">// OpenGL 标准化设备坐标</span>
+<span class="token keyword">float</span> x_ndc <span class="token operator">=</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> y_ndc <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5f</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 转换为 ImGui 坐标</span>
+<span class="token keyword">float</span> x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+<span class="token keyword">float</span> y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ImGui 坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+<span class="token comment">// 再将 ImGui 坐标转换回 OpenGL 坐标</span>
+x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
+y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
+
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"OpenGL 坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></code></pre>
+<h2 id="总结">6. 总结</h2>
+<p>在高分辨率（如视网膜）屏幕上，处理OpenGL和ImGui坐标之间的转换需要考虑<strong>像素密度</strong>和<strong>坐标系统的不同</strong>。通过正确处理像素比和坐标转换，可以确保应用程序在高分辨率屏幕上正确显示。</p>
 ]]></content>
       <categories>
         <category>工具技能</category>
@@ -2448,6 +2485,156 @@ y_imgui <span class="token operator">=</span> <span class="token punctuation">(<
         <tag>ImGui</tag>
         <tag>Retina</tag>
         <tag>坐标转换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Hexo搭建Github静态页面与域名绑定</title>
+    <url>/post/5755d91.html</url>
+    <content><![CDATA[<h2 id="简介">1. 简介</h2>
+<p>Hexo是一个基于Node.js的静态博客框架，能够快速生成静态网页。通过将
+Hexo生成的静态网页部署到GitHub
+Pages，用户可以轻松搭建一个免费的个人网站。本教程将详细介绍如何使用Hexo搭建静态页面并将其托管到GitHub
+Pages上，同时绑定自定义域名。</p>
+<h2 id="环境准备">2. 环境准备</h2>
+<p>在开始搭建Hexo静态页面之前，你需要完成以下环境配置：</p>
+<ol type="1">
+<li><strong>Node.js</strong>：Hexo基于Node.js运行，因此需要安装Node.js和npm。可以通过以下方式安装：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Node.js和npm</span>
+brew <span class="token function">install</span> <span class="token function">node</span></code></pre>
+<ol start="2" type="1">
+<li><strong>Git</strong>：Hexo生成的静态页面需要通过Git提交到GitHub
+Pages上，因此需要安装Git。可以通过以下方式安装：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 Git</span>
+brew <span class="token function">install</span> <span class="token function">git</span></code></pre>
+<ol start="3" type="1">
+<li><p><strong>GitHub账号</strong>：需要注册一个GitHub账号，用于托管Hexo生成的静态页面。</p></li>
+<li><p><strong>Hexo</strong>：安装Hexo命令行工具，可以通过以下方式安装：</p></li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Hexo</span>
+<span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> hexo-cli</code></pre>
+<h2 id="初始化hexo项目">3. 初始化Hexo项目</h2>
+<p>在完成环境准备后，可以开始初始化Hexo项目。</p>
+<ol type="1">
+<li>首先，创建一个新的Hexo项目，并进入该文件夹：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> my-blog
+<span class="token builtin class-name">cd</span> my-blog</code></pre>
+<ol start="2" type="1">
+<li>然后，初始化Hexo项目：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo init</code></pre>
+<p>初始化完成后，Hexo 会在项目文件夹中生成一系列文件和文件夹，包括
+<code>source/</code>和<code>_config.yml</code> 等。</p>
+<ol start="3" type="1">
+<li>安装Hexo依赖：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span></code></pre>
+<ol start="4" type="1">
+<li>启动Hexo本地服务器，查看Hexo默认生成的页面：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo server</code></pre>
+<p>在浏览器中输入
+<code>http://localhost:4000</code>，即可查看Hexo默认生成的页面。</p>
+<h2 id="部署到github-pages">4. 部署到GitHub Pages</h2>
+<h3 id="创建github仓库">4.1 创建GitHub仓库</h3>
+<ol type="1">
+<li>在GitHub上创建一个新的仓库，用于托管Hexo生成的静态页面。仓库名称必须是以下格式之一：</li>
+</ol>
+<ul>
+<li><code>username.github.io</code>：用于个人网站，其中<code>username</code>是你的GitHub用户名。（用于个人主页）</li>
+<li><code>project-name</code>：用于项目网站，其中<code>project-name</code>是项目名称。（用于项目页面）</li>
+</ul>
+<ol start="2" type="1">
+<li>获取仓库的SSH地址，用于后续提交Hexo生成的静态页面。</li>
+</ol>
+<h3 id="配置hexo部署">4.2 配置Hexo部署</h3>
+<ol type="1">
+<li>安装Hexo部署插件：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git <span class="token parameter variable">--save</span></code></pre>
+<ol start="2" type="1">
+<li>修改Hexo配置文件<code>_config.yml</code>，配置部署信息：</li>
+</ol>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>username/username.github.io.git
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> main</code></pre>
+<p>将<code>username</code>替换为你的GitHub用户名。需注意： -
+<code>repo</code>字段填写你的GitHub仓库SSH地址或者HTTPS地址。（推荐使用SSH地址）
+- <code>branch</code>字段填写你的GitHub
+Pages分支，如果你的仓库默认分支为<code>master</code>，则填写<code>master</code>；如果默认分支为<code>main</code>，则填写<code>main</code>。</p>
+<ol start="3" type="1">
+<li>部署Hexo生成的静态页面到GitHub Pages：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
+hexo generate  <span class="token comment"># 生成静态页面</span>
+hexo deploy  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
+<p>（可以缩写为<code>hexo d -g</code>）</p>
+<ol start="4" type="1">
+<li>在浏览器中输入
+<code>https://username.github.io</code>，即可查看Hexo生成的静态页面。</li>
+</ol>
+<h2 id="绑定自定义域名">5. 绑定自定义域名</h2>
+<p>你可以为你的 GitHub
+Pages绑定自定义域名，使网站更具个性化。以下是具体步骤。</p>
+<h3 id="获取域名注册域名">5.1 获取域名(注册域名)</h3>
+<p>首先，你需要拥有一个域名。你可以通过域名注册商购买域名，例如阿里云、腾讯云、Godaddy等。</p>
+<h3 id="配置域名dns解析">5.2 配置域名DNS解析</h3>
+<p>在域名注册商的控制台中，找到<strong>DNS设置</strong>（或者类似的设置），添加以下记录：</p>
+<ul>
+<li>类型：<code>CNAME</code>，主机记录：<code>www</code>，记录值：<code>username.github.io</code>（将<code>username</code>替换为你的GitHub用户名）。</li>
+<li>类型：<code>CNAME</code>，主机记录：<code>@</code>，记录值：<code>username.github.io</code>。</li>
+</ul>
+<h3 id="配置hexo项目">5.3 配置Hexo项目</h3>
+<p>在Hexo项目的source目录下创建一个名为CNAME的文件，并在文件中写入你绑定的自定义域名。例如：</p>
+<pre class="language-none"><code class="language-none">www.yourdomain.com
+yourdomain.com</code></pre>
+<p>将文件保存后，重新部署Hexo生成的静态页面到GitHub Pages：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
+hexo g  <span class="token comment"># 生成静态页面</span>
+hexo d  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
+<h3 id="github-pages设置">5.4 GitHub Pages设置</h3>
+<ul>
+<li><p>在GitHub仓库的Settings中，找到<strong>Custom
+domain</strong>，填写你的自定义域名，例如<code>www.yourdomain.com</code>，保存即可。</p></li>
+<li><p>如果你的域名支持HTTPS，可以在Settings中启用<strong>Enforce
+HTTPS</strong>，开启HTTPS访问。</p></li>
+</ul>
+<h3 id="验证域名绑定">5.5 验证域名绑定</h3>
+<p>在浏览器中输入你的自定义域名，例如<code>www.yourdomain.com</code>，即可访问你的Hexo生成的静态页面。</p>
+<h2 id="常见问题">6. 常见问题</h2>
+<h3 id="部署时遇到permission-denied错误权限问题">6.1
+部署时遇到<code>Permission denied</code>错误（权限问题）</h3>
+<p>如果使用SSH方式部署时遇到权限问题，请确保：</p>
+<ol type="1">
+<li>你的SSH公钥已经添加到GitHub账号中。</li>
+<li>使用ssh-add命令将私钥添加到ssh-agent中：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa</code></pre>
+<h3 id="自定义域名访问出现404错误">6.2 自定义域名访问出现404错误</h3>
+<p>确保一下事项：</p>
+<ol type="1">
+<li>域名DNS解析已经生效，可以通过<code>dig</code>命令或者在线工具查询域名解析情况。</li>
+<li>GitHub Pages设置的Custom domain填写正确。</li>
+<li>确保CNAME文件中填写的域名与GitHub Pages设置的Custom
+domain一致。</li>
+<li>等待一段时间，有时候DNS解析需要一段时间生效。</li>
+</ol>
+<h2 id="总结">7. 总结</h2>
+<p>通过Hexo和GitHub
+Pages，搭建一个免费的静态博客非常简单且高效。希望本教程对你有所帮助，欢迎关注我的博客，获取更多技术教程和资源。</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+        <category>网站搭建</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Github Pages</tag>
+        <tag>静态页面</tag>
+        <tag>域名绑定</tag>
       </tags>
   </entry>
 </search>

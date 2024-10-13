@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="OpenGL坐标与ImGui坐标在视网膜屏幕上的转换, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
-    <meta name="description" content="摘要">
+    <meta name="description" content="在视网膜屏幕上开发图形应用时，如何正确处理OpenGL坐标和ImGui坐标之间的转换？">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -555,14 +555,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    712
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -636,7 +636,44 @@ Ratio）</strong>。例如，对于 2x 的视网膜屏幕，缩放因子为
 <li>使用如下公式进行转换：</li>
 </ol>
 <pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span></code></pre>
+y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+
+这里的 x_ndc 和 y_ndc 分别在 <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span> 范围内，代表 OpenGL 的标准化设备坐标。通过这种转换，你可以得到对应的 ImGui 坐标。
+
+### ImGui 坐标到 OpenGL 坐标
+
+反过来，如果你想将 ImGui 坐标转换回 OpenGL 坐标，可以使用以下公式：
+
+```cpp
+x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
+y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span></code></pre>
+<p>这将把 ImGui 的像素坐标映射回 OpenGL 的标准化设备坐标。</p>
+<h2 id="示例代码">5. 示例代码</h2>
+<p>以下是一个简单的代码片段，演示了如何在视网膜屏幕上进行 OpenGL 和
+ImGui 坐标的转换：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 假设 pixel_ratio = 2.0f (视网膜屏幕)</span>
+<span class="token comment">// 假设窗口的逻辑分辨率为 1440x900</span>
+<span class="token keyword">float</span> width_logical <span class="token operator">=</span> <span class="token number">1440.0f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> height_logical <span class="token operator">=</span> <span class="token number">900.0f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> pixel_ratio <span class="token operator">=</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
+
+<span class="token comment">// OpenGL 标准化设备坐标</span>
+<span class="token keyword">float</span> x_ndc <span class="token operator">=</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> y_ndc <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5f</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 转换为 ImGui 坐标</span>
+<span class="token keyword">float</span> x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+<span class="token keyword">float</span> y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ImGui 坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+<span class="token comment">// 再将 ImGui 坐标转换回 OpenGL 坐标</span>
+x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
+y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
+
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"OpenGL 坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></code></pre>
+<h2 id="总结">6. 总结</h2>
+<p>在高分辨率（如视网膜）屏幕上，处理OpenGL和ImGui坐标之间的转换需要考虑<strong>像素密度</strong>和<strong>坐标系统的不同</strong>。通过正确处理像素比和坐标转换，可以确保应用程序在高分辨率屏幕上正确显示。</p>
 
                 
             </div>
@@ -749,7 +786,7 @@ y_imgui <span class="token operator">=</span> <span class="token punctuation">(<
                 <a href="/post/e9330479.html">
                     <div class="card-image">
                         
-                        <img src="/%E5%B0%81%E9%9D%A2%E5%9B%BE" class="responsive-img" alt="OpenGL坐标与ImGui坐标在视网膜屏幕上的转换">
+                        <img src="/images/covers/retinapixels.jpg" class="responsive-img" alt="OpenGL坐标与ImGui坐标在视网膜屏幕上的转换">
                         
                         <span class="card-title">OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</span>
                     </div>
@@ -757,7 +794,7 @@ y_imgui <span class="token operator">=</span> <span class="token punctuation">(<
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要
+                            在视网膜屏幕上开发图形应用时，如何正确处理OpenGL坐标和ImGui坐标之间的转换？
                         
                     </div>
                     <div class="publish-info">
