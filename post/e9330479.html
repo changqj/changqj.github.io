@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签: 环境配置, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
-    <meta name="description" content="记录学习，吐槽生活。">
+    <meta name="keywords" content="OpenGL坐标与ImGui坐标在视网膜屏幕上的转换, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
+    <meta name="description" content="摘要">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -28,7 +28,7 @@
 </script>
 
 
-    <title>标签: 环境配置 | IFISH.INK</title>
+    <title>OpenGL坐标与ImGui坐标在视网膜屏幕上的转换 | IFISH.INK</title>
     <link rel="icon" type="image/png" href="/images/chang.png">
     
 
@@ -49,9 +49,7 @@
 
 
 
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
     <link rel="stylesheet" href="/css/post.css">
-
 
 
 
@@ -478,451 +476,450 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                Stand on the shoulders of giants
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                    记录学习，吐槽生活。
-                
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg'); ">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/OpenGL/">
+                                <span class="chip bg-color">OpenGL</span>
+                            </a>
+                        
+                            <a href="/tags/ImGui/">
+                                <span class="chip bg-color">ImGui</span>
+                            </a>
+                        
+                            <a href="/tags/Retina/">
+                                <span class="chip bg-color">Retina</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/">
+                                <span class="chip bg-color">坐标转换</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/" class="post-category">
+                                工具技能
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-10-13
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    712
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    2 分
+                </div>
+                
+
+                
+            </div>
+            
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="opengl-坐标与-imgui-坐标在视网膜屏幕上的转换">OpenGL 坐标与
+ImGui 坐标在视网膜屏幕上的转换</h1>
+<h2 id="简介">简介</h2>
+<p>在高分辨率显示器（尤其是视网膜屏幕）上开发图形应用时，通常需要处理不同的坐标系统和像素密度问题。<strong>OpenGL</strong>
+和 <strong>ImGui</strong>
+都有各自的坐标系统，当在视网膜屏幕上进行开发时，如何正确处理坐标转换成为一个关键问题。</p>
+<p>本文将探讨如何在视网膜屏幕上进行 <strong>OpenGL 坐标</strong> 和
+<strong>ImGui 坐标</strong>
+之间的转换，并讨论像素密度对坐标计算的影响。</p>
+<h2 id="opengl-坐标系统">1. OpenGL 坐标系统</h2>
+<p>在 OpenGL 中，坐标系统通常是以 <strong>标准化设备坐标（Normalized
+Device Coordinates, NDC）</strong> 表示的。它的范围为：</p>
+<ul>
+<li>X 轴范围：<code>[-1, 1]</code></li>
+<li>Y 轴范围：<code>[-1, 1]</code></li>
+</ul>
+<p>这意味着屏幕的中心为 <code>(0, 0)</code>，左下角为
+<code>(-1, -1)</code>，右上角为
+<code>(1, 1)</code>。通常，这个坐标系统会通过投影矩阵映射到屏幕空间。</p>
+<p>在高分辨率（视网膜）屏幕上，例如MacBook最近几年的屏幕，每个物理像素可能对应多个屏幕像素，这就是
+<strong>像素密度（Pixel Density）</strong>
+的概念。一般情况下，视网膜屏幕的像素密度为
+<code>2x</code>，这意味着每个逻辑像素会显示在 2x2 的物理像素网格上。</p>
+<h2 id="imgui-坐标系统">2. ImGui 坐标系统</h2>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/ocornut/imgui">ImGui</a></strong>
+是一个常用于图形界面的库，其坐标系统通常基于窗口的分辨率，默认情况下，ImGui
+的坐标是基于像素的。例如：</p>
+<ul>
+<li>X 轴范围：<code>[0, 窗口宽度]</code></li>
+<li>Y 轴范围：<code>[0, 窗口高度]</code></li>
+</ul>
+<p>与 OpenGL 的 NDC 坐标不同，ImGui
+的坐标系原点位于左上角，且单位为像素。因此，在处理 ImGui
+坐标时，尤其是在高分辨率屏幕上，需要考虑像素密度。</p>
+<h2 id="视网膜屏幕上的像素密度">3. 视网膜屏幕上的像素密度</h2>
+<p>在视网膜屏幕上，通常会有一个 <strong>缩放因子</strong>，也叫
+<strong>DPI 缩放</strong> 或 <strong>像素比（Pixel
+Ratio）</strong>。例如，对于 2x 的视网膜屏幕，缩放因子为
+<code>2.0</code>。这意味着窗口的逻辑分辨率和物理分辨率之间存在比例差异。</p>
+<p>假设一个视网膜屏幕的物理分辨率为
+<code>2880x1800</code>，而其逻辑分辨率为
+<code>1440x900</code>，那么像素比为 <code>2.0</code>。</p>
+<p>在这种情况下，OpenGL 和 ImGui
+需要正确处理这个像素比，以确保坐标和尺寸能够正确映射到物理像素上。</p>
+<h2 id="坐标转换方法">4. 坐标转换方法</h2>
+<h3 id="opengl-坐标到-imgui-坐标">OpenGL 坐标到 ImGui 坐标</h3>
+<p>假设你有 OpenGL 中的标准化设备坐标
+<code>(x_ndc, y_ndc)</code>，想将其转换为 ImGui 的窗口坐标
+<code>(x_imgui, y_imgui)</code>。可以按照以下步骤进行转换：</p>
+<ol type="1">
+<li>获取窗口的逻辑分辨率 <code>(width_logical, height_logical)</code>
+和像素比 <code>pixel_ratio</code>。</li>
+<li>使用如下公式进行转换：</li>
+</ol>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span></code></pre>
+
+                
+            </div>
+            <hr/>
+            
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/OpenGL/">
+                                    <span class="chip bg-color">OpenGL</span>
+                                </a>
+                            
+                                <a href="/tags/ImGui/">
+                                    <span class="chip bg-color">ImGui</span>
+                                </a>
+                            
+                                <a href="/tags/Retina/">
+                                    <span class="chip bg-color">Retina</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/">
+                                    <span class="chip bg-color">坐标转换</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+    
+    
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '4b7ca90b03dcff43cb0b',
+        clientSecret: 'a38eedc2fe1ab77d18e4ad2b9633ce4093d886c2',
+        repo: 'Comments',
+        owner: 'changqj',
+        admin: "changqj",
+        id: '2024-10-13T19-15-59',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/post/e9330479.html">
+                    <div class="card-image">
+                        
+                        <img src="/%E5%B0%81%E9%9D%A2%E5%9B%BE" class="responsive-img" alt="OpenGL坐标与ImGui坐标在视网膜屏幕上的转换">
+                        
+                        <span class="card-title">OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/" class="post-category">
+                                    工具技能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/OpenGL/">
+                        <span class="chip bg-color">OpenGL</span>
+                    </a>
+                    
+                    <a href="/tags/ImGui/">
+                        <span class="chip bg-color">ImGui</span>
+                    </a>
+                    
+                    <a href="/tags/Retina/">
+                        <span class="chip bg-color">Retina</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/">
+                        <span class="chip bg-color">坐标转换</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/post/mlc2d.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="基于极大似然坐标的图像变形的MATLAB实现">
+                        
+                        <span class="card-title">基于极大似然坐标的图像变形的MATLAB实现</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本文介绍了极大似然坐标的MATLAB实现，通过图形用户界面实现了最大熵坐标、最大似然坐标、均值坐标、迭代坐标、调和坐标等几种坐标的图像变形。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/" class="post-category">
+                                    几何处理
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/">
+                        <span class="chip bg-color">MATLAB代码</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+                        <span class="chip bg-color">算法实现</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E5%9D%90%E6%A0%87/">
+                        <span class="chip bg-color">极大似然坐标</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+    
+    
+</div>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
 
 
 <script>
-    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取类名为'post-info-right'的div
+        var childDiv = document.querySelector('.post-info-right');
+        // 获取该div的父元素
+        var parentDiv = childDiv.parentElement;
+        // 获取父元素的高度
+        var parentHeight = parentDiv.offsetHeight;
+        // 设置图片的高度为父元素的高度
+        var img = document.getElementById('personalPhoto');
+        img.style.height = parentHeight + 'px';
+        img.style.objectFit = 'cover';
+        // 为图片添加圆形边框和阴影
+        img.style.borderRadius = '10%'; // 使图片变为圆形
+        img.style.border = '3px solid #fff'; // 设置边框颜色为白色
+        img.style.boxShadow = '0 0 8px rgba(0, 0, 0, 0.6)'; // 添加阴影效果
+        // console.log('Parent div height:', parentHeight);
+    });
 </script>
-
-
-    </div>
-</div>
-
-<main class="content">
-
     
 
-<div id="tags" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
-            </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/MATLAB%E4%BB%A3%E7%A0%81/" title="MATLAB代码: 8">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="MATLAB代码" style="background-color: #F9EBEA;">MATLAB代码
-                        <span class="tag-length">8</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/" title="算法实现: 8">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="算法实现" style="background-color: #F5EEF8;">算法实现
-                        <span class="tag-length">8</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%8B%9F%E5%90%88/" title="拟合: 4">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="拟合" style="background-color: #D5F5E3;">拟合
-                        <span class="tag-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/git/" title="git: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="git" style="background-color: #E8F8F5;">git
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/github/" title="github: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="github" style="background-color: #FEF9E7;">github
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="环境配置: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="环境配置" style="background-color: #F8F9F9;">环境配置
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/SEO/" title="SEO: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="SEO" style="background-color: #82E0AA;">SEO
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/sitemap/" title="sitemap: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="sitemap" style="background-color: #D7BDE2;">sitemap
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/wordpress/" title="wordpress: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="wordpress" style="background-color: #A3E4D7;">wordpress
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/ubuntu/" title="ubuntu: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="ubuntu" style="background-color: #85C1E9;">ubuntu
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%96%B9%E6%B3%95/" title="方法: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="方法" style="background-color: #F8C471;">方法
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/C-C/" title="C/C++: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="C/C++" style="background-color: #F9E79F;">C/C++
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%8F%82%E6%95%B0%E5%8C%96/" title="参数化: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="参数化" style="background-color: #82E0AA;">参数化
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/" title="均值重心坐标: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="均值重心坐标" style="background-color: #E8F8F5;">均值重心坐标
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%9B%B2%E7%BA%BF%E5%8F%82%E6%95%B0%E5%8C%96/" title="曲线参数化: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="曲线参数化" style="background-color: #F5EEF8;">曲线参数化
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/C-%E4%BB%A3%E7%A0%81/" title="C++代码: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="C++代码" style="background-color: #F8C471;">C++代码
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E5%9D%90%E6%A0%87/" title="极大似然坐标: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="极大似然坐标" style="background-color: #85C1E9;">极大似然坐标
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E8%B0%83%E5%92%8C%E5%87%BD%E6%95%B0/" title="调和函数: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="调和函数" style="background-color: #D7BDE2;">调和函数
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%9E%81%E5%B0%8F%E6%9B%B2%E9%9D%A2/" title="极小曲面: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="极小曲面" style="background-color: #E8F8F5;">极小曲面
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%BB%86%E5%88%86%E6%9B%B2%E7%BA%BF/" title="细分曲线: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="细分曲线" style="background-color: #D7BDE2;">细分曲线
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%B8%B8%E8%AE%B0/" title="游记: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="游记" style="background-color: #F5EEF8;">游记
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%94%9F%E6%B4%BB/" title="生活: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="生活" style="background-color: #FFF;">生活
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="随笔" style="background-color: #FFF;">随笔
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%A5%9E%E5%99%A8/" title="神器: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="神器" style="background-color: #D7BDE2;">神器
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%8F%92%E4%BB%B6/" title="插件: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="插件" style="background-color: #F8F9F9;">插件
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%9B%B2%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96/" title="曲面参数化: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="曲面参数化" style="background-color: #F9E79F;">曲面参数化
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="算法" style="background-color: #F9EBEA;">算法
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/OpenGL/" title="OpenGL: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="OpenGL" style="background-color: #F9E79F;">OpenGL
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/ImGui/" title="ImGui: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="ImGui" style="background-color: #FEF9E7;">ImGui
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Retina/" title="Retina: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Retina" style="background-color: #FEF9E7;">Retina
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/" title="坐标转换: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="坐标转换" style="background-color: #D5F5E3;">坐标转换
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="环境配置, ubuntu, 方法" data-aos="fade-up">
-                <div class="card">
-                    <div style="padding:10px 20px; border-radius:0px;font-weight: bold;font-size: large">
-                        <a href="/post/83277084.html" style="color:rgb(65, 180, 45);">ubuntu 外接显示与内置显示切换</a>
-                    </div>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                ubuntu中外接显示器与内置显示器切换的方法。
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-02
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/" class="post-category">
-                                工具技能
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                    <a href="/post/83277084.html">
-                        <div class="card-image tag-image">
-                            
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="git, github, 环境配置" data-aos="fade-up">
-                <div class="card">
-                    <div style="padding:10px 20px; border-radius:0px;font-weight: bold;font-size: large">
-                        <a href="/post/ec4bf4f5.html" style="color:rgb(65, 180, 45);">git clone 速度慢？</a>
-                    </div>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                git clone速度慢的解决方法
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/" class="post-category">
-                                工具技能
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                    <a href="/post/ec4bf4f5.html">
-                        <div class="card-image tag-image">
-                            
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="环境配置" data-aos="fade-up">
-                <div class="card">
-                    <div style="padding:10px 20px; border-radius:0px;font-weight: bold;font-size: large">
-                        <a href="/post/a507e481.html" style="color:rgb(65, 180, 45);">OpenSubdiv + Visual Studio环境配置</a>
-                    </div>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建（该方法已过时，现在可简单使用微软提供的包管理工具vcpkg配置）
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2017-10-10
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/" class="post-category">
-                                工具技能
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-                    <a href="/post/a507e481.html">
-                        <div class="card-image tag-image">
-                            
-                            <img src="http://img.ifish.ink/figure/21.png" class="responsive-img" alt="OpenSubdiv + Visual Studio环境配置">
-                        
-                            
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-        </div>
-    </article>
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 

@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2024-06-27T08:45:18.145Z</updated>
+  <updated>2024-10-13T17:42:21.254Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</title>
+    <link href="https://www.ifish.ink/post/e9330479.html"/>
+    <id>https://www.ifish.ink/post/e9330479.html</id>
+    <published>2024-10-13T17:15:59.000Z</published>
+    <updated>2024-10-13T17:42:21.254Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;opengl-坐标与-imgui-坐标在视网膜屏幕上的转换&quot;&gt;OpenGL 坐标与
+ImGui 坐标在视网膜屏幕上的转换&lt;/h1&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
+    
+    
+    <category term="OpenGL" scheme="https://www.ifish.ink/tags/OpenGL/"/>
+    
+    <category term="ImGui" scheme="https://www.ifish.ink/tags/ImGui/"/>
+    
+    <category term="Retina" scheme="https://www.ifish.ink/tags/Retina/"/>
+    
+    <category term="坐标转换" scheme="https://www.ifish.ink/tags/%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>基于极大似然坐标的图像变形的MATLAB实现</title>
@@ -221,9 +254,9 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     
     <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
     
-    <category term="拟合" scheme="https://www.ifish.ink/tags/%E6%8B%9F%E5%90%88/"/>
-    
     <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+    <category term="拟合" scheme="https://www.ifish.ink/tags/%E6%8B%9F%E5%90%88/"/>
     
   </entry>
   
@@ -518,11 +551,11 @@ Origin插件已经一年多时间了，在这之前用过各种各样的去广�
     <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
     
     
-    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
-    
     <category term="SEO" scheme="https://www.ifish.ink/tags/SEO/"/>
     
     <category term="sitemap" scheme="https://www.ifish.ink/tags/sitemap/"/>
+    
+    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
     
   </entry>
   
@@ -587,30 +620,6 @@ id=&quot;标准雅可比迭代算法解线性方程组-算法实现&quot;&gt;标
     
     <summary type="html">&lt;h2
 id=&quot;三对角矩阵的类雅可比迭代算法解线性方程组&quot;&gt;三对角矩阵的类雅可比迭代算法解线性方程组&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="代数" scheme="https://www.ifish.ink/categories/%E4%BB%A3%E6%95%B0/"/>
-    
-    
-    <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
-    
-    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三对角矩阵求逆的算法-实现</title>
-    <link href="https://www.ifish.ink/post/891db679.html"/>
-    <id>https://www.ifish.ink/post/891db679.html</id>
-    <published>2017-11-09T09:17:04.000Z</published>
-    <updated>2024-06-27T08:38:18.269Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本文实现的是论文《三对角矩阵求逆的算法》
-论文作者：冉瑞生、黄延祝等人&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
     
     
     
