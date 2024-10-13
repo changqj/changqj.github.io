@@ -606,11 +606,11 @@
             var cardElement0 = document.createElement('div');
             cardElement0.className = 'inout';
             if (type==0) {   
-                cardElement0.innerHTML = `<p><a href="./sent.html" class="sent" title="去寄件箱"><i class="fa-solid fa-upload"></i> 寄件箱</a></p>
+                cardElement0.innerHTML = `<p><a href="/postcards/sent.html" class="sent" title="去寄件箱"><i class="fa-solid fa-upload"></i> 寄件箱</a></p>
                 <p><a>&nbsp;&nbsp;&nbsp;&nbsp;上次更新于：${postcards[type].datatime}</a></p>`;
             }
             if (type == 1) {
-                cardElement0.innerHTML = `<p><a href="./" class="received" title="去收件箱"><i class="fa-solid fa-download"></i> 收件箱</a></p>
+                cardElement0.innerHTML = `<p><a href="/postcards" class="received" title="去收件箱"><i class="fa-solid fa-download"></i> 收件箱</a></p>
                 <p><a>&nbsp;&nbsp;&nbsp;&nbsp;上次更新于：${postcards[type].datatime}</a></p>`;
             }
             contentContainer.appendChild(cardElement0);
