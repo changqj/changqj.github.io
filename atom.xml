@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2024-10-13T18:40:48.663Z</updated>
+  <updated>2024-10-13T19:00:29.846Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -21,16 +21,18 @@
     <link href="https://www.ifish.ink/post/e9330479.html"/>
     <id>https://www.ifish.ink/post/e9330479.html</id>
     <published>2024-10-13T17:15:59.000Z</published>
-    <updated>2024-10-13T18:40:48.663Z</updated>
+    <updated>2024-10-13T19:00:29.846Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;opengl-坐标与-imgui-坐标在视网膜屏幕上的转换&quot;&gt;OpenGL 坐标与
-ImGui 坐标在视网膜屏幕上的转换&lt;/h1&gt;
-&lt;h2</summary>
+    <summary type="html">&lt;h1
+id=&quot;opengl坐标与imgui坐标在视网膜屏幕上的转换&quot;&gt;OpenGL坐标与ImGui坐标在视网膜屏幕上的转换&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在高分辨率显示器，尤其是&lt;strong&gt;视网膜屏幕（Retina
+display）&lt;/strong&gt;上开发图形应</summary>
         
       
     
@@ -43,9 +45,9 @@ ImGui 坐标在视网膜屏幕上的转换&lt;/h1&gt;
     
     <category term="ImGui" scheme="https://www.ifish.ink/tags/ImGui/"/>
     
-    <category term="Retina" scheme="https://www.ifish.ink/tags/Retina/"/>
-    
     <category term="坐标转换" scheme="https://www.ifish.ink/tags/%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/"/>
+    
+    <category term="视网膜屏幕" scheme="https://www.ifish.ink/tags/%E8%A7%86%E7%BD%91%E8%86%9C%E5%B1%8F%E5%B9%95/"/>
     
   </entry>
   
@@ -116,7 +118,7 @@ class=&quot;math</summary>
     <link href="https://www.ifish.ink/post/5755d91.html"/>
     <id>https://www.ifish.ink/post/5755d91.html</id>
     <published>2022-03-15T20:50:11.000Z</published>
-    <updated>2024-10-13T18:25:48.397Z</updated>
+    <updated>2024-10-13T18:46:30.776Z</updated>
     
     
       
@@ -131,16 +133,14 @@ class=&quot;math</summary>
     
     <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
     
-    <category term="网站搭建" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
-    
     
     <category term="Hexo" scheme="https://www.ifish.ink/tags/Hexo/"/>
     
     <category term="Github Pages" scheme="https://www.ifish.ink/tags/Github-Pages/"/>
     
-    <category term="静态页面" scheme="https://www.ifish.ink/tags/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/"/>
-    
     <category term="域名绑定" scheme="https://www.ifish.ink/tags/%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A/"/>
+    
+    <category term="网站搭建" scheme="https://www.ifish.ink/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
