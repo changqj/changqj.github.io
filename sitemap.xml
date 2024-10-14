@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.ifish.ink/post/ca64211f.html</loc>
+    
+    <lastmod>2024-10-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ifish.ink/post/f29efa2.html</loc>
+    
+    <lastmod>2024-10-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.ifish.ink/post/e9330479.html</loc>
     
     <lastmod>2024-10-13</lastmod>
@@ -155,15 +173,6 @@
   </url>
   
   <url>
-    <loc>https://www.ifish.ink/post/f29efa2.html</loc>
-    
-    <lastmod>2024-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.ifish.ink/post/4d3c170c.html</loc>
     
     <lastmod>2024-06-27</lastmod>
@@ -247,7 +256,7 @@
 
   <url>
     <loc>https://www.ifish.ink/</loc>
-    <lastmod>2024-10-13</lastmod>
+    <lastmod>2024-10-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
