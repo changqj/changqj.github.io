@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2024-10-13T19:00:29.846Z</updated>
+  <updated>2024-10-14T10:16:36.902Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -15,6 +15,63 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Total Commander使用教程及快捷键设置</title>
+    <link href="https://www.ifish.ink/post/aada5c99.html"/>
+    <id>https://www.ifish.ink/post/aada5c99.html</id>
+    <published>2024-10-14T09:57:45.000Z</published>
+    <updated>2024-10-14T10:16:36.902Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
+    
+    
+    <category term="神器" scheme="https://www.ifish.ink/tags/%E7%A5%9E%E5%99%A8/"/>
+    
+    <category term="Total Commander" scheme="https://www.ifish.ink/tags/Total-Commander/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows上配置Total Commander + Listary</title>
+    <link href="https://www.ifish.ink/post/bb2b886d.html"/>
+    <id>https://www.ifish.ink/post/bb2b886d.html</id>
+    <published>2024-10-14T09:13:24.000Z</published>
+    <updated>2024-10-14T09:57:04.809Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;windows上配置total-commander-listary&quot;&gt;Windows上配置Total
+Commander +</summary>
+        
+      
+    
+    
+    
+    <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
+    
+    
+    <category term="神器" scheme="https://www.ifish.ink/tags/%E7%A5%9E%E5%99%A8/"/>
+    
+    <category term="Total Commander" scheme="https://www.ifish.ink/tags/Total-Commander/"/>
+    
+    <category term="Listary" scheme="https://www.ifish.ink/tags/Listary/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</title>
@@ -56,7 +113,7 @@ display）&lt;/strong&gt;上开发图形应</summary>
     <link href="https://www.ifish.ink/post/ca64211f.html"/>
     <id>https://www.ifish.ink/post/ca64211f.html</id>
     <published>2024-10-12T08:42:07.000Z</published>
-    <updated>2024-10-14T09:11:38.276Z</updated>
+    <updated>2024-10-14T09:17:03.786Z</updated>
     
     
       
@@ -589,62 +646,6 @@ Origin插件已经一年多时间了，在这之前用过各种各样的去广�
     <category term="神器" scheme="https://www.ifish.ink/tags/%E7%A5%9E%E5%99%A8/"/>
     
     <category term="插件" scheme="https://www.ifish.ink/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WordPress站点地图自动更新</title>
-    <link href="https://www.ifish.ink/post/943451b1.html"/>
-    <id>https://www.ifish.ink/post/943451b1.html</id>
-    <published>2019-05-10T13:25:37.000Z</published>
-    <updated>2024-06-27T08:44:05.227Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;站点地图可以各个搜索引擎能够爬取到我们网站上页面。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-&lt;img src=&quot;http://img.ifish.ink/img/baiduzhanzhang.png&quot; alt=&quot;百度站长&quot; /&gt;</summary>
-    
-    
-    
-    <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
-    
-    
-    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
-    
-    <category term="SEO" scheme="https://www.ifish.ink/tags/SEO/"/>
-    
-    <category term="sitemap" scheme="https://www.ifish.ink/tags/sitemap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
-    <link href="https://www.ifish.ink/post/4d3c170c.html"/>
-    <id>https://www.ifish.ink/post/4d3c170c.html</id>
-    <published>2019-05-09T14:08:51.000Z</published>
-    <updated>2024-06-27T08:41:34.316Z</updated>
-    
-    
-    <summary type="html">&lt;h4 id=&quot;c实现&quot;&gt;c++实现：&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;p&gt;关于二维中均值重心坐标的实现可参考我的另一篇博客：&lt;a
-href=&quot;https://www.ifish.ink/post/d033f67a.html&quot;
-title=&quot;均值重心坐标Mean Value Coordinates In 2D代码实现&quot;&gt;均值重心坐标Mean
-Value Coordinates In 2D代码实现&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
-    
-    
-    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
-    
-    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
-    
-    <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
     
   </entry>
   
