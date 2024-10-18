@@ -213,6 +213,39 @@ end</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
+    <url>/post/8f4cbc0c.html</url>
+    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
+fork了别人的代码 本地更新主分支代码</h3>
+<ul>
+<li><p>查看本地仓库项目目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
+<li><p>添加上游项目地址：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
+<span id="more"></span>
+<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
+</ul>
+<hr />
+<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
+<ul>
+<li><p>从上游提取：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
+<li><p>合并：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
+<li><p>上传：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</title>
     <url>/post/e9330479.html</url>
     <content><![CDATA[<h1
@@ -392,39 +425,6 @@ alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
       </categories>
       <tags>
         <tag>环境配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
-    <url>/post/8f4cbc0c.html</url>
-    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
-fork了别人的代码 本地更新主分支代码</h3>
-<ul>
-<li><p>查看本地仓库项目目录：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
-<li><p>添加上游项目地址：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
-<span id="more"></span>
-<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
-</ul>
-<hr />
-<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
-<ul>
-<li><p>从上游提取：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
-<li><p>合并：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
-<li><p>上传：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -728,6 +728,31 @@ unavailable for scheduled maintenance. Check back in a minute.”</p>
       </tags>
   </entry>
   <entry>
+    <title>WordPress站点地图自动更新</title>
+    <url>/post/943451b1.html</url>
+    <content><![CDATA[<blockquote>
+<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
+</blockquote>
+<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
+<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长" />
+<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png"
+alt="google" />
+现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
+<img src="http://img.ifish.ink/img/2.png" alt="google" />
+在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+        <tag>SEO</tag>
+        <tag>sitemap</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git clone 速度慢？</title>
     <url>/post/ec4bf4f5.html</url>
     <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
@@ -760,34 +785,9 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
         <category>工具技能</category>
       </categories>
       <tags>
-        <tag>环境配置</tag>
         <tag>git</tag>
         <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress站点地图自动更新</title>
-    <url>/post/943451b1.html</url>
-    <content><![CDATA[<blockquote>
-<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
-</blockquote>
-<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长" />
-<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png"
-alt="google" />
-现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
-<img src="http://img.ifish.ink/img/2.png" alt="google" />
-在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
-        <tag>SEO</tag>
-        <tag>sitemap</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -1272,181 +1272,6 @@ alt="角部顶点绘制（型值点处为G^1连续，其他点C^2连续）" /></
       </tags>
   </entry>
   <entry>
-    <title>从复平面上域的多项式函数生成调和函数</title>
-    <url>/post/harmonic.html</url>
-    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
-class="math inline">\(z=x+yi\)</span>的多项式函数<span
-class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
-class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
-class="math inline">\((x,y)\)</span>的二元调和函数。</p>
-<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-[x,y] &#x3D; meshgrid(linspace(-1,1,100));
-p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
-z &#x3D; real(p(x,y));
-surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
-axis off;</code></pre></p>
-<p><img src="http://img.ifish.ink/figure/har.gif" /></p>
-]]></content>
-      <categories>
-        <category>曲线曲面</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>调和函数</tag>
-        <tag>极小曲面</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Hexo搭建Github静态页面与域名绑定</title>
-    <url>/post/5755d91.html</url>
-    <content><![CDATA[<h2 id="简介">1. 简介</h2>
-<p>Hexo是一个基于Node.js的静态博客框架，能够快速生成静态网页。通过将
-Hexo生成的静态网页部署到GitHub
-Pages，用户可以轻松搭建一个免费的个人网站。本教程将详细介绍如何使用Hexo搭建静态页面并将其托管到GitHub
-Pages上，同时绑定自定义域名。</p>
-<h2 id="环境准备">2. 环境准备</h2>
-<p>在开始搭建Hexo静态页面之前，你需要完成以下环境配置：</p>
-<ol type="1">
-<li><strong>Node.js</strong>：Hexo基于Node.js运行，因此需要安装Node.js和npm。可以通过以下方式安装：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Node.js和npm</span>
-brew <span class="token function">install</span> <span class="token function">node</span></code></pre>
-<ol start="2" type="1">
-<li><strong>Git</strong>：Hexo生成的静态页面需要通过Git提交到GitHub
-Pages上，因此需要安装Git。可以通过以下方式安装：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 Git</span>
-brew <span class="token function">install</span> <span class="token function">git</span></code></pre>
-<ol start="3" type="1">
-<li><p><strong>GitHub账号</strong>：需要注册一个GitHub账号，用于托管Hexo生成的静态页面。</p></li>
-<li><p><strong>Hexo</strong>：安装Hexo命令行工具，可以通过以下方式安装：</p></li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Hexo</span>
-<span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> hexo-cli</code></pre>
-<h2 id="初始化hexo项目">3. 初始化Hexo项目</h2>
-<p>在完成环境准备后，可以开始初始化Hexo项目。</p>
-<ol type="1">
-<li>首先，创建一个新的Hexo项目，并进入该文件夹：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> my-blog
-<span class="token builtin class-name">cd</span> my-blog</code></pre>
-<ol start="2" type="1">
-<li>然后，初始化Hexo项目：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash">hexo init</code></pre>
-<p>初始化完成后，Hexo 会在项目文件夹中生成一系列文件和文件夹，包括
-<code>source/</code>和<code>_config.yml</code> 等。</p>
-<ol start="3" type="1">
-<li>安装Hexo依赖：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span></code></pre>
-<ol start="4" type="1">
-<li>启动Hexo本地服务器，查看Hexo默认生成的页面：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash">hexo server</code></pre>
-<p>在浏览器中输入
-<code>http://localhost:4000</code>，即可查看Hexo默认生成的页面。</p>
-<h2 id="部署到github-pages">4. 部署到GitHub Pages</h2>
-<h3 id="创建github仓库">4.1 创建GitHub仓库</h3>
-<ol type="1">
-<li>在GitHub上创建一个新的仓库，用于托管Hexo生成的静态页面。仓库名称必须是以下格式之一：</li>
-</ol>
-<ul>
-<li><code>username.github.io</code>：用于个人网站，其中<code>username</code>是你的GitHub用户名。（用于个人主页）</li>
-<li><code>project-name</code>：用于项目网站，其中<code>project-name</code>是项目名称。（用于项目页面）</li>
-</ul>
-<ol start="2" type="1">
-<li>获取仓库的SSH地址，用于后续提交Hexo生成的静态页面。</li>
-</ol>
-<h3 id="配置hexo部署">4.2 配置Hexo部署</h3>
-<ol type="1">
-<li>安装Hexo部署插件：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git <span class="token parameter variable">--save</span></code></pre>
-<ol start="2" type="1">
-<li>修改Hexo配置文件<code>_config.yml</code>，配置部署信息：</li>
-</ol>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
-  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
-  <span class="token key atrule">repo</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>username/username.github.io.git
-  <span class="token key atrule">branch</span><span class="token punctuation">:</span> main</code></pre>
-<p>将<code>username</code>替换为你的GitHub用户名。需注意： -
-<code>repo</code>字段填写你的GitHub仓库SSH地址或者HTTPS地址。（推荐使用SSH地址）
-- <code>branch</code>字段填写你的GitHub
-Pages分支，如果你的仓库默认分支为<code>master</code>，则填写<code>master</code>；如果默认分支为<code>main</code>，则填写<code>main</code>。</p>
-<ol start="3" type="1">
-<li>部署Hexo生成的静态页面到GitHub Pages：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
-hexo generate  <span class="token comment"># 生成静态页面</span>
-hexo deploy  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
-<p>（可以缩写为<code>hexo d -g</code>）</p>
-<ol start="4" type="1">
-<li>在浏览器中输入
-<code>https://username.github.io</code>，即可查看Hexo生成的静态页面。</li>
-</ol>
-<h2 id="绑定自定义域名">5. 绑定自定义域名</h2>
-<p>你可以为你的 GitHub
-Pages绑定自定义域名，使网站更具个性化。以下是具体步骤。</p>
-<h3 id="获取域名注册域名">5.1 获取域名(注册域名)</h3>
-<p>首先，你需要拥有一个域名。你可以通过域名注册商购买域名，例如阿里云、腾讯云、Godaddy等。</p>
-<h3 id="配置域名dns解析">5.2 配置域名DNS解析</h3>
-<p>在域名注册商的控制台中，找到<strong>DNS设置</strong>（或者类似的设置），添加以下记录：</p>
-<ul>
-<li>类型：<code>CNAME</code>，主机记录：<code>www</code>，记录值：<code>username.github.io</code>（将<code>username</code>替换为你的GitHub用户名）。</li>
-<li>类型：<code>CNAME</code>，主机记录：<code>@</code>，记录值：<code>username.github.io</code>。</li>
-</ul>
-<h3 id="配置hexo项目">5.3 配置Hexo项目</h3>
-<p>在Hexo项目的source目录下创建一个名为CNAME的文件，并在文件中写入你绑定的自定义域名。例如：</p>
-<pre class="language-none"><code class="language-none">www.yourdomain.com
-yourdomain.com</code></pre>
-<p>将文件保存后，重新部署Hexo生成的静态页面到GitHub Pages：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
-hexo g  <span class="token comment"># 生成静态页面</span>
-hexo d  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
-<h3 id="github-pages设置">5.4 GitHub Pages设置</h3>
-<ul>
-<li><p>在GitHub仓库的Settings中，找到<strong>Custom
-domain</strong>，填写你的自定义域名，例如<code>www.yourdomain.com</code>，保存即可。</p></li>
-<li><p>如果你的域名支持HTTPS，可以在Settings中启用<strong>Enforce
-HTTPS</strong>，开启HTTPS访问。</p></li>
-</ul>
-<h3 id="验证域名绑定">5.5 验证域名绑定</h3>
-<p>在浏览器中输入你的自定义域名，例如<code>www.yourdomain.com</code>，即可访问你的Hexo生成的静态页面。</p>
-<h2 id="常见问题">6. 常见问题</h2>
-<h3 id="部署时遇到permission-denied错误权限问题">6.1
-部署时遇到<code>Permission denied</code>错误（权限问题）</h3>
-<p>如果使用SSH方式部署时遇到权限问题，请确保：</p>
-<ol type="1">
-<li>你的SSH公钥已经添加到GitHub账号中。</li>
-<li>使用ssh-add命令将私钥添加到ssh-agent中：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa</code></pre>
-<h3 id="自定义域名访问出现404错误">6.2 自定义域名访问出现404错误</h3>
-<p>确保一下事项：</p>
-<ol type="1">
-<li>域名DNS解析已经生效，可以通过<code>dig</code>命令或者在线工具查询域名解析情况。</li>
-<li>GitHub Pages设置的Custom domain填写正确。</li>
-<li>确保CNAME文件中填写的域名与GitHub Pages设置的Custom
-domain一致。</li>
-<li>等待一段时间，有时候DNS解析需要一段时间生效。</li>
-</ol>
-<h2 id="总结">7. 总结</h2>
-<p>通过Hexo和GitHub
-Pages，搭建一个免费的静态博客非常简单且高效。希望本教程对你有所帮助，欢迎关注我的博客，获取更多技术教程和资源。</p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Github Pages</tag>
-        <tag>网站搭建</tag>
-        <tag>域名绑定</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>三角网格曲面参数化</title>
     <url>/post/bcf65292.html</url>
     <content><![CDATA[<blockquote>
@@ -1628,6 +1453,181 @@ src="http://img.ifish.ink/20201031/4.png" /></p>
         <tag>算法实现</tag>
         <tag>参数化</tag>
         <tag>均值重心坐标</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从复平面上域的多项式函数生成调和函数</title>
+    <url>/post/harmonic.html</url>
+    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
+class="math inline">\(z=x+yi\)</span>的多项式函数<span
+class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
+class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
+class="math inline">\((x,y)\)</span>的二元调和函数。</p>
+<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+[x,y] &#x3D; meshgrid(linspace(-1,1,100));
+p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
+z &#x3D; real(p(x,y));
+surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
+axis off;</code></pre></p>
+<p><img src="http://img.ifish.ink/figure/har.gif" /></p>
+]]></content>
+      <categories>
+        <category>曲线曲面</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>调和函数</tag>
+        <tag>极小曲面</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Hexo搭建Github静态页面与域名绑定</title>
+    <url>/post/5755d91.html</url>
+    <content><![CDATA[<h2 id="简介">1. 简介</h2>
+<p>Hexo是一个基于Node.js的静态博客框架，能够快速生成静态网页。通过将
+Hexo生成的静态网页部署到GitHub
+Pages，用户可以轻松搭建一个免费的个人网站。本教程将详细介绍如何使用Hexo搭建静态页面并将其托管到GitHub
+Pages上，同时绑定自定义域名。</p>
+<h2 id="环境准备">2. 环境准备</h2>
+<p>在开始搭建Hexo静态页面之前，你需要完成以下环境配置：</p>
+<ol type="1">
+<li><strong>Node.js</strong>：Hexo基于Node.js运行，因此需要安装Node.js和npm。可以通过以下方式安装：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Node.js和npm</span>
+brew <span class="token function">install</span> <span class="token function">node</span></code></pre>
+<ol start="2" type="1">
+<li><strong>Git</strong>：Hexo生成的静态页面需要通过Git提交到GitHub
+Pages上，因此需要安装Git。可以通过以下方式安装：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 Git</span>
+brew <span class="token function">install</span> <span class="token function">git</span></code></pre>
+<ol start="3" type="1">
+<li><p><strong>GitHub账号</strong>：需要注册一个GitHub账号，用于托管Hexo生成的静态页面。</p></li>
+<li><p><strong>Hexo</strong>：安装Hexo命令行工具，可以通过以下方式安装：</p></li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Hexo</span>
+<span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> hexo-cli</code></pre>
+<h2 id="初始化hexo项目">3. 初始化Hexo项目</h2>
+<p>在完成环境准备后，可以开始初始化Hexo项目。</p>
+<ol type="1">
+<li>首先，创建一个新的Hexo项目，并进入该文件夹：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> my-blog
+<span class="token builtin class-name">cd</span> my-blog</code></pre>
+<ol start="2" type="1">
+<li>然后，初始化Hexo项目：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo init</code></pre>
+<p>初始化完成后，Hexo 会在项目文件夹中生成一系列文件和文件夹，包括
+<code>source/</code>和<code>_config.yml</code> 等。</p>
+<ol start="3" type="1">
+<li>安装Hexo依赖：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span></code></pre>
+<ol start="4" type="1">
+<li>启动Hexo本地服务器，查看Hexo默认生成的页面：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo server</code></pre>
+<p>在浏览器中输入
+<code>http://localhost:4000</code>，即可查看Hexo默认生成的页面。</p>
+<h2 id="部署到github-pages">4. 部署到GitHub Pages</h2>
+<h3 id="创建github仓库">4.1 创建GitHub仓库</h3>
+<ol type="1">
+<li>在GitHub上创建一个新的仓库，用于托管Hexo生成的静态页面。仓库名称必须是以下格式之一：</li>
+</ol>
+<ul>
+<li><code>username.github.io</code>：用于个人网站，其中<code>username</code>是你的GitHub用户名。（用于个人主页）</li>
+<li><code>project-name</code>：用于项目网站，其中<code>project-name</code>是项目名称。（用于项目页面）</li>
+</ul>
+<ol start="2" type="1">
+<li>获取仓库的SSH地址，用于后续提交Hexo生成的静态页面。</li>
+</ol>
+<h3 id="配置hexo部署">4.2 配置Hexo部署</h3>
+<ol type="1">
+<li>安装Hexo部署插件：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git <span class="token parameter variable">--save</span></code></pre>
+<ol start="2" type="1">
+<li>修改Hexo配置文件<code>_config.yml</code>，配置部署信息：</li>
+</ol>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>username/username.github.io.git
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> main</code></pre>
+<p>将<code>username</code>替换为你的GitHub用户名。需注意： -
+<code>repo</code>字段填写你的GitHub仓库SSH地址或者HTTPS地址。（推荐使用SSH地址）
+- <code>branch</code>字段填写你的GitHub
+Pages分支，如果你的仓库默认分支为<code>master</code>，则填写<code>master</code>；如果默认分支为<code>main</code>，则填写<code>main</code>。</p>
+<ol start="3" type="1">
+<li>部署Hexo生成的静态页面到GitHub Pages：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
+hexo generate  <span class="token comment"># 生成静态页面</span>
+hexo deploy  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
+<p>（可以缩写为<code>hexo d -g</code>）</p>
+<ol start="4" type="1">
+<li>在浏览器中输入
+<code>https://username.github.io</code>，即可查看Hexo生成的静态页面。</li>
+</ol>
+<h2 id="绑定自定义域名">5. 绑定自定义域名</h2>
+<p>你可以为你的 GitHub
+Pages绑定自定义域名，使网站更具个性化。以下是具体步骤。</p>
+<h3 id="获取域名注册域名">5.1 获取域名(注册域名)</h3>
+<p>首先，你需要拥有一个域名。你可以通过域名注册商购买域名，例如阿里云、腾讯云、Godaddy等。</p>
+<h3 id="配置域名dns解析">5.2 配置域名DNS解析</h3>
+<p>在域名注册商的控制台中，找到<strong>DNS设置</strong>（或者类似的设置），添加以下记录：</p>
+<ul>
+<li>类型：<code>CNAME</code>，主机记录：<code>www</code>，记录值：<code>username.github.io</code>（将<code>username</code>替换为你的GitHub用户名）。</li>
+<li>类型：<code>CNAME</code>，主机记录：<code>@</code>，记录值：<code>username.github.io</code>。</li>
+</ul>
+<h3 id="配置hexo项目">5.3 配置Hexo项目</h3>
+<p>在Hexo项目的source目录下创建一个名为CNAME的文件，并在文件中写入你绑定的自定义域名。例如：</p>
+<pre class="language-none"><code class="language-none">www.yourdomain.com
+yourdomain.com</code></pre>
+<p>将文件保存后，重新部署Hexo生成的静态页面到GitHub Pages：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
+hexo g  <span class="token comment"># 生成静态页面</span>
+hexo d  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
+<h3 id="github-pages设置">5.4 GitHub Pages设置</h3>
+<ul>
+<li><p>在GitHub仓库的Settings中，找到<strong>Custom
+domain</strong>，填写你的自定义域名，例如<code>www.yourdomain.com</code>，保存即可。</p></li>
+<li><p>如果你的域名支持HTTPS，可以在Settings中启用<strong>Enforce
+HTTPS</strong>，开启HTTPS访问。</p></li>
+</ul>
+<h3 id="验证域名绑定">5.5 验证域名绑定</h3>
+<p>在浏览器中输入你的自定义域名，例如<code>www.yourdomain.com</code>，即可访问你的Hexo生成的静态页面。</p>
+<h2 id="常见问题">6. 常见问题</h2>
+<h3 id="部署时遇到permission-denied错误权限问题">6.1
+部署时遇到<code>Permission denied</code>错误（权限问题）</h3>
+<p>如果使用SSH方式部署时遇到权限问题，请确保：</p>
+<ol type="1">
+<li>你的SSH公钥已经添加到GitHub账号中。</li>
+<li>使用ssh-add命令将私钥添加到ssh-agent中：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa</code></pre>
+<h3 id="自定义域名访问出现404错误">6.2 自定义域名访问出现404错误</h3>
+<p>确保一下事项：</p>
+<ol type="1">
+<li>域名DNS解析已经生效，可以通过<code>dig</code>命令或者在线工具查询域名解析情况。</li>
+<li>GitHub Pages设置的Custom domain填写正确。</li>
+<li>确保CNAME文件中填写的域名与GitHub Pages设置的Custom
+domain一致。</li>
+<li>等待一段时间，有时候DNS解析需要一段时间生效。</li>
+</ol>
+<h2 id="总结">7. 总结</h2>
+<p>通过Hexo和GitHub
+Pages，搭建一个免费的静态博客非常简单且高效。希望本教程对你有所帮助，欢迎关注我的博客，获取更多技术教程和资源。</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Github Pages</tag>
+        <tag>网站搭建</tag>
+        <tag>域名绑定</tag>
       </tags>
   </entry>
   <entry>
@@ -2251,6 +2251,107 @@ src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5
       </tags>
   </entry>
   <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span
+class="math inline">\(\mathbb{R}^n\)</span>中的<span
+class="math inline">\(m\)</span>个样本点为<span
+class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
+class="math inline">\(m\)</span>个样本嵌入到低维空间<span
+class="math inline">\(\mathbb{R}^{d}\)</span>，<span
+class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img
+src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
+alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
+class="math inline">\(i\)</span>行第<span
+class="math inline">\(j\)</span>列元素为<span
+class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
+class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
+class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
+class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
+class="math inline">\(k\)</span>个非零特征值，分别为<span
+class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
+class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
+class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
+class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
+class="math inline">\({ V}\)</span>的第<span
+class="math inline">\(i\)</span>列是特征值<span
+class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
+class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
+class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span
+class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
+class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br />
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
+class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
+class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
+class="math inline">\(V_*\)</span>。即<span
+class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
+class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
+class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>几何处理</category>
+      </categories>
+      <tags>
+        <tag>曲面参数化</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>标准雅可比迭代算法-实现</title>
     <url>/post/5d0495ae.html</url>
     <content><![CDATA[<h3
@@ -2388,107 +2489,6 @@ href="https://img.ifish.ink/Standard_Jacobian_Iterative_Algorithm_Procedure.pdf"
       </tags>
   </entry>
   <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span
-class="math inline">\(\mathbb{R}^n\)</span>中的<span
-class="math inline">\(m\)</span>个样本点为<span
-class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
-class="math inline">\(m\)</span>个样本嵌入到低维空间<span
-class="math inline">\(\mathbb{R}^{d}\)</span>，<span
-class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img
-src="http://img.ifish.ink/2020/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
-alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
-class="math inline">\(i\)</span>行第<span
-class="math inline">\(j\)</span>列元素为<span
-class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
-class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
-class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
-class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
-class="math inline">\(k\)</span>个非零特征值，分别为<span
-class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
-class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
-class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
-class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
-class="math inline">\({ V}\)</span>的第<span
-class="math inline">\(i\)</span>列是特征值<span
-class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
-class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
-class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span
-class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
-class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br />
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
-class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
-class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
-class="math inline">\(V_*\)</span>。即<span
-class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
-class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
-class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="http://img.ifish.ink/2020/1110_2.png" alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>几何处理</category>
-      </categories>
-      <tags>
-        <tag>曲面参数化</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
     <url>/post/6248da0d.html</url>
     <content><![CDATA[<blockquote>
@@ -2573,6 +2573,28 @@ title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
       <tags>
         <tag>神器</tag>
         <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>男孩，鼹鼠，狐狸和马</title>
+    <url>/post/ca64211f.html</url>
+    <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
+<p>《男孩、鼹鼠、狐狸和马》是一部感人至深的动画短片，改编自英国作家查理·麦克西（Charlie
+Mackesy）的同名绘本。这部作品以其温暖的画风、简洁的对白和深刻的哲理内涵广受欢迎，传递了关于友情、勇气、爱与自我接纳的普世价值。</p>
+<p>该影片于2023年3月12日获得了奥斯卡最佳动画短片奖。影片讲述了一个小男孩在寻找家的过程中，遇到了鼹鼠、狐狸和马这三个截然不同的动物伙伴。四个角色的性格和对话十分鲜明：男孩天真无邪、好奇心强，鼹鼠贪恋甜食且充满智慧，狐狸沉默寡言，但心地善良，马则象征着力量与平静。在旅程中，四个角色共同经历了挑战，彼此扶持，学会了接受自己的脆弱和不完美，同时明白了什么是爱与关怀。</p>
+<p><img src="/images/imgs/ca64211f-1.jpeg" /></p>
+<p>影片最大的亮点之一是其画面风格，它保留了原著插画的水彩笔触和流动的线条，使观众仿佛置身于一幅动态的水彩画中。这种柔和的美学风格与影片温暖的主题相得益彰，给人以安慰和治愈的感觉。</p>
+<p>此外，影片通过极简的对话传达了深刻的哲理。例如，男孩问马“什么是成功”，马回答说：“<code>成功是被爱</code>。”，以及“长大以后，你想当什么呢？”，鼹鼠回答“<code>善良的人</code>”。这类发人深省的句子贯穿全片，令观众在观影过程中不断思考生命中真正重要的东西。对于狐狸这个角色，他的沉默和善良也让人印象深刻，他在影片中扮演了一个重要的引导者角色，帮助男孩和其他动物找到了自己的方向。</p>
+<p>这是一部令人心灵平静的作品，无论是大人还是孩子都能从中汲取力量和安慰。这部动画不仅仅是一个寻找家的故事，更是关于自我发现、友谊和接纳彼此不完美的寓言。</p>
+<p><img src="/images/imgs/ca64211f-2.jpeg" /></p>
+]]></content>
+      <categories>
+        <category>生活娱乐</category>
+      </categories>
+      <tags>
+        <tag>动画</tag>
+        <tag>短片</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -2747,30 +2769,8 @@ Hormann教授的邀请和邓重阳教授的支持让我有了这次国外学习�
         <category>生活娱乐</category>
       </categories>
       <tags>
+        <tag>随笔</tag>
         <tag>游记</tag>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>男孩，鼹鼠，狐狸和马</title>
-    <url>/post/ca64211f.html</url>
-    <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
-<p>《男孩、鼹鼠、狐狸和马》是一部感人至深的动画短片，改编自英国作家查理·麦克西（Charlie
-Mackesy）的同名绘本。这部作品以其温暖的画风、简洁的对白和深刻的哲理内涵广受欢迎，传递了关于友情、勇气、爱与自我接纳的普世价值。</p>
-<p>该影片于2023年3月12日获得了奥斯卡最佳动画短片奖。影片讲述了一个小男孩在寻找家的过程中，遇到了鼹鼠、狐狸和马这三个截然不同的动物伙伴。四个角色的性格和对话十分鲜明：男孩天真无邪、好奇心强，鼹鼠贪恋甜食且充满智慧，狐狸沉默寡言，但心地善良，马则象征着力量与平静。在旅程中，四个角色共同经历了挑战，彼此扶持，学会了接受自己的脆弱和不完美，同时明白了什么是爱与关怀。</p>
-<p><img src="/images/imgs/ca64211f-1.jpeg" /></p>
-<p>影片最大的亮点之一是其画面风格，它保留了原著插画的水彩笔触和流动的线条，使观众仿佛置身于一幅动态的水彩画中。这种柔和的美学风格与影片温暖的主题相得益彰，给人以安慰和治愈的感觉。</p>
-<p>此外，影片通过极简的对话传达了深刻的哲理。例如，男孩问马“什么是成功”，马回答说：“<code>成功是被爱</code>。”，以及“长大以后，你想当什么呢？”，鼹鼠回答“<code>善良的人</code>”。这类发人深省的句子贯穿全片，令观众在观影过程中不断思考生命中真正重要的东西。对于狐狸这个角色，他的沉默和善良也让人印象深刻，他在影片中扮演了一个重要的引导者角色，帮助男孩和其他动物找到了自己的方向。</p>
-<p>这是一部令人心灵平静的作品，无论是大人还是孩子都能从中汲取力量和安慰。这部动画不仅仅是一个寻找家的故事，更是关于自我发现、友谊和接纳彼此不完美的寓言。</p>
-<p><img src="/images/imgs/ca64211f-2.jpeg" /></p>
-]]></content>
-      <categories>
-        <category>生活娱乐</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-        <tag>动画</tag>
-        <tag>短片</tag>
       </tags>
   </entry>
   <entry>
