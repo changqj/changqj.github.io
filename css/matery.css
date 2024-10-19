@@ -502,7 +502,7 @@ header .side-nav .social-link {
 
 .cover-social-link {
     position: relative;
-    top: 23vh;
+    top: 20vh;
     width: 100%;
     text-align: center;
 }
@@ -2129,7 +2129,7 @@ p.search-result-summary{
 .m-nav-show,
 .m-nav-item > a:hover {
     color: #FFF;
-    background: rgba(255, 255, 255, .8);
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .m-nav-show > a:before,
