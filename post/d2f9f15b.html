@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Total Commander使用, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
-    <meta name="description" content="Total Commander作为一款文件管理器，可以通过双窗格界面和丰富的自定义选项提高文件操作的效率。在本文中，我们将介绍一些常用的快捷键设置、文件操作技巧，并展示如何根据文件属性自定义文件颜色显示。">
+    <meta name="keywords" content="如何像GitHub Action那样本地打包, ifish ink,常常,鱼墨常常,鱼墨,常清俊,Qingjun Chang">
+    <meta name="description" content="通过GitHub Actions，开发者可以在代码库发生特定事件时，自动触发构建、测试、部署等一系列任务。那么如何在本地实现类似的打包过程呢？">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -28,7 +28,7 @@
 </script>
 
 
-    <title>Total Commander使用 | IFISH.INK</title>
+    <title>如何像GitHub Action那样本地打包 | IFISH.INK</title>
     <link rel="icon" type="image/png" href="/images/chang.png">
     
 
@@ -49,7 +49,9 @@
 
 
 
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
     <link rel="stylesheet" href="/css/post.css">
+
 
 
 
@@ -484,7 +486,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Total Commander使用</h1>
+                    <h1 class="description center-align post-title">如何像GitHub Action那样本地打包</h1>
                 </div>
             </div>
         </div>
@@ -494,10 +496,12 @@
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -507,12 +511,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%A5%9E%E5%99%A8/">
-                                <span class="chip bg-color">神器</span>
+                            <a href="/tags/GitHub-Action/">
+                                <span class="chip bg-color">GitHub Action</span>
                             </a>
                         
-                            <a href="/tags/Total-Commander/">
-                                <span class="chip bg-color">Total Commander</span>
+                            <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%89%93%E5%8C%85/">
+                                <span class="chip bg-color">软件打包</span>
                             </a>
                         
                     </div>
@@ -538,7 +542,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-10-15
+                    2024-10-21
                 </div>
                 
 
@@ -547,14 +551,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    7 分
                 </div>
                 
 
@@ -573,123 +577,204 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="total-commander使用教程及快捷键设置">Total
-Commander使用教程及快捷键设置</h1>
-<p>Total
-Commander是一款功能强大的文件管理器，通过双窗格界面和丰富的自定义选项提高文件操作的效率。在本文中，我们将介绍一些常用的快捷键设置、文件操作技巧，并展示如何根据文件属性自定义文件颜色显示。</p>
-<h2 id="常用快捷键设置">1. 常用快捷键设置</h2>
-<p>Total
-Commander支持用户自定义快捷键，可以根据个人需求调整以提升效率。以下是几个常见的操作及其快捷键设置方法：</p>
-<h3 id="复制全路径">1.1 复制全路径</h3>
-<p>在文件操作中，常常需要复制文件或文件夹的完整路径。Total
-Commander提供了便捷的方式：</p>
-<ol type="1">
-<li><p><strong>默认快捷键</strong>：<code>Ctrl + Shift + Enter</code>，可以快速复制当前选中文件或文件夹的完整路径到命令行或者剪贴板。</p></li>
-<li><p><strong>自定义快捷键</strong>：如果你想自定义此快捷键，可以通过以下步骤：</p>
-<ol type="1">
-<li><p>点击顶部菜单的“配置”，选择“选项”。</p></li>
-<li><p>在左侧选择“Misc”选项。</p></li>
-<li><p>在“Redefine hotkeys (keyboard
-remapping)”部分，选择想要重新定义的快捷键（例如
-<code>Ctrl + Shift + P</code>），然后在“Command”下拉列表中找到“cm_CopyFullNamesToClip”。</p></li>
-<li><p>点击“OK”保存设置。</p></li>
-</ol></li>
-</ol>
-<h3 id="复制路径及文件名">1.2 复制路径及文件名</h3>
-<p>如果你需要复制文件的路径并包含文件名，以下是设置方法：</p>
-<ol type="1">
-<li><p><strong>快捷键</strong>：<code>Ctrl + Shift + C</code>，可以复制完整的路径及文件名到剪贴板。</p></li>
-<li><p><strong>自定义快捷键</strong>：</p>
+                <blockquote>
+<p>GitHub
+Actions是GitHub提供的一项功能，用于实现持续集成和持续交付（CI/CD）工作流的自动化。通过GitHub
+Actions，开发者可以在代码库发生特定事件时，自动触发构建、测试、部署等一系列任务。它支持高度自定义的工作流，适用于从简单的脚本执行到复杂的项目自动化。这里将首先简要介绍GitHub
+Actions的基本概念，然后讲解如何在本地实现类似的打包过程。</p>
+</blockquote>
+<h2 id="github-actions的主要功能">1. GitHub Actions的主要功能</h2>
+<h3 id="工作流自动化workflows">1.1 工作流自动化（Workflows）：</h3>
+<p>GitHub
+Actions使用<code>YAML</code>文件定义自动化工作流，通常保存在项目的<code>.github/workflows/</code>目录下。每个工作流都可以根据触发条件（如代码提交、Pull
+Request、Issue变动等）自动执行。</p>
+<h3 id="触发器triggers">1.2 触发器（Triggers）：</h3>
+<p>工作流可以通过不同的事件触发，如：</p>
 <ul>
-<li>参考上面的自定义步骤，将快捷键指向命令“cm_CopyNetNamesToClip”来实现复制路径及文件名。</li>
-</ul></li>
-</ol>
-<h3 id="文件移动和复制">1.3 文件移动和复制</h3>
-<p>Total Commander
-提供了丰富的文件操作快捷键，默认情况下，你可以使用以下快捷键进行移动和复制操作：</p>
-<ul>
-<li><p><strong>复制文件</strong>：<code>F5</code>
-键，弹出复制确认窗口。</p></li>
-<li><p><strong>移动文件</strong>：<code>F6</code>
-键，弹出移动确认窗口。</p></li>
+<li><p><code>push</code>：在代码推送到指定分支时触发。</p></li>
+<li><p><code>pull_request</code>：当发起或更新 Pull Request
+时触发。</p></li>
+<li><p><code>schedule</code>：基于时间计划（如每天、每周）自动触发。</p></li>
+<li><p><code>workflow_dispatch</code>：手动触发工作流。</p></li>
+<li><p><code>repository_dispatch</code>：自定义事件触发。</p></li>
 </ul>
-<p>要自定义这些快捷键，可以通过：</p>
-<ol type="1">
-<li><p>打开“配置 -&gt; 选项”。</p></li>
-<li><p>选择“Misc”选项卡。</p></li>
-<li><p>在“Redefine hotkeys”中，找到 <code>F5</code>（复制）和
-<code>F6</code>（移动）的命令，分别绑定到 <code>cm_Copy</code> 和
-<code>cm_RenameMove</code>。</p></li>
-</ol>
-<h3 id="快速选择文件">1.4 快速选择文件</h3>
-<p>有时你需要快速选择某类文件（例如扩展名相同的文件）。你可以使用快捷键
-<code>Num +</code>（数字键盘的加号）来选中当前面板中的同类文件，具体操作如下：</p>
-<ol type="1">
-<li><p>按下 <code>Num +</code>，Total Commander
-会弹出一个选择框。</p></li>
-<li><p>输入文件类型（如 <code>*.txt</code> 选择所有文本文件），然后按
-<code>Enter</code>，所有符合条件的文件将被选中。</p></li>
-</ol>
-<h2 id="文件颜色显示设置">2. 文件颜色显示设置</h2>
-<p>Total
-Commander支持根据文件属性或扩展名给文件和文件夹上色，帮助用户更快地区分不同的文件类型。以下是一些常见的设置方法：</p>
-<h3 id="根据下载时间显示不同颜色">2.1 根据下载时间显示不同颜色</h3>
-<p>你可以设置Total
-Commander根据文件的创建时间来显示不同的颜色，比如最近下载的文件显示为不同颜色：</p>
-<ol type="1">
-<li><p>打开“配置 -&gt; 选项”，选择左侧的“Color”。</p></li>
-<li><p>点击“Define colors by file
-type”按钮，进入文件颜色自定义界面。</p></li>
-<li><p>点击“Add”按钮，选择一个颜色。</p></li>
-<li><p>在条件中选择“Age (文件创建时间)”。</p></li>
-<li><p>输入时间条件，如“&lt;
-1d”（表示一天内的文件），这样所有一天内的文件将会显示为所选颜色。</p></li>
-</ol>
-<h3 id="根据文件扩展名显示颜色">2.2 根据文件扩展名显示颜色</h3>
-<p>如果你希望不同扩展名的文件显示为不同颜色，可以设置如下：</p>
-<ol type="1">
-<li><p>同样进入“Define colors by file
-type”界面，点击“Add”按钮。</p></li>
-<li><p>选择颜色后，在条件部分输入文件类型条件，如
-<code>*.txt</code>，这样所有 <code>.txt</code>
-文件都会以该颜色显示。</p></li>
-<li><p>你可以重复此步骤为其他文件类型设定不同颜色，例如
-<code>*.jpg</code> 为蓝色，<code>*.exe</code> 为红色。</p></li>
-</ol>
-<h3 id="自定义目录颜色">2.3 自定义目录颜色</h3>
-<p>如果你希望特定的文件夹（如工作目录或某些重要目录）显示为不同颜色：</p>
-<ol type="1">
-<li><p>在“Define colors by file type”中点击“Add”。</p></li>
-<li><p>选择一个颜色，在条件中选择“属性 (Attribute)”。</p></li>
-<li><p>输入 <code>D</code>
-来匹配所有目录，或者手动输入特定目录的名称。</p></li>
-<li><p>这样所有符合条件的目录将会显示为你设定的颜色。</p></li>
-</ol>
-<h2 id="文件操作技巧">3. 文件操作技巧</h2>
-<p>Total
-Commander的核心在于它的双窗格文件管理，这使得文件复制、移动等操作极为高效。以下是一些实用技巧：</p>
-<h3 id="快速切换路径">3.1 快速切换路径</h3>
-<p>使用 <code>Alt + F1</code> 和 <code>Alt + F2</code>
-可以快速切换左右窗格的驱动器。你可以通过此功能快速定位到不同的驱动器或文件夹。</p>
-<h3 id="批量重命名工具">3.2 批量重命名工具</h3>
-<p>Total Commander自带批量重命名工具，可以快速重命名一组文件：</p>
-<ol type="1">
-<li><p>选择需要重命名的文件。</p></li>
-<li><p>按 <code>Ctrl + M</code> 调出批量重命名工具。</p></li>
-<li><p>你可以设置规则，如添加前缀、后缀，或者按数字顺序重命名。</p></li>
-</ol>
-<h3 id="文件同步">3.3 文件同步</h3>
-<p>Total
-Commander提供了文件同步功能，帮助你保持两个文件夹内容的一致性：</p>
-<ol type="1">
-<li><p>打开左右两个窗格，分别定位到两个文件夹。</p></li>
-<li><p>点击顶部菜单中的“文件 -&gt; 同步目录”。</p></li>
-<li><p>选择需要同步的文件和操作方式（复制或删除）。</p></li>
-</ol>
-<h2 id="总结">4. 总结</h2>
-<p>Total
-Commander强大的文件管理功能和自定义选项，可以显著提升Windows下的文件操作效率。通过设置快捷键、定义文件颜色显示等，你可以根据个人需求定制你的文件管理体验。</p>
-<p>祝你使用愉快！</p>
+<h3 id="作业jobs和步骤steps">1.3 作业（Jobs）和步骤（Steps）：</h3>
+<ul>
+<li><p><code>Job</code>：一个工作流可以包含多个作业（jobs），每个作业可以在不同的虚拟环境中并行或顺序运行。作业之间也可以通过输出和依赖关系进行通信。</p></li>
+<li><p><code>Step</code>：每个作业可以包含多个步骤，通常是命令或操作（actions）的执行。这些步骤可以是<code>shell</code>命令或预定义的GitHub
+Actions。</p></li>
+</ul>
+<h3 id="运行环境runners">1.4 运行环境（Runners）：</h3>
+<p>GitHub
+Actions提供多种预配置的虚拟机环境，称为运行器（Runners），包括：</p>
+<ul>
+<li><p>Ubuntu、Windows、macOS等系统。</p></li>
+<li><p>用户还可以使用自托管运行器，在自己的服务器上执行工作流。</p></li>
+</ul>
+<h3 id="actions操作">1.5 Actions（操作）：</h3>
+<ul>
+<li><p><code>Actions</code>是GitHub
+Actions的核心组件，是可复用的单元。GitHub提供了大量官方和社区开发的Actions，来简化常见任务（如设置语言环境、部署到云服务等）。</p></li>
+<li><p>开发者也可以自定义自己的Action，以适应特定需求。Actions可以是Docker容器化的任务，也可以是运行JavaScript或Shell脚本的任务。</p></li>
+</ul>
+<h3 id="工作流的上下文与秘密管理">1.6 工作流的上下文与秘密管理：</h3>
+<ul>
+<li><p>GitHub
+Actions提供了丰富的上下文变量，如环境变量、GitHub的元数据（例如事件信息、触发时间等），可在工作流中使用。</p></li>
+<li><p>可以通过GitHub的Secrets管理敏感信息（如API密钥、认证令牌等），并在工作流中安全地使用这些秘密信息。</p></li>
+</ul>
+<h3 id="并行和依赖管理">1.7 并行和依赖管理：</h3>
+<ul>
+<li><p>作业可以并行运行，以加速CI/CD流程。</p></li>
+<li><p>通过设置needs关键字，可以定义作业之间的依赖关系，确保某些作业在其他作业完成后才执行。</p></li>
+</ul>
+<h3 id="缓存和工件artifacts">1.8 缓存和工件（Artifacts）：</h3>
+<ul>
+<li><p>GitHub
+Actions支持缓存依赖项（如npm包、编译结果）以加速后续的工作流运行。</p></li>
+<li><p>通过上传工件，可以在作业之间共享生成的文件或产物（如编译产物、测试结果等）。</p></li>
+</ul>
+<h2 id="github-actions的典型用例">2. GitHub Actions的典型用例</h2>
+<h3 id="持续集成ci">2.1 持续集成（CI）：</h3>
+<ul>
+<li><p>自动化测试：在每次代码推送或PR创建时，自动拉取代码并运行单元测试、集成测试等。</p></li>
+<li><p>代码质量检查：使用linters、格式化工具对代码进行检查。</p></li>
+<li><p>多平台构建：通过GitHub
+Actions可以在不同的平台（Windows、Linux、macOS）上同时进行构建。</p></li>
+</ul>
+<h3 id="持续交付cd">2.2 持续交付（CD）：</h3>
+<ul>
+<li><p>自动化部署：可以在代码通过测试后，自动部署到生产环境或测试环境中。例如，部署到AWS、Google
+Cloud、Azure，或通过FTP部署到自托管服务器。</p></li>
+<li><p>自动发布：在创建GitHub
+Release或推送特定标签时，自动打包应用并发布到如npm、PyPI、Docker
+Hub等平台。</p></li>
+</ul>
+<h3 id="项目自动化">2.3 项目自动化：</h3>
+<ul>
+<li><p>自动化Issue管理：可以自动化标记、关闭、分配Issue。</p></li>
+<li><p>Pull
+Request工作流：当有新的PR时，自动分配审查人员、运行测试和检查。</p></li>
+</ul>
+<p><strong>一个简单的 GitHub Actions 示例</strong></p>
+<p>以下是一个基本的 GitHub Actions 工作流，用于在代码推送到 main
+分支时，自动执行 Node.js 项目的测试：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> Node.js CI
+
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">push</span><span class="token punctuation">:</span>
+    <span class="token key atrule">branches</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout code
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Run tests
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm test</code></pre>
+<p><strong>GitHub Actions 的优势</strong></p>
+<ul>
+<li><p>高度集成：与GitHub仓库紧密集成，工作流可以响应多种GitHub事件。</p></li>
+<li><p>灵活性：支持自定义Actions，适用于多种任务场景。</p></li>
+<li><p>多平台支持：可以同时在不同操作系统上运行作业。</p></li>
+<li><p>社区支持：有大量社区维护的Actions，覆盖了多种常见场景，用户可以直接复用。</p></li>
+</ul>
+<p>GitHub
+Actions是一个功能强大且灵活的CI/CD工具，能够大幅提升开发效率，通过自动化流程帮助团队减少手动操作，确保代码质量和发布流程的稳定性。但是，有时候我们可能需要在本地进行类似的打包操作，下面将介绍如何实现这一过程。</p>
+<h2 id="本地打包实现">3. 本地打包实现</h2>
+<p>在本地实现类似Github
+Actions的<code>continuous.yml</code>文件进行打包，主要是为了模拟CI/CD流程，并在本地执行自动化任务。通常可以通过一些CI工具（如Docker、Makefile或者直接通过Shell脚本）来运行类似的任务。假设你已经有一个GitHub
+Actions的<code>continuous.yml</code>文件，以下步骤可以帮助你在本地打包和测试：</p>
+<h3 id="使用act模拟github-actions">3.1 使用Act模拟GitHub Actions</h3>
+<p><code>Act</code>是一个工具，它能够在本地运行GitHub
+Actions。你可以用它来直接执行<code>continuous.yml</code>文件中的内容。</p>
+<h4 id="安装act">3.1.1 安装Act：</h4>
+<p>首先，需要在本地机器上安装<code>act</code>。如果你使用的是macOS，可以使用Homebrew安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> act</code></pre>
+<p>对于其他操作系统，可以参考<a
+target="_blank" rel="noopener" href="https://nektosact.com/installation/index.html">Act的官方文档</a>进行安装。</p>
+<h4 id="配置continuous.yml文件">3.1.2 配置continuous.yml文件：</h4>
+<p>确保你的GitHub
+Actions配置文件<code>continuous.yml</code>位于<code>.github/workflows/</code>路径下（这是GitHub
+Actions的默认路径）。</p>
+<h4 id="运行act">3.1.3 运行Act：</h4>
+<p>使用以下命令来运行你的工作流：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">act</code></pre>
+<p><code>act</code>会根据你的<code>continuous.yml</code>文件中的触发条件（如<code>push</code>或<code>pull_request</code>），模拟GitHub
+Actions并执行相关步骤。</p>
+<p>** 配置镜像：**</p>
+<p>如果你的工作流中使用了自定义的镜像，你可以在<code>act</code>命令中指定镜像，例如：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">act <span class="token parameter variable">-P</span> ubuntu-latest<span class="token operator">=</span>nektos/act-environments-ubuntu:18.04</code></pre>
+<p>这样，<code>act</code>会使用<code>nektos/act-environments-ubuntu:18.04</code>镜像来运行你的工作流。</p>
+<h3 id="使用shell脚本或makefile">3.2 使用Shell脚本或Makefile</h3>
+<p>如果你不想使用Act，可以通过将<code>continuous.yml</code>文件中的指令提取出来，转为Shell脚本或Makefile，在本地执行打包。</p>
+<h4 id="创建makefile或shell脚本">3.2.1 创建Makefile或Shell脚本：</h4>
+<p>根据<code>continuous.yml</code>文件中的步骤，创建一个本地Shell脚本或Makefile。例如，假设<code>continuous.yml</code>中有一个打包的步骤：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout repository
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build project
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm run build</code></pre>
+<p>你可以将这些步骤转为一个Shell脚本<code>build.sh</code>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># 模拟 GitHub Actions 的构建过程</span>
+
+<span class="token comment"># Step 1: 拉取代码 (checkout)</span>
+<span class="token function">git</span> checkout main
+
+<span class="token comment"># Step 2: 设置 Node.js 环境</span>
+nvm <span class="token function">install</span> <span class="token number">14</span>
+nvm use <span class="token number">14</span>
+
+<span class="token comment"># Step 3: 安装依赖</span>
+<span class="token function">npm</span> <span class="token function">install</span>
+
+<span class="token comment"># Step 4: 构建项目</span>
+<span class="token function">npm</span> run build</code></pre>
+<p>将这个脚本保存为<code>local_build.sh</code>，然后运行：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x local_build.sh
+./local_build.sh</code></pre>
+<h3 id="使用docker">3.3 使用Docker</h3>
+<p>如果你希望通过容器来实现更接近GitHub
+Actions的运行环境，可以使用Docker构建环境，来打包和测试项目。</p>
+<h4 id="创建dockerfile">3.3.1 创建Dockerfile：</h4>
+<p>根据<code>continuous.yml</code>文件中的环境要求创建一个<code>Dockerfile</code>。例如：</p>
+<pre class="language-Dockerfile" data-language="Dockerfile"><code class="language-Dockerfile">FROM node:14
+
+WORKDIR &#x2F;app
+
+COPY . .
+
+RUN npm install
+
+CMD [&quot;npm&quot;, &quot;run&quot;, &quot;build&quot;]</code></pre>
+<h4 id="运行docker容器">3.3.2 运行Docker容器：</h4>
+<p>运行以下命令来构建和运行Docker容器：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build <span class="token parameter variable">-t</span> local-build <span class="token builtin class-name">.</span>
+<span class="token function">docker</span> run local-build</code></pre>
+<p>这样，Docker容器会在本地构建项目，类似于GitHub
+Actions中的构建过程。</p>
 
                 
             </div>
@@ -704,12 +789,12 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%A5%9E%E5%99%A8/">
-                                    <span class="chip bg-color">神器</span>
+                                <a href="/tags/GitHub-Action/">
+                                    <span class="chip bg-color">GitHub Action</span>
                                 </a>
                             
-                                <a href="/tags/Total-Commander/">
-                                    <span class="chip bg-color">Total Commander</span>
+                                <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%89%93%E5%8C%85/">
+                                    <span class="chip bg-color">软件打包</span>
                                 </a>
                             
                         </div>
@@ -755,7 +840,7 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
         repo: 'Comments',
         owner: 'changqj',
         admin: "changqj",
-        id: '2024-10-15T11-57-45',
+        id: '2024-10-21T19-28-58',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -786,9 +871,10 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/post/d2f9f15b.html">
                     <div class="card-image">
@@ -805,9 +891,9 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-10-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -820,6 +906,7 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -842,23 +929,23 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/post/bb2b886d.html">
+                <a href="/post/aada5c99.html">
                     <div class="card-image">
                         
-                        <img src="/images/covers/bb2b886d.jpeg" class="responsive-img" alt="Windows上配置Total Commander + Listary">
+                        <img src="/images/covers/aada5c99.jpg" class="responsive-img" alt="Total Commander使用">
                         
-                        <span class="card-title">Windows上配置Total Commander + Listary</span>
+                        <span class="card-title">Total Commander使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            通过结合使用Total Commander和Listary，你可以显著提升Windows下的文件管理和搜索效率。Total Commander提供了强大的文件管理功能，而Listary的快速搜索与Total Commander的双窗格管理相结合，让你的日常文件操作更加高效。本文介绍了如何安装和配置Total Commander和Listary，并提供了一些常见问题的解决方法。
+                            Total Commander作为一款文件管理器，可以通过双窗格界面和丰富的自定义选项提高文件操作的效率。在本文中，我们将介绍一些常用的快捷键设置、文件操作技巧，并展示如何根据文件属性自定义文件颜色显示。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-15
                             </span>
                         <span class="publish-author">
                             
@@ -881,10 +968,6 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
                     
                     <a href="/tags/Total-Commander/">
                         <span class="chip bg-color">Total Commander</span>
-                    </a>
-                    
-                    <a href="/tags/Listary/">
-                        <span class="chip bg-color">Listary</span>
                     </a>
                     
                 </div>
@@ -943,6 +1026,87 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
         // console.log('Parent div height:', parentHeight);
     });
 </script>
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
     
 
 </main>

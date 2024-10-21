@@ -2896,4 +2896,214 @@ Hormann教授的邀请和邓重阳教授的支持让我有了这次国外学习�
         <tag>游记</tag>
       </tags>
   </entry>
+  <entry>
+    <title>如何像GitHub Action那样本地打包</title>
+    <url>/post/d2f9f15b.html</url>
+    <content><![CDATA[<blockquote>
+<p>GitHub
+Actions是GitHub提供的一项功能，用于实现持续集成和持续交付（CI/CD）工作流的自动化。通过GitHub
+Actions，开发者可以在代码库发生特定事件时，自动触发构建、测试、部署等一系列任务。它支持高度自定义的工作流，适用于从简单的脚本执行到复杂的项目自动化。这里将首先简要介绍GitHub
+Actions的基本概念，然后讲解如何在本地实现类似的打包过程。</p>
+</blockquote>
+<h2 id="github-actions的主要功能">1. GitHub Actions的主要功能</h2>
+<h3 id="工作流自动化workflows">1.1 工作流自动化（Workflows）：</h3>
+<p>GitHub
+Actions使用<code>YAML</code>文件定义自动化工作流，通常保存在项目的<code>.github/workflows/</code>目录下。每个工作流都可以根据触发条件（如代码提交、Pull
+Request、Issue变动等）自动执行。</p>
+<h3 id="触发器triggers">1.2 触发器（Triggers）：</h3>
+<p>工作流可以通过不同的事件触发，如：</p>
+<ul>
+<li><p><code>push</code>：在代码推送到指定分支时触发。</p></li>
+<li><p><code>pull_request</code>：当发起或更新 Pull Request
+时触发。</p></li>
+<li><p><code>schedule</code>：基于时间计划（如每天、每周）自动触发。</p></li>
+<li><p><code>workflow_dispatch</code>：手动触发工作流。</p></li>
+<li><p><code>repository_dispatch</code>：自定义事件触发。</p></li>
+</ul>
+<h3 id="作业jobs和步骤steps">1.3 作业（Jobs）和步骤（Steps）：</h3>
+<ul>
+<li><p><code>Job</code>：一个工作流可以包含多个作业（jobs），每个作业可以在不同的虚拟环境中并行或顺序运行。作业之间也可以通过输出和依赖关系进行通信。</p></li>
+<li><p><code>Step</code>：每个作业可以包含多个步骤，通常是命令或操作（actions）的执行。这些步骤可以是<code>shell</code>命令或预定义的GitHub
+Actions。</p></li>
+</ul>
+<h3 id="运行环境runners">1.4 运行环境（Runners）：</h3>
+<p>GitHub
+Actions提供多种预配置的虚拟机环境，称为运行器（Runners），包括：</p>
+<ul>
+<li><p>Ubuntu、Windows、macOS等系统。</p></li>
+<li><p>用户还可以使用自托管运行器，在自己的服务器上执行工作流。</p></li>
+</ul>
+<h3 id="actions操作">1.5 Actions（操作）：</h3>
+<ul>
+<li><p><code>Actions</code>是GitHub
+Actions的核心组件，是可复用的单元。GitHub提供了大量官方和社区开发的Actions，来简化常见任务（如设置语言环境、部署到云服务等）。</p></li>
+<li><p>开发者也可以自定义自己的Action，以适应特定需求。Actions可以是Docker容器化的任务，也可以是运行JavaScript或Shell脚本的任务。</p></li>
+</ul>
+<h3 id="工作流的上下文与秘密管理">1.6 工作流的上下文与秘密管理：</h3>
+<ul>
+<li><p>GitHub
+Actions提供了丰富的上下文变量，如环境变量、GitHub的元数据（例如事件信息、触发时间等），可在工作流中使用。</p></li>
+<li><p>可以通过GitHub的Secrets管理敏感信息（如API密钥、认证令牌等），并在工作流中安全地使用这些秘密信息。</p></li>
+</ul>
+<h3 id="并行和依赖管理">1.7 并行和依赖管理：</h3>
+<ul>
+<li><p>作业可以并行运行，以加速CI/CD流程。</p></li>
+<li><p>通过设置needs关键字，可以定义作业之间的依赖关系，确保某些作业在其他作业完成后才执行。</p></li>
+</ul>
+<h3 id="缓存和工件artifacts">1.8 缓存和工件（Artifacts）：</h3>
+<ul>
+<li><p>GitHub
+Actions支持缓存依赖项（如npm包、编译结果）以加速后续的工作流运行。</p></li>
+<li><p>通过上传工件，可以在作业之间共享生成的文件或产物（如编译产物、测试结果等）。</p></li>
+</ul>
+<h2 id="github-actions的典型用例">2. GitHub Actions的典型用例</h2>
+<h3 id="持续集成ci">2.1 持续集成（CI）：</h3>
+<ul>
+<li><p>自动化测试：在每次代码推送或PR创建时，自动拉取代码并运行单元测试、集成测试等。</p></li>
+<li><p>代码质量检查：使用linters、格式化工具对代码进行检查。</p></li>
+<li><p>多平台构建：通过GitHub
+Actions可以在不同的平台（Windows、Linux、macOS）上同时进行构建。</p></li>
+</ul>
+<h3 id="持续交付cd">2.2 持续交付（CD）：</h3>
+<ul>
+<li><p>自动化部署：可以在代码通过测试后，自动部署到生产环境或测试环境中。例如，部署到AWS、Google
+Cloud、Azure，或通过FTP部署到自托管服务器。</p></li>
+<li><p>自动发布：在创建GitHub
+Release或推送特定标签时，自动打包应用并发布到如npm、PyPI、Docker
+Hub等平台。</p></li>
+</ul>
+<h3 id="项目自动化">2.3 项目自动化：</h3>
+<ul>
+<li><p>自动化Issue管理：可以自动化标记、关闭、分配Issue。</p></li>
+<li><p>Pull
+Request工作流：当有新的PR时，自动分配审查人员、运行测试和检查。</p></li>
+</ul>
+<p><strong>一个简单的 GitHub Actions 示例</strong></p>
+<p>以下是一个基本的 GitHub Actions 工作流，用于在代码推送到 main
+分支时，自动执行 Node.js 项目的测试：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> Node.js CI
+
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">push</span><span class="token punctuation">:</span>
+    <span class="token key atrule">branches</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout code
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Run tests
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm test</code></pre>
+<p><strong>GitHub Actions 的优势</strong></p>
+<ul>
+<li><p>高度集成：与GitHub仓库紧密集成，工作流可以响应多种GitHub事件。</p></li>
+<li><p>灵活性：支持自定义Actions，适用于多种任务场景。</p></li>
+<li><p>多平台支持：可以同时在不同操作系统上运行作业。</p></li>
+<li><p>社区支持：有大量社区维护的Actions，覆盖了多种常见场景，用户可以直接复用。</p></li>
+</ul>
+<p>GitHub
+Actions是一个功能强大且灵活的CI/CD工具，能够大幅提升开发效率，通过自动化流程帮助团队减少手动操作，确保代码质量和发布流程的稳定性。但是，有时候我们可能需要在本地进行类似的打包操作，下面将介绍如何实现这一过程。</p>
+<h2 id="本地打包实现">3. 本地打包实现</h2>
+<p>在本地实现类似Github
+Actions的<code>continuous.yml</code>文件进行打包，主要是为了模拟CI/CD流程，并在本地执行自动化任务。通常可以通过一些CI工具（如Docker、Makefile或者直接通过Shell脚本）来运行类似的任务。假设你已经有一个GitHub
+Actions的<code>continuous.yml</code>文件，以下步骤可以帮助你在本地打包和测试：</p>
+<h3 id="使用act模拟github-actions">3.1 使用Act模拟GitHub Actions</h3>
+<p><code>Act</code>是一个工具，它能够在本地运行GitHub
+Actions。你可以用它来直接执行<code>continuous.yml</code>文件中的内容。</p>
+<h4 id="安装act">3.1.1 安装Act：</h4>
+<p>首先，需要在本地机器上安装<code>act</code>。如果你使用的是macOS，可以使用Homebrew安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> act</code></pre>
+<p>对于其他操作系统，可以参考<a
+href="https://nektosact.com/installation/index.html">Act的官方文档</a>进行安装。</p>
+<h4 id="配置continuous.yml文件">3.1.2 配置continuous.yml文件：</h4>
+<p>确保你的GitHub
+Actions配置文件<code>continuous.yml</code>位于<code>.github/workflows/</code>路径下（这是GitHub
+Actions的默认路径）。</p>
+<h4 id="运行act">3.1.3 运行Act：</h4>
+<p>使用以下命令来运行你的工作流：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">act</code></pre>
+<p><code>act</code>会根据你的<code>continuous.yml</code>文件中的触发条件（如<code>push</code>或<code>pull_request</code>），模拟GitHub
+Actions并执行相关步骤。</p>
+<p>** 配置镜像：**</p>
+<p>如果你的工作流中使用了自定义的镜像，你可以在<code>act</code>命令中指定镜像，例如：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">act <span class="token parameter variable">-P</span> ubuntu-latest<span class="token operator">=</span>nektos/act-environments-ubuntu:18.04</code></pre>
+<p>这样，<code>act</code>会使用<code>nektos/act-environments-ubuntu:18.04</code>镜像来运行你的工作流。</p>
+<h3 id="使用shell脚本或makefile">3.2 使用Shell脚本或Makefile</h3>
+<p>如果你不想使用Act，可以通过将<code>continuous.yml</code>文件中的指令提取出来，转为Shell脚本或Makefile，在本地执行打包。</p>
+<h4 id="创建makefile或shell脚本">3.2.1 创建Makefile或Shell脚本：</h4>
+<p>根据<code>continuous.yml</code>文件中的步骤，创建一个本地Shell脚本或Makefile。例如，假设<code>continuous.yml</code>中有一个打包的步骤：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout repository
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build project
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm run build</code></pre>
+<p>你可以将这些步骤转为一个Shell脚本<code>build.sh</code>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># 模拟 GitHub Actions 的构建过程</span>
+
+<span class="token comment"># Step 1: 拉取代码 (checkout)</span>
+<span class="token function">git</span> checkout main
+
+<span class="token comment"># Step 2: 设置 Node.js 环境</span>
+nvm <span class="token function">install</span> <span class="token number">14</span>
+nvm use <span class="token number">14</span>
+
+<span class="token comment"># Step 3: 安装依赖</span>
+<span class="token function">npm</span> <span class="token function">install</span>
+
+<span class="token comment"># Step 4: 构建项目</span>
+<span class="token function">npm</span> run build</code></pre>
+<p>将这个脚本保存为<code>local_build.sh</code>，然后运行：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x local_build.sh
+./local_build.sh</code></pre>
+<h3 id="使用docker">3.3 使用Docker</h3>
+<p>如果你希望通过容器来实现更接近GitHub
+Actions的运行环境，可以使用Docker构建环境，来打包和测试项目。</p>
+<h4 id="创建dockerfile">3.3.1 创建Dockerfile：</h4>
+<p>根据<code>continuous.yml</code>文件中的环境要求创建一个<code>Dockerfile</code>。例如：</p>
+<pre class="language-Dockerfile" data-language="Dockerfile"><code class="language-Dockerfile">FROM node:14
+
+WORKDIR &#x2F;app
+
+COPY . .
+
+RUN npm install
+
+CMD [&quot;npm&quot;, &quot;run&quot;, &quot;build&quot;]</code></pre>
+<h4 id="运行docker容器">3.3.2 运行Docker容器：</h4>
+<p>运行以下命令来构建和运行Docker容器：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build <span class="token parameter variable">-t</span> local-build <span class="token builtin class-name">.</span>
+<span class="token function">docker</span> run local-build</code></pre>
+<p>这样，Docker容器会在本地构建项目，类似于GitHub
+Actions中的构建过程。</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>GitHub Action</tag>
+        <tag>软件打包</tag>
+      </tags>
+  </entry>
 </search>
