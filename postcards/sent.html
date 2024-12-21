@@ -626,14 +626,16 @@
                 var cardElement = document.createElement('div');
                 cardElement.className = 'col s6 m4 l3 xl2 postcard-box';
                 cardElement.innerHTML = `
-                    <a href="${pclink}" class="postcard-item" data-aos="zoom-in-up">
-                        <div class="postcard-cover-box" style="background-image: url(${postcards[type].cardpath + postcards[type].cards[i]}); background-position: center bottom;"></div>
+                    <div class="postcard-item" data-aos="zoom-in-up">
+                        <a href="${pclink}">
+                            <div class="postcard-cover-box" style="background-image: url(${postcards[type].cardpath + postcards[type].cards[i]}); background-position: center bottom;"></div>
+                        </a>
                         <p class="postcard-name" style="display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;">
                             ${!isNaN(postcards[type].cards[i].charAt(3)) ? `<img alt="Postcard avatar" src="${postcards[type].avatar[i]}" style="height: 18px; width: 18px; border-radius: 50%;" />&nbsp;` : ''}
                             ${postcards[type].cards[i].split('.')[0]}&nbsp;
-                            <i class="flag flag-${toflag}"></i>
+                            <a target="_blank" rel="noopener" href="https://www.postcrossing.com/country/${toflag}"><i class="flag flag-${toflag}"></i></a>
                         </p>
-                    </a>
+                    </div>
                 `;
                 contentContainer.appendChild(cardElement);
             }
