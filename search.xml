@@ -141,6 +141,78 @@ grid on<span class="token punctuation">,</span>hold on
       </tags>
   </entry>
   <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title(&#39;Bezier曲线拟合&#39;);
+questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
+<span id="more"></span>
+<p><img src="http://img.ifish.ink/figure/main_01.png" /></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
+while 1
+    i &#x3D; i+1;
+    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
+    xlabel(tip);
+    try
+    [x,y,button] &#x3D; ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,&#39;o&#39;);
+    dataPoints(:,i) &#x3D; [x;y];
+    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
+    if button ~&#x3D; 1
+        xlabel(&#39;&#39;);
+        break;
+    end
+end
+
+
+for i &#x3D; 0:0.01:1
+    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
+end
+h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
+legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_02.png" /></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data &#x3D; dataPoints;
+while 1
+    if size(data,2) &#x3D;&#x3D; 1
+        break;
+    end
+    temp &#x3D; zeros(size(data,1),size(data,2)-1);
+    for i &#x3D; 1:size(data,2)-1
+        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data &#x3D; temp;
+end
+end</code></pre>
+<p><img src="http://img.ifish.ink/figure/main_03.png" /></p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>曲线曲面</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>拟合</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github上 fork了别人的代码 本地更新主分支代码</title>
     <url>/post/8f4cbc0c.html</url>
     <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
@@ -259,172 +331,6 @@ std<span class="token double-colon punctuation">::</span>cout <span class="token
         <tag>ImGui</tag>
         <tag>视网膜屏幕</tag>
         <tag>坐标转换</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title(&#39;Bezier曲线拟合&#39;);
-questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
-<span id="more"></span>
-<p><img src="http://img.ifish.ink/figure/main_01.png" /></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
-while 1
-    i &#x3D; i+1;
-    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
-    xlabel(tip);
-    try
-    [x,y,button] &#x3D; ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,&#39;o&#39;);
-    dataPoints(:,i) &#x3D; [x;y];
-    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
-    if button ~&#x3D; 1
-        xlabel(&#39;&#39;);
-        break;
-    end
-end
-
-
-for i &#x3D; 0:0.01:1
-    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
-end
-h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
-legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_02.png" /></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data &#x3D; dataPoints;
-while 1
-    if size(data,2) &#x3D;&#x3D; 1
-        break;
-    end
-    temp &#x3D; zeros(size(data,1),size(data,2)-1);
-    for i &#x3D; 1:size(data,2)-1
-        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data &#x3D; temp;
-end
-end</code></pre>
-<p><img src="http://img.ifish.ink/figure/main_03.png" /></p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>曲线曲面</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>拟合</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenSubdiv + Visual Studio环境配置</title>
-    <url>/post/a507e481.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
-</blockquote>
-<blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
-<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
-） （先前条件：<strong>win7系统</strong> 已安装<strong><a
-href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
-Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
-</blockquote>
-<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
-<p>需要的资源文件有<a
-href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a
-href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
-​ <strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a
-href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
-<img src="http://img.ifish.ink/figure/1.png" alt="fig1" /> ​
- <strong>cmake的安装</strong>：可直接从<a
-href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
-<img src="http://img.ifish.ink/figure/2.png" alt="fig2" /></p>
-<ul>
-<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
-<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
-<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
-user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
-CMake to the system PATH for the current user</em>”）</p></li>
-<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a
-href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
-如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
-</ul>
-<p><img src="http://img.ifish.ink/figure/2.png" alt="fig3" /> <img
-src="http://img.ifish.ink/figure/4.png" alt="fig4" /> ​
-<strong>glfw</strong>：GLfW ：<a
-href="http://www.glfw.org/">http://www.glfw.org/</a>
-如图所示可以下载压缩文件，或者用git克隆也可。 <img
-src="http://img.ifish.ink/figure/5.png" alt="fig5" /> <img
-src="http://img.ifish.ink/figure/6.png" alt="fig6" /></p>
-<hr />
-<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
-<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
-GUI选择源代码目录和构建路径：</h4>
-<p><img src="http://img.ifish.ink/figure/7.png" alt="fig7" /> <img
-src="http://img.ifish.ink/figure/8.png" alt="fig8" /></p>
-<h4
-id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
-<p><img src="http://img.ifish.ink/figure/9.png" alt="fig9" /> <img
-src="http://img.ifish.ink/figure/10.png" alt="fig10" /></p>
-<h4
-id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
-done’即可</h4>
-<p><img src="http://img.ifish.ink/figure/11.png" alt="fig11" /> <img
-src="http://img.ifish.ink/figure/12.png" alt="fig12" /></p>
-<h4
-id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
-done完成</h4>
-<figure>
-<img src="http://img.ifish.ink/figure/13.png" alt="fig13" />
-<figcaption aria-hidden="true">fig13</figcaption>
-</figure>
-<hr />
-<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
-<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
-<pre class="language-none"><code class="language-none">&quot;d:&#x2F;Cmake3.8.0&#x2F;bin&#x2F;cmake.exe&quot; -G &quot;Visual Studio 14 Win64&quot; -DGLEW_LOCATION&#x3D;[d:&#x2F;glew&#x2F;lib&#x2F;Release&#x2F;x64] -DGLEW_INCLUDE_DIR&#x3D;[d:\glew\include\] -DGLEW_LIBRARY&#x3D;[d:\glew\lib\] -DGLFW_LOCATION&#x3D;[d:&#x2F;glfw&#x2F;bd&#x2F;src&#x2F;Release] -DNO_PTEX&#x3D;1 -DNO_DOC&#x3D;1 -DNO_OMP&#x3D;1 -DNO_TBB&#x3D;1 -DNO_CUDA&#x3D;1 -DNO_OPENCL&#x3D;1 -DNO_CLEW&#x3D;1</code></pre>
-<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
-<img src="http://img.ifish.ink/figure/14.png" alt="fig14" />
-按下回车键： <img src="http://img.ifish.ink/figure/15.png"
-alt="fig15" /> 完成！！！</p>
-<hr />
-<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
-<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
-Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png"
-alt="fig16" />
-点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img
-src="http://img.ifish.ink/figure/17.png" alt="fig17" />
-生成过程需要一点时间，请耐心等待…… <img
-src="http://img.ifish.ink/figure/18.png" alt="fig18" /> 生成成功 <img
-src="http://img.ifish.ink/figure/19.png" alt="fig19" />
-测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
-<img src="http://img.ifish.ink/figure/20.png" alt="fig20" />
-运行后如图所示： <img src="http://img.ifish.ink/figure/21.png"
-alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -557,6 +463,100 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
       </tags>
   </entry>
   <entry>
+    <title>OpenSubdiv + Visual Studio环境配置</title>
+    <url>/post/a507e481.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
+</blockquote>
+<blockquote>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
+<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
+） （先前条件：<strong>win7系统</strong> 已安装<strong><a
+href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
+Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
+</blockquote>
+<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
+<p>需要的资源文件有<a
+href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a
+href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
+​ <strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a
+href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
+<img src="http://img.ifish.ink/figure/1.png" alt="fig1" /> ​
+ <strong>cmake的安装</strong>：可直接从<a
+href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
+<img src="http://img.ifish.ink/figure/2.png" alt="fig2" /></p>
+<ul>
+<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
+<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
+<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
+user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
+CMake to the system PATH for the current user</em>”）</p></li>
+<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a
+href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
+如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
+</ul>
+<p><img src="http://img.ifish.ink/figure/2.png" alt="fig3" /> <img
+src="http://img.ifish.ink/figure/4.png" alt="fig4" /> ​
+<strong>glfw</strong>：GLfW ：<a
+href="http://www.glfw.org/">http://www.glfw.org/</a>
+如图所示可以下载压缩文件，或者用git克隆也可。 <img
+src="http://img.ifish.ink/figure/5.png" alt="fig5" /> <img
+src="http://img.ifish.ink/figure/6.png" alt="fig6" /></p>
+<hr />
+<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
+<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
+GUI选择源代码目录和构建路径：</h4>
+<p><img src="http://img.ifish.ink/figure/7.png" alt="fig7" /> <img
+src="http://img.ifish.ink/figure/8.png" alt="fig8" /></p>
+<h4
+id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
+<p><img src="http://img.ifish.ink/figure/9.png" alt="fig9" /> <img
+src="http://img.ifish.ink/figure/10.png" alt="fig10" /></p>
+<h4
+id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
+done’即可</h4>
+<p><img src="http://img.ifish.ink/figure/11.png" alt="fig11" /> <img
+src="http://img.ifish.ink/figure/12.png" alt="fig12" /></p>
+<h4
+id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
+done完成</h4>
+<figure>
+<img src="http://img.ifish.ink/figure/13.png" alt="fig13" />
+<figcaption aria-hidden="true">fig13</figcaption>
+</figure>
+<hr />
+<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
+<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
+<pre class="language-none"><code class="language-none">&quot;d:&#x2F;Cmake3.8.0&#x2F;bin&#x2F;cmake.exe&quot; -G &quot;Visual Studio 14 Win64&quot; -DGLEW_LOCATION&#x3D;[d:&#x2F;glew&#x2F;lib&#x2F;Release&#x2F;x64] -DGLEW_INCLUDE_DIR&#x3D;[d:\glew\include\] -DGLEW_LIBRARY&#x3D;[d:\glew\lib\] -DGLFW_LOCATION&#x3D;[d:&#x2F;glfw&#x2F;bd&#x2F;src&#x2F;Release] -DNO_PTEX&#x3D;1 -DNO_DOC&#x3D;1 -DNO_OMP&#x3D;1 -DNO_TBB&#x3D;1 -DNO_CUDA&#x3D;1 -DNO_OPENCL&#x3D;1 -DNO_CLEW&#x3D;1</code></pre>
+<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
+<img src="http://img.ifish.ink/figure/14.png" alt="fig14" />
+按下回车键： <img src="http://img.ifish.ink/figure/15.png"
+alt="fig15" /> 完成！！！</p>
+<hr />
+<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
+<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
+Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png"
+alt="fig16" />
+点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img
+src="http://img.ifish.ink/figure/17.png" alt="fig17" />
+生成过程需要一点时间，请耐心等待…… <img
+src="http://img.ifish.ink/figure/18.png" alt="fig18" /> 生成成功 <img
+src="http://img.ifish.ink/figure/19.png" alt="fig19" />
+测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
+<img src="http://img.ifish.ink/figure/20.png" alt="fig20" />
+运行后如图所示： <img src="http://img.ifish.ink/figure/21.png"
+alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows上配置Total Commander + Listary</title>
     <url>/post/bb2b886d.html</url>
     <content><![CDATA[<h1 id="windows上配置total-commander-listary">Windows上配置Total
@@ -686,31 +686,6 @@ Commander的双窗格管理相结合，让你的日常文件操作更加高效�
       </tags>
   </entry>
   <entry>
-    <title>WordPress站点地图自动更新</title>
-    <url>/post/943451b1.html</url>
-    <content><![CDATA[<blockquote>
-<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
-</blockquote>
-<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长" />
-<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png"
-alt="google" />
-现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
-<img src="http://img.ifish.ink/img/2.png" alt="google" />
-在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>SEO</tag>
-        <tag>sitemap</tag>
-        <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
     <url>/post/563c2d.html</url>
     <content><![CDATA[<blockquote>
@@ -788,6 +763,31 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
         <tag>git</tag>
         <tag>github</tag>
         <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress站点地图自动更新</title>
+    <url>/post/943451b1.html</url>
+    <content><![CDATA[<blockquote>
+<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
+</blockquote>
+<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
+<img src="http://img.ifish.ink/img/baiduzhanzhang.png" alt="百度站长" />
+<span id="more"></span> <img src="http://img.ifish.ink/img/googlezhanzhang.png"
+alt="google" />
+现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
+<img src="http://img.ifish.ink/img/2.png" alt="google" />
+在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+        <tag>SEO</tag>
+        <tag>sitemap</tag>
       </tags>
   </entry>
   <entry>
@@ -969,154 +969,6 @@ href="/pdf/三对角矩阵求逆的算法_冉瑞生.pdf">三对角矩阵求逆�
 </ul>
 <p><a
 href="https://img.ifish.ink/pdf/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>代数</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>三对角矩阵的类雅可比迭代程序</title>
-    <url>/post/f9428d51.html</url>
-    <content><![CDATA[<h2
-id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
-<span id="more"></span>
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
-% init_X：初始值
-% coefficient_mat：系数矩阵
-% b_mat：b
-% maxNum：最大迭代次数
-% epsilon：精度
-output_args &#x3D; [];
-flag &#x3D; 0;
-
-%% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
-    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
-    return;
-end
-if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
-    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
-    return;
-end
-if size(b_mat,1) &#x3D;&#x3D; 1
-    b_mat &#x3D; b_mat&#39;;
-end
-if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
-    disp(&#39;初始值必须为行向量或者列向量&#39;);
-    return;
-end
-if size(init_X,1) &#x3D;&#x3D; 1
-    init_X &#x3D; init_X&#39;;
-end
-if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
-    disp(&#39;初始值与系数矩阵维数不一致&#39;);
-    return;
-end
-if size(init_X,1) ~&#x3D; size(b_mat,1)
-    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
-    return;
-end
-if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
-    maxNum &#x3D; 500; % 默认值
-end
-if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
-    epsilon &#x3D; 1e-14; % 默认值
-end
-
-%% 三对角线
-a &#x3D; diag(coefficient_mat,-1)&#39;;
-b &#x3D; diag(coefficient_mat)&#39;;
-c &#x3D; diag(coefficient_mat,1)&#39;;
-D &#x3D; diag(a,-1)+diag(b)+diag(c,1);
-
-% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
-[~,D_inv] &#x3D; cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
-if isempty(D_inv)
-    disp(&#39;系数矩阵不可逆&#39;);
-    return;
-end
-%% 开始迭代
-% 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) &#x3D; init_X;
-% for k &#x3D; 1:maxNum
-%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
-%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag &#x3D; 1;
-%         break;
-%     end
-% end
-x &#x3D; init_X;
-%%
-% 迭代公式：
-% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
-% 
-for k &#x3D; 1:maxNum
-    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
-    if norm(temp-x) &lt; epsilon
-        flag &#x3D; 1;
-        x &#x3D; temp;
-        break;
-    end
-    x &#x3D; temp;
-end
-
-
-%% 结果
-text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
-% 正则表达式
-str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
-mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
-my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
-mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
-str5 &#x3D; &#39;\times X&#x3D;&#39;;
-% LaTex 输出
-text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
-    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
-    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
-text(0,0.5,&#39;三对角类雅可比迭代的结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-if flag &#x3D;&#x3D; 1  %好的结果
-    output_args.itrNum &#x3D; k;
-    output_args.result &#x3D; x;
-    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
-%     disp(x(:,k));
-    disp(&#39;解：&#39;);
-    disp(x);
-    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
-        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
-        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
-    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-    return;
-end
-text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
-end</code></pre>
-<ul>
-<li>测试程序</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat &#x3D; [-1 -5 2 -1];
-init_X &#x3D; zeros(size(b_mat));
-out_QuasiJacobi &#x3D; cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-<ul>
-<li>文档 <a
-href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
-</ul>
 <hr />
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
@@ -1456,6 +1308,154 @@ src="http://img.ifish.ink/20201031/4.png" /></p>
       </tags>
   </entry>
   <entry>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <url>/post/f9428d51.html</url>
+    <content><![CDATA[<h2
+id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
+<span id="more"></span>
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
+% init_X：初始值
+% coefficient_mat：系数矩阵
+% b_mat：b
+% maxNum：最大迭代次数
+% epsilon：精度
+output_args &#x3D; [];
+flag &#x3D; 0;
+
+%% 预处理 检查用户调用函数时参数格式是否传错
+if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
+    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
+    return;
+end
+if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
+    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
+    return;
+end
+if size(b_mat,1) &#x3D;&#x3D; 1
+    b_mat &#x3D; b_mat&#39;;
+end
+if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
+    disp(&#39;初始值必须为行向量或者列向量&#39;);
+    return;
+end
+if size(init_X,1) &#x3D;&#x3D; 1
+    init_X &#x3D; init_X&#39;;
+end
+if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
+    disp(&#39;初始值与系数矩阵维数不一致&#39;);
+    return;
+end
+if size(init_X,1) ~&#x3D; size(b_mat,1)
+    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
+    return;
+end
+if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
+    maxNum &#x3D; 500; % 默认值
+end
+if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
+    epsilon &#x3D; 1e-14; % 默认值
+end
+
+%% 三对角线
+a &#x3D; diag(coefficient_mat,-1)&#39;;
+b &#x3D; diag(coefficient_mat)&#39;;
+c &#x3D; diag(coefficient_mat,1)&#39;;
+D &#x3D; diag(a,-1)+diag(b)+diag(c,1);
+
+% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
+[~,D_inv] &#x3D; cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
+if isempty(D_inv)
+    disp(&#39;系数矩阵不可逆&#39;);
+    return;
+end
+%% 开始迭代
+% 下面代码段也行 但是对内存的消耗比较大 
+% x(:,0) &#x3D; init_X;
+% for k &#x3D; 1:maxNum
+%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
+%         flag &#x3D; 1;
+%         break;
+%     end
+% end
+x &#x3D; init_X;
+%%
+% 迭代公式：
+% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
+% 
+for k &#x3D; 1:maxNum
+    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
+    if norm(temp-x) &lt; epsilon
+        flag &#x3D; 1;
+        x &#x3D; temp;
+        break;
+    end
+    x &#x3D; temp;
+end
+
+
+%% 结果
+text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
+% 正则表达式
+str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
+mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
+my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
+mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
+str5 &#x3D; &#39;\times X&#x3D;&#39;;
+% LaTex 输出
+text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
+    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
+    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
+text(0,0.5,&#39;三对角类雅可比迭代的结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+if flag &#x3D;&#x3D; 1  %好的结果
+    output_args.itrNum &#x3D; k;
+    output_args.result &#x3D; x;
+    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
+%     disp(x(:,k));
+    disp(&#39;解：&#39;);
+    disp(x);
+    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
+        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
+        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
+    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+    return;
+end
+text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
+end</code></pre>
+<ul>
+<li>测试程序</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat &#x3D; [-1 -5 2 -1];
+init_X &#x3D; zeros(size(b_mat));
+out_QuasiJacobi &#x3D; cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+<ul>
+<li>文档 <a
+href="https://img.ifish.ink/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
+</ul>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>代数</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从复平面上域的多项式函数生成调和函数</title>
     <url>/post/harmonic.html</url>
     <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
@@ -1479,155 +1479,6 @@ axis off;</code></pre></p>
         <tag>MATLAB代码</tag>
         <tag>调和函数</tag>
         <tag>极小曲面</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Hexo搭建Github静态页面与域名绑定</title>
-    <url>/post/5755d91.html</url>
-    <content><![CDATA[<h2 id="简介">1. 简介</h2>
-<p>Hexo是一个基于Node.js的静态博客框架，能够快速生成静态网页。通过将
-Hexo生成的静态网页部署到GitHub
-Pages，用户可以轻松搭建一个免费的个人网站。本教程将详细介绍如何使用Hexo搭建静态页面并将其托管到GitHub
-Pages上，同时绑定自定义域名。</p>
-<h2 id="环境准备">2. 环境准备</h2>
-<p>在开始搭建Hexo静态页面之前，你需要完成以下环境配置：</p>
-<ol type="1">
-<li><strong>Node.js</strong>：Hexo基于Node.js运行，因此需要安装Node.js和npm。可以通过以下方式安装：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Node.js和npm</span>
-brew <span class="token function">install</span> <span class="token function">node</span></code></pre>
-<ol start="2" type="1">
-<li><strong>Git</strong>：Hexo生成的静态页面需要通过Git提交到GitHub
-Pages上，因此需要安装Git。可以通过以下方式安装：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 Git</span>
-brew <span class="token function">install</span> <span class="token function">git</span></code></pre>
-<ol start="3" type="1">
-<li><p><strong>GitHub账号</strong>：需要注册一个GitHub账号，用于托管Hexo生成的静态页面。</p></li>
-<li><p><strong>Hexo</strong>：安装Hexo命令行工具，可以通过以下方式安装：</p></li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Hexo</span>
-<span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> hexo-cli</code></pre>
-<h2 id="初始化hexo项目">3. 初始化Hexo项目</h2>
-<p>在完成环境准备后，可以开始初始化Hexo项目。</p>
-<ol type="1">
-<li>首先，创建一个新的Hexo项目，并进入该文件夹：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> my-blog
-<span class="token builtin class-name">cd</span> my-blog</code></pre>
-<ol start="2" type="1">
-<li>然后，初始化Hexo项目：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash">hexo init</code></pre>
-<p>初始化完成后，Hexo 会在项目文件夹中生成一系列文件和文件夹，包括
-<code>source/</code>和<code>_config.yml</code> 等。</p>
-<ol start="3" type="1">
-<li>安装Hexo依赖：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span></code></pre>
-<ol start="4" type="1">
-<li>启动Hexo本地服务器，查看Hexo默认生成的页面：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash">hexo server</code></pre>
-<p>在浏览器中输入
-<code>http://localhost:4000</code>，即可查看Hexo默认生成的页面。</p>
-<h2 id="部署到github-pages">4. 部署到GitHub Pages</h2>
-<h3 id="创建github仓库">4.1 创建GitHub仓库</h3>
-<ol type="1">
-<li>在GitHub上创建一个新的仓库，用于托管Hexo生成的静态页面。仓库名称必须是以下格式之一：</li>
-</ol>
-<ul>
-<li><code>username.github.io</code>：用于个人网站，其中<code>username</code>是你的GitHub用户名。（用于个人主页）</li>
-<li><code>project-name</code>：用于项目网站，其中<code>project-name</code>是项目名称。（用于项目页面）</li>
-</ul>
-<ol start="2" type="1">
-<li>获取仓库的SSH地址，用于后续提交Hexo生成的静态页面。</li>
-</ol>
-<h3 id="配置hexo部署">4.2 配置Hexo部署</h3>
-<ol type="1">
-<li>安装Hexo部署插件：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git <span class="token parameter variable">--save</span></code></pre>
-<ol start="2" type="1">
-<li>修改Hexo配置文件<code>_config.yml</code>，配置部署信息：</li>
-</ol>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
-  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
-  <span class="token key atrule">repo</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>username/username.github.io.git
-  <span class="token key atrule">branch</span><span class="token punctuation">:</span> main</code></pre>
-<p>将<code>username</code>替换为你的GitHub用户名。需注意： -
-<code>repo</code>字段填写你的GitHub仓库SSH地址或者HTTPS地址。（推荐使用SSH地址）
-- <code>branch</code>字段填写你的GitHub
-Pages分支，如果你的仓库默认分支为<code>master</code>，则填写<code>master</code>；如果默认分支为<code>main</code>，则填写<code>main</code>。</p>
-<ol start="3" type="1">
-<li>部署Hexo生成的静态页面到GitHub Pages：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
-hexo generate  <span class="token comment"># 生成静态页面</span>
-hexo deploy  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
-<p>（可以缩写为<code>hexo d -g</code>）</p>
-<ol start="4" type="1">
-<li>在浏览器中输入
-<code>https://username.github.io</code>，即可查看Hexo生成的静态页面。</li>
-</ol>
-<h2 id="绑定自定义域名">5. 绑定自定义域名</h2>
-<p>你可以为你的 GitHub
-Pages绑定自定义域名，使网站更具个性化。以下是具体步骤。</p>
-<h3 id="获取域名注册域名">5.1 获取域名(注册域名)</h3>
-<p>首先，你需要拥有一个域名。你可以通过域名注册商购买域名，例如阿里云、腾讯云、Godaddy等。</p>
-<h3 id="配置域名dns解析">5.2 配置域名DNS解析</h3>
-<p>在域名注册商的控制台中，找到<strong>DNS设置</strong>（或者类似的设置），添加以下记录：</p>
-<ul>
-<li>类型：<code>CNAME</code>，主机记录：<code>www</code>，记录值：<code>username.github.io</code>（将<code>username</code>替换为你的GitHub用户名）。</li>
-<li>类型：<code>CNAME</code>，主机记录：<code>@</code>，记录值：<code>username.github.io</code>。</li>
-</ul>
-<h3 id="配置hexo项目">5.3 配置Hexo项目</h3>
-<p>在Hexo项目的source目录下创建一个名为CNAME的文件，并在文件中写入你绑定的自定义域名。例如：</p>
-<pre class="language-none"><code class="language-none">www.yourdomain.com
-yourdomain.com</code></pre>
-<p>将文件保存后，重新部署Hexo生成的静态页面到GitHub Pages：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
-hexo g  <span class="token comment"># 生成静态页面</span>
-hexo d  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
-<h3 id="github-pages设置">5.4 GitHub Pages设置</h3>
-<ul>
-<li><p>在GitHub仓库的Settings中，找到<strong>Custom
-domain</strong>，填写你的自定义域名，例如<code>www.yourdomain.com</code>，保存即可。</p></li>
-<li><p>如果你的域名支持HTTPS，可以在Settings中启用<strong>Enforce
-HTTPS</strong>，开启HTTPS访问。</p></li>
-</ul>
-<h3 id="验证域名绑定">5.5 验证域名绑定</h3>
-<p>在浏览器中输入你的自定义域名，例如<code>www.yourdomain.com</code>，即可访问你的Hexo生成的静态页面。</p>
-<h2 id="常见问题">6. 常见问题</h2>
-<h3 id="部署时遇到permission-denied错误权限问题">6.1
-部署时遇到<code>Permission denied</code>错误（权限问题）</h3>
-<p>如果使用SSH方式部署时遇到权限问题，请确保：</p>
-<ol type="1">
-<li>你的SSH公钥已经添加到GitHub账号中。</li>
-<li>使用ssh-add命令将私钥添加到ssh-agent中：</li>
-</ol>
-<pre class="language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa</code></pre>
-<h3 id="自定义域名访问出现404错误">6.2 自定义域名访问出现404错误</h3>
-<p>确保一下事项：</p>
-<ol type="1">
-<li>域名DNS解析已经生效，可以通过<code>dig</code>命令或者在线工具查询域名解析情况。</li>
-<li>GitHub Pages设置的Custom domain填写正确。</li>
-<li>确保CNAME文件中填写的域名与GitHub Pages设置的Custom
-domain一致。</li>
-<li>等待一段时间，有时候DNS解析需要一段时间生效。</li>
-</ol>
-<h2 id="总结">7. 总结</h2>
-<p>通过Hexo和GitHub
-Pages，搭建一个免费的静态博客非常简单且高效。希望本教程对你有所帮助，欢迎关注我的博客，获取更多技术教程和资源。</p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Github Pages</tag>
-        <tag>网站搭建</tag>
-        <tag>域名绑定</tag>
       </tags>
   </entry>
   <entry>
@@ -1949,6 +1800,155 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
       </tags>
   </entry>
   <entry>
+    <title>使用Hexo搭建Github静态页面与域名绑定</title>
+    <url>/post/5755d91.html</url>
+    <content><![CDATA[<h2 id="简介">1. 简介</h2>
+<p>Hexo是一个基于Node.js的静态博客框架，能够快速生成静态网页。通过将
+Hexo生成的静态网页部署到GitHub
+Pages，用户可以轻松搭建一个免费的个人网站。本教程将详细介绍如何使用Hexo搭建静态页面并将其托管到GitHub
+Pages上，同时绑定自定义域名。</p>
+<h2 id="环境准备">2. 环境准备</h2>
+<p>在开始搭建Hexo静态页面之前，你需要完成以下环境配置：</p>
+<ol type="1">
+<li><strong>Node.js</strong>：Hexo基于Node.js运行，因此需要安装Node.js和npm。可以通过以下方式安装：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Node.js和npm</span>
+brew <span class="token function">install</span> <span class="token function">node</span></code></pre>
+<ol start="2" type="1">
+<li><strong>Git</strong>：Hexo生成的静态页面需要通过Git提交到GitHub
+Pages上，因此需要安装Git。可以通过以下方式安装：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装 Git</span>
+brew <span class="token function">install</span> <span class="token function">git</span></code></pre>
+<ol start="3" type="1">
+<li><p><strong>GitHub账号</strong>：需要注册一个GitHub账号，用于托管Hexo生成的静态页面。</p></li>
+<li><p><strong>Hexo</strong>：安装Hexo命令行工具，可以通过以下方式安装：</p></li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装Hexo</span>
+<span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> hexo-cli</code></pre>
+<h2 id="初始化hexo项目">3. 初始化Hexo项目</h2>
+<p>在完成环境准备后，可以开始初始化Hexo项目。</p>
+<ol type="1">
+<li>首先，创建一个新的Hexo项目，并进入该文件夹：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> my-blog
+<span class="token builtin class-name">cd</span> my-blog</code></pre>
+<ol start="2" type="1">
+<li>然后，初始化Hexo项目：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo init</code></pre>
+<p>初始化完成后，Hexo 会在项目文件夹中生成一系列文件和文件夹，包括
+<code>source/</code>和<code>_config.yml</code> 等。</p>
+<ol start="3" type="1">
+<li>安装Hexo依赖：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span></code></pre>
+<ol start="4" type="1">
+<li>启动Hexo本地服务器，查看Hexo默认生成的页面：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo server</code></pre>
+<p>在浏览器中输入
+<code>http://localhost:4000</code>，即可查看Hexo默认生成的页面。</p>
+<h2 id="部署到github-pages">4. 部署到GitHub Pages</h2>
+<h3 id="创建github仓库">4.1 创建GitHub仓库</h3>
+<ol type="1">
+<li>在GitHub上创建一个新的仓库，用于托管Hexo生成的静态页面。仓库名称必须是以下格式之一：</li>
+</ol>
+<ul>
+<li><code>username.github.io</code>：用于个人网站，其中<code>username</code>是你的GitHub用户名。（用于个人主页）</li>
+<li><code>project-name</code>：用于项目网站，其中<code>project-name</code>是项目名称。（用于项目页面）</li>
+</ul>
+<ol start="2" type="1">
+<li>获取仓库的SSH地址，用于后续提交Hexo生成的静态页面。</li>
+</ol>
+<h3 id="配置hexo部署">4.2 配置Hexo部署</h3>
+<ol type="1">
+<li>安装Hexo部署插件：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git <span class="token parameter variable">--save</span></code></pre>
+<ol start="2" type="1">
+<li>修改Hexo配置文件<code>_config.yml</code>，配置部署信息：</li>
+</ol>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>username/username.github.io.git
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> main</code></pre>
+<p>将<code>username</code>替换为你的GitHub用户名。需注意： -
+<code>repo</code>字段填写你的GitHub仓库SSH地址或者HTTPS地址。（推荐使用SSH地址）
+- <code>branch</code>字段填写你的GitHub
+Pages分支，如果你的仓库默认分支为<code>master</code>，则填写<code>master</code>；如果默认分支为<code>main</code>，则填写<code>main</code>。</p>
+<ol start="3" type="1">
+<li>部署Hexo生成的静态页面到GitHub Pages：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
+hexo generate  <span class="token comment"># 生成静态页面</span>
+hexo deploy  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
+<p>（可以缩写为<code>hexo d -g</code>）</p>
+<ol start="4" type="1">
+<li>在浏览器中输入
+<code>https://username.github.io</code>，即可查看Hexo生成的静态页面。</li>
+</ol>
+<h2 id="绑定自定义域名">5. 绑定自定义域名</h2>
+<p>你可以为你的 GitHub
+Pages绑定自定义域名，使网站更具个性化。以下是具体步骤。</p>
+<h3 id="获取域名注册域名">5.1 获取域名(注册域名)</h3>
+<p>首先，你需要拥有一个域名。你可以通过域名注册商购买域名，例如阿里云、腾讯云、Godaddy等。</p>
+<h3 id="配置域名dns解析">5.2 配置域名DNS解析</h3>
+<p>在域名注册商的控制台中，找到<strong>DNS设置</strong>（或者类似的设置），添加以下记录：</p>
+<ul>
+<li>类型：<code>CNAME</code>，主机记录：<code>www</code>，记录值：<code>username.github.io</code>（将<code>username</code>替换为你的GitHub用户名）。</li>
+<li>类型：<code>CNAME</code>，主机记录：<code>@</code>，记录值：<code>username.github.io</code>。</li>
+</ul>
+<h3 id="配置hexo项目">5.3 配置Hexo项目</h3>
+<p>在Hexo项目的source目录下创建一个名为CNAME的文件，并在文件中写入你绑定的自定义域名。例如：</p>
+<pre class="language-none"><code class="language-none">www.yourdomain.com
+yourdomain.com</code></pre>
+<p>将文件保存后，重新部署Hexo生成的静态页面到GitHub Pages：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean  <span class="token comment"># 清除缓存</span>
+hexo g  <span class="token comment"># 生成静态页面</span>
+hexo d  <span class="token comment"># 部署到 GitHub Pages</span></code></pre>
+<h3 id="github-pages设置">5.4 GitHub Pages设置</h3>
+<ul>
+<li><p>在GitHub仓库的Settings中，找到<strong>Custom
+domain</strong>，填写你的自定义域名，例如<code>www.yourdomain.com</code>，保存即可。</p></li>
+<li><p>如果你的域名支持HTTPS，可以在Settings中启用<strong>Enforce
+HTTPS</strong>，开启HTTPS访问。</p></li>
+</ul>
+<h3 id="验证域名绑定">5.5 验证域名绑定</h3>
+<p>在浏览器中输入你的自定义域名，例如<code>www.yourdomain.com</code>，即可访问你的Hexo生成的静态页面。</p>
+<h2 id="常见问题">6. 常见问题</h2>
+<h3 id="部署时遇到permission-denied错误权限问题">6.1
+部署时遇到<code>Permission denied</code>错误（权限问题）</h3>
+<p>如果使用SSH方式部署时遇到权限问题，请确保：</p>
+<ol type="1">
+<li>你的SSH公钥已经添加到GitHub账号中。</li>
+<li>使用ssh-add命令将私钥添加到ssh-agent中：</li>
+</ol>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa</code></pre>
+<h3 id="自定义域名访问出现404错误">6.2 自定义域名访问出现404错误</h3>
+<p>确保一下事项：</p>
+<ol type="1">
+<li>域名DNS解析已经生效，可以通过<code>dig</code>命令或者在线工具查询域名解析情况。</li>
+<li>GitHub Pages设置的Custom domain填写正确。</li>
+<li>确保CNAME文件中填写的域名与GitHub Pages设置的Custom
+domain一致。</li>
+<li>等待一段时间，有时候DNS解析需要一段时间生效。</li>
+</ol>
+<h2 id="总结">7. 总结</h2>
+<p>通过Hexo和GitHub
+Pages，搭建一个免费的静态博客非常简单且高效。希望本教程对你有所帮助，欢迎关注我的博客，获取更多技术教程和资源。</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Github Pages</tag>
+        <tag>网站搭建</tag>
+        <tag>域名绑定</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
     <url>/post/d033f67a.html</url>
     <content><![CDATA[<h4
@@ -1993,89 +1993,6 @@ VectorXd <span class="token class-name">MyPolygon</span><span class="token doubl
     mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>几何处理</category>
-      </categories>
-      <tags>
-        <tag>算法实现</tag>
-        <tag>均值重心坐标</tag>
-        <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
-    <url>/post/4d3c170c.html</url>
-    <content><![CDATA[<h4 id="c实现">c++实现：</h4>
-<blockquote>
-<p>关于二维中均值重心坐标的实现可参考我的另一篇博客：<a
-href="https://www.ifish.ink/post/d033f67a.html"
-title="均值重心坐标Mean Value Coordinates In 2D代码实现">均值重心坐标Mean
-Value Coordinates In 2D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 3D
-/// @details    
-/// @param[in]  p: 
-/// @return     
-/// @attention  
-*/</span> 
-VectorXd <span class="token class-name">MyMesh</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector3d p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token comment">//this->faces = this->fixMesh().faces;   // repair the faces index, so that the all normal vector of faces outward (inward)</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// get projection vertices on unit sphere</span>
-    Matrix<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>Dynamic<span class="token operator">></span> pro_vertices<span class="token punctuation">;</span>
-
-    pro_vertices<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">double</span> r <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
-        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
-        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-    Matrix<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">></span> T<span class="token punctuation">;</span>
-    Vector3d n0<span class="token punctuation">,</span> n1<span class="token punctuation">,</span> n2<span class="token punctuation">;</span>
-    <span class="token keyword">double</span> beta0<span class="token punctuation">,</span> beta1<span class="token punctuation">,</span> beta2<span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfFaces<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> i0<span class="token punctuation">,</span> i1<span class="token punctuation">,</span> i2<span class="token punctuation">;</span>     <span class="token comment">// index of vertices on the current face</span>
-        i0 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        i1 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        i2 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        n0 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        n1 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        n2 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment">// angle</span>
-        beta0 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        beta1 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        beta2 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        mvc_coor<span class="token punctuation">[</span>i0<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta1 <span class="token operator">+</span> beta0<span class="token operator">*</span>n0<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span> <span class="token operator">+</span> beta2<span class="token operator">*</span>n2<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        mvc_coor<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta2 <span class="token operator">+</span> beta1<span class="token operator">*</span>n1<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span> <span class="token operator">+</span> beta0<span class="token operator">*</span>n0<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        mvc_coor<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta0 <span class="token operator">+</span> beta2<span class="token operator">*</span>n2<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span> <span class="token operator">+</span> beta1<span class="token operator">*</span>n1<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">/=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 <hr />
@@ -2352,6 +2269,226 @@ class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
       </tags>
   </entry>
   <entry>
+    <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
+    <url>/post/4d3c170c.html</url>
+    <content><![CDATA[<h4 id="c实现">c++实现：</h4>
+<blockquote>
+<p>关于二维中均值重心坐标的实现可参考我的另一篇博客：<a
+href="https://www.ifish.ink/post/d033f67a.html"
+title="均值重心坐标Mean Value Coordinates In 2D代码实现">均值重心坐标Mean
+Value Coordinates In 2D代码实现</a></p>
+</blockquote>
+<span id="more"></span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 3D
+/// @details    
+/// @param[in]  p: 
+/// @return     
+/// @attention  
+*/</span> 
+VectorXd <span class="token class-name">MyMesh</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector3d p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token comment">//this->faces = this->fixMesh().faces;   // repair the faces index, so that the all normal vector of faces outward (inward)</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// get projection vertices on unit sphere</span>
+    Matrix<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>Dynamic<span class="token operator">></span> pro_vertices<span class="token punctuation">;</span>
+
+    pro_vertices<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">double</span> r <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
+        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
+        <span class="token function">pro_vertices</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span><span class="token function">vertices</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> r<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    Matrix<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">></span> T<span class="token punctuation">;</span>
+    Vector3d n0<span class="token punctuation">,</span> n1<span class="token punctuation">,</span> n2<span class="token punctuation">;</span>
+    <span class="token keyword">double</span> beta0<span class="token punctuation">,</span> beta1<span class="token punctuation">,</span> beta2<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfFaces<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> i0<span class="token punctuation">,</span> i1<span class="token punctuation">,</span> i2<span class="token punctuation">;</span>     <span class="token comment">// index of vertices on the current face</span>
+        i0 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        i1 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        i2 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">faces</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        T<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        n0 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        n1 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        n2 <span class="token operator">=</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cross</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// angle</span>
+        beta0 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        beta1 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        beta2 <span class="token operator">=</span> <span class="token function">acos</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        mvc_coor<span class="token punctuation">[</span>i0<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta1 <span class="token operator">+</span> beta0<span class="token operator">*</span>n0<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span> <span class="token operator">+</span> beta2<span class="token operator">*</span>n2<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i0<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mvc_coor<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta2 <span class="token operator">+</span> beta1<span class="token operator">*</span>n1<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span> <span class="token operator">+</span> beta0<span class="token operator">*</span>n0<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i1<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mvc_coor<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>beta0 <span class="token operator">+</span> beta2<span class="token operator">*</span>n2<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span> <span class="token operator">+</span> beta1<span class="token operator">*</span>n1<span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> pro_vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i2<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dot</span><span class="token punctuation">(</span>n0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token operator">-></span>numberOfVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">/=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>几何处理</category>
+      </categories>
+      <tags>
+        <tag>算法实现</tag>
+        <tag>均值重心坐标</tag>
+        <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>标准雅可比迭代算法-实现</title>
+    <url>/post/5d0495ae.html</url>
+    <content><![CDATA[<h3
+id="标准雅可比迭代算法解线性方程组-算法实现">标准雅可比迭代算法解线性方程组-算法实现</h3>
+<span id="more"></span>
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 雅可比迭代法
+% init_X：初始值
+% coefficient_mat：系数矩阵
+% b_mat：b
+% maxNum：最大迭代次数
+% epsilon：精度
+output_args &#x3D; [];
+flag &#x3D; 0;
+%% 预处理 检查用户调用函数时参数格式是否传错
+if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
+    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
+    return;
+end
+if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
+    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
+    return;
+end
+if size(b_mat,1) &#x3D;&#x3D; 1
+    b_mat &#x3D; b_mat&#39;;
+end
+if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
+    disp(&#39;初始值必须为行向量或者列向量&#39;);
+    return;
+end
+if size(init_X,1) &#x3D;&#x3D; 1
+    init_X &#x3D; init_X&#39;;
+end
+if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
+    disp(&#39;初始值与系数矩阵维数不一致&#39;);
+    return;
+end
+if size(init_X,1) ~&#x3D; size(b_mat,1)
+    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
+    return;
+end
+if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
+    maxNum &#x3D; 500; % 默认值
+end
+if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
+    epsilon &#x3D; 1e-14; % 默认值
+end
+%% 对角线
+D &#x3D; diag(diag(coefficient_mat));
+% 可能matlab的源码inv函数对角函数求逆会像普通函数一样处理，
+% 这种特殊函数求逆会比较快
+D_inv &#x3D; diag(1.&#x2F;diag(coefficient_mat));
+%% 开始迭代
+% 下面代码段也行 但是对内存的消耗比较大 
+% x(:,0) &#x3D; init_X;
+% for k &#x3D; 1:maxNum
+%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
+%         flag &#x3D; 1;
+%         break;
+%     end
+% end
+x &#x3D; init_X;
+%%
+% 迭代公式：
+% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
+% 
+for k &#x3D; 1:maxNum
+    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
+    if norm(temp-x) &lt; epsilon
+        flag &#x3D; 1;
+        x &#x3D; temp;
+        break;
+    end
+    x &#x3D; temp;
+end
+%% 结果
+text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
+% 正则表达式
+str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
+mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
+my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
+mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
+str5 &#x3D; &#39;\times X&#x3D;&#39;;
+% LaTex 输出
+text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
+    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
+    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
+text(0,0.5,&#39;标准雅可比迭代结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+if flag &#x3D;&#x3D; 1  %好的结果
+    output_args.itrNum &#x3D; k;
+    output_args.result &#x3D; x;
+    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
+%     disp(x(:,k));
+    disp(&#39;解：&#39;);
+    disp(x);
+    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
+        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
+        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
+    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+    return;
+end
+text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
+end</code></pre>
+<ul>
+<li>测试代码</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat &#x3D; [-1 -5 2 -1];
+init_X &#x3D; zeros(size(b_mat));
+out_Jacobi &#x3D; cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+<ul>
+<li>文档 <a
+href="https://img.ifish.ink/Standard_Jacobian_Iterative_Algorithm_Procedure.pdf">文档原文</a></li>
+</ul>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>代数</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何像GitHub Action那样本地打包</title>
     <url>/post/d2f9f15b.html</url>
     <content><![CDATA[<blockquote>
@@ -2559,143 +2696,6 @@ Actions中的构建过程。</p>
       <tags>
         <tag>GitHub Action</tag>
         <tag>软件打包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>标准雅可比迭代算法-实现</title>
-    <url>/post/5d0495ae.html</url>
-    <content><![CDATA[<h3
-id="标准雅可比迭代算法解线性方程组-算法实现">标准雅可比迭代算法解线性方程组-算法实现</h3>
-<span id="more"></span>
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_Jacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 雅可比迭代法
-% init_X：初始值
-% coefficient_mat：系数矩阵
-% b_mat：b
-% maxNum：最大迭代次数
-% epsilon：精度
-output_args &#x3D; [];
-flag &#x3D; 0;
-%% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
-    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
-    return;
-end
-if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
-    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
-    return;
-end
-if size(b_mat,1) &#x3D;&#x3D; 1
-    b_mat &#x3D; b_mat&#39;;
-end
-if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
-    disp(&#39;初始值必须为行向量或者列向量&#39;);
-    return;
-end
-if size(init_X,1) &#x3D;&#x3D; 1
-    init_X &#x3D; init_X&#39;;
-end
-if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
-    disp(&#39;初始值与系数矩阵维数不一致&#39;);
-    return;
-end
-if size(init_X,1) ~&#x3D; size(b_mat,1)
-    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
-    return;
-end
-if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
-    maxNum &#x3D; 500; % 默认值
-end
-if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
-    epsilon &#x3D; 1e-14; % 默认值
-end
-%% 对角线
-D &#x3D; diag(diag(coefficient_mat));
-% 可能matlab的源码inv函数对角函数求逆会像普通函数一样处理，
-% 这种特殊函数求逆会比较快
-D_inv &#x3D; diag(1.&#x2F;diag(coefficient_mat));
-%% 开始迭代
-% 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) &#x3D; init_X;
-% for k &#x3D; 1:maxNum
-%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
-%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag &#x3D; 1;
-%         break;
-%     end
-% end
-x &#x3D; init_X;
-%%
-% 迭代公式：
-% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
-% 
-for k &#x3D; 1:maxNum
-    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
-    if norm(temp-x) &lt; epsilon
-        flag &#x3D; 1;
-        x &#x3D; temp;
-        break;
-    end
-    x &#x3D; temp;
-end
-%% 结果
-text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
-% 正则表达式
-str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
-mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
-my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
-mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
-str5 &#x3D; &#39;\times X&#x3D;&#39;;
-% LaTex 输出
-text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
-    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
-    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
-text(0,0.5,&#39;标准雅可比迭代结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-if flag &#x3D;&#x3D; 1  %好的结果
-    output_args.itrNum &#x3D; k;
-    output_args.result &#x3D; x;
-    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
-%     disp(x(:,k));
-    disp(&#39;解：&#39;);
-    disp(x);
-    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
-        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
-        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
-    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-    return;
-end
-text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
-end</code></pre>
-<ul>
-<li>测试代码</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat &#x3D; [-1 -5 2 -1];
-init_X &#x3D; zeros(size(b_mat));
-out_Jacobi &#x3D; cqj_Jacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-<ul>
-<li>文档 <a
-href="https://img.ifish.ink/Standard_Jacobian_Iterative_Algorithm_Procedure.pdf">文档原文</a></li>
-</ul>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>代数</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
       </tags>
   </entry>
   <entry>
