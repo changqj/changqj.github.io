@@ -585,10 +585,10 @@ target="_blank" rel="noopener" href="http://graphics.pixar.com/opensubdiv/docs/i
 target="_blank" rel="noopener" href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
 ​ <strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a
 target="_blank" rel="noopener" href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
-<img src="http://img.ifish.ink/figure/1.png" alt="fig1" /> ​
+<img src="https://files.ifish.ink/mics/cc-1.png" alt="fig1" /> ​
  <strong>cmake的安装</strong>：可直接从<a
 target="_blank" rel="noopener" href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
-<img src="http://img.ifish.ink/figure/2.png" alt="fig2" /></p>
+<img src="https://files.ifish.ink/mics/cc-2.png" alt="fig2" /></p>
 <ul>
 <li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
 <li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
@@ -599,33 +599,33 @@ CMake to the system PATH for the current user</em>”）</p></li>
 target="_blank" rel="noopener" href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
 如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
 </ul>
-<p><img src="http://img.ifish.ink/figure/2.png" alt="fig3" /> <img
-src="http://img.ifish.ink/figure/4.png" alt="fig4" /> ​
+<p><img src="https://files.ifish.ink/mics/cc-2.png" alt="fig3" /> <img
+src="https://files.ifish.ink/mics/cc-4.png" alt="fig4" /> ​
 <strong>glfw</strong>：GLfW ：<a
 target="_blank" rel="noopener" href="http://www.glfw.org/">http://www.glfw.org/</a>
 如图所示可以下载压缩文件，或者用git克隆也可。 <img
-src="http://img.ifish.ink/figure/5.png" alt="fig5" /> <img
-src="http://img.ifish.ink/figure/6.png" alt="fig6" /></p>
+src="https://files.ifish.ink/mics/cc-5.png" alt="fig5" /> <img
+src="https://files.ifish.ink/mics/cc-6.png" alt="fig6" /></p>
 <hr />
 <h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
 <h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
 GUI选择源代码目录和构建路径：</h4>
-<p><img src="http://img.ifish.ink/figure/7.png" alt="fig7" /> <img
-src="http://img.ifish.ink/figure/8.png" alt="fig8" /></p>
+<p><img src="https://files.ifish.ink/mics/cc-7.png" alt="fig7" /> <img
+src="https://files.ifish.ink/mics/cc-8.png" alt="fig8" /></p>
 <h4
 id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
-<p><img src="http://img.ifish.ink/figure/9.png" alt="fig9" /> <img
-src="http://img.ifish.ink/figure/10.png" alt="fig10" /></p>
+<p><img src="https://files.ifish.ink/mics/cc-9.png" alt="fig9" /> <img
+src="https://files.ifish.ink/mics/cc-10.png" alt="fig10" /></p>
 <h4
 id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
 done’即可</h4>
-<p><img src="http://img.ifish.ink/figure/11.png" alt="fig11" /> <img
-src="http://img.ifish.ink/figure/12.png" alt="fig12" /></p>
+<p><img src="https://files.ifish.ink/mics/cc-11.png" alt="fig11" /> <img
+src="https://files.ifish.ink/mics/cc-12.png" alt="fig12" /></p>
 <h4
 id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
 done完成</h4>
 <figure>
-<img src="http://img.ifish.ink/figure/13.png" alt="fig13" />
+<img src="https://files.ifish.ink/mics/cc-13.png" alt="fig13" />
 <figcaption aria-hidden="true">fig13</figcaption>
 </figure>
 <hr />
@@ -633,22 +633,22 @@ done完成</h4>
 <p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
 <pre class="language-none"><code class="language-none">&quot;d:&#x2F;Cmake3.8.0&#x2F;bin&#x2F;cmake.exe&quot; -G &quot;Visual Studio 14 Win64&quot; -DGLEW_LOCATION&#x3D;[d:&#x2F;glew&#x2F;lib&#x2F;Release&#x2F;x64] -DGLEW_INCLUDE_DIR&#x3D;[d:\glew\include\] -DGLEW_LIBRARY&#x3D;[d:\glew\lib\] -DGLFW_LOCATION&#x3D;[d:&#x2F;glfw&#x2F;bd&#x2F;src&#x2F;Release] -DNO_PTEX&#x3D;1 -DNO_DOC&#x3D;1 -DNO_OMP&#x3D;1 -DNO_TBB&#x3D;1 -DNO_CUDA&#x3D;1 -DNO_OPENCL&#x3D;1 -DNO_CLEW&#x3D;1</code></pre>
 <p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
-<img src="http://img.ifish.ink/figure/14.png" alt="fig14" />
-按下回车键： <img src="http://img.ifish.ink/figure/15.png"
+<img src="https://files.ifish.ink/mics/cc-14.png" alt="fig14" />
+按下回车键： <img src="https://files.ifish.ink/mics/cc-15.png"
 alt="fig15" /> 完成！！！</p>
 <hr />
 <h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
 <p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
-Studio打开此文件 <img src="http://img.ifish.ink/figure/16.png"
+Studio打开此文件 <img src="https://files.ifish.ink/mics/cc-16.png"
 alt="fig16" />
 点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img
-src="http://img.ifish.ink/figure/17.png" alt="fig17" />
+src="https://files.ifish.ink/mics/cc-17.png" alt="fig17" />
 生成过程需要一点时间，请耐心等待…… <img
-src="http://img.ifish.ink/figure/18.png" alt="fig18" /> 生成成功 <img
-src="http://img.ifish.ink/figure/19.png" alt="fig19" />
+src="https://files.ifish.ink/mics/cc-18.png" alt="fig18" /> 生成成功
+<img src="https://files.ifish.ink/mics/cc-19.png" alt="fig19" />
 测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
-<img src="http://img.ifish.ink/figure/20.png" alt="fig20" />
-运行后如图所示： <img src="http://img.ifish.ink/figure/21.png"
+<img src="https://files.ifish.ink/mics/cc-20.png" alt="fig20" />
+运行后如图所示： <img src="https://files.ifish.ink/mics/cc-21.png"
 alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
 <hr />
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
@@ -751,7 +751,7 @@ alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
                 <a href="/post/7741e06a.html">
                     <div class="card-image">
                         
-                        <img src="http://img.ifish.ink/figure/main_03.png" class="responsive-img" alt="Bezier曲线拟合数据点的几何作图法">
+                        <img src="https://files.ifish.ink/mics/main_03.png" class="responsive-img" alt="Bezier曲线拟合数据点的几何作图法">
                         
                         <span class="card-title">Bezier曲线拟合数据点的几何作图法</span>
                     </div>
@@ -803,7 +803,7 @@ alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
                 <a href="/post/a507e481.html">
                     <div class="card-image">
                         
-                        <img src="http://img.ifish.ink/figure/21.png" class="responsive-img" alt="OpenSubdiv + Visual Studio环境配置">
+                        <img src="https://files.ifish.ink/mics/cc-21.png" class="responsive-img" alt="OpenSubdiv + Visual Studio环境配置">
                         
                         <span class="card-title">OpenSubdiv + Visual Studio环境配置</span>
                     </div>
