@@ -1,6 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/56c1b7a3.html</url>
+    <content><![CDATA[<blockquote>
+<p>在之前的一篇 <a
+href="https://www.ifish.ink/post/7741e06a.html">“Bezier曲线拟合数据点的几何作图法”</a>
+博客基础上添加鼠标移动控制顶点交互的功能。</p>
+</blockquote>
+<h3
+id="交互选择控制顶点并画出初始曲线">交互选择控制顶点，并画出初始曲线</h3>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab">clear
+close all
+grid on<span class="token punctuation">,</span>hold on
+<span class="token comment">% axis equal</span>
+global ctrl_points h1 h_bezier<span class="token punctuation">;</span>
+<span class="token punctuation">[</span>ctrl_points<span class="token punctuation">,</span>h<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_selectPoints</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token operator">:</span><span class="token number">0.01</span><span class="token operator">:</span><span class="token number">1</span>
+    <span class="token function">newData</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token function">int32</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">cqj_GetBezier3Point</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+h_bezier <span class="token operator">=</span> <span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">newData</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">newData</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'-r'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+h1 <span class="token operator">=</span> <span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'r*'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'visible'</span><span class="token punctuation">,</span><span class="token string">'off'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+text__ <span class="token operator">=</span> <span class="token function">cell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token function">size</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">size</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+    text__<span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+
+myText <span class="token operator">=</span> <span class="token function">text</span><span class="token punctuation">(</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span>text__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonDownFcn'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token operator">@</span>ButtonDownFcn<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonUpFcn'</span><span class="token punctuation">,</span><span class="token operator">@</span>ButtonUpFcn<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span id="more"></span>
+<h3 id="bezier曲线几何作图法">Bezier曲线几何作图法</h3>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span> data <span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_GetBezier3Point</span><span class="token punctuation">(</span>dataPoints<span class="token punctuation">,</span>u<span class="token punctuation">)</span>
+<span class="token comment">% 得到曲线参数为u的数据点</span>
+<span class="token comment">% dataPoints：初始点 2xn</span>
+data <span class="token operator">=</span> dataPoints<span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token number">1</span>
+    <span class="token keyword">if</span> <span class="token function">size</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    temp <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token function">size</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">size</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">size</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
+        <span class="token function">temp</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>u<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">+</span>u<span class="token operator">*</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    data <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token keyword">end</span></code></pre>
+<h3 id="处理鼠标响应事件">处理鼠标响应事件</h3>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonUpFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span> <span class="token string">'WindowButtonMotionFcn'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">%取消鼠标移动响应</span>
+<span class="token keyword">end</span></code></pre>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonMotionFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">,</span>ind<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">)</span>
+global ctrl_points h1<span class="token punctuation">;</span>
+pt <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'CurrentPoint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">%获取当前点坐标</span>
+<span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>ind<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token operator">:</span><span class="token number">0.01</span><span class="token operator">:</span><span class="token number">1</span>
+    <span class="token function">newData</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token function">int32</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">cqj_GetBezier3Point</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token function">set</span><span class="token punctuation">(</span>h_bezier<span class="token punctuation">,</span><span class="token string">'XData'</span><span class="token punctuation">,</span><span class="token function">newData</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>h_bezier<span class="token punctuation">,</span><span class="token string">'YData'</span><span class="token punctuation">,</span><span class="token function">newData</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'xdata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'ydata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span><span class="token function">myText</span><span class="token punctuation">(</span>ind<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'position'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'xdata'</span><span class="token punctuation">,</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'ydata'</span><span class="token punctuation">,</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'visible'</span><span class="token punctuation">,</span><span class="token string">'on'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+drawnow<span class="token punctuation">;</span>
+<span class="token keyword">end</span></code></pre>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonDownFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">)</span>
+global ctrl_points h1<span class="token punctuation">;</span>
+pt <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'CurrentPoint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">%获取当前点坐标</span>
+curpoint <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">% 当前点坐标</span>
+curpoint_tr <span class="token operator">=</span> curpoint<span class="token operator">*</span><span class="token function">ones</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token function">size</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">%当前点坐标矩阵 每列一样</span>
+distance <span class="token operator">=</span> <span class="token function">vecnorm</span><span class="token punctuation">(</span>curpoint_tr<span class="token operator">-</span>ctrl_points<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">%当前点坐标与每个控制点的距离构成的向量</span>
+<span class="token keyword">if</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">distance</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token number">0.1</span>  <span class="token comment">% 如果距离控制点比较近</span>
+    <span class="token punctuation">[</span><span class="token operator">~</span><span class="token punctuation">,</span>ind<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>distance<span class="token operator">==</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">distance</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">% 当前点最近的那个点</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'xdata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>ind<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'ydata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span>ind<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'visible'</span><span class="token punctuation">,</span><span class="token string">'on'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonMotionFcn'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token operator">@</span>ButtonMotionFcn<span class="token punctuation">,</span>ind<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">%设置鼠标移动响应</span>
+<span class="token keyword">end</span>
+<span class="token keyword">end</span></code></pre>
+<h3 id="封装了一个选择点的方法">封装了一个选择点的方法</h3>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>dataPoints<span class="token punctuation">,</span>h<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_selectPoints</span><span class="token punctuation">(</span>isclose<span class="token punctuation">,</span>x_axis<span class="token punctuation">,</span>y_axis<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">exist</span><span class="token punctuation">(</span><span class="token string">'isclose'</span><span class="token punctuation">,</span><span class="token string">'var'</span><span class="token punctuation">)</span>
+    isclose <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">exist</span><span class="token punctuation">(</span><span class="token string">'x_axis'</span><span class="token punctuation">,</span><span class="token string">'var'</span><span class="token punctuation">)</span>
+    x_axis <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">exist</span><span class="token punctuation">(</span><span class="token string">'y_axis'</span><span class="token punctuation">,</span><span class="token string">'var'</span><span class="token punctuation">)</span>
+    y_axis <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">[</span>x_axis<span class="token punctuation">,</span>y_axis<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+grid on<span class="token punctuation">,</span>hold on
+<span class="token function">questdlg</span><span class="token punctuation">(</span><span class="token string">'1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点'</span><span class="token punctuation">,</span><span class="token string">'操作'</span><span class="token punctuation">,</span><span class="token string">'ok'</span><span class="token punctuation">,</span><span class="token string">'ok'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">%% 从鼠标获取数据点</span>
+<span class="token number">i</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token number">1</span>
+    <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+    tip <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'请选择第'</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'个数据点'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">xlabel</span><span class="token punctuation">(</span>tip<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span>
+        <span class="token punctuation">[</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>button<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">ginput</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">catch</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    <span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span>x<span class="token punctuation">;</span>y<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token number">i</span><span class="token operator">==</span><span class="token number">1</span>
+        h <span class="token operator">=</span> <span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'b-o'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        <span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'XData'</span><span class="token punctuation">,</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'YData'</span><span class="token punctuation">,</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    <span class="token keyword">if</span> button <span class="token operator">~=</span> <span class="token number">1</span>
+        <span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+<span class="token keyword">if</span> isclose
+    <span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'XData'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'YData'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token keyword">end</span></code></pre>
+<h3 id="结果">结果</h3>
+<p><img src="https://files.ifish.ink/mics/1103_1.gif" /></p>
+]]></content>
+      <categories>
+        <category>曲线曲面</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
+        <tag>拟合</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title(&#39;Bezier曲线拟合&#39;);
+questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
+<span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
+while 1
+    i &#x3D; i+1;
+    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
+    xlabel(tip);
+    try
+    [x,y,button] &#x3D; ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,&#39;o&#39;);
+    dataPoints(:,i) &#x3D; [x;y];
+    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
+    if button ~&#x3D; 1
+        xlabel(&#39;&#39;);
+        break;
+    end
+end
+
+
+for i &#x3D; 0:0.01:1
+    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
+end
+h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
+legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data &#x3D; dataPoints;
+while 1
+    if size(data,2) &#x3D;&#x3D; 1
+        break;
+    end
+    temp &#x3D; zeros(size(data,1),size(data,2)-1);
+    for i &#x3D; 1:size(data,2)-1
+        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data &#x3D; temp;
+end
+end</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>曲线曲面</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>拟合</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github上 fork了别人的代码 本地更新主分支代码</title>
     <url>/post/8f4cbc0c.html</url>
     <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
@@ -119,6 +331,100 @@ std<span class="token double-colon punctuation">::</span>cout <span class="token
         <tag>ImGui</tag>
         <tag>视网膜屏幕</tag>
         <tag>坐标转换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenSubdiv + Visual Studio环境配置</title>
+    <url>/post/a507e481.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
+</blockquote>
+<blockquote>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
+<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
+） （先前条件：<strong>win7系统</strong> 已安装<strong><a
+href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
+Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
+</blockquote>
+<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
+<p>需要的资源文件有<a
+href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a
+href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
+​ <strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a
+href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
+<img src="https://files.ifish.ink/mics/cc-1.png" alt="fig1" /> ​
+ <strong>cmake的安装</strong>：可直接从<a
+href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
+<img src="https://files.ifish.ink/mics/cc-2.png" alt="fig2" /></p>
+<ul>
+<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
+<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
+<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
+user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
+CMake to the system PATH for the current user</em>”）</p></li>
+<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a
+href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
+如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
+</ul>
+<p><img src="https://files.ifish.ink/mics/cc-2.png" alt="fig3" /> <img
+src="https://files.ifish.ink/mics/cc-4.png" alt="fig4" /> ​
+<strong>glfw</strong>：GLfW ：<a
+href="http://www.glfw.org/">http://www.glfw.org/</a>
+如图所示可以下载压缩文件，或者用git克隆也可。 <img
+src="https://files.ifish.ink/mics/cc-5.png" alt="fig5" /> <img
+src="https://files.ifish.ink/mics/cc-6.png" alt="fig6" /></p>
+<hr />
+<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
+<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
+GUI选择源代码目录和构建路径：</h4>
+<p><img src="https://files.ifish.ink/mics/cc-7.png" alt="fig7" /> <img
+src="https://files.ifish.ink/mics/cc-8.png" alt="fig8" /></p>
+<h4
+id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
+<p><img src="https://files.ifish.ink/mics/cc-9.png" alt="fig9" /> <img
+src="https://files.ifish.ink/mics/cc-10.png" alt="fig10" /></p>
+<h4
+id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
+done’即可</h4>
+<p><img src="https://files.ifish.ink/mics/cc-11.png" alt="fig11" /> <img
+src="https://files.ifish.ink/mics/cc-12.png" alt="fig12" /></p>
+<h4
+id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
+done完成</h4>
+<figure>
+<img src="https://files.ifish.ink/mics/cc-13.png" alt="fig13" />
+<figcaption aria-hidden="true">fig13</figcaption>
+</figure>
+<hr />
+<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
+<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
+<pre class="language-none"><code class="language-none">&quot;d:&#x2F;Cmake3.8.0&#x2F;bin&#x2F;cmake.exe&quot; -G &quot;Visual Studio 14 Win64&quot; -DGLEW_LOCATION&#x3D;[d:&#x2F;glew&#x2F;lib&#x2F;Release&#x2F;x64] -DGLEW_INCLUDE_DIR&#x3D;[d:\glew\include\] -DGLEW_LIBRARY&#x3D;[d:\glew\lib\] -DGLFW_LOCATION&#x3D;[d:&#x2F;glfw&#x2F;bd&#x2F;src&#x2F;Release] -DNO_PTEX&#x3D;1 -DNO_DOC&#x3D;1 -DNO_OMP&#x3D;1 -DNO_TBB&#x3D;1 -DNO_CUDA&#x3D;1 -DNO_OPENCL&#x3D;1 -DNO_CLEW&#x3D;1</code></pre>
+<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
+<img src="https://files.ifish.ink/mics/cc-14.png" alt="fig14" />
+按下回车键： <img src="https://files.ifish.ink/mics/cc-15.png"
+alt="fig15" /> 完成！！！</p>
+<hr />
+<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
+<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
+Studio打开此文件 <img src="https://files.ifish.ink/mics/cc-16.png"
+alt="fig16" />
+点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img
+src="https://files.ifish.ink/mics/cc-17.png" alt="fig17" />
+生成过程需要一点时间，请耐心等待…… <img
+src="https://files.ifish.ink/mics/cc-18.png" alt="fig18" /> 生成成功
+<img src="https://files.ifish.ink/mics/cc-19.png" alt="fig19" />
+测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
+<img src="https://files.ifish.ink/mics/cc-20.png" alt="fig20" />
+运行后如图所示： <img src="https://files.ifish.ink/mics/cc-21.png"
+alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -380,229 +686,69 @@ Commander的双窗格管理相结合，让你的日常文件操作更加高效�
       </tags>
   </entry>
   <entry>
-    <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/56c1b7a3.html</url>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <url>/post/563c2d.html</url>
     <content><![CDATA[<blockquote>
-<p>在之前的一篇 <a
-href="https://www.ifish.ink/post/7741e06a.html">“Bezier曲线拟合数据点的几何作图法”</a>
-博客基础上添加鼠标移动控制顶点交互的功能。</p>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
+<strong>Briefly unavailable for scheduled maintenance. Check back in a
+minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
 </blockquote>
-<h3
-id="交互选择控制顶点并画出初始曲线">交互选择控制顶点，并画出初始曲线</h3>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab">clear
-close all
-grid on<span class="token punctuation">,</span>hold on
-<span class="token comment">% axis equal</span>
-global ctrl_points h1 h_bezier<span class="token punctuation">;</span>
-<span class="token punctuation">[</span>ctrl_points<span class="token punctuation">,</span>h<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_selectPoints</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token operator">:</span><span class="token number">0.01</span><span class="token operator">:</span><span class="token number">1</span>
-    <span class="token function">newData</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token function">int32</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">cqj_GetBezier3Point</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-h_bezier <span class="token operator">=</span> <span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">newData</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">newData</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'-r'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-h1 <span class="token operator">=</span> <span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'r*'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'visible'</span><span class="token punctuation">,</span><span class="token string">'off'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-text__ <span class="token operator">=</span> <span class="token function">cell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token function">size</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">size</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
-    text__<span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-
-myText <span class="token operator">=</span> <span class="token function">text</span><span class="token punctuation">(</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span>text__<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonDownFcn'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token operator">@</span>ButtonDownFcn<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonUpFcn'</span><span class="token punctuation">,</span><span class="token operator">@</span>ButtonUpFcn<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<figure>
+<img src="https://files.ifish.ink/mics/20190703103139.png"
+title="Briefly unavailable for scheduled maintenance. Check back in a minute."
+alt="Briefly unavailable for scheduled maintenance. Check back in a minute." />
+<figcaption aria-hidden="true">Briefly unavailable for scheduled
+maintenance. Check back in a minute.</figcaption>
+</figure>
+<h3 id="原因">原因：</h3>
+<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
+unavailable for scheduled maintenance. Check back in a minute.”</p>
 <span id="more"></span>
-<h3 id="bezier曲线几何作图法">Bezier曲线几何作图法</h3>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span> data <span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_GetBezier3Point</span><span class="token punctuation">(</span>dataPoints<span class="token punctuation">,</span>u<span class="token punctuation">)</span>
-<span class="token comment">% 得到曲线参数为u的数据点</span>
-<span class="token comment">% dataPoints：初始点 2xn</span>
-data <span class="token operator">=</span> dataPoints<span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token number">1</span>
-    <span class="token keyword">if</span> <span class="token function">size</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    temp <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token function">size</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">size</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">size</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
-        <span class="token function">temp</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>u<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">+</span>u<span class="token operator">*</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    data <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token keyword">end</span></code></pre>
-<h3 id="处理鼠标响应事件">处理鼠标响应事件</h3>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonUpFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">)</span>
-<span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span> <span class="token string">'WindowButtonMotionFcn'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">%取消鼠标移动响应</span>
-<span class="token keyword">end</span></code></pre>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonMotionFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">,</span>ind<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">)</span>
-global ctrl_points h1<span class="token punctuation">;</span>
-pt <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'CurrentPoint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">%获取当前点坐标</span>
-<span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>ind<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token operator">:</span><span class="token number">0.01</span><span class="token operator">:</span><span class="token number">1</span>
-    <span class="token function">newData</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token function">int32</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">cqj_GetBezier3Point</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token function">set</span><span class="token punctuation">(</span>h_bezier<span class="token punctuation">,</span><span class="token string">'XData'</span><span class="token punctuation">,</span><span class="token function">newData</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>h_bezier<span class="token punctuation">,</span><span class="token string">'YData'</span><span class="token punctuation">,</span><span class="token function">newData</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'xdata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'ydata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span><span class="token function">myText</span><span class="token punctuation">(</span>ind<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'position'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'xdata'</span><span class="token punctuation">,</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'ydata'</span><span class="token punctuation">,</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'visible'</span><span class="token punctuation">,</span><span class="token string">'on'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-drawnow<span class="token punctuation">;</span>
-<span class="token keyword">end</span></code></pre>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token function">ButtonDownFcn</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">,</span><span class="token operator">~</span><span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">)</span>
-global ctrl_points h1<span class="token punctuation">;</span>
-pt <span class="token operator">=</span> <span class="token function">get</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'CurrentPoint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">%获取当前点坐标</span>
-curpoint <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">pt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">% 当前点坐标</span>
-curpoint_tr <span class="token operator">=</span> curpoint<span class="token operator">*</span><span class="token function">ones</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token function">size</span><span class="token punctuation">(</span>ctrl_points<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">%当前点坐标矩阵 每列一样</span>
-distance <span class="token operator">=</span> <span class="token function">vecnorm</span><span class="token punctuation">(</span>curpoint_tr<span class="token operator">-</span>ctrl_points<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">%当前点坐标与每个控制点的距离构成的向量</span>
-<span class="token keyword">if</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">distance</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token number">0.1</span>  <span class="token comment">% 如果距离控制点比较近</span>
-    <span class="token punctuation">[</span><span class="token operator">~</span><span class="token punctuation">,</span>ind<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>distance<span class="token operator">==</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">distance</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">% 当前点最近的那个点</span>
-    <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'xdata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>ind<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'ydata'</span><span class="token punctuation">,</span><span class="token function">ctrl_points</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span>ind<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span><span class="token string">'visible'</span><span class="token punctuation">,</span><span class="token string">'on'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">set</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span><span class="token string">'WindowButtonMotionFcn'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span><span class="token operator">@</span>ButtonMotionFcn<span class="token punctuation">,</span>ind<span class="token punctuation">,</span>h<span class="token punctuation">,</span>myText<span class="token punctuation">,</span>h_bezier<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">%设置鼠标移动响应</span>
-<span class="token keyword">end</span>
-<span class="token keyword">end</span></code></pre>
-<h3 id="封装了一个选择点的方法">封装了一个选择点的方法</h3>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>dataPoints<span class="token punctuation">,</span>h<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_selectPoints</span><span class="token punctuation">(</span>isclose<span class="token punctuation">,</span>x_axis<span class="token punctuation">,</span>y_axis<span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">exist</span><span class="token punctuation">(</span><span class="token string">'isclose'</span><span class="token punctuation">,</span><span class="token string">'var'</span><span class="token punctuation">)</span>
-    isclose <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-
-<span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">exist</span><span class="token punctuation">(</span><span class="token string">'x_axis'</span><span class="token punctuation">,</span><span class="token string">'var'</span><span class="token punctuation">)</span>
-    x_axis <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">exist</span><span class="token punctuation">(</span><span class="token string">'y_axis'</span><span class="token punctuation">,</span><span class="token string">'var'</span><span class="token punctuation">)</span>
-    y_axis <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">[</span>x_axis<span class="token punctuation">,</span>y_axis<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-grid on<span class="token punctuation">,</span>hold on
-<span class="token function">questdlg</span><span class="token punctuation">(</span><span class="token string">'1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点'</span><span class="token punctuation">,</span><span class="token string">'操作'</span><span class="token punctuation">,</span><span class="token string">'ok'</span><span class="token punctuation">,</span><span class="token string">'ok'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">%% 从鼠标获取数据点</span>
-<span class="token number">i</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token number">1</span>
-    <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-    tip <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'请选择第'</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'个数据点'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">xlabel</span><span class="token punctuation">(</span>tip<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">try</span>
-        <span class="token punctuation">[</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>button<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">ginput</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">catch</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    <span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span>x<span class="token punctuation">;</span>y<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token number">i</span><span class="token operator">==</span><span class="token number">1</span>
-        h <span class="token operator">=</span> <span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'b-o'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">else</span>
-        <span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'XData'</span><span class="token punctuation">,</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'YData'</span><span class="token punctuation">,</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    <span class="token keyword">if</span> button <span class="token operator">~=</span> <span class="token number">1</span>
-        <span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-<span class="token keyword">if</span> isclose
-    <span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'XData'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'YData'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token function">dataPoints</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token keyword">end</span></code></pre>
-<h3 id="结果">结果</h3>
-<p><img src="https://files.ifish.ink/mics/1103_1.gif" /></p>
+<h3 id="解决方法">解决方法：</h3>
+<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
+的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
+即可</p>
+<ul>
+<li>用FTP或者从终端进入WordPress的根目录下，删除
+<strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
+文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
+<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
+<strong>.maintenance</strong> 文件，然后删除即可。</li>
+</ul>
+<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>曲线曲面</category>
+        <category>工具技能</category>
       </categories>
       <tags>
-        <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
-        <tag>拟合</tag>
+        <tag>wordpress</tag>
       </tags>
   </entry>
   <entry>
-    <title>OpenSubdiv + Visual Studio环境配置</title>
-    <url>/post/a507e481.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
-</blockquote>
-<blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
-<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
-） （先前条件：<strong>win7系统</strong> 已安装<strong><a
-href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
-Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
-</blockquote>
-<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
-<p>需要的资源文件有<a
-href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a
-href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
-​ <strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a
-href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
-<img src="https://files.ifish.ink/mics/cc-1.png" alt="fig1" /> ​
- <strong>cmake的安装</strong>：可直接从<a
-href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
-<img src="https://files.ifish.ink/mics/cc-2.png" alt="fig2" /></p>
-<ul>
-<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
-<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
-<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
-user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
-CMake to the system PATH for the current user</em>”）</p></li>
-<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a
-href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
-如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
+    <title>ubuntu 外接显示与内置显示切换</title>
+    <url>/post/83277084.html</url>
+    <content><![CDATA[<ul>
+<li>查看显示器设备名称
+在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
+LVDS-1 和 HDMI-1
+(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
 </ul>
-<p><img src="https://files.ifish.ink/mics/cc-2.png" alt="fig3" /> <img
-src="https://files.ifish.ink/mics/cc-4.png" alt="fig4" /> ​
-<strong>glfw</strong>：GLfW ：<a
-href="http://www.glfw.org/">http://www.glfw.org/</a>
-如图所示可以下载压缩文件，或者用git克隆也可。 <img
-src="https://files.ifish.ink/mics/cc-5.png" alt="fig5" /> <img
-src="https://files.ifish.ink/mics/cc-6.png" alt="fig6" /></p>
-<hr />
-<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
-<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
-GUI选择源代码目录和构建路径：</h4>
-<p><img src="https://files.ifish.ink/mics/cc-7.png" alt="fig7" /> <img
-src="https://files.ifish.ink/mics/cc-8.png" alt="fig8" /></p>
-<h4
-id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
-<p><img src="https://files.ifish.ink/mics/cc-9.png" alt="fig9" /> <img
-src="https://files.ifish.ink/mics/cc-10.png" alt="fig10" /></p>
-<h4
-id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
-done’即可</h4>
-<p><img src="https://files.ifish.ink/mics/cc-11.png" alt="fig11" /> <img
-src="https://files.ifish.ink/mics/cc-12.png" alt="fig12" /></p>
-<h4
-id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
-done完成</h4>
-<figure>
-<img src="https://files.ifish.ink/mics/cc-13.png" alt="fig13" />
-<figcaption aria-hidden="true">fig13</figcaption>
-</figure>
-<hr />
-<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
-<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
-<pre class="language-none"><code class="language-none">&quot;d:&#x2F;Cmake3.8.0&#x2F;bin&#x2F;cmake.exe&quot; -G &quot;Visual Studio 14 Win64&quot; -DGLEW_LOCATION&#x3D;[d:&#x2F;glew&#x2F;lib&#x2F;Release&#x2F;x64] -DGLEW_INCLUDE_DIR&#x3D;[d:\glew\include\] -DGLEW_LIBRARY&#x3D;[d:\glew\lib\] -DGLFW_LOCATION&#x3D;[d:&#x2F;glfw&#x2F;bd&#x2F;src&#x2F;Release] -DNO_PTEX&#x3D;1 -DNO_DOC&#x3D;1 -DNO_OMP&#x3D;1 -DNO_TBB&#x3D;1 -DNO_CUDA&#x3D;1 -DNO_OPENCL&#x3D;1 -DNO_CLEW&#x3D;1</code></pre>
-<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
-<img src="https://files.ifish.ink/mics/cc-14.png" alt="fig14" />
-按下回车键： <img src="https://files.ifish.ink/mics/cc-15.png"
-alt="fig15" /> 完成！！！</p>
-<hr />
-<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
-<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
-Studio打开此文件 <img src="https://files.ifish.ink/mics/cc-16.png"
-alt="fig16" />
-点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img
-src="https://files.ifish.ink/mics/cc-17.png" alt="fig17" />
-生成过程需要一点时间，请耐心等待…… <img
-src="https://files.ifish.ink/mics/cc-18.png" alt="fig18" /> 生成成功
-<img src="https://files.ifish.ink/mics/cc-19.png" alt="fig19" />
-测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
-<img src="https://files.ifish.ink/mics/cc-20.png" alt="fig20" />
-运行后如图所示： <img src="https://files.ifish.ink/mics/cc-21.png"
-alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
+<span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
+<ul>
+<li><p>关闭外接显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off</code>
+(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>打开外接显示器，关闭内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>关闭外接显示器，打开内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+</ul>
 <hr />
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
@@ -611,31 +757,8 @@ alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
       </categories>
       <tags>
         <tag>环境配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress站点地图自动更新</title>
-    <url>/post/943451b1.html</url>
-    <content><![CDATA[<blockquote>
-<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
-</blockquote>
-<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-<img src="https://files.ifish.ink/mics/baiduzhanzhang.png"
-alt="百度站长" /> <span id="more"></span> <img
-src="https://files.ifish.ink/mics/googlezhanzhang.png" alt="google" />
-现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
-<img src="https://files.ifish.ink/mics/2.png" alt="google" />
-在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>SEO</tag>
-        <tag>sitemap</tag>
-        <tag>wordpress</tag>
+        <tag>ubuntu</tag>
+        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -677,37 +800,159 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
       </tags>
   </entry>
   <entry>
-    <title>ubuntu 外接显示与内置显示切换</title>
-    <url>/post/83277084.html</url>
-    <content><![CDATA[<ul>
-<li>查看显示器设备名称
-在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
-LVDS-1 和 HDMI-1
-(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
-</ul>
+    <title>三对角矩阵求逆的算法-实现</title>
+    <url>/post/891db679.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文实现的是论文《三对角矩阵求逆的算法》
+论文作者：冉瑞生、黄延祝等人</p>
+</blockquote>
 <span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
+<h3 id="matlab代码">MATLAB代码</h3>
 <ul>
-<li><p>关闭外接显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off</code>
-(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>打开外接显示器，关闭内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>关闭外接显示器，打开内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+<li>函数实现</li>
 </ul>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span>
+<span class="token comment">% 本文实现的是论文《三对角矩阵求逆的算法》论文作者：冉瑞生、黄延祝等人</span>
+<span class="token comment">% 本文算法的计算复杂度为O(n^2)</span>
+<span class="token comment">% 应用数学和力学，第30卷，第2期 2009年2月15日出版 文章编号：1000-0887(2009)02-0238-07</span>
+<span class="token comment">% Code author:Qingjun Chang  qingjun_chang@163.com &amp; qingjun.cn@gmail.com</span>
+<span class="token comment">% INPUT     a：下对角线 1*(n-1)</span>
+<span class="token comment">%           b：对角线 1*n</span>
+<span class="token comment">%           c：上对角线 1*(n-1)</span>
+<span class="token comment">% OUTPUT    A：原始三对角矩阵</span>
+<span class="token comment">%           C：逆矩阵</span>
+C <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment">%% STEP1 input A</span>
+
+A <span class="token operator">=</span> <span class="token function">diag</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">diag</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">diag</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span> a<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">%% STEP2 将A分解成A = LU</span>
+%
+<span class="token comment">% $\alpha_1=b_1$</span>
+<span class="token comment">% $\tau_&#123;i-1&#125;=\frac&#123;c_&#123;i-1&#125;&#125;&#123;\alpha_&#123;i-1&#125;&#125;,\alpha_i=b_i-a_i\tau_&#123;i-1&#125;,$</span>
+<span class="token comment">% $\gamma_i=\frac&#123;a_i&#125;&#123;\alpha_&#123;i-1&#125;&#125;(i=2,\cdots,n)$</span>
+%
+n <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+    <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'算法2.1失败!正在尝试算法2.2...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    syms x
+    alpha <span class="token operator">=</span> x<span class="token punctuation">;</span>
+    flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">:</span>n
+    <span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">c</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'算法2.1失败!正在尝试算法2.2...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        syms x
+        alpha <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        t <span class="token operator">=</span> <span class="token punctuation">[</span>t x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        gamma <span class="token operator">=</span> <span class="token punctuation">[</span>gamma x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+<span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+    <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'矩阵是奇异的!\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token comment">%% 算法2.2的一部分</span>
+%
+<span class="token comment">% $P(x)=\Pi_&#123;i=1&#125;^n\alpha_i$</span>
+%
+<span class="token keyword">if</span> flag
+    P <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
+        P <span class="token operator">=</span> P<span class="token operator">*</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    P <span class="token operator">=</span> <span class="token function">expand</span><span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    P_poly <span class="token operator">=</span> <span class="token function">sym2poly</span><span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">% 偶尔会出现错误 提示是Not a polynomial.以后修复</span>
+    <span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">P_poly</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token punctuation">)</span>
+        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'矩阵是奇异的\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">%% STEP3 计算逆矩阵的最后一个元</span>
+%
+<span class="token comment">% $C_&#123;nn&#125;=\frac&#123;1&#125;&#123;\alpha_n&#125;$</span>
+%
+C <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> flag
+    C <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    C <span class="token operator">=</span> <span class="token function">reshape</span><span class="token punctuation">(</span>C<span class="token punctuation">,</span>n<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token function">C</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span>n<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% STEP4 计算逆矩阵C的主对角线元素</span>
+%
+<span class="token comment">% $C_&#123;ii&#125;=\frac&#123;1&#125;&#123;\alpha_i&#125;+\tau_i\gamma_&#123;i+1&#125;C_&#123;i+1,i+1&#125; (i = n-1,\cdots,2,1)$</span>
+%
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
+    <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">%% STEP5 计算第i行位于主对角线元素左边的元素以及位于第i列位于主对角线上方的元素</span>
+%
+<span class="token comment">% $C_&#123;ij&#125;=-\gamma_&#123;j+1&#125;C_&#123;i,j+1&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
+%
+<span class="token comment">% $C_&#123;ji&#125;=-\tau_jC_&#123;j+1,i&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
+%
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span>
+    <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
+        <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span>
+    <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
+        <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">%% STEP6 输出C</span>
+<span class="token keyword">if</span> flag
+    C <span class="token operator">=</span> <span class="token function">expand</span><span class="token punctuation">(</span>C<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    str <span class="token operator">=</span> <span class="token string">'@(x) ['</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
+        <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
+            temp <span class="token operator">=</span> <span class="token function">factor</span><span class="token punctuation">(</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">' '</span> <span class="token function">char</span><span class="token punctuation">(</span><span class="token function">prod</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+        str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">';'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">']'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    Cfun <span class="token operator">=</span> <span class="token function">str2func</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    C <span class="token operator">=</span> <span class="token function">Cfun</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span></code></pre>
+<ul>
+<li>测试</li>
+</ul>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">3</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span></code></pre>
+<ul>
+<li>论文原文</li>
+</ul>
+<p><a
+href="/pdf/三对角矩阵求逆的算法_冉瑞生.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
+<ul>
+<li>文档</li>
+</ul>
+<p><a
+href="https://files.ifish.ink/mics/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
 <hr />
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>工具技能</category>
+        <category>代数</category>
       </categories>
       <tags>
-        <tag>环境配置</tag>
-        <tag>ubuntu</tag>
-        <tag>方法</tag>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
       </tags>
   </entry>
   <entry>
@@ -1361,6 +1606,31 @@ Pages，搭建一个免费的静态博客非常简单且高效。希望本教程
       </tags>
   </entry>
   <entry>
+    <title>WordPress站点地图自动更新</title>
+    <url>/post/943451b1.html</url>
+    <content><![CDATA[<blockquote>
+<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
+</blockquote>
+<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
+<img src="https://files.ifish.ink/mics/baiduzhanzhang.png"
+alt="百度站长" /> <span id="more"></span> <img
+src="https://files.ifish.ink/mics/googlezhanzhang.png" alt="google" />
+现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
+<img src="https://files.ifish.ink/mics/2.png" alt="google" />
+在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+        <tag>SEO</tag>
+        <tag>sitemap</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>参数曲线拟合</title>
     <url>/post/curvefitting.html</url>
     <content><![CDATA[<h3 id="曲线参数化">曲线参数化</h3>
@@ -1679,48 +1949,6 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
       </tags>
   </entry>
   <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <url>/post/563c2d.html</url>
-    <content><![CDATA[<blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
-<strong>Briefly unavailable for scheduled maintenance. Check back in a
-minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
-</blockquote>
-<figure>
-<img src="https://files.ifish.ink/mics/20190703103139.png"
-title="Briefly unavailable for scheduled maintenance. Check back in a minute."
-alt="Briefly unavailable for scheduled maintenance. Check back in a minute." />
-<figcaption aria-hidden="true">Briefly unavailable for scheduled
-maintenance. Check back in a minute.</figcaption>
-</figure>
-<h3 id="原因">原因：</h3>
-<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
-unavailable for scheduled maintenance. Check back in a minute.”</p>
-<span id="more"></span>
-<h3 id="解决方法">解决方法：</h3>
-<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
-的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
-即可</p>
-<ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除
-<strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
-文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
-<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
-<strong>.maintenance</strong> 文件，然后删除即可。</li>
-</ul>
-<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
     <url>/post/d033f67a.html</url>
     <content><![CDATA[<h4
@@ -1777,234 +2005,6 @@ VectorXd <span class="token class-name">MyPolygon</span><span class="token doubl
         <tag>算法实现</tag>
         <tag>均值重心坐标</tag>
         <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>三对角矩阵求逆的算法-实现</title>
-    <url>/post/891db679.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文实现的是论文《三对角矩阵求逆的算法》
-论文作者：冉瑞生、黄延祝等人</p>
-</blockquote>
-<span id="more"></span>
-<h3 id="matlab代码">MATLAB代码</h3>
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span>
-<span class="token comment">% 本文实现的是论文《三对角矩阵求逆的算法》论文作者：冉瑞生、黄延祝等人</span>
-<span class="token comment">% 本文算法的计算复杂度为O(n^2)</span>
-<span class="token comment">% 应用数学和力学，第30卷，第2期 2009年2月15日出版 文章编号：1000-0887(2009)02-0238-07</span>
-<span class="token comment">% Code author:Qingjun Chang  qingjun_chang@163.com &amp; qingjun.cn@gmail.com</span>
-<span class="token comment">% INPUT     a：下对角线 1*(n-1)</span>
-<span class="token comment">%           b：对角线 1*n</span>
-<span class="token comment">%           c：上对角线 1*(n-1)</span>
-<span class="token comment">% OUTPUT    A：原始三对角矩阵</span>
-<span class="token comment">%           C：逆矩阵</span>
-C <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token comment">%% STEP1 input A</span>
-
-A <span class="token operator">=</span> <span class="token function">diag</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">diag</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">diag</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span> a<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token comment">%% STEP2 将A分解成A = LU</span>
-%
-<span class="token comment">% $\alpha_1=b_1$</span>
-<span class="token comment">% $\tau_&#123;i-1&#125;=\frac&#123;c_&#123;i-1&#125;&#125;&#123;\alpha_&#123;i-1&#125;&#125;,\alpha_i=b_i-a_i\tau_&#123;i-1&#125;,$</span>
-<span class="token comment">% $\gamma_i=\frac&#123;a_i&#125;&#123;\alpha_&#123;i-1&#125;&#125;(i=2,\cdots,n)$</span>
-%
-n <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
-    <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'算法2.1失败!正在尝试算法2.2...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    syms x
-    alpha <span class="token operator">=</span> x<span class="token punctuation">;</span>
-    flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">:</span>n
-    <span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">c</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'算法2.1失败!正在尝试算法2.2...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        syms x
-        alpha <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        t <span class="token operator">=</span> <span class="token punctuation">[</span>t x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        gamma <span class="token operator">=</span> <span class="token punctuation">[</span>gamma x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-<span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
-    <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'矩阵是奇异的!\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token comment">%% 算法2.2的一部分</span>
-%
-<span class="token comment">% $P(x)=\Pi_&#123;i=1&#125;^n\alpha_i$</span>
-%
-<span class="token keyword">if</span> flag
-    P <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
-        P <span class="token operator">=</span> P<span class="token operator">*</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    P <span class="token operator">=</span> <span class="token function">expand</span><span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    P_poly <span class="token operator">=</span> <span class="token function">sym2poly</span><span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">% 偶尔会出现错误 提示是Not a polynomial.以后修复</span>
-    <span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">P_poly</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token punctuation">)</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'矩阵是奇异的\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-
-<span class="token comment">%% STEP3 计算逆矩阵的最后一个元</span>
-%
-<span class="token comment">% $C_&#123;nn&#125;=\frac&#123;1&#125;&#123;\alpha_n&#125;$</span>
-%
-C <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> flag
-    C <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    C <span class="token operator">=</span> <span class="token function">reshape</span><span class="token punctuation">(</span>C<span class="token punctuation">,</span>n<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token function">C</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span>n<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">%% STEP4 计算逆矩阵C的主对角线元素</span>
-%
-<span class="token comment">% $C_&#123;ii&#125;=\frac&#123;1&#125;&#123;\alpha_i&#125;+\tau_i\gamma_&#123;i+1&#125;C_&#123;i+1,i+1&#125; (i = n-1,\cdots,2,1)$</span>
-%
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
-    <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-
-<span class="token comment">%% STEP5 计算第i行位于主对角线元素左边的元素以及位于第i列位于主对角线上方的元素</span>
-%
-<span class="token comment">% $C_&#123;ij&#125;=-\gamma_&#123;j+1&#125;C_&#123;i,j+1&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
-%
-<span class="token comment">% $C_&#123;ji&#125;=-\tau_jC_&#123;j+1,i&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
-%
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span>
-    <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
-        <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span>
-    <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
-        <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-
-<span class="token comment">%% STEP6 输出C</span>
-<span class="token keyword">if</span> flag
-    C <span class="token operator">=</span> <span class="token function">expand</span><span class="token punctuation">(</span>C<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    str <span class="token operator">=</span> <span class="token string">'@(x) ['</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
-        <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
-            temp <span class="token operator">=</span> <span class="token function">factor</span><span class="token punctuation">(</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">' '</span> <span class="token function">char</span><span class="token punctuation">(</span><span class="token function">prod</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">end</span>
-        str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">';'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">']'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    Cfun <span class="token operator">=</span> <span class="token function">str2func</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    C <span class="token operator">=</span> <span class="token function">Cfun</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span></code></pre>
-<ul>
-<li>测试</li>
-</ul>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">3</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span></code></pre>
-<ul>
-<li>论文原文</li>
-</ul>
-<p><a
-href="/pdf/三对角矩阵求逆的算法_冉瑞生.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
-<ul>
-<li>文档</li>
-</ul>
-<p><a
-href="https://files.ifish.ink/mics/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>代数</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title(&#39;Bezier曲线拟合&#39;);
-questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
-<span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
-while 1
-    i &#x3D; i+1;
-    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
-    xlabel(tip);
-    try
-    [x,y,button] &#x3D; ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,&#39;o&#39;);
-    dataPoints(:,i) &#x3D; [x;y];
-    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
-    if button ~&#x3D; 1
-        xlabel(&#39;&#39;);
-        break;
-    end
-end
-
-
-for i &#x3D; 0:0.01:1
-    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
-end
-h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
-legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data &#x3D; dataPoints;
-while 1
-    if size(data,2) &#x3D;&#x3D; 1
-        break;
-    end
-    temp &#x3D; zeros(size(data,1),size(data,2)-1);
-    for i &#x3D; 1:size(data,2)-1
-        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data &#x3D; temp;
-end
-end</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>曲线曲面</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>拟合</tag>
       </tags>
   </entry>
   <entry>
@@ -2088,6 +2088,107 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
         <tag>算法实现</tag>
         <tag>均值重心坐标</tag>
         <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span
+class="math inline">\(\mathbb{R}^n\)</span>中的<span
+class="math inline">\(m\)</span>个样本点为<span
+class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
+class="math inline">\(m\)</span>个样本嵌入到低维空间<span
+class="math inline">\(\mathbb{R}^{d}\)</span>，<span
+class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img
+src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
+alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
+class="math inline">\(i\)</span>行第<span
+class="math inline">\(j\)</span>列元素为<span
+class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
+class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
+class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
+class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
+class="math inline">\(k\)</span>个非零特征值，分别为<span
+class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
+class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
+class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
+class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
+class="math inline">\({ V}\)</span>的第<span
+class="math inline">\(i\)</span>列是特征值<span
+class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
+class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
+class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span
+class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
+class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br />
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
+class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
+class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
+class="math inline">\(V_*\)</span>。即<span
+class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
+class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
+class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>几何处理</category>
+      </categories>
+      <tags>
+        <tag>曲面参数化</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -2251,104 +2352,213 @@ src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5
       </tags>
   </entry>
   <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
+    <title>如何像GitHub Action那样本地打包</title>
+    <url>/post/d2f9f15b.html</url>
     <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
+<p>GitHub
+Actions是GitHub提供的一项功能，用于实现持续集成和持续交付（CI/CD）工作流的自动化。通过GitHub
+Actions，开发者可以在代码库发生特定事件时，自动触发构建、测试、部署等一系列任务。它支持高度自定义的工作流，适用于从简单的脚本执行到复杂的项目自动化。这里将首先简要介绍GitHub
+Actions的基本概念，然后讲解如何在本地实现类似的打包过程。</p>
 </blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span
-class="math inline">\(\mathbb{R}^n\)</span>中的<span
-class="math inline">\(m\)</span>个样本点为<span
-class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
-class="math inline">\(m\)</span>个样本嵌入到低维空间<span
-class="math inline">\(\mathbb{R}^{d}\)</span>，<span
-class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img
-src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
-alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
-class="math inline">\(i\)</span>行第<span
-class="math inline">\(j\)</span>列元素为<span
-class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
-class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
-class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
-class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
-class="math inline">\(k\)</span>个非零特征值，分别为<span
-class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
-class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
-class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
-class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
-class="math inline">\({ V}\)</span>的第<span
-class="math inline">\(i\)</span>列是特征值<span
-class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
-class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
-class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span
-class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
-class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br />
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
-class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
-class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
-class="math inline">\(V_*\)</span>。即<span
-class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
-class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
-class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
+<h2 id="github-actions的主要功能">1. GitHub Actions的主要功能</h2>
+<h3 id="工作流自动化workflows">1.1 工作流自动化（Workflows）：</h3>
+<p>GitHub
+Actions使用<code>YAML</code>文件定义自动化工作流，通常保存在项目的<code>.github/workflows/</code>目录下。每个工作流都可以根据触发条件（如代码提交、Pull
+Request、Issue变动等）自动执行。</p>
+<h3 id="触发器triggers">1.2 触发器（Triggers）：</h3>
+<p>工作流可以通过不同的事件触发，如：</p>
+<ul>
+<li><p><code>push</code>：在代码推送到指定分支时触发。</p></li>
+<li><p><code>pull_request</code>：当发起或更新 Pull Request
+时触发。</p></li>
+<li><p><code>schedule</code>：基于时间计划（如每天、每周）自动触发。</p></li>
+<li><p><code>workflow_dispatch</code>：手动触发工作流。</p></li>
+<li><p><code>repository_dispatch</code>：自定义事件触发。</p></li>
+</ul>
+<h3 id="作业jobs和步骤steps">1.3 作业（Jobs）和步骤（Steps）：</h3>
+<ul>
+<li><p><code>Job</code>：一个工作流可以包含多个作业（jobs），每个作业可以在不同的虚拟环境中并行或顺序运行。作业之间也可以通过输出和依赖关系进行通信。</p></li>
+<li><p><code>Step</code>：每个作业可以包含多个步骤，通常是命令或操作（actions）的执行。这些步骤可以是<code>shell</code>命令或预定义的GitHub
+Actions。</p></li>
+</ul>
+<h3 id="运行环境runners">1.4 运行环境（Runners）：</h3>
+<p>GitHub
+Actions提供多种预配置的虚拟机环境，称为运行器（Runners），包括：</p>
+<ul>
+<li><p>Ubuntu、Windows、macOS等系统。</p></li>
+<li><p>用户还可以使用自托管运行器，在自己的服务器上执行工作流。</p></li>
+</ul>
+<h3 id="actions操作">1.5 Actions（操作）：</h3>
+<ul>
+<li><p><code>Actions</code>是GitHub
+Actions的核心组件，是可复用的单元。GitHub提供了大量官方和社区开发的Actions，来简化常见任务（如设置语言环境、部署到云服务等）。</p></li>
+<li><p>开发者也可以自定义自己的Action，以适应特定需求。Actions可以是Docker容器化的任务，也可以是运行JavaScript或Shell脚本的任务。</p></li>
+</ul>
+<h3 id="工作流的上下文与秘密管理">1.6 工作流的上下文与秘密管理：</h3>
+<ul>
+<li><p>GitHub
+Actions提供了丰富的上下文变量，如环境变量、GitHub的元数据（例如事件信息、触发时间等），可在工作流中使用。</p></li>
+<li><p>可以通过GitHub的Secrets管理敏感信息（如API密钥、认证令牌等），并在工作流中安全地使用这些秘密信息。</p></li>
+</ul>
+<h3 id="并行和依赖管理">1.7 并行和依赖管理：</h3>
+<ul>
+<li><p>作业可以并行运行，以加速CI/CD流程。</p></li>
+<li><p>通过设置needs关键字，可以定义作业之间的依赖关系，确保某些作业在其他作业完成后才执行。</p></li>
+</ul>
+<h3 id="缓存和工件artifacts">1.8 缓存和工件（Artifacts）：</h3>
+<ul>
+<li><p>GitHub
+Actions支持缓存依赖项（如npm包、编译结果）以加速后续的工作流运行。</p></li>
+<li><p>通过上传工件，可以在作业之间共享生成的文件或产物（如编译产物、测试结果等）。</p></li>
+</ul>
+<h2 id="github-actions的典型用例">2. GitHub Actions的典型用例</h2>
+<h3 id="持续集成ci">2.1 持续集成（CI）：</h3>
+<ul>
+<li><p>自动化测试：在每次代码推送或PR创建时，自动拉取代码并运行单元测试、集成测试等。</p></li>
+<li><p>代码质量检查：使用linters、格式化工具对代码进行检查。</p></li>
+<li><p>多平台构建：通过GitHub
+Actions可以在不同的平台（Windows、Linux、macOS）上同时进行构建。</p></li>
+</ul>
+<h3 id="持续交付cd">2.2 持续交付（CD）：</h3>
+<ul>
+<li><p>自动化部署：可以在代码通过测试后，自动部署到生产环境或测试环境中。例如，部署到AWS、Google
+Cloud、Azure，或通过FTP部署到自托管服务器。</p></li>
+<li><p>自动发布：在创建GitHub
+Release或推送特定标签时，自动打包应用并发布到如npm、PyPI、Docker
+Hub等平台。</p></li>
+</ul>
+<h3 id="项目自动化">2.3 项目自动化：</h3>
+<ul>
+<li><p>自动化Issue管理：可以自动化标记、关闭、分配Issue。</p></li>
+<li><p>Pull
+Request工作流：当有新的PR时，自动分配审查人员、运行测试和检查。</p></li>
+</ul>
+<p><strong>一个简单的 GitHub Actions 示例</strong></p>
+<p>以下是一个基本的 GitHub Actions 工作流，用于在代码推送到 main
+分支时，自动执行 Node.js 项目的测试：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> Node.js CI
+
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">push</span><span class="token punctuation">:</span>
+    <span class="token key atrule">branches</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout code
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Run tests
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm test</code></pre>
+<p><strong>GitHub Actions 的优势</strong></p>
+<ul>
+<li><p>高度集成：与GitHub仓库紧密集成，工作流可以响应多种GitHub事件。</p></li>
+<li><p>灵活性：支持自定义Actions，适用于多种任务场景。</p></li>
+<li><p>多平台支持：可以同时在不同操作系统上运行作业。</p></li>
+<li><p>社区支持：有大量社区维护的Actions，覆盖了多种常见场景，用户可以直接复用。</p></li>
+</ul>
+<p>GitHub
+Actions是一个功能强大且灵活的CI/CD工具，能够大幅提升开发效率，通过自动化流程帮助团队减少手动操作，确保代码质量和发布流程的稳定性。但是，有时候我们可能需要在本地进行类似的打包操作，下面将介绍如何实现这一过程。</p>
+<h2 id="本地打包实现">3. 本地打包实现</h2>
+<p>在本地实现类似Github
+Actions的<code>continuous.yml</code>文件进行打包，主要是为了模拟CI/CD流程，并在本地执行自动化任务。通常可以通过一些CI工具（如Docker、Makefile或者直接通过Shell脚本）来运行类似的任务。假设你已经有一个GitHub
+Actions的<code>continuous.yml</code>文件，以下步骤可以帮助你在本地打包和测试：</p>
+<h3 id="使用act模拟github-actions">3.1 使用Act模拟GitHub Actions</h3>
+<p><code>Act</code>是一个工具，它能够在本地运行GitHub
+Actions。你可以用它来直接执行<code>continuous.yml</code>文件中的内容。</p>
+<h4 id="安装act">3.1.1 安装Act：</h4>
+<p>首先，需要在本地机器上安装<code>act</code>。如果你使用的是macOS，可以使用Homebrew安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> act</code></pre>
+<p>对于其他操作系统，可以参考<a
+href="https://nektosact.com/installation/index.html">Act的官方文档</a>进行安装。</p>
+<h4 id="配置continuous.yml文件">3.1.2 配置continuous.yml文件：</h4>
+<p>确保你的GitHub
+Actions配置文件<code>continuous.yml</code>位于<code>.github/workflows/</code>路径下（这是GitHub
+Actions的默认路径）。</p>
+<h4 id="运行act">3.1.3 运行Act：</h4>
+<p>使用以下命令来运行你的工作流：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">act</code></pre>
+<p><code>act</code>会根据你的<code>continuous.yml</code>文件中的触发条件（如<code>push</code>或<code>pull_request</code>），模拟GitHub
+Actions并执行相关步骤。</p>
+<p>** 配置镜像：**</p>
+<p>如果你的工作流中使用了自定义的镜像，你可以在<code>act</code>命令中指定镜像，例如：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">act <span class="token parameter variable">-P</span> ubuntu-latest<span class="token operator">=</span>nektos/act-environments-ubuntu:18.04</code></pre>
+<p>这样，<code>act</code>会使用<code>nektos/act-environments-ubuntu:18.04</code>镜像来运行你的工作流。</p>
+<h3 id="使用shell脚本或makefile">3.2 使用Shell脚本或Makefile</h3>
+<p>如果你不想使用Act，可以通过将<code>continuous.yml</code>文件中的指令提取出来，转为Shell脚本或Makefile，在本地执行打包。</p>
+<h4 id="创建makefile或shell脚本">3.2.1 创建Makefile或Shell脚本：</h4>
+<p>根据<code>continuous.yml</code>文件中的步骤，创建一个本地Shell脚本或Makefile。例如，假设<code>continuous.yml</code>中有一个打包的步骤：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout repository
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build project
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm run build</code></pre>
+<p>你可以将这些步骤转为一个Shell脚本<code>build.sh</code>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># 模拟 GitHub Actions 的构建过程</span>
+
+<span class="token comment"># Step 1: 拉取代码 (checkout)</span>
+<span class="token function">git</span> checkout main
+
+<span class="token comment"># Step 2: 设置 Node.js 环境</span>
+nvm <span class="token function">install</span> <span class="token number">14</span>
+nvm use <span class="token number">14</span>
+
+<span class="token comment"># Step 3: 安装依赖</span>
+<span class="token function">npm</span> <span class="token function">install</span>
+
+<span class="token comment"># Step 4: 构建项目</span>
+<span class="token function">npm</span> run build</code></pre>
+<p>将这个脚本保存为<code>local_build.sh</code>，然后运行：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x local_build.sh
+./local_build.sh</code></pre>
+<h3 id="使用docker">3.3 使用Docker</h3>
+<p>如果你希望通过容器来实现更接近GitHub
+Actions的运行环境，可以使用Docker构建环境，来打包和测试项目。</p>
+<h4 id="创建dockerfile">3.3.1 创建Dockerfile：</h4>
+<p>根据<code>continuous.yml</code>文件中的环境要求创建一个<code>Dockerfile</code>。例如：</p>
+<pre class="language-Dockerfile" data-language="Dockerfile"><code class="language-Dockerfile">FROM node:14
+
+WORKDIR &#x2F;app
+
+COPY . .
+
+RUN npm install
+
+CMD [&quot;npm&quot;, &quot;run&quot;, &quot;build&quot;]</code></pre>
+<h4 id="运行docker容器">3.3.2 运行Docker容器：</h4>
+<p>运行以下命令来构建和运行Docker容器：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build <span class="token parameter variable">-t</span> local-build <span class="token builtin class-name">.</span>
+<span class="token function">docker</span> run local-build</code></pre>
+<p>这样，Docker容器会在本地构建项目，类似于GitHub
+Actions中的构建过程。</p>
 ]]></content>
       <categories>
-        <category>几何处理</category>
+        <category>工具技能</category>
       </categories>
       <tags>
-        <tag>曲面参数化</tag>
-        <tag>算法</tag>
+        <tag>GitHub Action</tag>
+        <tag>软件打包</tag>
       </tags>
   </entry>
   <entry>
@@ -2756,6 +2966,28 @@ Hormann教授的邀请和邓重阳教授的支持让我有了这次国外学习�
       </tags>
   </entry>
   <entry>
+    <title>男孩，鼹鼠，狐狸和马</title>
+    <url>/post/ca64211f.html</url>
+    <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
+<p>《男孩、鼹鼠、狐狸和马》是一部感人至深的动画短片，改编自英国作家查理·麦克西（Charlie
+Mackesy）的同名绘本。这部作品以其温暖的画风、简洁的对白和深刻的哲理内涵广受欢迎，传递了关于友情、勇气、爱与自我接纳的普世价值。</p>
+<p>该影片于2023年3月12日获得了奥斯卡最佳动画短片奖。影片讲述了一个小男孩在寻找家的过程中，遇到了鼹鼠、狐狸和马这三个截然不同的动物伙伴。四个角色的性格和对话十分鲜明：男孩天真无邪、好奇心强，鼹鼠贪恋甜食且充满智慧，狐狸沉默寡言，但心地善良，马则象征着力量与平静。在旅程中，四个角色共同经历了挑战，彼此扶持，学会了接受自己的脆弱和不完美，同时明白了什么是爱与关怀。</p>
+<p><img src="/images/imgs/ca64211f-1.jpeg" /></p>
+<p>影片最大的亮点之一是其画面风格，它保留了原著插画的水彩笔触和流动的线条，使观众仿佛置身于一幅动态的水彩画中。这种柔和的美学风格与影片温暖的主题相得益彰，给人以安慰和治愈的感觉。</p>
+<p>此外，影片通过极简的对话传达了深刻的哲理。例如，男孩问马“什么是成功”，马回答说：“<code>成功是被爱</code>。”，以及“长大以后，你想当什么呢？”，鼹鼠回答“<code>善良的人</code>”。这类发人深省的句子贯穿全片，令观众在观影过程中不断思考生命中真正重要的东西。对于狐狸这个角色，他的沉默和善良也让人印象深刻，他在影片中扮演了一个重要的引导者角色，帮助男孩和其他动物找到了自己的方向。</p>
+<p>这是一部令人心灵平静的作品，无论是大人还是孩子都能从中汲取力量和安慰。这部动画不仅仅是一个寻找家的故事，更是关于自我发现、友谊和接纳彼此不完美的寓言。</p>
+<p><img src="/images/imgs/ca64211f-2.jpeg" /></p>
+]]></content>
+      <categories>
+        <category>生活娱乐</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>动画</tag>
+        <tag>短片</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>简单细分曲线</title>
     <url>/post/subdivcurve.html</url>
     <content><![CDATA[<h3 id="细分曲线">细分曲线</h3>
@@ -2876,238 +3108,6 @@ alt="封闭控制多边形的四点插值细分曲线" /></p>
       <tags>
         <tag>C/C++</tag>
         <tag>细分曲线</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>男孩，鼹鼠，狐狸和马</title>
-    <url>/post/ca64211f.html</url>
-    <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
-<p>《男孩、鼹鼠、狐狸和马》是一部感人至深的动画短片，改编自英国作家查理·麦克西（Charlie
-Mackesy）的同名绘本。这部作品以其温暖的画风、简洁的对白和深刻的哲理内涵广受欢迎，传递了关于友情、勇气、爱与自我接纳的普世价值。</p>
-<p>该影片于2023年3月12日获得了奥斯卡最佳动画短片奖。影片讲述了一个小男孩在寻找家的过程中，遇到了鼹鼠、狐狸和马这三个截然不同的动物伙伴。四个角色的性格和对话十分鲜明：男孩天真无邪、好奇心强，鼹鼠贪恋甜食且充满智慧，狐狸沉默寡言，但心地善良，马则象征着力量与平静。在旅程中，四个角色共同经历了挑战，彼此扶持，学会了接受自己的脆弱和不完美，同时明白了什么是爱与关怀。</p>
-<p><img src="/images/imgs/ca64211f-1.jpeg" /></p>
-<p>影片最大的亮点之一是其画面风格，它保留了原著插画的水彩笔触和流动的线条，使观众仿佛置身于一幅动态的水彩画中。这种柔和的美学风格与影片温暖的主题相得益彰，给人以安慰和治愈的感觉。</p>
-<p>此外，影片通过极简的对话传达了深刻的哲理。例如，男孩问马“什么是成功”，马回答说：“<code>成功是被爱</code>。”，以及“长大以后，你想当什么呢？”，鼹鼠回答“<code>善良的人</code>”。这类发人深省的句子贯穿全片，令观众在观影过程中不断思考生命中真正重要的东西。对于狐狸这个角色，他的沉默和善良也让人印象深刻，他在影片中扮演了一个重要的引导者角色，帮助男孩和其他动物找到了自己的方向。</p>
-<p>这是一部令人心灵平静的作品，无论是大人还是孩子都能从中汲取力量和安慰。这部动画不仅仅是一个寻找家的故事，更是关于自我发现、友谊和接纳彼此不完美的寓言。</p>
-<p><img src="/images/imgs/ca64211f-2.jpeg" /></p>
-]]></content>
-      <categories>
-        <category>生活娱乐</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-        <tag>动画</tag>
-        <tag>短片</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何像GitHub Action那样本地打包</title>
-    <url>/post/d2f9f15b.html</url>
-    <content><![CDATA[<blockquote>
-<p>GitHub
-Actions是GitHub提供的一项功能，用于实现持续集成和持续交付（CI/CD）工作流的自动化。通过GitHub
-Actions，开发者可以在代码库发生特定事件时，自动触发构建、测试、部署等一系列任务。它支持高度自定义的工作流，适用于从简单的脚本执行到复杂的项目自动化。这里将首先简要介绍GitHub
-Actions的基本概念，然后讲解如何在本地实现类似的打包过程。</p>
-</blockquote>
-<h2 id="github-actions的主要功能">1. GitHub Actions的主要功能</h2>
-<h3 id="工作流自动化workflows">1.1 工作流自动化（Workflows）：</h3>
-<p>GitHub
-Actions使用<code>YAML</code>文件定义自动化工作流，通常保存在项目的<code>.github/workflows/</code>目录下。每个工作流都可以根据触发条件（如代码提交、Pull
-Request、Issue变动等）自动执行。</p>
-<h3 id="触发器triggers">1.2 触发器（Triggers）：</h3>
-<p>工作流可以通过不同的事件触发，如：</p>
-<ul>
-<li><p><code>push</code>：在代码推送到指定分支时触发。</p></li>
-<li><p><code>pull_request</code>：当发起或更新 Pull Request
-时触发。</p></li>
-<li><p><code>schedule</code>：基于时间计划（如每天、每周）自动触发。</p></li>
-<li><p><code>workflow_dispatch</code>：手动触发工作流。</p></li>
-<li><p><code>repository_dispatch</code>：自定义事件触发。</p></li>
-</ul>
-<h3 id="作业jobs和步骤steps">1.3 作业（Jobs）和步骤（Steps）：</h3>
-<ul>
-<li><p><code>Job</code>：一个工作流可以包含多个作业（jobs），每个作业可以在不同的虚拟环境中并行或顺序运行。作业之间也可以通过输出和依赖关系进行通信。</p></li>
-<li><p><code>Step</code>：每个作业可以包含多个步骤，通常是命令或操作（actions）的执行。这些步骤可以是<code>shell</code>命令或预定义的GitHub
-Actions。</p></li>
-</ul>
-<h3 id="运行环境runners">1.4 运行环境（Runners）：</h3>
-<p>GitHub
-Actions提供多种预配置的虚拟机环境，称为运行器（Runners），包括：</p>
-<ul>
-<li><p>Ubuntu、Windows、macOS等系统。</p></li>
-<li><p>用户还可以使用自托管运行器，在自己的服务器上执行工作流。</p></li>
-</ul>
-<h3 id="actions操作">1.5 Actions（操作）：</h3>
-<ul>
-<li><p><code>Actions</code>是GitHub
-Actions的核心组件，是可复用的单元。GitHub提供了大量官方和社区开发的Actions，来简化常见任务（如设置语言环境、部署到云服务等）。</p></li>
-<li><p>开发者也可以自定义自己的Action，以适应特定需求。Actions可以是Docker容器化的任务，也可以是运行JavaScript或Shell脚本的任务。</p></li>
-</ul>
-<h3 id="工作流的上下文与秘密管理">1.6 工作流的上下文与秘密管理：</h3>
-<ul>
-<li><p>GitHub
-Actions提供了丰富的上下文变量，如环境变量、GitHub的元数据（例如事件信息、触发时间等），可在工作流中使用。</p></li>
-<li><p>可以通过GitHub的Secrets管理敏感信息（如API密钥、认证令牌等），并在工作流中安全地使用这些秘密信息。</p></li>
-</ul>
-<h3 id="并行和依赖管理">1.7 并行和依赖管理：</h3>
-<ul>
-<li><p>作业可以并行运行，以加速CI/CD流程。</p></li>
-<li><p>通过设置needs关键字，可以定义作业之间的依赖关系，确保某些作业在其他作业完成后才执行。</p></li>
-</ul>
-<h3 id="缓存和工件artifacts">1.8 缓存和工件（Artifacts）：</h3>
-<ul>
-<li><p>GitHub
-Actions支持缓存依赖项（如npm包、编译结果）以加速后续的工作流运行。</p></li>
-<li><p>通过上传工件，可以在作业之间共享生成的文件或产物（如编译产物、测试结果等）。</p></li>
-</ul>
-<h2 id="github-actions的典型用例">2. GitHub Actions的典型用例</h2>
-<h3 id="持续集成ci">2.1 持续集成（CI）：</h3>
-<ul>
-<li><p>自动化测试：在每次代码推送或PR创建时，自动拉取代码并运行单元测试、集成测试等。</p></li>
-<li><p>代码质量检查：使用linters、格式化工具对代码进行检查。</p></li>
-<li><p>多平台构建：通过GitHub
-Actions可以在不同的平台（Windows、Linux、macOS）上同时进行构建。</p></li>
-</ul>
-<h3 id="持续交付cd">2.2 持续交付（CD）：</h3>
-<ul>
-<li><p>自动化部署：可以在代码通过测试后，自动部署到生产环境或测试环境中。例如，部署到AWS、Google
-Cloud、Azure，或通过FTP部署到自托管服务器。</p></li>
-<li><p>自动发布：在创建GitHub
-Release或推送特定标签时，自动打包应用并发布到如npm、PyPI、Docker
-Hub等平台。</p></li>
-</ul>
-<h3 id="项目自动化">2.3 项目自动化：</h3>
-<ul>
-<li><p>自动化Issue管理：可以自动化标记、关闭、分配Issue。</p></li>
-<li><p>Pull
-Request工作流：当有新的PR时，自动分配审查人员、运行测试和检查。</p></li>
-</ul>
-<p><strong>一个简单的 GitHub Actions 示例</strong></p>
-<p>以下是一个基本的 GitHub Actions 工作流，用于在代码推送到 main
-分支时，自动执行 Node.js 项目的测试：</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> Node.js CI
-
-<span class="token key atrule">on</span><span class="token punctuation">:</span>
-  <span class="token key atrule">push</span><span class="token punctuation">:</span>
-    <span class="token key atrule">branches</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> main
-
-<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
-  <span class="token key atrule">build</span><span class="token punctuation">:</span>
-    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
-    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout code
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
-
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
-      <span class="token key atrule">with</span><span class="token punctuation">:</span>
-        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
-
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
-      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
-
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Run tests
-      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm test</code></pre>
-<p><strong>GitHub Actions 的优势</strong></p>
-<ul>
-<li><p>高度集成：与GitHub仓库紧密集成，工作流可以响应多种GitHub事件。</p></li>
-<li><p>灵活性：支持自定义Actions，适用于多种任务场景。</p></li>
-<li><p>多平台支持：可以同时在不同操作系统上运行作业。</p></li>
-<li><p>社区支持：有大量社区维护的Actions，覆盖了多种常见场景，用户可以直接复用。</p></li>
-</ul>
-<p>GitHub
-Actions是一个功能强大且灵活的CI/CD工具，能够大幅提升开发效率，通过自动化流程帮助团队减少手动操作，确保代码质量和发布流程的稳定性。但是，有时候我们可能需要在本地进行类似的打包操作，下面将介绍如何实现这一过程。</p>
-<h2 id="本地打包实现">3. 本地打包实现</h2>
-<p>在本地实现类似Github
-Actions的<code>continuous.yml</code>文件进行打包，主要是为了模拟CI/CD流程，并在本地执行自动化任务。通常可以通过一些CI工具（如Docker、Makefile或者直接通过Shell脚本）来运行类似的任务。假设你已经有一个GitHub
-Actions的<code>continuous.yml</code>文件，以下步骤可以帮助你在本地打包和测试：</p>
-<h3 id="使用act模拟github-actions">3.1 使用Act模拟GitHub Actions</h3>
-<p><code>Act</code>是一个工具，它能够在本地运行GitHub
-Actions。你可以用它来直接执行<code>continuous.yml</code>文件中的内容。</p>
-<h4 id="安装act">3.1.1 安装Act：</h4>
-<p>首先，需要在本地机器上安装<code>act</code>。如果你使用的是macOS，可以使用Homebrew安装：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> act</code></pre>
-<p>对于其他操作系统，可以参考<a
-href="https://nektosact.com/installation/index.html">Act的官方文档</a>进行安装。</p>
-<h4 id="配置continuous.yml文件">3.1.2 配置continuous.yml文件：</h4>
-<p>确保你的GitHub
-Actions配置文件<code>continuous.yml</code>位于<code>.github/workflows/</code>路径下（这是GitHub
-Actions的默认路径）。</p>
-<h4 id="运行act">3.1.3 运行Act：</h4>
-<p>使用以下命令来运行你的工作流：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">act</code></pre>
-<p><code>act</code>会根据你的<code>continuous.yml</code>文件中的触发条件（如<code>push</code>或<code>pull_request</code>），模拟GitHub
-Actions并执行相关步骤。</p>
-<p>** 配置镜像：**</p>
-<p>如果你的工作流中使用了自定义的镜像，你可以在<code>act</code>命令中指定镜像，例如：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">act <span class="token parameter variable">-P</span> ubuntu-latest<span class="token operator">=</span>nektos/act-environments-ubuntu:18.04</code></pre>
-<p>这样，<code>act</code>会使用<code>nektos/act-environments-ubuntu:18.04</code>镜像来运行你的工作流。</p>
-<h3 id="使用shell脚本或makefile">3.2 使用Shell脚本或Makefile</h3>
-<p>如果你不想使用Act，可以通过将<code>continuous.yml</code>文件中的指令提取出来，转为Shell脚本或Makefile，在本地执行打包。</p>
-<h4 id="创建makefile或shell脚本">3.2.1 创建Makefile或Shell脚本：</h4>
-<p>根据<code>continuous.yml</code>文件中的步骤，创建一个本地Shell脚本或Makefile。例如，假设<code>continuous.yml</code>中有一个打包的步骤：</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">jobs</span><span class="token punctuation">:</span>
-  <span class="token key atrule">build</span><span class="token punctuation">:</span>
-    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
-    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout repository
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
-      <span class="token key atrule">with</span><span class="token punctuation">:</span>
-        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
-      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build project
-      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm run build</code></pre>
-<p>你可以将这些步骤转为一个Shell脚本<code>build.sh</code>：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-
-<span class="token comment"># 模拟 GitHub Actions 的构建过程</span>
-
-<span class="token comment"># Step 1: 拉取代码 (checkout)</span>
-<span class="token function">git</span> checkout main
-
-<span class="token comment"># Step 2: 设置 Node.js 环境</span>
-nvm <span class="token function">install</span> <span class="token number">14</span>
-nvm use <span class="token number">14</span>
-
-<span class="token comment"># Step 3: 安装依赖</span>
-<span class="token function">npm</span> <span class="token function">install</span>
-
-<span class="token comment"># Step 4: 构建项目</span>
-<span class="token function">npm</span> run build</code></pre>
-<p>将这个脚本保存为<code>local_build.sh</code>，然后运行：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x local_build.sh
-./local_build.sh</code></pre>
-<h3 id="使用docker">3.3 使用Docker</h3>
-<p>如果你希望通过容器来实现更接近GitHub
-Actions的运行环境，可以使用Docker构建环境，来打包和测试项目。</p>
-<h4 id="创建dockerfile">3.3.1 创建Dockerfile：</h4>
-<p>根据<code>continuous.yml</code>文件中的环境要求创建一个<code>Dockerfile</code>。例如：</p>
-<pre class="language-Dockerfile" data-language="Dockerfile"><code class="language-Dockerfile">FROM node:14
-
-WORKDIR &#x2F;app
-
-COPY . .
-
-RUN npm install
-
-CMD [&quot;npm&quot;, &quot;run&quot;, &quot;build&quot;]</code></pre>
-<h4 id="运行docker容器">3.3.2 运行Docker容器：</h4>
-<p>运行以下命令来构建和运行Docker容器：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build <span class="token parameter variable">-t</span> local-build <span class="token builtin class-name">.</span>
-<span class="token function">docker</span> run local-build</code></pre>
-<p>这样，Docker容器会在本地构建项目，类似于GitHub
-Actions中的构建过程。</p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>GitHub Action</tag>
-        <tag>软件打包</tag>
       </tags>
   </entry>
 </search>
