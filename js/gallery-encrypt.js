@@ -192,7 +192,7 @@ $(document).ready(
     document.getElementById('pass').onkeypress = function (keyPressEvent) {
 
       password = String(document.getElementById('pass').value);
-      if (keyPressEvent.keyCode === 13) {
+      if (keyPressEvent.key === 'Enter') {
 
         const result = decryptAES(password);
 
