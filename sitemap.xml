@@ -4,7 +4,16 @@
   <url>
     <loc>https://www.ifish.ink/qjchang/index-zh.html</loc>
     
-    <lastmod>2025-04-22</lastmod>
+    <lastmod>2025-04-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.ifish.ink/qjchang/index.html</loc>
+    
+    <lastmod>2025-04-25</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -155,15 +164,6 @@
   </url>
   
   <url>
-    <loc>https://www.ifish.ink/qjchang/index.html</loc>
-    
-    <lastmod>2025-03-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.ifish.ink/post/bb2b886d.html</loc>
     
     <lastmod>2024-10-23</lastmod>
@@ -283,7 +283,7 @@
 
   <url>
     <loc>https://www.ifish.ink/</loc>
-    <lastmod>2025-04-23</lastmod>
+    <lastmod>2025-04-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
