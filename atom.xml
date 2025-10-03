@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2024-10-21T18:03:15.571Z</updated>
+  <updated>2025-10-03T21:01:51.086Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
+    <link href="https://www.ifish.ink/post/pm2-nodejs-macos.html"/>
+    <id>https://www.ifish.ink/post/pm2-nodejs-macos.html</id>
+    <published>2025-10-03T20:21:53.000Z</published>
+    <updated>2025-10-03T21:01:51.086Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在本地开发或部署轻量级应用时，我们常常需要在Mac
+mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用&lt;strong&gt;PM2&lt;/strong&gt;来实现开机自启动。&lt;/p&gt;
+&lt;h</summary>
+        
+      
+    
+    
+    
+    <category term="技术" scheme="https://www.ifish.ink/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="PM2" scheme="https://www.ifish.ink/tags/PM2/"/>
+    
+    <category term="Node.js" scheme="https://www.ifish.ink/tags/Node-js/"/>
+    
+    <category term="macOS" scheme="https://www.ifish.ink/tags/macOS/"/>
+    
+  </entry>
   
   <entry>
     <title>如何像GitHub Action那样本地打包</title>
@@ -616,39 +647,6 @@ Value Coordinates In 3D代码实现&lt;/a&gt;&lt;/p&gt;
     <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
     
     <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <link href="https://www.ifish.ink/post/563c2d.html"/>
-    <id>https://www.ifish.ink/post/563c2d.html</id>
-    <published>2019-07-03T02:50:03.000Z</published>
-    <updated>2025-04-17T22:08:27.191Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
-&lt;strong&gt;Briefly unavailable for scheduled maintenance. Check back in a
-minute.&lt;/strong&gt; ，导致我们的WordPress站点不能正常使用&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure&gt;
-&lt;img src=&quot;https://files.ifish.ink/mics/20190703103139.png&quot;
-title=&quot;Briefly unavailable for scheduled maintenance. Check back in a minute.&quot;
-alt=&quot;Briefly unavailable for scheduled maintenance. Check back in a minute.&quot; /&gt;
-&lt;figcaption aria-hidden=&quot;true&quot;&gt;Briefly unavailable for scheduled
-maintenance. Check back in a minute.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;h3 id=&quot;原因&quot;&gt;原因：&lt;/h3&gt;
-&lt;p&gt;这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
-unavailable for scheduled maintenance. Check back in a minute.”&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
-    
-    
-    <category term="wordpress" scheme="https://www.ifish.ink/tags/wordpress/"/>
     
   </entry>
   

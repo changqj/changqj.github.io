@@ -3115,4 +3115,52 @@ alt="封闭控制多边形的四点插值细分曲线" /></p>
         <tag>细分曲线</tag>
       </tags>
   </entry>
+  <entry>
+    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
+    <url>/post/pm2-nodejs-macos.html</url>
+    <content><![CDATA[<p>在本地开发或部署轻量级应用时，我们常常需要在Mac
+mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用<strong>PM2</strong>来实现开机自启动。</p>
+<h2 id="安装pm2">1. 安装PM2</h2>
+<p>如果还没安装过PM2，可以通过npm全局安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> pm2</code></pre>
+<p>检查是否安装成功：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 <span class="token parameter variable">-v</span></code></pre>
+<h2 id="启动node.js服务">2. 启动Node.js服务</h2>
+<p>进入你的Node.js项目目录，使用PM2启动你的服务。例如，如果你的入口文件是<code>app.js</code>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<blockquote>
+<p><code>--name</code>参数可以为你的进程指定一个易于识别的名称。</p>
+</blockquote>
+<p>如果你不想进入项目目录，也可以直接指定完整路径：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start /path/to/your/app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<h2 id="配置pm2开机自启动">3. 配置PM2开机自启动</h2>
+<p>PM2提供了一个方便的命令来生成开机自启动脚本。运行以下命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 startup</code></pre>
+<p>这条命令会输出一条类似下面的命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/bin pm2 startup launchd <span class="token parameter variable">-u</span> your-username <span class="token parameter variable">--hp</span> /Users/your-username</code></pre>
+<p>复制并执行这条命令。它会将PM2配置为在系统启动时自动运行。</p>
+<h2 id="保存当前进程列表">4. 保存当前进程列表</h2>
+<p>为了确保在系统重启后，PM2能够重新启动你当前运行的Node.js服务，需要保存当前的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 save</code></pre>
+<h2 id="验证配置">5. 验证配置</h2>
+<p>你可以通过重启你的Mac来验证配置是否成功。重启后，使用以下命令查看PM2的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 list</code></pre>
+<p>如果看到你的Node.js服务正在运行，说明配置成功。</p>
+<p>或者查看日志：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 logs my-node-app</code></pre>
+<h2 id="管理pm2进程">6. 管理PM2进程</h2>
+<p>你可以使用以下命令来管理你的PM2进程：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 stop my-node-app   <span class="token comment"># 停止服务</span>
+pm2 restart my-node-app <span class="token comment"># 重启服务</span>
+pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code></pre>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>PM2</tag>
+        <tag>Node.js</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
 </search>
