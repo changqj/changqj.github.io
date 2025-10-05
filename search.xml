@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
-    <url>/post/8f4cbc0c.html</url>
-    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
-fork了别人的代码 本地更新主分支代码</h3>
-<ul>
-<li><p>查看本地仓库项目目录：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
-<li><p>添加上游项目地址：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
-<span id="more"></span>
-<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
-</ul>
-<hr />
-<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
-<ul>
-<li><p>从上游提取：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
-<li><p>合并：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
-<li><p>上传：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -334,6 +301,142 @@ std<span class="token double-colon punctuation">::</span>cout <span class="token
       </tags>
   </entry>
   <entry>
+    <title>OpenSubdiv + Visual Studio环境配置</title>
+    <url>/post/a507e481.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
+</blockquote>
+<blockquote>
+<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
+<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
+） （先前条件：<strong>win7系统</strong> 已安装<strong><a
+href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
+Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
+</blockquote>
+<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
+<p>需要的资源文件有<a
+href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a
+href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
+​ <strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a
+href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
+<img src="https://files.ifish.ink/mics/cc-1.png" alt="fig1" /> ​
+ <strong>cmake的安装</strong>：可直接从<a
+href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
+<img src="https://files.ifish.ink/mics/cc-2.png" alt="fig2" /></p>
+<ul>
+<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
+<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
+<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
+user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
+CMake to the system PATH for the current user</em>”）</p></li>
+<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a
+href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
+如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
+</ul>
+<p><img src="https://files.ifish.ink/mics/cc-2.png" alt="fig3" /> <img
+src="https://files.ifish.ink/mics/cc-4.png" alt="fig4" /> ​
+<strong>glfw</strong>：GLfW ：<a
+href="http://www.glfw.org/">http://www.glfw.org/</a>
+如图所示可以下载压缩文件，或者用git克隆也可。 <img
+src="https://files.ifish.ink/mics/cc-5.png" alt="fig5" /> <img
+src="https://files.ifish.ink/mics/cc-6.png" alt="fig6" /></p>
+<hr />
+<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
+<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
+GUI选择源代码目录和构建路径：</h4>
+<p><img src="https://files.ifish.ink/mics/cc-7.png" alt="fig7" /> <img
+src="https://files.ifish.ink/mics/cc-8.png" alt="fig8" /></p>
+<h4
+id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
+<p><img src="https://files.ifish.ink/mics/cc-9.png" alt="fig9" /> <img
+src="https://files.ifish.ink/mics/cc-10.png" alt="fig10" /></p>
+<h4
+id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
+done’即可</h4>
+<p><img src="https://files.ifish.ink/mics/cc-11.png" alt="fig11" /> <img
+src="https://files.ifish.ink/mics/cc-12.png" alt="fig12" /></p>
+<h4
+id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
+done完成</h4>
+<figure>
+<img src="https://files.ifish.ink/mics/cc-13.png" alt="fig13" />
+<figcaption aria-hidden="true">fig13</figcaption>
+</figure>
+<hr />
+<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
+<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
+<pre class="language-none"><code class="language-none">&quot;d:&#x2F;Cmake3.8.0&#x2F;bin&#x2F;cmake.exe&quot; -G &quot;Visual Studio 14 Win64&quot; -DGLEW_LOCATION&#x3D;[d:&#x2F;glew&#x2F;lib&#x2F;Release&#x2F;x64] -DGLEW_INCLUDE_DIR&#x3D;[d:\glew\include\] -DGLEW_LIBRARY&#x3D;[d:\glew\lib\] -DGLFW_LOCATION&#x3D;[d:&#x2F;glfw&#x2F;bd&#x2F;src&#x2F;Release] -DNO_PTEX&#x3D;1 -DNO_DOC&#x3D;1 -DNO_OMP&#x3D;1 -DNO_TBB&#x3D;1 -DNO_CUDA&#x3D;1 -DNO_OPENCL&#x3D;1 -DNO_CLEW&#x3D;1</code></pre>
+<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
+<img src="https://files.ifish.ink/mics/cc-14.png" alt="fig14" />
+按下回车键： <img src="https://files.ifish.ink/mics/cc-15.png"
+alt="fig15" /> 完成！！！</p>
+<hr />
+<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
+<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
+Studio打开此文件 <img src="https://files.ifish.ink/mics/cc-16.png"
+alt="fig16" />
+点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img
+src="https://files.ifish.ink/mics/cc-17.png" alt="fig17" />
+生成过程需要一点时间，请耐心等待…… <img
+src="https://files.ifish.ink/mics/cc-18.png" alt="fig18" /> 生成成功
+<img src="https://files.ifish.ink/mics/cc-19.png" alt="fig19" />
+测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
+<img src="https://files.ifish.ink/mics/cc-20.png" alt="fig20" />
+运行后如图所示： <img src="https://files.ifish.ink/mics/cc-21.png"
+alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <url>/post/563c2d.html</url>
+    <content><![CDATA[<blockquote>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
+<strong>Briefly unavailable for scheduled maintenance. Check back in a
+minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+</blockquote>
+<figure>
+<img src="https://files.ifish.ink/mics/20190703103139.png"
+title="Briefly unavailable for scheduled maintenance. Check back in a minute."
+alt="Briefly unavailable for scheduled maintenance. Check back in a minute." />
+<figcaption aria-hidden="true">Briefly unavailable for scheduled
+maintenance. Check back in a minute.</figcaption>
+</figure>
+<h3 id="原因">原因：</h3>
+<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
+unavailable for scheduled maintenance. Check back in a minute.”</p>
+<span id="more"></span>
+<h3 id="解决方法">解决方法：</h3>
+<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
+的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
+即可</p>
+<ul>
+<li>用FTP或者从终端进入WordPress的根目录下，删除
+<strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
+文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
+<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
+<strong>.maintenance</strong> 文件，然后删除即可。</li>
+</ul>
+<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Total Commander使用</title>
     <url>/post/aada5c99.html</url>
     <content><![CDATA[<h1 id="total-commander使用教程及快捷键设置">Total
@@ -592,142 +695,6 @@ Commander的双窗格管理相结合，让你的日常文件操作更加高效�
       </tags>
   </entry>
   <entry>
-    <title>OpenSubdiv + Visual Studio环境配置</title>
-    <url>/post/a507e481.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要讲述了OpenSubdiv开源库+Visual Studio的环境搭建</p>
-</blockquote>
-<blockquote>
-<p>（本文是根据自己实际操作所述，由于本人知识水平有限，文中难免会出现错误之处，欢迎指正，邮箱
-<strong>qingjun_chang@163.com</strong>。转载请注明出处：https://ifish.ink
-） （先前条件：<strong>win7系统</strong> 已安装<strong><a
-href="https://www.visualstudio.com/zh-hans/downloads/?rr=https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DONpFewA8iJADJ6k-0Vh-e0ksVaeZ1GHtaq69v0CmD1rmI69oYDQkXG0TB-OTaHhjT6-_LmULT-knoIdE9yhmmq%26wd%3D%26eqid%3Dd2d58bc800015f450000000659ddca4f">Visual
-Studio</a></strong>环境，相关文件在附件） <span id="more"></span> * * *</p>
-</blockquote>
-<h2 id="下载所需要的资源">1.下载所需要的资源</h2>
-<p>需要的资源文件有<a
-href="http://graphics.pixar.com/opensubdiv/docs/intro.html">OpenSubdiv</a>开源库的源代码、<a
-href="https://cmake.org/download/">cmake</a>（跨平台的安装、编译工具）、OpenGL的两款扩展库glew和glfw。
-​ <strong>OpenSubdiv的源代码</strong>：如已安装git工具，点击<a
-href="https://github.com/PixarAnimationStudios/OpenSubdiv.git">这里</a>可直接从GitHub上获取；如果没有git工具可以直接用我附件提供的源代码OpenSubdiv-master.zip，然后解压。我的路径为：d:/../OpenSubdiv-master/该目录内容如下图所示（git方式获取的可能有细微差异）
-<img src="https://files.ifish.ink/mics/cc-1.png" alt="fig1" /> ​
- <strong>cmake的安装</strong>：可直接从<a
-href="https://cmake.org/download/">cmake官网</a>下载二进制文件，64位系统如下图所示。.msi文件下载完成后，按照下述方法安装即可。
-<img src="https://files.ifish.ink/mics/cc-2.png" alt="fig2" /></p>
-<ul>
-<li><p>双击安装，会弹出如下界面，点击“Next”按钮，进入下一步</p></li>
-<li><p>同意CMake的条款，点击“Next”按钮，进入到下一步</p></li>
-<li><p>添加环境变量，选中“<em>Add CMake to the system PATH for the all
-user</em>”,点击“<em>Next</em>”按钮。（也可以选择添加到当前用户“<em>Add
-CMake to the system PATH for the current user</em>”）</p></li>
-<li><p>选择安装目录，安装即可。 <strong>glew</strong>：GLEW ：<a
-href="http://glew.sourceforge.net">http://glew.sourceforge.net</a>
-如图所示可以下载二进制文件，或者用git克隆也可。</p></li>
-</ul>
-<p><img src="https://files.ifish.ink/mics/cc-2.png" alt="fig3" /> <img
-src="https://files.ifish.ink/mics/cc-4.png" alt="fig4" /> ​
-<strong>glfw</strong>：GLfW ：<a
-href="http://www.glfw.org/">http://www.glfw.org/</a>
-如图所示可以下载压缩文件，或者用git克隆也可。 <img
-src="https://files.ifish.ink/mics/cc-5.png" alt="fig5" /> <img
-src="https://files.ifish.ink/mics/cc-6.png" alt="fig6" /></p>
-<hr />
-<h2 id="cmake编译glfw">2.Cmake编译glfw</h2>
-<h4 id="a.打开cmake-gui选择源代码目录和构建路径">a.打开Cmake
-GUI选择源代码目录和构建路径：</h4>
-<p><img src="https://files.ifish.ink/mics/cc-7.png" alt="fig7" /> <img
-src="https://files.ifish.ink/mics/cc-8.png" alt="fig8" /></p>
-<h4
-id="b.单击configure选择是并根据自己vs版本选择">b.单击Configure，选择“是”，并根据自己VS版本选择</h4>
-<p><img src="https://files.ifish.ink/mics/cc-9.png" alt="fig9" /> <img
-src="https://files.ifish.ink/mics/cc-10.png" alt="fig10" /></p>
-<h4
-id="c.单击finish出现红色后再次点击configure出现configuring-done即可">c.单击Finish，出现红色后再次点击Configure，出现‘Configuring
-done’即可</h4>
-<p><img src="https://files.ifish.ink/mics/cc-11.png" alt="fig11" /> <img
-src="https://files.ifish.ink/mics/cc-12.png" alt="fig12" /></p>
-<h4
-id="d.单击generate出现generating-done完成">d.单击Generate，出现Generating
-done完成</h4>
-<figure>
-<img src="https://files.ifish.ink/mics/cc-13.png" alt="fig13" />
-<figcaption aria-hidden="true">fig13</figcaption>
-</figure>
-<hr />
-<h2 id="cmake编译opensubdiv">3.Cmake编译OpenSubdiv</h2>
-<p>Win+R打开CMD窗口，进入到OpenSubdiv-master目录下拷贝下面黄色部分全部命令后回车：（路径根据自己情况做相应改变，VS2015则为VS14,VS2010为VS10，其余的自己可以查一下版本根据需要变更</p>
-<pre class="language-none"><code class="language-none">&quot;d:&#x2F;Cmake3.8.0&#x2F;bin&#x2F;cmake.exe&quot; -G &quot;Visual Studio 14 Win64&quot; -DGLEW_LOCATION&#x3D;[d:&#x2F;glew&#x2F;lib&#x2F;Release&#x2F;x64] -DGLEW_INCLUDE_DIR&#x3D;[d:\glew\include\] -DGLEW_LIBRARY&#x3D;[d:\glew\lib\] -DGLFW_LOCATION&#x3D;[d:&#x2F;glfw&#x2F;bd&#x2F;src&#x2F;Release] -DNO_PTEX&#x3D;1 -DNO_DOC&#x3D;1 -DNO_OMP&#x3D;1 -DNO_TBB&#x3D;1 -DNO_CUDA&#x3D;1 -DNO_OPENCL&#x3D;1 -DNO_CLEW&#x3D;1</code></pre>
-<p>NO_PTEX=1表示为安装PTEX纹理库，如需要可仿照GLEW和GLFW的操作方法进行修改命令。
-<img src="https://files.ifish.ink/mics/cc-14.png" alt="fig14" />
-按下回车键： <img src="https://files.ifish.ink/mics/cc-15.png"
-alt="fig15" /> 完成！！！</p>
-<hr />
-<h2 id="vs下编译opensubdiv">4.VS下编译OpenSubdiv</h2>
-<p>完成上述操作后，你会看见你的../OpenSubdiv-master/目录下会有一个OpenSubdiv.sln的解决方案，用Visual
-Studio打开此文件 <img src="https://files.ifish.ink/mics/cc-16.png"
-alt="fig16" />
-点击菜单栏“生成”→“批生成”，将所有的ALL_BUILD选中，点击“生成” <img
-src="https://files.ifish.ink/mics/cc-17.png" alt="fig17" />
-生成过程需要一点时间，请耐心等待…… <img
-src="https://files.ifish.ink/mics/cc-18.png" alt="fig18" /> 生成成功
-<img src="https://files.ifish.ink/mics/cc-19.png" alt="fig19" />
-测试：选中一个例子右击选择“设为启动项目”，然后<strong>Ctrl+F5</strong>运行
-<img src="https://files.ifish.ink/mics/cc-20.png" alt="fig20" />
-运行后如图所示： <img src="https://files.ifish.ink/mics/cc-21.png"
-alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>环境配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <url>/post/563c2d.html</url>
-    <content><![CDATA[<blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
-<strong>Briefly unavailable for scheduled maintenance. Check back in a
-minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
-</blockquote>
-<figure>
-<img src="https://files.ifish.ink/mics/20190703103139.png"
-title="Briefly unavailable for scheduled maintenance. Check back in a minute."
-alt="Briefly unavailable for scheduled maintenance. Check back in a minute." />
-<figcaption aria-hidden="true">Briefly unavailable for scheduled
-maintenance. Check back in a minute.</figcaption>
-</figure>
-<h3 id="原因">原因：</h3>
-<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
-unavailable for scheduled maintenance. Check back in a minute.”</p>
-<span id="more"></span>
-<h3 id="解决方法">解决方法：</h3>
-<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
-的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
-即可</p>
-<ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除
-<strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
-文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
-<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
-<strong>.maintenance</strong> 文件，然后删除即可。</li>
-</ul>
-<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WordPress站点地图自动更新</title>
     <url>/post/943451b1.html</url>
     <content><![CDATA[<blockquote>
@@ -750,6 +717,73 @@ src="https://files.ifish.ink/mics/googlezhanzhang.png" alt="google" />
         <tag>wordpress</tag>
         <tag>SEO</tag>
         <tag>sitemap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu 外接显示与内置显示切换</title>
+    <url>/post/83277084.html</url>
+    <content><![CDATA[<ul>
+<li>查看显示器设备名称
+在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
+LVDS-1 和 HDMI-1
+(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
+</ul>
+<span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
+<ul>
+<li><p>关闭外接显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off</code>
+(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>打开外接显示器，关闭内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>关闭外接显示器，打开内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+</ul>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+        <tag>ubuntu</tag>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
+    <url>/post/8f4cbc0c.html</url>
+    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
+fork了别人的代码 本地更新主分支代码</h3>
+<ul>
+<li><p>查看本地仓库项目目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
+<li><p>添加上游项目地址：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
+<span id="more"></span>
+<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
+</ul>
+<hr />
+<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
+<ul>
+<li><p>从上游提取：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
+<li><p>合并：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
+<li><p>上传：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -785,43 +819,9 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
         <category>工具技能</category>
       </categories>
       <tags>
+        <tag>环境配置</tag>
         <tag>git</tag>
         <tag>github</tag>
-        <tag>环境配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu 外接显示与内置显示切换</title>
-    <url>/post/83277084.html</url>
-    <content><![CDATA[<ul>
-<li>查看显示器设备名称
-在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
-LVDS-1 和 HDMI-1
-(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
-</ul>
-<span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
-<ul>
-<li><p>关闭外接显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off</code>
-(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>打开外接显示器，关闭内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>关闭外接显示器，打开内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-</ul>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>环境配置</tag>
-        <tag>ubuntu</tag>
-        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -981,6 +981,149 @@ href="https://files.ifish.ink/mics/Implementation_of_Tridiag_Matrix_Inversion_Al
       </tags>
   </entry>
   <entry>
+    <title>三次样条插值</title>
+    <url>/post/cubicspline.html</url>
+    <content><![CDATA[<h3 id="三次样条函数">三次样条函数</h3>
+<p>对于给定<span
+class="math inline">\(\mathbb{R}^2\)</span>域内一组有序点<span
+class="math inline">\(\{\mathbf{Q}_i\}_{i=0}^n\)</span>，对应参数为<span
+class="math inline">\(\{t_i\}_{i=0}^n\)</span>，找到一组分段三次多项式函数插值每个数据点。</p>
+<h4 id="考虑插值点处c2连续-平滑顶点">考虑插值点处<span
+class="math inline">\(C^2\)</span>连续 （平滑顶点）</h4>
+<p>对于<span
+class="math inline">\(n+1\)</span>个数据点，相邻两点之间用三次多项式表达，则有<span
+class="math inline">\(n\)</span>段三次多项式，用待定系数的方式设第<span
+class="math inline">\(i(i=0,1,\dots,n)\)</span>段向量型多项式函数为
+<span
+class="math display">\[\mathbf{P}_i(t)=a_{i,0}+a_{i,1}t+a_{i,2}t^2+a_{i,3}t^3\]</span>
+从上式可以看出总共<span class="math inline">\(4n\)</span>个未知数，<span
+class="math inline">\(C^2\)</span>连续需要满足约束条件：</p>
+<ul>
+<li><p>每段多项式在端点处插值 <span
+class="math display">\[\mathbf{P}_i(t_i)=\mathbf{Q}_i\qquad
+\mathbf{P}_i(t_{i+1})=\mathbf{Q}_{i+1}\qquad i =
+0,1,\dots,n\]</span></p></li>
+<li><p>中间点一阶导连续 <span
+class="math display">\[\mathbf{P}&#39;_{i-1}(t_i-0)=\mathbf{P}&#39;_i(t_i+0)\qquad
+i=1,2,\dots,n-1\]</span></p></li>
+<li><p>中间点二阶导连续 <span
+class="math display">\[\mathbf{P}&#39;&#39;_{i-1}(t_i-0)=\mathbf{P}&#39;&#39;_i(t_i+0)\qquad
+i=1,2,\dots,n-1\]</span></p></li>
+</ul>
+<p>这里总共<span
+class="math inline">\(4n-2\)</span>个方程，还需要两个约束条件，这里我们选择首尾两点二阶导等于0，即自然边界条件：
+<span
+class="math display">\[\mathbf{P}&#39;&#39;_0(t_0)=\mathbf{P}&#39;&#39;_{n-1}(t_n)=0\qquad
+i=1,2,\dots,n-1\]</span> 这里我们引入中间变量弯矩，参考<a
+href="http://staff.ustc.edu.cn/~lgliu/Courses/GAMES102_2020/documents/GAMES102-suppl-2-CubicSpline.pdf">此文</a>，可得每段多项式的表达式：
+<span
+class="math display">\[\mathbf{P}_i(t)=\frac{M_i}{6h_i}(t_{i+1}-t)^3+\frac{M_{i+1}}{6h_i}(t-t_i)^3+\left(\frac{Q_{i+1}}{h_i}-\frac{M_{i+1}h_i}{6}\right)(t-t_i)+\left(\frac{\mathbf{Q}_i}{h_i}-\frac{M_ih_i}{6}\right)(t_{i+1}-t)\]</span>
+其中<span class="math inline">\(h_i=t_{i+1}-t_i\)</span>，<span
+class="math inline">\(M\)</span>是如下三对角线性系统的解，<span
+class="math inline">\(M_0=M_n=0\)</span> <span
+class="math display">\[\begin{equation}
+\left(
+    \begin{array}{ccccc}
+    u_1 &amp; h_1 &amp;    &amp; &amp;\\
+    h_1 &amp; u_2 &amp; h_2 &amp; &amp;\\
+    &amp;\ddots&amp;\ddots&amp;\ddots&amp;\\
+    &amp;&amp;h_{n-3}&amp;u_{n-2}&amp;h_{n-2}\\
+    &amp;&amp;&amp;h_{n-2}&amp;u_{n-1}
+    \end{array}
+    \right)\left(
+        \begin{array}{c}
+        M_1\\M_2\\\vdots\\M_{n-1}
+        \end{array}
+        \right)=\left(
+        \begin{array}{c}
+        v_1\\v_2\\\vdots\\v_{n-1}
+        \end{array}   
+            \right)
+\end{equation}\]</span> 其中<span
+class="math inline">\(u_i=2(h_i+h_{i-1})\)</span>，<span
+class="math inline">\(v_i=\frac{6}{h_i}(\mathbf{Q}_{i+1}-\mathbf{Q}_i)-\frac{6}{h_{i-1}}(\mathbf{Q}_i-\mathbf{Q}_{i-1})\)</span>
+<img src="/images/imgs/1223_1.png"
+alt="平滑顶点绘制（全局C^2连续）" /></p>
+<h4 id="考虑插值点处c0连续角部顶点">考虑插值点处<span
+class="math inline">\(C^0\)</span>连续（角部顶点）</h4>
+<p>对于每一段给定插值点处的左导数<span
+class="math inline">\(f&#39;_-\)</span>和右导数<span
+class="math inline">\(f&#39;_+\)</span>，加上插值该段的两点，4个未知数4个方程可以求解出该段的三次多项式函数：</p>
+<p>例如在<span class="math inline">\([t_i,t_{i+1}]\)</span>区间： <span
+class="math display">\[\begin{equation}
+\left\{
+    \begin{array}{ccccccccc}
+    a_{i,0} &amp; + &amp; a_{i,1}t_i &amp; + &amp; a_{i,2}t_i^2 &amp; +
+&amp; a_{i,2}t_i^3 &amp; = &amp; \mathbf{Q}_i\\
+    a_{i,0} &amp; + &amp; a_{i,1}t_{i+1} &amp; + &amp; a_{i,2}t_{i+1}^2
+&amp; + &amp; a_{i,2}t_{i+1}^3 &amp; = &amp; \mathbf{Q}_{i+1}\\
+    &amp;&amp;a_{i,1}&amp;+&amp;2a_{i,2}t_i&amp;+&amp;3a_{i,3}t_i^2&amp;=&amp;\mathbf{P}&#39;_i(t_i+0)\\
+    &amp;&amp;a_{i,1}&amp;+&amp;2a_{i,2}t_{i+1}&amp;+&amp;3a_{i,3}t_{i+1}^2&amp;=&amp;\mathbf{P}&#39;_{i+1}(t_i-0)
+    \end{array}
+    \right.
+\end{equation}\]</span> 求解该式可得到每段的三次多项式。 <img
+src="/images/imgs/1223_2.png"
+alt="角部顶点绘制（型值点处为C^0连续，其他点C^2连续）" /></p>
+<h4 id="考虑插值点处g1连续直线点">考虑插值点处<span
+class="math inline">\(G^1\)</span>连续（直线点）</h4>
+<p>在角部顶点基础上保证一点的左导数与右导数方向在同一直线即可。即上面方程中<span
+class="math inline">\(\mathbf{P}&#39;_i(t_i+0)=\lambda\mathbf{P}&#39;_{i+1}(t_i-0)\)</span>
+<img src="/images/imgs/1223_3.png"
+alt="角部顶点绘制（型值点处为G^1连续，其他点C^2连续）" /></p>
+<video width="90%" controls>
+<source src="https://files.ifish.ink/mics/HW-4.mp4" type="video/mp4">
+</video>
+<h3 id="主要代码">主要代码</h3>
+<ul>
+<li><p>高斯-塞德尔迭代求解三对角：</p>
+<p><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">GaussSeidel</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> h<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> u<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> v<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span><span class="token operator">*</span> M<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> _M0 <span class="token operator">=</span> <span class="token operator">*</span>M<span class="token punctuation">;</span> 
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>u<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
+            <span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>_M0<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span>u<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> 
+        <span class="token comment">// 迭代停止条件</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>Eigen<span class="token double-colon punctuation">::</span><span class="token class-name">VectorXf</span><span class="token double-colon punctuation">::</span><span class="token function">Map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>Eigen<span class="token double-colon punctuation">::</span><span class="token class-name">VectorXf</span><span class="token double-colon punctuation">::</span><span class="token function">Map</span><span class="token punctuation">(</span>_M0<span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>_M0<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>EPSILON<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        _M0 <span class="token operator">=</span> <span class="token operator">*</span>M<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre></p></li>
+<li><p>求解给定导数后的分段样条：</p>
+<p><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>validDerivative<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">float</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token operator">-></span> Eigen<span class="token double-colon punctuation">::</span>Matrix4f <span class="token punctuation">&#123;</span>
+        Eigen<span class="token double-colon punctuation">::</span>Matrix4f a<span class="token punctuation">;</span>
+        a <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> B <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> xy<span class="token punctuation">)</span> <span class="token operator">-></span> Eigen<span class="token double-colon punctuation">::</span>Vector4f <span class="token punctuation">&#123;</span> 
+        Eigen<span class="token double-colon punctuation">::</span>Vector4f b<span class="token punctuation">;</span>
+        b <span class="token operator">&lt;&lt;</span> points<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        points<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span> 
+        <span class="token punctuation">(</span><span class="token operator">*</span>derivative<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token operator">*</span>derivative<span class="token punctuation">)</span><span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> b<span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token comment">// 四维矩阵可用Eigen，不会影响交互延迟</span>
+    Eigen<span class="token double-colon punctuation">::</span>Vector4f ax <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">colPivHouseholderQr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">solve</span><span class="token punctuation">(</span><span class="token function">B</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Eigen<span class="token double-colon punctuation">::</span>Vector4f ay <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">colPivHouseholderQr</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">solve</span><span class="token punctuation">(</span><span class="token function">B</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x <span class="token operator">=</span> ax<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token punctuation">;</span> 
+    y <span class="token operator">=</span> ay<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token punctuation">;</span> 
+    <span class="token keyword">return</span> <span class="token class-name">Ubpa</span><span class="token double-colon punctuation">::</span><span class="token function">pointf2</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>曲线曲面</category>
+      </categories>
+      <tags>
+        <tag>拟合</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>三对角矩阵的类雅可比迭代程序</title>
     <url>/post/f9428d51.html</url>
     <content><![CDATA[<h2
@@ -1126,149 +1269,6 @@ href="https://files.ifish.ink/mics/Jacobianlike_Iterators_Tri_Matrices.pdf">三�
       <tags>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>三次样条插值</title>
-    <url>/post/cubicspline.html</url>
-    <content><![CDATA[<h3 id="三次样条函数">三次样条函数</h3>
-<p>对于给定<span
-class="math inline">\(\mathbb{R}^2\)</span>域内一组有序点<span
-class="math inline">\(\{\mathbf{Q}_i\}_{i=0}^n\)</span>，对应参数为<span
-class="math inline">\(\{t_i\}_{i=0}^n\)</span>，找到一组分段三次多项式函数插值每个数据点。</p>
-<h4 id="考虑插值点处c2连续-平滑顶点">考虑插值点处<span
-class="math inline">\(C^2\)</span>连续 （平滑顶点）</h4>
-<p>对于<span
-class="math inline">\(n+1\)</span>个数据点，相邻两点之间用三次多项式表达，则有<span
-class="math inline">\(n\)</span>段三次多项式，用待定系数的方式设第<span
-class="math inline">\(i(i=0,1,\dots,n)\)</span>段向量型多项式函数为
-<span
-class="math display">\[\mathbf{P}_i(t)=a_{i,0}+a_{i,1}t+a_{i,2}t^2+a_{i,3}t^3\]</span>
-从上式可以看出总共<span class="math inline">\(4n\)</span>个未知数，<span
-class="math inline">\(C^2\)</span>连续需要满足约束条件：</p>
-<ul>
-<li><p>每段多项式在端点处插值 <span
-class="math display">\[\mathbf{P}_i(t_i)=\mathbf{Q}_i\qquad
-\mathbf{P}_i(t_{i+1})=\mathbf{Q}_{i+1}\qquad i =
-0,1,\dots,n\]</span></p></li>
-<li><p>中间点一阶导连续 <span
-class="math display">\[\mathbf{P}&#39;_{i-1}(t_i-0)=\mathbf{P}&#39;_i(t_i+0)\qquad
-i=1,2,\dots,n-1\]</span></p></li>
-<li><p>中间点二阶导连续 <span
-class="math display">\[\mathbf{P}&#39;&#39;_{i-1}(t_i-0)=\mathbf{P}&#39;&#39;_i(t_i+0)\qquad
-i=1,2,\dots,n-1\]</span></p></li>
-</ul>
-<p>这里总共<span
-class="math inline">\(4n-2\)</span>个方程，还需要两个约束条件，这里我们选择首尾两点二阶导等于0，即自然边界条件：
-<span
-class="math display">\[\mathbf{P}&#39;&#39;_0(t_0)=\mathbf{P}&#39;&#39;_{n-1}(t_n)=0\qquad
-i=1,2,\dots,n-1\]</span> 这里我们引入中间变量弯矩，参考<a
-href="http://staff.ustc.edu.cn/~lgliu/Courses/GAMES102_2020/documents/GAMES102-suppl-2-CubicSpline.pdf">此文</a>，可得每段多项式的表达式：
-<span
-class="math display">\[\mathbf{P}_i(t)=\frac{M_i}{6h_i}(t_{i+1}-t)^3+\frac{M_{i+1}}{6h_i}(t-t_i)^3+\left(\frac{Q_{i+1}}{h_i}-\frac{M_{i+1}h_i}{6}\right)(t-t_i)+\left(\frac{\mathbf{Q}_i}{h_i}-\frac{M_ih_i}{6}\right)(t_{i+1}-t)\]</span>
-其中<span class="math inline">\(h_i=t_{i+1}-t_i\)</span>，<span
-class="math inline">\(M\)</span>是如下三对角线性系统的解，<span
-class="math inline">\(M_0=M_n=0\)</span> <span
-class="math display">\[\begin{equation}
-\left(
-    \begin{array}{ccccc}
-    u_1 &amp; h_1 &amp;    &amp; &amp;\\
-    h_1 &amp; u_2 &amp; h_2 &amp; &amp;\\
-    &amp;\ddots&amp;\ddots&amp;\ddots&amp;\\
-    &amp;&amp;h_{n-3}&amp;u_{n-2}&amp;h_{n-2}\\
-    &amp;&amp;&amp;h_{n-2}&amp;u_{n-1}
-    \end{array}
-    \right)\left(
-        \begin{array}{c}
-        M_1\\M_2\\\vdots\\M_{n-1}
-        \end{array}
-        \right)=\left(
-        \begin{array}{c}
-        v_1\\v_2\\\vdots\\v_{n-1}
-        \end{array}   
-            \right)
-\end{equation}\]</span> 其中<span
-class="math inline">\(u_i=2(h_i+h_{i-1})\)</span>，<span
-class="math inline">\(v_i=\frac{6}{h_i}(\mathbf{Q}_{i+1}-\mathbf{Q}_i)-\frac{6}{h_{i-1}}(\mathbf{Q}_i-\mathbf{Q}_{i-1})\)</span>
-<img src="/images/imgs/1223_1.png"
-alt="平滑顶点绘制（全局C^2连续）" /></p>
-<h4 id="考虑插值点处c0连续角部顶点">考虑插值点处<span
-class="math inline">\(C^0\)</span>连续（角部顶点）</h4>
-<p>对于每一段给定插值点处的左导数<span
-class="math inline">\(f&#39;_-\)</span>和右导数<span
-class="math inline">\(f&#39;_+\)</span>，加上插值该段的两点，4个未知数4个方程可以求解出该段的三次多项式函数：</p>
-<p>例如在<span class="math inline">\([t_i,t_{i+1}]\)</span>区间： <span
-class="math display">\[\begin{equation}
-\left\{
-    \begin{array}{ccccccccc}
-    a_{i,0} &amp; + &amp; a_{i,1}t_i &amp; + &amp; a_{i,2}t_i^2 &amp; +
-&amp; a_{i,2}t_i^3 &amp; = &amp; \mathbf{Q}_i\\
-    a_{i,0} &amp; + &amp; a_{i,1}t_{i+1} &amp; + &amp; a_{i,2}t_{i+1}^2
-&amp; + &amp; a_{i,2}t_{i+1}^3 &amp; = &amp; \mathbf{Q}_{i+1}\\
-    &amp;&amp;a_{i,1}&amp;+&amp;2a_{i,2}t_i&amp;+&amp;3a_{i,3}t_i^2&amp;=&amp;\mathbf{P}&#39;_i(t_i+0)\\
-    &amp;&amp;a_{i,1}&amp;+&amp;2a_{i,2}t_{i+1}&amp;+&amp;3a_{i,3}t_{i+1}^2&amp;=&amp;\mathbf{P}&#39;_{i+1}(t_i-0)
-    \end{array}
-    \right.
-\end{equation}\]</span> 求解该式可得到每段的三次多项式。 <img
-src="/images/imgs/1223_2.png"
-alt="角部顶点绘制（型值点处为C^0连续，其他点C^2连续）" /></p>
-<h4 id="考虑插值点处g1连续直线点">考虑插值点处<span
-class="math inline">\(G^1\)</span>连续（直线点）</h4>
-<p>在角部顶点基础上保证一点的左导数与右导数方向在同一直线即可。即上面方程中<span
-class="math inline">\(\mathbf{P}&#39;_i(t_i+0)=\lambda\mathbf{P}&#39;_{i+1}(t_i-0)\)</span>
-<img src="/images/imgs/1223_3.png"
-alt="角部顶点绘制（型值点处为G^1连续，其他点C^2连续）" /></p>
-<video width="90%" controls>
-<source src="https://files.ifish.ink/mics/HW-4.mp4" type="video/mp4">
-</video>
-<h3 id="主要代码">主要代码</h3>
-<ul>
-<li><p>高斯-塞德尔迭代求解三对角：</p>
-<p><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">GaussSeidel</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> h<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> u<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> v<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span><span class="token operator">*</span> M<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> _M0 <span class="token operator">=</span> <span class="token operator">*</span>M<span class="token punctuation">;</span> 
-    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>u<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
-            <span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>_M0<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span>u<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> 
-        <span class="token comment">// 迭代停止条件</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>Eigen<span class="token double-colon punctuation">::</span><span class="token class-name">VectorXf</span><span class="token double-colon punctuation">::</span><span class="token function">Map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>Eigen<span class="token double-colon punctuation">::</span><span class="token class-name">VectorXf</span><span class="token double-colon punctuation">::</span><span class="token function">Map</span><span class="token punctuation">(</span>_M0<span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>_M0<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>EPSILON<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        _M0 <span class="token operator">=</span> <span class="token operator">*</span>M<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre></p></li>
-<li><p>求解给定导数后的分段样条：</p>
-<p><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>validDerivative<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">float</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
-    <span class="token keyword">auto</span> A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token operator">-></span> Eigen<span class="token double-colon punctuation">::</span>Matrix4f <span class="token punctuation">&#123;</span>
-        Eigen<span class="token double-colon punctuation">::</span>Matrix4f a<span class="token punctuation">;</span>
-        a <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>
-            <span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>
-        <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> a<span class="token punctuation">;</span> 
-    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token keyword">auto</span> B <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> xy<span class="token punctuation">)</span> <span class="token operator">-></span> Eigen<span class="token double-colon punctuation">::</span>Vector4f <span class="token punctuation">&#123;</span> 
-        Eigen<span class="token double-colon punctuation">::</span>Vector4f b<span class="token punctuation">;</span>
-        b <span class="token operator">&lt;&lt;</span> points<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span>
-        points<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span> 
-        <span class="token punctuation">(</span><span class="token operator">*</span>derivative<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span>
-        <span class="token punctuation">(</span><span class="token operator">*</span>derivative<span class="token punctuation">)</span><span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> b<span class="token punctuation">;</span> 
-    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token comment">// 四维矩阵可用Eigen，不会影响交互延迟</span>
-    Eigen<span class="token double-colon punctuation">::</span>Vector4f ax <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">colPivHouseholderQr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">solve</span><span class="token punctuation">(</span><span class="token function">B</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Eigen<span class="token double-colon punctuation">::</span>Vector4f ay <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">colPivHouseholderQr</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">solve</span><span class="token punctuation">(</span><span class="token function">B</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    x <span class="token operator">=</span> ax<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token punctuation">;</span> 
-    y <span class="token operator">=</span> ay<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token punctuation">;</span> 
-    <span class="token keyword">return</span> <span class="token class-name">Ubpa</span><span class="token double-colon punctuation">::</span><span class="token function">pointf2</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></p></li>
-</ul>
-]]></content>
-      <categories>
-        <category>曲线曲面</category>
-      </categories>
-      <tags>
-        <tag>拟合</tag>
-        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1949,54 +1949,6 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
       </tags>
   </entry>
   <entry>
-    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
-    <url>/post/pm2-nodejs-macos.html</url>
-    <content><![CDATA[<p>在本地开发或部署轻量级应用时，我们常常需要在Mac
-mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用<strong>PM2</strong>来实现开机自启动。</p>
-<h2 id="安装pm2">1. 安装PM2</h2>
-<p>如果还没安装过PM2，可以通过npm全局安装：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> pm2</code></pre>
-<p>检查是否安装成功：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 <span class="token parameter variable">-v</span></code></pre>
-<h2 id="启动node.js服务">2. 启动Node.js服务</h2>
-<p>进入你的Node.js项目目录，使用PM2启动你的服务。例如，如果你的入口文件是<code>app.js</code>：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
-<blockquote>
-<p><code>--name</code>参数可以为你的进程指定一个易于识别的名称。</p>
-</blockquote>
-<p>如果你不想进入项目目录，也可以直接指定完整路径：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start /path/to/your/app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
-<h2 id="配置pm2开机自启动">3. 配置PM2开机自启动</h2>
-<p>PM2提供了一个方便的命令来生成开机自启动脚本。运行以下命令：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 startup</code></pre>
-<p>这条命令会输出一条类似下面的命令：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/bin pm2 startup launchd <span class="token parameter variable">-u</span> your-username <span class="token parameter variable">--hp</span> /Users/your-username</code></pre>
-<p>复制并执行这条命令。它会将PM2配置为在系统启动时自动运行。</p>
-<h2 id="保存当前进程列表">4. 保存当前进程列表</h2>
-<p>为了确保在系统重启后，PM2能够重新启动你当前运行的Node.js服务，需要保存当前的进程列表：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 save</code></pre>
-<h2 id="验证配置">5. 验证配置</h2>
-<p>你可以通过重启你的Mac来验证配置是否成功。重启后，使用以下命令查看PM2的进程列表：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 list</code></pre>
-<p>如果看到你的Node.js服务正在运行，说明配置成功。</p>
-<p>或者查看日志：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 logs my-node-app</code></pre>
-<h2 id="管理pm2进程">6. 管理PM2进程</h2>
-<p>你可以使用以下命令来管理你的PM2进程：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 stop my-node-app   <span class="token comment"># 停止服务</span>
-pm2 restart my-node-app <span class="token comment"># 重启服务</span>
-pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code></pre>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>PM2</tag>
-        <tag>Node.js</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
     <url>/post/d033f67a.html</url>
     <content><![CDATA[<h4
@@ -2397,6 +2349,54 @@ class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
       <tags>
         <tag>曲面参数化</tag>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
+    <url>/post/pm2-nodejs-macos.html</url>
+    <content><![CDATA[<p>在本地开发或部署轻量级应用时，我们常常需要在Mac
+mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用<strong>PM2</strong>来实现开机自启动。</p>
+<h2 id="安装pm2">1. 安装PM2</h2>
+<p>如果还没安装过PM2，可以通过npm全局安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> pm2</code></pre>
+<p>检查是否安装成功：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 <span class="token parameter variable">-v</span></code></pre>
+<h2 id="启动node.js服务">2. 启动Node.js服务</h2>
+<p>进入你的Node.js项目目录，使用PM2启动你的服务。例如，如果你的入口文件是<code>app.js</code>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<blockquote>
+<p><code>--name</code>参数可以为你的进程指定一个易于识别的名称。</p>
+</blockquote>
+<p>如果你不想进入项目目录，也可以直接指定完整路径：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start /path/to/your/app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<h2 id="配置pm2开机自启动">3. 配置PM2开机自启动</h2>
+<p>PM2提供了一个方便的命令来生成开机自启动脚本。运行以下命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 startup</code></pre>
+<p>这条命令会输出一条类似下面的命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/bin pm2 startup launchd <span class="token parameter variable">-u</span> your-username <span class="token parameter variable">--hp</span> /Users/your-username</code></pre>
+<p>复制并执行这条命令。它会将PM2配置为在系统启动时自动运行。</p>
+<h2 id="保存当前进程列表">4. 保存当前进程列表</h2>
+<p>为了确保在系统重启后，PM2能够重新启动你当前运行的Node.js服务，需要保存当前的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 save</code></pre>
+<h2 id="验证配置">5. 验证配置</h2>
+<p>你可以通过重启你的Mac来验证配置是否成功。重启后，使用以下命令查看PM2的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 list</code></pre>
+<p>如果看到你的Node.js服务正在运行，说明配置成功。</p>
+<p>或者查看日志：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 logs my-node-app</code></pre>
+<h2 id="管理pm2进程">6. 管理PM2进程</h2>
+<p>你可以使用以下命令来管理你的PM2进程：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 stop my-node-app   <span class="token comment"># 停止服务</span>
+pm2 restart my-node-app <span class="token comment"># 重启服务</span>
+pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code></pre>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>PM2</tag>
+        <tag>Node.js</tag>
+        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
@@ -3019,6 +3019,28 @@ Hormann教授的邀请和邓重阳教授的支持让我有了这次国外学习�
       </tags>
   </entry>
   <entry>
+    <title>男孩，鼹鼠，狐狸和马</title>
+    <url>/post/ca64211f.html</url>
+    <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
+<p>《男孩、鼹鼠、狐狸和马》是一部感人至深的动画短片，改编自英国作家查理·麦克西（Charlie
+Mackesy）的同名绘本。这部作品以其温暖的画风、简洁的对白和深刻的哲理内涵广受欢迎，传递了关于友情、勇气、爱与自我接纳的普世价值。</p>
+<p>该影片于2023年3月12日获得了奥斯卡最佳动画短片奖。影片讲述了一个小男孩在寻找家的过程中，遇到了鼹鼠、狐狸和马这三个截然不同的动物伙伴。四个角色的性格和对话十分鲜明：男孩天真无邪、好奇心强，鼹鼠贪恋甜食且充满智慧，狐狸沉默寡言，但心地善良，马则象征着力量与平静。在旅程中，四个角色共同经历了挑战，彼此扶持，学会了接受自己的脆弱和不完美，同时明白了什么是爱与关怀。</p>
+<p><img src="/images/imgs/ca64211f-1.jpeg" /></p>
+<p>影片最大的亮点之一是其画面风格，它保留了原著插画的水彩笔触和流动的线条，使观众仿佛置身于一幅动态的水彩画中。这种柔和的美学风格与影片温暖的主题相得益彰，给人以安慰和治愈的感觉。</p>
+<p>此外，影片通过极简的对话传达了深刻的哲理。例如，男孩问马“什么是成功”，马回答说：“<code>成功是被爱</code>。”，以及“长大以后，你想当什么呢？”，鼹鼠回答“<code>善良的人</code>”。这类发人深省的句子贯穿全片，令观众在观影过程中不断思考生命中真正重要的东西。对于狐狸这个角色，他的沉默和善良也让人印象深刻，他在影片中扮演了一个重要的引导者角色，帮助男孩和其他动物找到了自己的方向。</p>
+<p>这是一部令人心灵平静的作品，无论是大人还是孩子都能从中汲取力量和安慰。这部动画不仅仅是一个寻找家的故事，更是关于自我发现、友谊和接纳彼此不完美的寓言。</p>
+<p><img src="/images/imgs/ca64211f-2.jpeg" /></p>
+]]></content>
+      <categories>
+        <category>生活娱乐</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>动画</tag>
+        <tag>短片</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>简单细分曲线</title>
     <url>/post/subdivcurve.html</url>
     <content><![CDATA[<h3 id="细分曲线">细分曲线</h3>
@@ -3139,28 +3161,6 @@ alt="封闭控制多边形的四点插值细分曲线" /></p>
       <tags>
         <tag>C/C++</tag>
         <tag>细分曲线</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>男孩，鼹鼠，狐狸和马</title>
-    <url>/post/ca64211f.html</url>
-    <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
-<p>《男孩、鼹鼠、狐狸和马》是一部感人至深的动画短片，改编自英国作家查理·麦克西（Charlie
-Mackesy）的同名绘本。这部作品以其温暖的画风、简洁的对白和深刻的哲理内涵广受欢迎，传递了关于友情、勇气、爱与自我接纳的普世价值。</p>
-<p>该影片于2023年3月12日获得了奥斯卡最佳动画短片奖。影片讲述了一个小男孩在寻找家的过程中，遇到了鼹鼠、狐狸和马这三个截然不同的动物伙伴。四个角色的性格和对话十分鲜明：男孩天真无邪、好奇心强，鼹鼠贪恋甜食且充满智慧，狐狸沉默寡言，但心地善良，马则象征着力量与平静。在旅程中，四个角色共同经历了挑战，彼此扶持，学会了接受自己的脆弱和不完美，同时明白了什么是爱与关怀。</p>
-<p><img src="/images/imgs/ca64211f-1.jpeg" /></p>
-<p>影片最大的亮点之一是其画面风格，它保留了原著插画的水彩笔触和流动的线条，使观众仿佛置身于一幅动态的水彩画中。这种柔和的美学风格与影片温暖的主题相得益彰，给人以安慰和治愈的感觉。</p>
-<p>此外，影片通过极简的对话传达了深刻的哲理。例如，男孩问马“什么是成功”，马回答说：“<code>成功是被爱</code>。”，以及“长大以后，你想当什么呢？”，鼹鼠回答“<code>善良的人</code>”。这类发人深省的句子贯穿全片，令观众在观影过程中不断思考生命中真正重要的东西。对于狐狸这个角色，他的沉默和善良也让人印象深刻，他在影片中扮演了一个重要的引导者角色，帮助男孩和其他动物找到了自己的方向。</p>
-<p>这是一部令人心灵平静的作品，无论是大人还是孩子都能从中汲取力量和安慰。这部动画不仅仅是一个寻找家的故事，更是关于自我发现、友谊和接纳彼此不完美的寓言。</p>
-<p><img src="/images/imgs/ca64211f-2.jpeg" /></p>
-]]></content>
-      <categories>
-        <category>生活娱乐</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-        <tag>动画</tag>
-        <tag>短片</tag>
       </tags>
   </entry>
 </search>
