@@ -1111,5 +1111,5 @@
 @font-face {
   font-family: 'HengShanMaoBiCaoShu';
   src: url('/fonts/HengShanMaoBiCaoShu-2.ttf') format('truetype');
-  font-display: swap;
+  font-display: block;
 }
