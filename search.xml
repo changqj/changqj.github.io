@@ -1,6 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
+    <url>/post/8f4cbc0c.html</url>
+    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
+fork了别人的代码 本地更新主分支代码</h3>
+<ul>
+<li><p>查看本地仓库项目目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
+<li><p>添加上游项目地址：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
+<span id="more"></span>
+<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
+</ul>
+<hr />
+<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
+<ul>
+<li><p>从上游提取：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
+<li><p>合并：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
+<li><p>上传：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title(&#39;Bezier曲线拟合&#39;);
+questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
+<span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
+while 1
+    i &#x3D; i+1;
+    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
+    xlabel(tip);
+    try
+    [x,y,button] &#x3D; ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,&#39;o&#39;);
+    dataPoints(:,i) &#x3D; [x;y];
+    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
+    if button ~&#x3D; 1
+        xlabel(&#39;&#39;);
+        break;
+    end
+end
+
+
+for i &#x3D; 0:0.01:1
+    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
+end
+h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
+legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data &#x3D; dataPoints;
+while 1
+    if size(data,2) &#x3D;&#x3D; 1
+        break;
+    end
+    temp &#x3D; zeros(size(data,1),size(data,2)-1);
+    for i &#x3D; 1:size(data,2)-1
+        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data &#x3D; temp;
+end
+end</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>曲线曲面</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>拟合</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -136,80 +241,8 @@ grid on<span class="token punctuation">,</span>hold on
       </categories>
       <tags>
         <tag>MATLAB代码</tag>
+        <tag>拟合</tag>
         <tag>算法实现</tag>
-        <tag>拟合</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title(&#39;Bezier曲线拟合&#39;);
-questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
-<span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
-while 1
-    i &#x3D; i+1;
-    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
-    xlabel(tip);
-    try
-    [x,y,button] &#x3D; ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,&#39;o&#39;);
-    dataPoints(:,i) &#x3D; [x;y];
-    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
-    if button ~&#x3D; 1
-        xlabel(&#39;&#39;);
-        break;
-    end
-end
-
-
-for i &#x3D; 0:0.01:1
-    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
-end
-h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
-legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data &#x3D; dataPoints;
-while 1
-    if size(data,2) &#x3D;&#x3D; 1
-        break;
-    end
-    temp &#x3D; zeros(size(data,1),size(data,2)-1);
-    for i &#x3D; 1:size(data,2)-1
-        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data &#x3D; temp;
-end
-end</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>曲线曲面</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>拟合</tag>
       </tags>
   </entry>
   <entry>
@@ -395,6 +428,135 @@ alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
       </tags>
   </entry>
   <entry>
+    <title>Windows上配置Total Commander + Listary</title>
+    <url>/post/bb2b886d.html</url>
+    <content><![CDATA[<h1 id="windows上配置total-commander-listary">Windows上配置Total
+Commander + Listary</h1>
+<p>Total
+Commander是一款功能强大的文件管理器，提供了双窗格布局和丰富的插件支持。而Listary则是一款搜索工具，它可以极大提升文件查找和操作的效率。当两者结合使用时，能有效提高文件管理的工作效率。</p>
+<h2 id="安装total-commander">1. 安装Total Commander</h2>
+<h3 id="下载total-commander">1.1 下载Total Commander</h3>
+<p>首先，从<a href="https://www.ghisler.com/">Total
+Commander官网</a>下载最新版本的安装程序：</p>
+<ol type="1">
+<li><p>访问<a href="https://www.ghisler.com/download.htm">Total
+Commander下载页面</a>。</p></li>
+<li><p>选择Windows的安装程序，并下载。</p></li>
+</ol>
+<h3 id="安装total-commander-1">1.2 安装Total Commander</h3>
+<p>下载完成后，双击安装程序并按照以下步骤安装：</p>
+<ol type="1">
+<li><p>选择安装语言，点击“OK”。</p></li>
+<li><p>接受许可协议，点击“Next”。</p></li>
+<li><p>选择安装目录，建议使用默认路径。点击“Next”继续。</p></li>
+<li><p>配置快捷方式和文件关联设置，点击“Next”。</p></li>
+<li><p>最后点击“Install”完成安装。</p></li>
+</ol>
+<p>安装完成后，你可以启动Total Commander，开始熟悉它的基本操作。</p>
+<h2 id="安装listary">2. 安装Listary</h2>
+<h3 id="下载listary">2.1 下载Listary</h3>
+<p>从<a
+href="https://www.listary.com/">Listary官方网站</a>下载Listary最新版本：</p>
+<ol type="1">
+<li><p>访问<a
+href="https://www.listary.com/download">Listary下载页面</a>。</p></li>
+<li><p>点击“Download”按钮下载适用于Windows的版本。</p></li>
+</ol>
+<h3 id="安装listary-1">2.2 安装Listary</h3>
+<p>与Total
+Commander安装类似，下载完成后，双击安装程序并按照提示操作：</p>
+<ol type="1">
+<li><p>接受许可协议并点击“Next”。</p></li>
+<li><p>选择安装目录，点击“Next”。</p></li>
+<li><p>配置安装选项，默认设置即可，点击“Next”。</p></li>
+<li><p>点击“Install”进行安装，最后点击“Finish”完成。</p></li>
+</ol>
+<p>安装完成后，Listary会自动运行，并常驻系统托盘。</p>
+<h2 id="配置total-commander与listary结合使用">3. 配置Total
+Commander与Listary结合使用</h2>
+<p>Total
+Commander和Listary各有其优势，两者结合可以提升搜索和文件管理效率。下面介绍如何将两者完美结合。</p>
+<h3 id="打开total-commander的目录选择">3.1 打开Total
+Commander的目录选择</h3>
+<p>要让Listary完美结合Total Commander，需要开启Total
+Commander的目录选择功能：</p>
+<ol type="1">
+<li><p>打开Total Commander，进入配置窗口（快捷键 <code>Alt + P</code>
+或点击顶部菜单中的“配置”）。</p></li>
+<li><p>选择“操作”选项卡，确保“支持通过命令行启动路径”选项已勾选。这个选项允许Total
+Commander接受来自外部应用的路径跳转命令。</p></li>
+</ol>
+<h3 id="配置listary与total-commander集成">3.2 配置Listary与Total
+Commander集成</h3>
+<p>要让Listary搜索结果可以直接跳转到Total Commander：</p>
+<ol type="1">
+<li><p>右键点击系统托盘中的Listary图标，选择“选项”进入配置页面。</p></li>
+<li><p>在左侧导航栏中选择“应用程序”，然后点击右侧的“添加”按钮。</p></li>
+<li><p>在弹出的窗口中，浏览到Total
+Commander的安装目录，并选择<code>TOTALCMD.EXE</code>，点击“打开”。</p></li>
+<li><p>这时Listary会将Total
+Commander添加为支持的应用程序。接着，你可以配置具体的操作行为：</p>
+<ul>
+<li>在“命令”选项中，输入
+<code>%1</code>，这表示将搜索结果的文件或文件夹路径传递给Total
+Commander。</li>
+<li>你还可以选择是否在新标签页中打开该路径，或覆盖当前标签页。</li>
+</ul></li>
+</ol>
+<h3 id="测试集成效果">3.3 测试集成效果</h3>
+<p>完成配置后，可以通过以下步骤测试：</p>
+<ol type="1">
+<li><p>按下 <code>Win + S</code> 或双击 <code>Ctrl</code>
+键，调出Listary搜索框。</p></li>
+<li><p>输入文件或文件夹的名称，Listary会快速展示搜索结果。</p></li>
+<li><p>选中一个结果并按 <code>Enter</code>，此时Listary会直接在Total
+Commander中打开对应的文件或文件夹。</p></li>
+</ol>
+<h2 id="提高total-commander使用效率的其他插件">4. 提高Total
+Commander使用效率的其他插件</h2>
+<p>Total
+Commander还支持丰富的插件，以下是几个推荐的插件，可以进一步提升使用体验：</p>
+<ol type="1">
+<li><p><strong>Everything</strong> 插件：为Total
+Commander提供快速文件搜索支持，类似Listary，但搜索速度极快。可以从 <a
+href="https://www.ghisler.com/plugins.htm">插件页面</a>
+下载并安装。</p></li>
+<li><p><strong>TC Media Player</strong> 插件：用于在Total
+Commander中直接播放音频或视频文件，方便快速预览媒体文件。</p></li>
+<li><p><strong>FileInfo</strong>
+插件：为文件提供更多详细信息显示，适用于需要查看文件的元数据、权限等高级信息的场景。</p></li>
+</ol>
+<h2 id="常见问题解决">5. 常见问题解决</h2>
+<h3 id="listary无法跳转到total-commander">5.1 Listary无法跳转到Total
+Commander</h3>
+<p>如果配置好后发现Listary无法打开Total Commander：</p>
+<ol type="1">
+<li><p>检查Total Commander的路径是否正确添加。</p></li>
+<li><p>确保Total Commander已启用“支持通过命令行启动路径”功能。</p></li>
+</ol>
+<h3 id="搜索速度较慢">5.2 搜索速度较慢</h3>
+<p>如果你感觉Listary的搜索速度较慢，可以尝试：</p>
+<ol type="1">
+<li><p>在Listary配置页面的“搜索”选项中，设置索引文件夹，避免Listary搜索不必要的路径。</p></li>
+<li><p>安装Everything插件以提高搜索速度。</p></li>
+</ol>
+<h2 id="总结">6. 总结</h2>
+<p>通过结合使用Total
+Commander和Listary，你可以显著提升Windows下的文件管理和搜索效率。Total
+Commander提供了强大的文件管理功能，而Listary的快速搜索与Total
+Commander的双窗格管理相结合，让你的日常文件操作更加高效。如果你是多任务处理的用户，强烈推荐这两款工具的组合。</p>
+<p>希望这篇文章对你有所帮助，祝你使用愉快！</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>神器</tag>
+        <tag>Total Commander</tag>
+        <tag>Listary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
     <url>/post/563c2d.html</url>
     <content><![CDATA[<blockquote>
@@ -566,135 +728,6 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
       </tags>
   </entry>
   <entry>
-    <title>Windows上配置Total Commander + Listary</title>
-    <url>/post/bb2b886d.html</url>
-    <content><![CDATA[<h1 id="windows上配置total-commander-listary">Windows上配置Total
-Commander + Listary</h1>
-<p>Total
-Commander是一款功能强大的文件管理器，提供了双窗格布局和丰富的插件支持。而Listary则是一款搜索工具，它可以极大提升文件查找和操作的效率。当两者结合使用时，能有效提高文件管理的工作效率。</p>
-<h2 id="安装total-commander">1. 安装Total Commander</h2>
-<h3 id="下载total-commander">1.1 下载Total Commander</h3>
-<p>首先，从<a href="https://www.ghisler.com/">Total
-Commander官网</a>下载最新版本的安装程序：</p>
-<ol type="1">
-<li><p>访问<a href="https://www.ghisler.com/download.htm">Total
-Commander下载页面</a>。</p></li>
-<li><p>选择Windows的安装程序，并下载。</p></li>
-</ol>
-<h3 id="安装total-commander-1">1.2 安装Total Commander</h3>
-<p>下载完成后，双击安装程序并按照以下步骤安装：</p>
-<ol type="1">
-<li><p>选择安装语言，点击“OK”。</p></li>
-<li><p>接受许可协议，点击“Next”。</p></li>
-<li><p>选择安装目录，建议使用默认路径。点击“Next”继续。</p></li>
-<li><p>配置快捷方式和文件关联设置，点击“Next”。</p></li>
-<li><p>最后点击“Install”完成安装。</p></li>
-</ol>
-<p>安装完成后，你可以启动Total Commander，开始熟悉它的基本操作。</p>
-<h2 id="安装listary">2. 安装Listary</h2>
-<h3 id="下载listary">2.1 下载Listary</h3>
-<p>从<a
-href="https://www.listary.com/">Listary官方网站</a>下载Listary最新版本：</p>
-<ol type="1">
-<li><p>访问<a
-href="https://www.listary.com/download">Listary下载页面</a>。</p></li>
-<li><p>点击“Download”按钮下载适用于Windows的版本。</p></li>
-</ol>
-<h3 id="安装listary-1">2.2 安装Listary</h3>
-<p>与Total
-Commander安装类似，下载完成后，双击安装程序并按照提示操作：</p>
-<ol type="1">
-<li><p>接受许可协议并点击“Next”。</p></li>
-<li><p>选择安装目录，点击“Next”。</p></li>
-<li><p>配置安装选项，默认设置即可，点击“Next”。</p></li>
-<li><p>点击“Install”进行安装，最后点击“Finish”完成。</p></li>
-</ol>
-<p>安装完成后，Listary会自动运行，并常驻系统托盘。</p>
-<h2 id="配置total-commander与listary结合使用">3. 配置Total
-Commander与Listary结合使用</h2>
-<p>Total
-Commander和Listary各有其优势，两者结合可以提升搜索和文件管理效率。下面介绍如何将两者完美结合。</p>
-<h3 id="打开total-commander的目录选择">3.1 打开Total
-Commander的目录选择</h3>
-<p>要让Listary完美结合Total Commander，需要开启Total
-Commander的目录选择功能：</p>
-<ol type="1">
-<li><p>打开Total Commander，进入配置窗口（快捷键 <code>Alt + P</code>
-或点击顶部菜单中的“配置”）。</p></li>
-<li><p>选择“操作”选项卡，确保“支持通过命令行启动路径”选项已勾选。这个选项允许Total
-Commander接受来自外部应用的路径跳转命令。</p></li>
-</ol>
-<h3 id="配置listary与total-commander集成">3.2 配置Listary与Total
-Commander集成</h3>
-<p>要让Listary搜索结果可以直接跳转到Total Commander：</p>
-<ol type="1">
-<li><p>右键点击系统托盘中的Listary图标，选择“选项”进入配置页面。</p></li>
-<li><p>在左侧导航栏中选择“应用程序”，然后点击右侧的“添加”按钮。</p></li>
-<li><p>在弹出的窗口中，浏览到Total
-Commander的安装目录，并选择<code>TOTALCMD.EXE</code>，点击“打开”。</p></li>
-<li><p>这时Listary会将Total
-Commander添加为支持的应用程序。接着，你可以配置具体的操作行为：</p>
-<ul>
-<li>在“命令”选项中，输入
-<code>%1</code>，这表示将搜索结果的文件或文件夹路径传递给Total
-Commander。</li>
-<li>你还可以选择是否在新标签页中打开该路径，或覆盖当前标签页。</li>
-</ul></li>
-</ol>
-<h3 id="测试集成效果">3.3 测试集成效果</h3>
-<p>完成配置后，可以通过以下步骤测试：</p>
-<ol type="1">
-<li><p>按下 <code>Win + S</code> 或双击 <code>Ctrl</code>
-键，调出Listary搜索框。</p></li>
-<li><p>输入文件或文件夹的名称，Listary会快速展示搜索结果。</p></li>
-<li><p>选中一个结果并按 <code>Enter</code>，此时Listary会直接在Total
-Commander中打开对应的文件或文件夹。</p></li>
-</ol>
-<h2 id="提高total-commander使用效率的其他插件">4. 提高Total
-Commander使用效率的其他插件</h2>
-<p>Total
-Commander还支持丰富的插件，以下是几个推荐的插件，可以进一步提升使用体验：</p>
-<ol type="1">
-<li><p><strong>Everything</strong> 插件：为Total
-Commander提供快速文件搜索支持，类似Listary，但搜索速度极快。可以从 <a
-href="https://www.ghisler.com/plugins.htm">插件页面</a>
-下载并安装。</p></li>
-<li><p><strong>TC Media Player</strong> 插件：用于在Total
-Commander中直接播放音频或视频文件，方便快速预览媒体文件。</p></li>
-<li><p><strong>FileInfo</strong>
-插件：为文件提供更多详细信息显示，适用于需要查看文件的元数据、权限等高级信息的场景。</p></li>
-</ol>
-<h2 id="常见问题解决">5. 常见问题解决</h2>
-<h3 id="listary无法跳转到total-commander">5.1 Listary无法跳转到Total
-Commander</h3>
-<p>如果配置好后发现Listary无法打开Total Commander：</p>
-<ol type="1">
-<li><p>检查Total Commander的路径是否正确添加。</p></li>
-<li><p>确保Total Commander已启用“支持通过命令行启动路径”功能。</p></li>
-</ol>
-<h3 id="搜索速度较慢">5.2 搜索速度较慢</h3>
-<p>如果你感觉Listary的搜索速度较慢，可以尝试：</p>
-<ol type="1">
-<li><p>在Listary配置页面的“搜索”选项中，设置索引文件夹，避免Listary搜索不必要的路径。</p></li>
-<li><p>安装Everything插件以提高搜索速度。</p></li>
-</ol>
-<h2 id="总结">6. 总结</h2>
-<p>通过结合使用Total
-Commander和Listary，你可以显著提升Windows下的文件管理和搜索效率。Total
-Commander提供了强大的文件管理功能，而Listary的快速搜索与Total
-Commander的双窗格管理相结合，让你的日常文件操作更加高效。如果你是多任务处理的用户，强烈推荐这两款工具的组合。</p>
-<p>希望这篇文章对你有所帮助，祝你使用愉快！</p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>神器</tag>
-        <tag>Total Commander</tag>
-        <tag>Listary</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WordPress站点地图自动更新</title>
     <url>/post/943451b1.html</url>
     <content><![CDATA[<blockquote>
@@ -717,73 +750,6 @@ src="https://files.ifish.ink/mics/googlezhanzhang.png" alt="google" />
         <tag>wordpress</tag>
         <tag>SEO</tag>
         <tag>sitemap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu 外接显示与内置显示切换</title>
-    <url>/post/83277084.html</url>
-    <content><![CDATA[<ul>
-<li>查看显示器设备名称
-在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
-LVDS-1 和 HDMI-1
-(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
-</ul>
-<span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
-<ul>
-<li><p>关闭外接显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off</code>
-(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>打开外接显示器，关闭内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>关闭外接显示器，打开内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-</ul>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>环境配置</tag>
-        <tag>ubuntu</tag>
-        <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
-    <url>/post/8f4cbc0c.html</url>
-    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
-fork了别人的代码 本地更新主分支代码</h3>
-<ul>
-<li><p>查看本地仓库项目目录：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
-<li><p>添加上游项目地址：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
-<span id="more"></span>
-<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
-</ul>
-<hr />
-<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
-<ul>
-<li><p>从上游提取：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
-<li><p>合并：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
-<li><p>上传：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -819,9 +785,43 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
         <category>工具技能</category>
       </categories>
       <tags>
-        <tag>环境配置</tag>
         <tag>git</tag>
         <tag>github</tag>
+        <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu 外接显示与内置显示切换</title>
+    <url>/post/83277084.html</url>
+    <content><![CDATA[<ul>
+<li>查看显示器设备名称
+在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
+LVDS-1 和 HDMI-1
+(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
+</ul>
+<span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
+<ul>
+<li><p>关闭外接显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off</code>
+(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>打开外接显示器，关闭内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>关闭外接显示器，打开内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+</ul>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+        <tag>ubuntu</tag>
+        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -1631,6 +1631,113 @@ Pages，搭建一个免费的静态博客非常简单且高效。希望本教程
       </tags>
   </entry>
   <entry>
+    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
+    <url>/post/pm2-nodejs-macos.html</url>
+    <content><![CDATA[<p>在本地开发或部署轻量级应用时，我们常常需要在Mac
+mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用<strong>PM2</strong>来实现开机自启动。</p>
+<h2 id="安装pm2">1. 安装PM2</h2>
+<p>如果还没安装过PM2，可以通过npm全局安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> pm2</code></pre>
+<p>检查是否安装成功：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 <span class="token parameter variable">-v</span></code></pre>
+<h2 id="启动node.js服务">2. 启动Node.js服务</h2>
+<p>进入你的Node.js项目目录，使用PM2启动你的服务。例如，如果你的入口文件是<code>app.js</code>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<blockquote>
+<p><code>--name</code>参数可以为你的进程指定一个易于识别的名称。</p>
+</blockquote>
+<p>如果你不想进入项目目录，也可以直接指定完整路径：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start /path/to/your/app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<h2 id="配置pm2开机自启动">3. 配置PM2开机自启动</h2>
+<p>PM2提供了一个方便的命令来生成开机自启动脚本。运行以下命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 startup</code></pre>
+<p>这条命令会输出一条类似下面的命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/bin pm2 startup launchd <span class="token parameter variable">-u</span> your-username <span class="token parameter variable">--hp</span> /Users/your-username</code></pre>
+<p>复制并执行这条命令。它会将PM2配置为在系统启动时自动运行。</p>
+<h2 id="保存当前进程列表">4. 保存当前进程列表</h2>
+<p>为了确保在系统重启后，PM2能够重新启动你当前运行的Node.js服务，需要保存当前的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 save</code></pre>
+<h2 id="验证配置">5. 验证配置</h2>
+<p>你可以通过重启你的Mac来验证配置是否成功。重启后，使用以下命令查看PM2的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 list</code></pre>
+<p>如果看到你的Node.js服务正在运行，说明配置成功。</p>
+<p>或者查看日志：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 logs my-node-app</code></pre>
+<h2 id="管理pm2进程">6. 管理PM2进程</h2>
+<p>你可以使用以下命令来管理你的PM2进程：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 stop my-node-app   <span class="token comment"># 停止服务</span>
+pm2 restart my-node-app <span class="token comment"># 重启服务</span>
+pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code></pre>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>PM2</tag>
+        <tag>Node.js</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
+    <url>/post/d033f67a.html</url>
+    <content><![CDATA[<h4
+id="c实现二维多边形均值重心坐标代码可能有冗余未优化代码">c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
+<blockquote>
+<p>关于三维中均值重心坐标的实现可参考我的另一篇博客：<a
+href="https://www.ifish.ink/post/4d3c170c.html"
+title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
+Value Coordinates In 3D代码实现</a></p>
+</blockquote>
+<span id="more"></span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 2D
+/// @details    
+/// @param[in]  p,postiveity
+/// @return     
+/// @attention  
+*/</span>
+VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
+        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
+        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
+        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>几何处理</category>
+      </categories>
+      <tags>
+        <tag>算法实现</tag>
+        <tag>均值重心坐标</tag>
+        <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>参数曲线拟合</title>
     <url>/post/curvefitting.html</url>
     <content><![CDATA[<h3 id="曲线参数化">曲线参数化</h3>
@@ -1949,65 +2056,6 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
       </tags>
   </entry>
   <entry>
-    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
-    <url>/post/d033f67a.html</url>
-    <content><![CDATA[<h4
-id="c实现二维多边形均值重心坐标代码可能有冗余未优化代码">c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
-<blockquote>
-<p>关于三维中均值重心坐标的实现可参考我的另一篇博客：<a
-href="https://www.ifish.ink/post/4d3c170c.html"
-title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
-Value Coordinates In 3D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 2D
-/// @details    
-/// @param[in]  p,postiveity
-/// @return     
-/// @attention  
-*/</span>
-VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
-        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
-        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
-        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>几何处理</category>
-      </categories>
-      <tags>
-        <tag>算法实现</tag>
-        <tag>均值重心坐标</tag>
-        <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
     <url>/post/4d3c170c.html</url>
     <content><![CDATA[<h4 id="c实现">c++实现：</h4>
@@ -2088,6 +2136,107 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
         <tag>算法实现</tag>
         <tag>均值重心坐标</tag>
         <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span
+class="math inline">\(\mathbb{R}^n\)</span>中的<span
+class="math inline">\(m\)</span>个样本点为<span
+class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
+class="math inline">\(m\)</span>个样本嵌入到低维空间<span
+class="math inline">\(\mathbb{R}^{d}\)</span>，<span
+class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img
+src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
+alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
+class="math inline">\(i\)</span>行第<span
+class="math inline">\(j\)</span>列元素为<span
+class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
+class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
+class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
+class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
+class="math inline">\(k\)</span>个非零特征值，分别为<span
+class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
+class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
+class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
+class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
+class="math inline">\({ V}\)</span>的第<span
+class="math inline">\(i\)</span>列是特征值<span
+class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
+class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
+class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span
+class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
+class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br />
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
+class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
+class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
+class="math inline">\(V_*\)</span>。即<span
+class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
+class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
+class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>几何处理</category>
+      </categories>
+      <tags>
+        <tag>曲面参数化</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -2248,155 +2397,6 @@ src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
         <tag>极大似然坐标</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span
-class="math inline">\(\mathbb{R}^n\)</span>中的<span
-class="math inline">\(m\)</span>个样本点为<span
-class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
-class="math inline">\(m\)</span>个样本嵌入到低维空间<span
-class="math inline">\(\mathbb{R}^{d}\)</span>，<span
-class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img
-src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
-alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
-class="math inline">\(i\)</span>行第<span
-class="math inline">\(j\)</span>列元素为<span
-class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
-class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
-class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
-class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
-class="math inline">\(k\)</span>个非零特征值，分别为<span
-class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
-class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
-class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
-class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
-class="math inline">\({ V}\)</span>的第<span
-class="math inline">\(i\)</span>列是特征值<span
-class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
-class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
-class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span
-class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
-class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br />
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
-class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
-class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
-class="math inline">\(V_*\)</span>。即<span
-class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
-class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
-class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>几何处理</category>
-      </categories>
-      <tags>
-        <tag>曲面参数化</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
-    <url>/post/pm2-nodejs-macos.html</url>
-    <content><![CDATA[<p>在本地开发或部署轻量级应用时，我们常常需要在Mac
-mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用<strong>PM2</strong>来实现开机自启动。</p>
-<h2 id="安装pm2">1. 安装PM2</h2>
-<p>如果还没安装过PM2，可以通过npm全局安装：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> pm2</code></pre>
-<p>检查是否安装成功：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 <span class="token parameter variable">-v</span></code></pre>
-<h2 id="启动node.js服务">2. 启动Node.js服务</h2>
-<p>进入你的Node.js项目目录，使用PM2启动你的服务。例如，如果你的入口文件是<code>app.js</code>：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
-<blockquote>
-<p><code>--name</code>参数可以为你的进程指定一个易于识别的名称。</p>
-</blockquote>
-<p>如果你不想进入项目目录，也可以直接指定完整路径：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start /path/to/your/app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
-<h2 id="配置pm2开机自启动">3. 配置PM2开机自启动</h2>
-<p>PM2提供了一个方便的命令来生成开机自启动脚本。运行以下命令：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 startup</code></pre>
-<p>这条命令会输出一条类似下面的命令：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/bin pm2 startup launchd <span class="token parameter variable">-u</span> your-username <span class="token parameter variable">--hp</span> /Users/your-username</code></pre>
-<p>复制并执行这条命令。它会将PM2配置为在系统启动时自动运行。</p>
-<h2 id="保存当前进程列表">4. 保存当前进程列表</h2>
-<p>为了确保在系统重启后，PM2能够重新启动你当前运行的Node.js服务，需要保存当前的进程列表：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 save</code></pre>
-<h2 id="验证配置">5. 验证配置</h2>
-<p>你可以通过重启你的Mac来验证配置是否成功。重启后，使用以下命令查看PM2的进程列表：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 list</code></pre>
-<p>如果看到你的Node.js服务正在运行，说明配置成功。</p>
-<p>或者查看日志：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 logs my-node-app</code></pre>
-<h2 id="管理pm2进程">6. 管理PM2进程</h2>
-<p>你可以使用以下命令来管理你的PM2进程：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 stop my-node-app   <span class="token comment"># 停止服务</span>
-pm2 restart my-node-app <span class="token comment"># 重启服务</span>
-pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code></pre>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>PM2</tag>
-        <tag>Node.js</tag>
-        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
@@ -2610,6 +2610,95 @@ Actions中的构建过程。</p>
       </tags>
   </entry>
   <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
+    <content><![CDATA[<blockquote>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin</p>
+</blockquote>
+<h3
+id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
+<span id="more"></span>
+<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
+<p><img src="https://files.ifish.ink/mics/uo.png"
+alt="uBlock Origin Logo" /> uBlock
+Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
+Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
+Origin的目标是为用户提供自行实施内容过滤的选择。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
+截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
+Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr />
+<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
+Origin插件</h3>
+<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
+<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+<blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
+store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol type="1">
+<li><a
+href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
+<img src="https://files.ifish.ink/mics/uo5.png" /> <img
+src="https://files.ifish.ink/mics/uo2.png" /></li>
+</ol>
+<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
+<ol type="1">
+<li><p>从百度云盘<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
+Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
+href="chrome://extensions/">chrome://extensions/</a>
+后回车，可以看到类似下图页面 <img
+src="https://files.ifish.ink/mics/1.png"
+alt="chrome://extensions" /></p></li>
+<li><p>将第1步中下载的<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
+href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
+<img src="https://files.ifish.ink/mics/uo2.png" /> <img
+src="https://files.ifish.ink/mics/uo3.png" /></p></li>
+<li><p>在Chrome右上角点击uBlock
+Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
+<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
+</ol>
+<hr />
+<h3 id="三测试">三、测试</h3>
+<ul>
+<li><p>未启用uBlock
+Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(可以看到靠前的内容几乎都是广告) <img
+src="https://files.ifish.ink/mics/uo6.png" /></p></li>
+<li><p>启用uBlock
+Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(广告明显减少) <img
+src="https://files.ifish.ink/mics/uo7.png" /></p></li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
+src="https://files.ifish.ink/mics/uo.gif" /></p></li>
+</ul>
+<hr />
+<h3 id="四参考">四、参考：</h3>
+<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
+维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>神器</tag>
+        <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>标准雅可比迭代算法-实现</title>
     <url>/post/5d0495ae.html</url>
     <content><![CDATA[<h3
@@ -2744,95 +2833,6 @@ href="https://files.ifish.ink/mics/Standard_Jacobian_Iterative_Algorithm_Procedu
       <tags>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
-uBlock Origin</p>
-</blockquote>
-<h3
-id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
-<span id="more"></span>
-<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
-<p><img src="https://files.ifish.ink/mics/uo.png"
-alt="uBlock Origin Logo" /> uBlock
-Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
-Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
-Origin的目标是为用户提供自行实施内容过滤的选择。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
-截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
-Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
-<hr />
-<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
-Origin插件</h3>
-<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
-<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
-<blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
-store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
-</blockquote>
-<ol type="1">
-<li><a
-href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
-<img src="https://files.ifish.ink/mics/uo5.png" /> <img
-src="https://files.ifish.ink/mics/uo2.png" /></li>
-</ol>
-<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
-<ol type="1">
-<li><p>从百度云盘<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
-Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
-href="chrome://extensions/">chrome://extensions/</a>
-后回车，可以看到类似下图页面 <img
-src="https://files.ifish.ink/mics/1.png"
-alt="chrome://extensions" /></p></li>
-<li><p>将第1步中下载的<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
-href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
-<img src="https://files.ifish.ink/mics/uo2.png" /> <img
-src="https://files.ifish.ink/mics/uo3.png" /></p></li>
-<li><p>在Chrome右上角点击uBlock
-Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
-<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
-</ol>
-<hr />
-<h3 id="三测试">三、测试</h3>
-<ul>
-<li><p>未启用uBlock
-Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(可以看到靠前的内容几乎都是广告) <img
-src="https://files.ifish.ink/mics/uo6.png" /></p></li>
-<li><p>启用uBlock
-Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(广告明显减少) <img
-src="https://files.ifish.ink/mics/uo7.png" /></p></li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
-src="https://files.ifish.ink/mics/uo.gif" /></p></li>
-</ul>
-<hr />
-<h3 id="四参考">四、参考：</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
-维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>神器</tag>
-        <tag>插件</tag>
       </tags>
   </entry>
   <entry>

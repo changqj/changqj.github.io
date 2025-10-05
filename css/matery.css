@@ -2295,3 +2295,7 @@ body.DarkMode .theme-btn:hover {
     font-weight: 900;
     color: #d9534f;
 }
+
+@media (max-width: 767px) {
+  .pc-only { display: none !important; }
+}
