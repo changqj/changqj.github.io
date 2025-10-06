@@ -1,111 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
-    <url>/post/8f4cbc0c.html</url>
-    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
-fork了别人的代码 本地更新主分支代码</h3>
-<ul>
-<li><p>查看本地仓库项目目录：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
-<li><p>添加上游项目地址：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
-<span id="more"></span>
-<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
-</ul>
-<hr />
-<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
-<ul>
-<li><p>从上游提取：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
-<li><p>合并：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
-<li><p>上传：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title(&#39;Bezier曲线拟合&#39;);
-questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
-<span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
-while 1
-    i &#x3D; i+1;
-    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
-    xlabel(tip);
-    try
-    [x,y,button] &#x3D; ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,&#39;o&#39;);
-    dataPoints(:,i) &#x3D; [x;y];
-    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
-    if button ~&#x3D; 1
-        xlabel(&#39;&#39;);
-        break;
-    end
-end
-
-
-for i &#x3D; 0:0.01:1
-    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
-end
-h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
-legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data &#x3D; dataPoints;
-while 1
-    if size(data,2) &#x3D;&#x3D; 1
-        break;
-    end
-    temp &#x3D; zeros(size(data,1),size(data,2)-1);
-    for i &#x3D; 1:size(data,2)-1
-        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data &#x3D; temp;
-end
-end</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>曲线曲面</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>拟合</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -237,12 +132,119 @@ grid on<span class="token punctuation">,</span>hold on
 <p><img src="https://files.ifish.ink/mics/1103_1.gif" /></p>
 ]]></content>
       <categories>
-        <category>曲线曲面</category>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
+        <tag>拟合</tag>
+        <tag>曲线曲面</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
+    <url>/post/8f4cbc0c.html</url>
+    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
+fork了别人的代码 本地更新主分支代码</h3>
+<ul>
+<li><p>查看本地仓库项目目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
+<li><p>添加上游项目地址：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
+<span id="more"></span>
+<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
+</ul>
+<hr />
+<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
+<ul>
+<li><p>从上游提取：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
+<li><p>合并：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
+<li><p>上传：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title(&#39;Bezier曲线拟合&#39;);
+questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
+<span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
+while 1
+    i &#x3D; i+1;
+    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
+    xlabel(tip);
+    try
+    [x,y,button] &#x3D; ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,&#39;o&#39;);
+    dataPoints(:,i) &#x3D; [x;y];
+    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
+    if button ~&#x3D; 1
+        xlabel(&#39;&#39;);
+        break;
+    end
+end
+
+
+for i &#x3D; 0:0.01:1
+    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
+end
+h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
+legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data &#x3D; dataPoints;
+while 1
+    if size(data,2) &#x3D;&#x3D; 1
+        break;
+    end
+    temp &#x3D; zeros(size(data,1),size(data,2)-1);
+    for i &#x3D; 1:size(data,2)-1
+        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data &#x3D; temp;
+end
+end</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
       </categories>
       <tags>
         <tag>MATLAB代码</tag>
         <tag>拟合</tag>
-        <tag>算法实现</tag>
+        <tag>曲线曲面</tag>
       </tags>
   </entry>
   <entry>
@@ -557,48 +559,6 @@ Commander的双窗格管理相结合，让你的日常文件操作更加高效�
       </tags>
   </entry>
   <entry>
-    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
-    <url>/post/563c2d.html</url>
-    <content><![CDATA[<blockquote>
-<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
-<strong>Briefly unavailable for scheduled maintenance. Check back in a
-minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
-</blockquote>
-<figure>
-<img src="https://files.ifish.ink/mics/20190703103139.png"
-title="Briefly unavailable for scheduled maintenance. Check back in a minute."
-alt="Briefly unavailable for scheduled maintenance. Check back in a minute." />
-<figcaption aria-hidden="true">Briefly unavailable for scheduled
-maintenance. Check back in a minute.</figcaption>
-</figure>
-<h3 id="原因">原因：</h3>
-<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
-unavailable for scheduled maintenance. Check back in a minute.”</p>
-<span id="more"></span>
-<h3 id="解决方法">解决方法：</h3>
-<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
-的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
-即可</p>
-<ul>
-<li>用FTP或者从终端进入WordPress的根目录下，删除
-<strong>.maintenance</strong> 文件</li>
-<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
-文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
-<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
-<strong>.maintenance</strong> 文件，然后删除即可。</li>
-</ul>
-<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Total Commander使用</title>
     <url>/post/aada5c99.html</url>
     <content><![CDATA[<h1 id="total-commander使用教程及快捷键设置">Total
@@ -728,6 +688,48 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
       </tags>
   </entry>
   <entry>
+    <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
+    <url>/post/563c2d.html</url>
+    <content><![CDATA[<blockquote>
+<p>在用WordPress仪表盘自动更新插件或WordPress版本时，有时会出现
+<strong>Briefly unavailable for scheduled maintenance. Check back in a
+minute.</strong> ，导致我们的WordPress站点不能正常使用</p>
+</blockquote>
+<figure>
+<img src="https://files.ifish.ink/mics/20190703103139.png"
+title="Briefly unavailable for scheduled maintenance. Check back in a minute."
+alt="Briefly unavailable for scheduled maintenance. Check back in a minute." />
+<figcaption aria-hidden="true">Briefly unavailable for scheduled
+maintenance. Check back in a minute.</figcaption>
+</figure>
+<h3 id="原因">原因：</h3>
+<p>这是由于我们在更新插件的时候，由于网络不畅或者其他原因造成自动更新终端，所以访问时会出现“Briefly
+unavailable for scheduled maintenance. Check back in a minute.”</p>
+<span id="more"></span>
+<h3 id="解决方法">解决方法：</h3>
+<p>在更新插件时，WordPress会自动产生一个 <strong>.maintenance</strong>
+的文本文件，所以只需要将这个文本文件 <em>删除</em> 或者 <em>置空</em>
+即可</p>
+<ul>
+<li>用FTP或者从终端进入WordPress的根目录下，删除
+<strong>.maintenance</strong> 文件</li>
+<li>但是有时候我们会发现进入根目录后找不到 <strong>.maintenance</strong>
+文件，所以我们可以在本地新建一个空的文本文件，将文件名更改为
+<em>.maintenance</em>，然后上传到WordPress的根目录即可，这时你就会在你的WordPress看到
+<strong>.maintenance</strong> 文件，然后删除即可。</li>
+</ul>
+<p>重新访问网站，发现一切正常:smile: 感谢阅读！</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>WordPress站点地图自动更新</title>
     <url>/post/943451b1.html</url>
     <content><![CDATA[<blockquote>
@@ -788,6 +790,105 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
         <tag>git</tag>
         <tag>github</tag>
         <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>macOS工具推荐--Quick Look源码高亮插件Syntax Highlight</title>
+    <url>/post/3108369d.html</url>
+    <content><![CDATA[<h2 id="macos原生quick-look的局限与动机">macOS原生Quick
+Look的局限与动机</h2>
+<p><code>Quick Look</code>是macOS上极为高效的文件预览工具，但其原生仅支持大多数常见文件的基础预览。对于开发者常用的文本和代码文件（如<code>.tex</code>、<code>.bib</code>、<code>.md</code>、<code>.py</code>、<code>.js</code>、<code>.cpp</code>等），<code>Quick Look</code>只会以纯文本方式显示，缺乏语法高亮，部分文件（如<code>.tex</code>、<code>.bib</code>）甚至可能无法正常预览，显示为空白或乱码。这极大影响了查阅和阅读体验。</p>
+<p>为了解决这些局限，推荐使用<code>Syntax Highlight</code>插件，让<code>Quick Look</code>支持源码高亮和更多文本格式的友好预览。</p>
+<h2 id="为什么需要quick-look源码高亮">为什么需要Quick
+Look源码高亮？</h2>
+<ul>
+<li>快速预览代码文件，无需打开编辑器</li>
+<li>支持多种主流编程语言</li>
+<li>代码高亮更易阅读和查错</li>
+<li>提升macOS办公与开发效率</li>
+</ul>
+<h2 id="推荐插件syntax-highlight">推荐插件：Syntax Highlight</h2>
+<p><a href="https://github.com/sbarex/SourceCodeSyntaxHighlight">Syntax
+Highlight</a>是一款开源的<code>Quick Look</code>插件，支持数十种编程语言的高亮显示，界面美观，安装简单。</p>
+<h3 id="主要特性">主要特性</h3>
+<ul>
+<li>支持常见代码文件（Python、C/C++、Java、JS、Markdown、LaTeX等）</li>
+<li>多种高亮主题可选</li>
+<li>支持大文件、长行自动换行</li>
+<li>支持自定义字体和字号</li>
+<li>兼容Apple Silicon和Intel Mac</li>
+</ul>
+<h2 id="安装方法">安装方法</h2>
+<ol type="1">
+<li>前往<a
+href="https://github.com/sbarex/SourceCodeSyntaxHighlight/releases">GitHub
+Releases</a>下载最新版<code>QLSyntaxHighlight.qlgenerator</code></li>
+<li>解压后，将<code>QLSyntaxHighlight.qlgenerator</code>拖入<code>~/Library/QuickLook/</code>目录（如没有该目录可手动创建）</li>
+<li>在终端执行： <pre class="language-bash" data-language="bash"><code class="language-bash">qlmanage <span class="token parameter variable">-r</span>
+qlmanage <span class="token parameter variable">-r</span> cache</code></pre>
+以刷新<code>Quick Look</code>插件缓存</li>
+<li>选中任意代码文件，按空格即可预览高亮效果</li>
+</ol>
+<h2 id="命令行一键安装">命令行一键安装</h2>
+<p>你也可以直接通过Homebrew安装<code>Syntax Highlight</code>插件，无需手动下载和拖拽：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> --no-quarantine syntax-highlight</code></pre>
+<p>安装完成后，执行：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">qlmanage <span class="token parameter variable">-r</span>
+qlmanage <span class="token parameter variable">-r</span> cache</code></pre>
+<p>即可立即体验高亮预览。</p>
+<h2 id="插件设置与自定义">插件设置与自定义</h2>
+<p>安装好<code>Syntax Highlight</code>后，建议首次启动主程序（<code>Syntax Highlight.app</code>），以便系统识别并激活<code>Quick Look</code>扩展。你可以在“系统设置-扩展-Quick
+Look”中管理插件启用状态。</p>
+<p>插件支持丰富的自定义设置：</p>
+<ul>
+<li><strong>高亮主题</strong>：可在设置中选择不同的配色方案，适配浅色/深色模式，也可自定义主题。</li>
+<li><strong>字体与字号</strong>：可自定义代码预览的字体和字号，满足不同阅读习惯。</li>
+<li><strong>自动换行</strong>：支持长行自动换行，适合大文件或单行代码较长的场景。</li>
+<li><strong>显示行号</strong>：可选择是否显示代码行号。</li>
+<li><strong>VCS
+支持</strong>：可高亮显示与<code>Git</code>/<code>Mercurial</code>版本控制相关的变更行。</li>
+<li><strong>自定义
+CSS</strong>：如选择HTML渲染引擎，可通过自定义CSS进一步美化高亮效果。</li>
+<li><strong>数据限制</strong>：可设置最大预览数据量，超出部分自动截断。</li>
+</ul>
+<p>所有设置均可在主程序的“设置”窗口中调整，部分高级选项需在“高级设置”中开启。</p>
+<blockquote>
+<p>⚠️ 注意：部分系统保留格式（如 .ts、.html、.json
+等）受macOS限制，第三方插件无法接管预览。</p>
+</blockquote>
+<h2 id="常见问题">常见问题</h2>
+<ul>
+<li><strong>插件无效？</strong>
+<ul>
+<li>检查插件是否放在 <code>~/Library/QuickLook/</code> 下</li>
+<li>确认已执行 <code>qlmanage -r</code> 刷新缓存</li>
+<li>某些新版macOS需在“系统设置-隐私与安全性”中允许插件</li>
+</ul></li>
+</ul>
+<h2 id="其他推荐-quick-look-插件">其他推荐 Quick Look 插件</h2>
+<ul>
+<li><a
+href="https://github.com/toland/qlmarkdown">QLMarkdown</a>：Markdown文件预览</li>
+<li><a
+href="https://github.com/Nyx0uf/qlImageSize">QLImageSize</a>：图片尺寸信息预览</li>
+<li><a
+href="https://github.com/Marginal/QLVideo">QLVideo</a>：视频格式预览</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>有了<code>Syntax Highlight</code>，macOS下的<code>Quick Look</code>预览代码体验大幅提升。推荐开发者和经常查阅代码的用户安装体验。</p>
+<hr />
+<p>如有问题欢迎评论区交流，或访问插件<a
+href="https://github.com/sbarex/SourceCodeSyntaxHighlight">GitHub
+项目页</a>获取更多信息。</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>Quick Look</tag>
+        <tag>源码高亮</tag>
+        <tag>Syntax Highlight</tag>
       </tags>
   </entry>
   <entry>
@@ -973,154 +1074,12 @@ href="https://files.ifish.ink/mics/Implementation_of_Tridiag_Matrix_Inversion_Al
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>代数</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>三次样条插值</title>
-    <url>/post/cubicspline.html</url>
-    <content><![CDATA[<h3 id="三次样条函数">三次样条函数</h3>
-<p>对于给定<span
-class="math inline">\(\mathbb{R}^2\)</span>域内一组有序点<span
-class="math inline">\(\{\mathbf{Q}_i\}_{i=0}^n\)</span>，对应参数为<span
-class="math inline">\(\{t_i\}_{i=0}^n\)</span>，找到一组分段三次多项式函数插值每个数据点。</p>
-<h4 id="考虑插值点处c2连续-平滑顶点">考虑插值点处<span
-class="math inline">\(C^2\)</span>连续 （平滑顶点）</h4>
-<p>对于<span
-class="math inline">\(n+1\)</span>个数据点，相邻两点之间用三次多项式表达，则有<span
-class="math inline">\(n\)</span>段三次多项式，用待定系数的方式设第<span
-class="math inline">\(i(i=0,1,\dots,n)\)</span>段向量型多项式函数为
-<span
-class="math display">\[\mathbf{P}_i(t)=a_{i,0}+a_{i,1}t+a_{i,2}t^2+a_{i,3}t^3\]</span>
-从上式可以看出总共<span class="math inline">\(4n\)</span>个未知数，<span
-class="math inline">\(C^2\)</span>连续需要满足约束条件：</p>
-<ul>
-<li><p>每段多项式在端点处插值 <span
-class="math display">\[\mathbf{P}_i(t_i)=\mathbf{Q}_i\qquad
-\mathbf{P}_i(t_{i+1})=\mathbf{Q}_{i+1}\qquad i =
-0,1,\dots,n\]</span></p></li>
-<li><p>中间点一阶导连续 <span
-class="math display">\[\mathbf{P}&#39;_{i-1}(t_i-0)=\mathbf{P}&#39;_i(t_i+0)\qquad
-i=1,2,\dots,n-1\]</span></p></li>
-<li><p>中间点二阶导连续 <span
-class="math display">\[\mathbf{P}&#39;&#39;_{i-1}(t_i-0)=\mathbf{P}&#39;&#39;_i(t_i+0)\qquad
-i=1,2,\dots,n-1\]</span></p></li>
-</ul>
-<p>这里总共<span
-class="math inline">\(4n-2\)</span>个方程，还需要两个约束条件，这里我们选择首尾两点二阶导等于0，即自然边界条件：
-<span
-class="math display">\[\mathbf{P}&#39;&#39;_0(t_0)=\mathbf{P}&#39;&#39;_{n-1}(t_n)=0\qquad
-i=1,2,\dots,n-1\]</span> 这里我们引入中间变量弯矩，参考<a
-href="http://staff.ustc.edu.cn/~lgliu/Courses/GAMES102_2020/documents/GAMES102-suppl-2-CubicSpline.pdf">此文</a>，可得每段多项式的表达式：
-<span
-class="math display">\[\mathbf{P}_i(t)=\frac{M_i}{6h_i}(t_{i+1}-t)^3+\frac{M_{i+1}}{6h_i}(t-t_i)^3+\left(\frac{Q_{i+1}}{h_i}-\frac{M_{i+1}h_i}{6}\right)(t-t_i)+\left(\frac{\mathbf{Q}_i}{h_i}-\frac{M_ih_i}{6}\right)(t_{i+1}-t)\]</span>
-其中<span class="math inline">\(h_i=t_{i+1}-t_i\)</span>，<span
-class="math inline">\(M\)</span>是如下三对角线性系统的解，<span
-class="math inline">\(M_0=M_n=0\)</span> <span
-class="math display">\[\begin{equation}
-\left(
-    \begin{array}{ccccc}
-    u_1 &amp; h_1 &amp;    &amp; &amp;\\
-    h_1 &amp; u_2 &amp; h_2 &amp; &amp;\\
-    &amp;\ddots&amp;\ddots&amp;\ddots&amp;\\
-    &amp;&amp;h_{n-3}&amp;u_{n-2}&amp;h_{n-2}\\
-    &amp;&amp;&amp;h_{n-2}&amp;u_{n-1}
-    \end{array}
-    \right)\left(
-        \begin{array}{c}
-        M_1\\M_2\\\vdots\\M_{n-1}
-        \end{array}
-        \right)=\left(
-        \begin{array}{c}
-        v_1\\v_2\\\vdots\\v_{n-1}
-        \end{array}   
-            \right)
-\end{equation}\]</span> 其中<span
-class="math inline">\(u_i=2(h_i+h_{i-1})\)</span>，<span
-class="math inline">\(v_i=\frac{6}{h_i}(\mathbf{Q}_{i+1}-\mathbf{Q}_i)-\frac{6}{h_{i-1}}(\mathbf{Q}_i-\mathbf{Q}_{i-1})\)</span>
-<img src="/images/imgs/1223_1.png"
-alt="平滑顶点绘制（全局C^2连续）" /></p>
-<h4 id="考虑插值点处c0连续角部顶点">考虑插值点处<span
-class="math inline">\(C^0\)</span>连续（角部顶点）</h4>
-<p>对于每一段给定插值点处的左导数<span
-class="math inline">\(f&#39;_-\)</span>和右导数<span
-class="math inline">\(f&#39;_+\)</span>，加上插值该段的两点，4个未知数4个方程可以求解出该段的三次多项式函数：</p>
-<p>例如在<span class="math inline">\([t_i,t_{i+1}]\)</span>区间： <span
-class="math display">\[\begin{equation}
-\left\{
-    \begin{array}{ccccccccc}
-    a_{i,0} &amp; + &amp; a_{i,1}t_i &amp; + &amp; a_{i,2}t_i^2 &amp; +
-&amp; a_{i,2}t_i^3 &amp; = &amp; \mathbf{Q}_i\\
-    a_{i,0} &amp; + &amp; a_{i,1}t_{i+1} &amp; + &amp; a_{i,2}t_{i+1}^2
-&amp; + &amp; a_{i,2}t_{i+1}^3 &amp; = &amp; \mathbf{Q}_{i+1}\\
-    &amp;&amp;a_{i,1}&amp;+&amp;2a_{i,2}t_i&amp;+&amp;3a_{i,3}t_i^2&amp;=&amp;\mathbf{P}&#39;_i(t_i+0)\\
-    &amp;&amp;a_{i,1}&amp;+&amp;2a_{i,2}t_{i+1}&amp;+&amp;3a_{i,3}t_{i+1}^2&amp;=&amp;\mathbf{P}&#39;_{i+1}(t_i-0)
-    \end{array}
-    \right.
-\end{equation}\]</span> 求解该式可得到每段的三次多项式。 <img
-src="/images/imgs/1223_2.png"
-alt="角部顶点绘制（型值点处为C^0连续，其他点C^2连续）" /></p>
-<h4 id="考虑插值点处g1连续直线点">考虑插值点处<span
-class="math inline">\(G^1\)</span>连续（直线点）</h4>
-<p>在角部顶点基础上保证一点的左导数与右导数方向在同一直线即可。即上面方程中<span
-class="math inline">\(\mathbf{P}&#39;_i(t_i+0)=\lambda\mathbf{P}&#39;_{i+1}(t_i-0)\)</span>
-<img src="/images/imgs/1223_3.png"
-alt="角部顶点绘制（型值点处为G^1连续，其他点C^2连续）" /></p>
-<video width="90%" controls>
-<source src="https://files.ifish.ink/mics/HW-4.mp4" type="video/mp4">
-</video>
-<h3 id="主要代码">主要代码</h3>
-<ul>
-<li><p>高斯-塞德尔迭代求解三对角：</p>
-<p><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">GaussSeidel</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> h<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> u<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> v<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span><span class="token operator">*</span> M<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> _M0 <span class="token operator">=</span> <span class="token operator">*</span>M<span class="token punctuation">;</span> 
-    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>u<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
-            <span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>_M0<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span>u<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> 
-        <span class="token comment">// 迭代停止条件</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>Eigen<span class="token double-colon punctuation">::</span><span class="token class-name">VectorXf</span><span class="token double-colon punctuation">::</span><span class="token function">Map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>Eigen<span class="token double-colon punctuation">::</span><span class="token class-name">VectorXf</span><span class="token double-colon punctuation">::</span><span class="token function">Map</span><span class="token punctuation">(</span>_M0<span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>_M0<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>EPSILON<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-        _M0 <span class="token operator">=</span> <span class="token operator">*</span>M<span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre></p></li>
-<li><p>求解给定导数后的分段样条：</p>
-<p><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>validDerivative<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">float</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
-    <span class="token keyword">auto</span> A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token operator">-></span> Eigen<span class="token double-colon punctuation">::</span>Matrix4f <span class="token punctuation">&#123;</span>
-        Eigen<span class="token double-colon punctuation">::</span>Matrix4f a<span class="token punctuation">;</span>
-        a <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>
-            <span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>
-        <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> a<span class="token punctuation">;</span> 
-    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token keyword">auto</span> B <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> xy<span class="token punctuation">)</span> <span class="token operator">-></span> Eigen<span class="token double-colon punctuation">::</span>Vector4f <span class="token punctuation">&#123;</span> 
-        Eigen<span class="token double-colon punctuation">::</span>Vector4f b<span class="token punctuation">;</span>
-        b <span class="token operator">&lt;&lt;</span> points<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span>
-        points<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span> 
-        <span class="token punctuation">(</span><span class="token operator">*</span>derivative<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span>
-        <span class="token punctuation">(</span><span class="token operator">*</span>derivative<span class="token punctuation">)</span><span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> b<span class="token punctuation">;</span> 
-    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    <span class="token comment">// 四维矩阵可用Eigen，不会影响交互延迟</span>
-    Eigen<span class="token double-colon punctuation">::</span>Vector4f ax <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">colPivHouseholderQr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">solve</span><span class="token punctuation">(</span><span class="token function">B</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Eigen<span class="token double-colon punctuation">::</span>Vector4f ay <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">colPivHouseholderQr</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">solve</span><span class="token punctuation">(</span><span class="token function">B</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    x <span class="token operator">=</span> ax<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token punctuation">;</span> 
-    y <span class="token operator">=</span> ay<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token punctuation">;</span> 
-    <span class="token keyword">return</span> <span class="token class-name">Ubpa</span><span class="token double-colon punctuation">::</span><span class="token function">pointf2</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></p></li>
-</ul>
-]]></content>
-      <categories>
-        <category>曲线曲面</category>
-      </categories>
-      <tags>
-        <tag>拟合</tag>
-        <tag>C/C++</tag>
+        <tag>代数</tag>
       </tags>
   </entry>
   <entry>
@@ -1264,11 +1223,156 @@ href="https://files.ifish.ink/mics/Jacobianlike_Iterators_Tri_Matrices.pdf">三�
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>代数</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
+        <tag>代数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三次样条插值</title>
+    <url>/post/cubicspline.html</url>
+    <content><![CDATA[<h3 id="三次样条函数">三次样条函数</h3>
+<p>对于给定<span
+class="math inline">\(\mathbb{R}^2\)</span>域内一组有序点<span
+class="math inline">\(\{\mathbf{Q}_i\}_{i=0}^n\)</span>，对应参数为<span
+class="math inline">\(\{t_i\}_{i=0}^n\)</span>，找到一组分段三次多项式函数插值每个数据点。</p>
+<h4 id="考虑插值点处c2连续-平滑顶点">考虑插值点处<span
+class="math inline">\(C^2\)</span>连续 （平滑顶点）</h4>
+<p>对于<span
+class="math inline">\(n+1\)</span>个数据点，相邻两点之间用三次多项式表达，则有<span
+class="math inline">\(n\)</span>段三次多项式，用待定系数的方式设第<span
+class="math inline">\(i(i=0,1,\dots,n)\)</span>段向量型多项式函数为
+<span
+class="math display">\[\mathbf{P}_i(t)=a_{i,0}+a_{i,1}t+a_{i,2}t^2+a_{i,3}t^3\]</span>
+从上式可以看出总共<span class="math inline">\(4n\)</span>个未知数，<span
+class="math inline">\(C^2\)</span>连续需要满足约束条件：</p>
+<ul>
+<li><p>每段多项式在端点处插值 <span
+class="math display">\[\mathbf{P}_i(t_i)=\mathbf{Q}_i\qquad
+\mathbf{P}_i(t_{i+1})=\mathbf{Q}_{i+1}\qquad i =
+0,1,\dots,n\]</span></p></li>
+<li><p>中间点一阶导连续 <span
+class="math display">\[\mathbf{P}&#39;_{i-1}(t_i-0)=\mathbf{P}&#39;_i(t_i+0)\qquad
+i=1,2,\dots,n-1\]</span></p></li>
+<li><p>中间点二阶导连续 <span
+class="math display">\[\mathbf{P}&#39;&#39;_{i-1}(t_i-0)=\mathbf{P}&#39;&#39;_i(t_i+0)\qquad
+i=1,2,\dots,n-1\]</span></p></li>
+</ul>
+<p>这里总共<span
+class="math inline">\(4n-2\)</span>个方程，还需要两个约束条件，这里我们选择首尾两点二阶导等于0，即自然边界条件：
+<span
+class="math display">\[\mathbf{P}&#39;&#39;_0(t_0)=\mathbf{P}&#39;&#39;_{n-1}(t_n)=0\qquad
+i=1,2,\dots,n-1\]</span> 这里我们引入中间变量弯矩，参考<a
+href="http://staff.ustc.edu.cn/~lgliu/Courses/GAMES102_2020/documents/GAMES102-suppl-2-CubicSpline.pdf">此文</a>，可得每段多项式的表达式：
+<span
+class="math display">\[\mathbf{P}_i(t)=\frac{M_i}{6h_i}(t_{i+1}-t)^3+\frac{M_{i+1}}{6h_i}(t-t_i)^3+\left(\frac{Q_{i+1}}{h_i}-\frac{M_{i+1}h_i}{6}\right)(t-t_i)+\left(\frac{\mathbf{Q}_i}{h_i}-\frac{M_ih_i}{6}\right)(t_{i+1}-t)\]</span>
+其中<span class="math inline">\(h_i=t_{i+1}-t_i\)</span>，<span
+class="math inline">\(M\)</span>是如下三对角线性系统的解，<span
+class="math inline">\(M_0=M_n=0\)</span> <span
+class="math display">\[\begin{equation}
+\left(
+    \begin{array}{ccccc}
+    u_1 &amp; h_1 &amp;    &amp; &amp;\\
+    h_1 &amp; u_2 &amp; h_2 &amp; &amp;\\
+    &amp;\ddots&amp;\ddots&amp;\ddots&amp;\\
+    &amp;&amp;h_{n-3}&amp;u_{n-2}&amp;h_{n-2}\\
+    &amp;&amp;&amp;h_{n-2}&amp;u_{n-1}
+    \end{array}
+    \right)\left(
+        \begin{array}{c}
+        M_1\\M_2\\\vdots\\M_{n-1}
+        \end{array}
+        \right)=\left(
+        \begin{array}{c}
+        v_1\\v_2\\\vdots\\v_{n-1}
+        \end{array}   
+            \right)
+\end{equation}\]</span> 其中<span
+class="math inline">\(u_i=2(h_i+h_{i-1})\)</span>，<span
+class="math inline">\(v_i=\frac{6}{h_i}(\mathbf{Q}_{i+1}-\mathbf{Q}_i)-\frac{6}{h_{i-1}}(\mathbf{Q}_i-\mathbf{Q}_{i-1})\)</span>
+<img src="/images/imgs/1223_1.png"
+alt="平滑顶点绘制（全局C^2连续）" /></p>
+<h4 id="考虑插值点处c0连续角部顶点">考虑插值点处<span
+class="math inline">\(C^0\)</span>连续（角部顶点）</h4>
+<p>对于每一段给定插值点处的左导数<span
+class="math inline">\(f&#39;_-\)</span>和右导数<span
+class="math inline">\(f&#39;_+\)</span>，加上插值该段的两点，4个未知数4个方程可以求解出该段的三次多项式函数：</p>
+<p>例如在<span class="math inline">\([t_i,t_{i+1}]\)</span>区间： <span
+class="math display">\[\begin{equation}
+\left\{
+    \begin{array}{ccccccccc}
+    a_{i,0} &amp; + &amp; a_{i,1}t_i &amp; + &amp; a_{i,2}t_i^2 &amp; +
+&amp; a_{i,2}t_i^3 &amp; = &amp; \mathbf{Q}_i\\
+    a_{i,0} &amp; + &amp; a_{i,1}t_{i+1} &amp; + &amp; a_{i,2}t_{i+1}^2
+&amp; + &amp; a_{i,2}t_{i+1}^3 &amp; = &amp; \mathbf{Q}_{i+1}\\
+    &amp;&amp;a_{i,1}&amp;+&amp;2a_{i,2}t_i&amp;+&amp;3a_{i,3}t_i^2&amp;=&amp;\mathbf{P}&#39;_i(t_i+0)\\
+    &amp;&amp;a_{i,1}&amp;+&amp;2a_{i,2}t_{i+1}&amp;+&amp;3a_{i,3}t_{i+1}^2&amp;=&amp;\mathbf{P}&#39;_{i+1}(t_i-0)
+    \end{array}
+    \right.
+\end{equation}\]</span> 求解该式可得到每段的三次多项式。 <img
+src="/images/imgs/1223_2.png"
+alt="角部顶点绘制（型值点处为C^0连续，其他点C^2连续）" /></p>
+<h4 id="考虑插值点处g1连续直线点">考虑插值点处<span
+class="math inline">\(G^1\)</span>连续（直线点）</h4>
+<p>在角部顶点基础上保证一点的左导数与右导数方向在同一直线即可。即上面方程中<span
+class="math inline">\(\mathbf{P}&#39;_i(t_i+0)=\lambda\mathbf{P}&#39;_{i+1}(t_i-0)\)</span>
+<img src="/images/imgs/1223_3.png"
+alt="角部顶点绘制（型值点处为G^1连续，其他点C^2连续）" /></p>
+<video width="90%" controls>
+<source src="https://files.ifish.ink/mics/HW-4.mp4" type="video/mp4">
+</video>
+<h3 id="主要代码">主要代码</h3>
+<ul>
+<li><p>高斯-塞德尔迭代求解三对角：</p>
+<p><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">GaussSeidel</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> h<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> u<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> v<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span><span class="token operator">*</span> M<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span> _M0 <span class="token operator">=</span> <span class="token operator">*</span>M<span class="token punctuation">;</span> 
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>u<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> 
+            <span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span>h<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>_M0<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span>u<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> 
+        <span class="token comment">// 迭代停止条件</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>Eigen<span class="token double-colon punctuation">::</span><span class="token class-name">VectorXf</span><span class="token double-colon punctuation">::</span><span class="token function">Map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token operator">*</span>M<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>Eigen<span class="token double-colon punctuation">::</span><span class="token class-name">VectorXf</span><span class="token double-colon punctuation">::</span><span class="token function">Map</span><span class="token punctuation">(</span>_M0<span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>_M0<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>EPSILON<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        _M0 <span class="token operator">=</span> <span class="token operator">*</span>M<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre></p></li>
+<li><p>求解给定导数后的分段样条：</p>
+<p><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>validDerivative<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">float</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">)</span> <span class="token operator">-></span> Eigen<span class="token double-colon punctuation">::</span>Matrix4f <span class="token punctuation">&#123;</span>
+        Eigen<span class="token double-colon punctuation">::</span>Matrix4f a<span class="token punctuation">;</span>
+        a <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token number">1</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> B <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> xy<span class="token punctuation">)</span> <span class="token operator">-></span> Eigen<span class="token double-colon punctuation">::</span>Vector4f <span class="token punctuation">&#123;</span> 
+        Eigen<span class="token double-colon punctuation">::</span>Vector4f b<span class="token punctuation">;</span>
+        b <span class="token operator">&lt;&lt;</span> points<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        points<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span> 
+        <span class="token punctuation">(</span><span class="token operator">*</span>derivative<span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">(</span><span class="token operator">*</span>derivative<span class="token punctuation">)</span><span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">[</span>xy<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> b<span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token comment">// 四维矩阵可用Eigen，不会影响交互延迟</span>
+    Eigen<span class="token double-colon punctuation">::</span>Vector4f ax <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">colPivHouseholderQr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">solve</span><span class="token punctuation">(</span><span class="token function">B</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Eigen<span class="token double-colon punctuation">::</span>Vector4f ay <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">colPivHouseholderQr</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">solve</span><span class="token punctuation">(</span><span class="token function">B</span><span class="token punctuation">(</span>segment_index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x <span class="token operator">=</span> ax<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">+</span>ax<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token punctuation">;</span> 
+    y <span class="token operator">=</span> ay<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">+</span>ay<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token operator">*</span>t0<span class="token punctuation">;</span> 
+    <span class="token keyword">return</span> <span class="token class-name">Ubpa</span><span class="token double-colon punctuation">::</span><span class="token function">pointf2</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>拟合</tag>
+        <tag>曲线曲面</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1446,39 +1550,14 @@ figure
 src="https://files.ifish.ink/mics/20201031-4.png" /></p>
 ]]></content>
       <categories>
-        <category>几何处理</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
         <tag>参数化</tag>
         <tag>均值重心坐标</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从复平面上域的多项式函数生成调和函数</title>
-    <url>/post/harmonic.html</url>
-    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
-class="math inline">\(z=x+yi\)</span>的多项式函数<span
-class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
-class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
-class="math inline">\((x,y)\)</span>的二元调和函数。</p>
-<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-[x,y] &#x3D; meshgrid(linspace(-1,1,100));
-p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
-z &#x3D; real(p(x,y));
-surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
-axis off;</code></pre></p>
-<p><img src="https://files.ifish.ink/mics/har.gif" /></p>
-]]></content>
-      <categories>
-        <category>曲线曲面</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>调和函数</tag>
-        <tag>极小曲面</tag>
+        <tag>几何处理</tag>
       </tags>
   </entry>
   <entry>
@@ -1631,110 +1710,30 @@ Pages，搭建一个免费的静态博客非常简单且高效。希望本教程
       </tags>
   </entry>
   <entry>
-    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
-    <url>/post/pm2-nodejs-macos.html</url>
-    <content><![CDATA[<p>在本地开发或部署轻量级应用时，我们常常需要在Mac
-mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用<strong>PM2</strong>来实现开机自启动。</p>
-<h2 id="安装pm2">1. 安装PM2</h2>
-<p>如果还没安装过PM2，可以通过npm全局安装：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> pm2</code></pre>
-<p>检查是否安装成功：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 <span class="token parameter variable">-v</span></code></pre>
-<h2 id="启动node.js服务">2. 启动Node.js服务</h2>
-<p>进入你的Node.js项目目录，使用PM2启动你的服务。例如，如果你的入口文件是<code>app.js</code>：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
-<blockquote>
-<p><code>--name</code>参数可以为你的进程指定一个易于识别的名称。</p>
-</blockquote>
-<p>如果你不想进入项目目录，也可以直接指定完整路径：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start /path/to/your/app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
-<h2 id="配置pm2开机自启动">3. 配置PM2开机自启动</h2>
-<p>PM2提供了一个方便的命令来生成开机自启动脚本。运行以下命令：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 startup</code></pre>
-<p>这条命令会输出一条类似下面的命令：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/bin pm2 startup launchd <span class="token parameter variable">-u</span> your-username <span class="token parameter variable">--hp</span> /Users/your-username</code></pre>
-<p>复制并执行这条命令。它会将PM2配置为在系统启动时自动运行。</p>
-<h2 id="保存当前进程列表">4. 保存当前进程列表</h2>
-<p>为了确保在系统重启后，PM2能够重新启动你当前运行的Node.js服务，需要保存当前的进程列表：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 save</code></pre>
-<h2 id="验证配置">5. 验证配置</h2>
-<p>你可以通过重启你的Mac来验证配置是否成功。重启后，使用以下命令查看PM2的进程列表：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 list</code></pre>
-<p>如果看到你的Node.js服务正在运行，说明配置成功。</p>
-<p>或者查看日志：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 logs my-node-app</code></pre>
-<h2 id="管理pm2进程">6. 管理PM2进程</h2>
-<p>你可以使用以下命令来管理你的PM2进程：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 stop my-node-app   <span class="token comment"># 停止服务</span>
-pm2 restart my-node-app <span class="token comment"># 重启服务</span>
-pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code></pre>
+    <title>从复平面上域的多项式函数生成调和函数</title>
+    <url>/post/harmonic.html</url>
+    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
+class="math inline">\(z=x+yi\)</span>的多项式函数<span
+class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
+class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
+class="math inline">\((x,y)\)</span>的二元调和函数。</p>
+<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+[x,y] &#x3D; meshgrid(linspace(-1,1,100));
+p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
+z &#x3D; real(p(x,y));
+surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
+axis off;</code></pre></p>
+<p><img src="https://files.ifish.ink/mics/har.gif" /></p>
 ]]></content>
       <categories>
-        <category>技术</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
-        <tag>PM2</tag>
-        <tag>Node.js</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
-    <url>/post/d033f67a.html</url>
-    <content><![CDATA[<h4
-id="c实现二维多边形均值重心坐标代码可能有冗余未优化代码">c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
-<blockquote>
-<p>关于三维中均值重心坐标的实现可参考我的另一篇博客：<a
-href="https://www.ifish.ink/post/4d3c170c.html"
-title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
-Value Coordinates In 3D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 2D
-/// @details    
-/// @param[in]  p,postiveity
-/// @return     
-/// @attention  
-*/</span>
-VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
-        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
-        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
-        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>几何处理</category>
-      </categories>
-      <tags>
-        <tag>算法实现</tag>
-        <tag>均值重心坐标</tag>
-        <tag>C++代码</tag>
+        <tag>MATLAB代码</tag>
+        <tag>曲线曲面</tag>
+        <tag>调和函数</tag>
+        <tag>极小曲面</tag>
       </tags>
   </entry>
   <entry>
@@ -2047,12 +2046,121 @@ alt="不同参数化对于5阶最小二乘拟合结果的影响。从左到右�
 alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数化类型依次为弦长参数化、中心参数化、均匀参数化和Foley-Nielsen参数化" /></p>
 ]]></content>
       <categories>
-        <category>曲线曲面</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
         <tag>拟合</tag>
+        <tag>曲线曲面</tag>
         <tag>C/C++</tag>
         <tag>曲线参数化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
+    <url>/post/pm2-nodejs-macos.html</url>
+    <content><![CDATA[<p>在本地开发或部署轻量级应用时，我们常常需要在Mac
+mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用<strong>PM2</strong>来实现开机自启动。</p>
+<h2 id="安装pm2">1. 安装PM2</h2>
+<p>如果还没安装过PM2，可以通过npm全局安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> pm2</code></pre>
+<p>检查是否安装成功：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 <span class="token parameter variable">-v</span></code></pre>
+<h2 id="启动node.js服务">2. 启动Node.js服务</h2>
+<p>进入你的Node.js项目目录，使用PM2启动你的服务。例如，如果你的入口文件是<code>app.js</code>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<blockquote>
+<p><code>--name</code>参数可以为你的进程指定一个易于识别的名称。</p>
+</blockquote>
+<p>如果你不想进入项目目录，也可以直接指定完整路径：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start /path/to/your/app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<h2 id="配置pm2开机自启动">3. 配置PM2开机自启动</h2>
+<p>PM2提供了一个方便的命令来生成开机自启动脚本。运行以下命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 startup</code></pre>
+<p>这条命令会输出一条类似下面的命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/bin pm2 startup launchd <span class="token parameter variable">-u</span> your-username <span class="token parameter variable">--hp</span> /Users/your-username</code></pre>
+<p>复制并执行这条命令。它会将PM2配置为在系统启动时自动运行。</p>
+<h2 id="保存当前进程列表">4. 保存当前进程列表</h2>
+<p>为了确保在系统重启后，PM2能够重新启动你当前运行的Node.js服务，需要保存当前的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 save</code></pre>
+<h2 id="验证配置">5. 验证配置</h2>
+<p>你可以通过重启你的Mac来验证配置是否成功。重启后，使用以下命令查看PM2的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 list</code></pre>
+<p>如果看到你的Node.js服务正在运行，说明配置成功。</p>
+<p>或者查看日志：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 logs my-node-app</code></pre>
+<h2 id="管理pm2进程">6. 管理PM2进程</h2>
+<p>你可以使用以下命令来管理你的PM2进程：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 stop my-node-app   <span class="token comment"># 停止服务</span>
+pm2 restart my-node-app <span class="token comment"># 重启服务</span>
+pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code></pre>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>PM2</tag>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
+    <url>/post/d033f67a.html</url>
+    <content><![CDATA[<h4
+id="c实现二维多边形均值重心坐标代码可能有冗余未优化代码">c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
+<blockquote>
+<p>关于三维中均值重心坐标的实现可参考我的另一篇博客：<a
+href="https://www.ifish.ink/post/4d3c170c.html"
+title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
+Value Coordinates In 3D代码实现</a></p>
+</blockquote>
+<span id="more"></span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 2D
+/// @details    
+/// @param[in]  p,postiveity
+/// @return     
+/// @attention  
+*/</span>
+VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
+        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
+        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
+        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>算法实现</tag>
+        <tag>均值重心坐标</tag>
+        <tag>几何处理</tag>
+        <tag>C++代码</tag>
       </tags>
   </entry>
   <entry>
@@ -2130,113 +2238,13 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>几何处理</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
         <tag>算法实现</tag>
         <tag>均值重心坐标</tag>
+        <tag>几何处理</tag>
         <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span
-class="math inline">\(\mathbb{R}^n\)</span>中的<span
-class="math inline">\(m\)</span>个样本点为<span
-class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
-class="math inline">\(m\)</span>个样本嵌入到低维空间<span
-class="math inline">\(\mathbb{R}^{d}\)</span>，<span
-class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img
-src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
-alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
-class="math inline">\(i\)</span>行第<span
-class="math inline">\(j\)</span>列元素为<span
-class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
-class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
-class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
-class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
-class="math inline">\(k\)</span>个非零特征值，分别为<span
-class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
-class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
-class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
-class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
-class="math inline">\({ V}\)</span>的第<span
-class="math inline">\(i\)</span>列是特征值<span
-class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
-class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
-class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span
-class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
-class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br />
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
-class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
-class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
-class="math inline">\(V_*\)</span>。即<span
-class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
-class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
-class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>几何处理</category>
-      </categories>
-      <tags>
-        <tag>曲面参数化</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -2391,311 +2399,115 @@ src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5
 &#125; </code></pre>
 ]]></content>
       <categories>
-        <category>几何处理</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
+        <tag>几何处理</tag>
         <tag>极大似然坐标</tag>
       </tags>
   </entry>
   <entry>
-    <title>如何像GitHub Action那样本地打包</title>
-    <url>/post/d2f9f15b.html</url>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
     <content><![CDATA[<blockquote>
-<p>GitHub
-Actions是GitHub提供的一项功能，用于实现持续集成和持续交付（CI/CD）工作流的自动化。通过GitHub
-Actions，开发者可以在代码库发生特定事件时，自动触发构建、测试、部署等一系列任务。它支持高度自定义的工作流，适用于从简单的脚本执行到复杂的项目自动化。这里将首先简要介绍GitHub
-Actions的基本概念，然后讲解如何在本地实现类似的打包过程。</p>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
 </blockquote>
-<h2 id="github-actions的主要功能">1. GitHub Actions的主要功能</h2>
-<h3 id="工作流自动化workflows">1.1 工作流自动化（Workflows）：</h3>
-<p>GitHub
-Actions使用<code>YAML</code>文件定义自动化工作流，通常保存在项目的<code>.github/workflows/</code>目录下。每个工作流都可以根据触发条件（如代码提交、Pull
-Request、Issue变动等）自动执行。</p>
-<h3 id="触发器triggers">1.2 触发器（Triggers）：</h3>
-<p>工作流可以通过不同的事件触发，如：</p>
-<ul>
-<li><p><code>push</code>：在代码推送到指定分支时触发。</p></li>
-<li><p><code>pull_request</code>：当发起或更新 Pull Request
-时触发。</p></li>
-<li><p><code>schedule</code>：基于时间计划（如每天、每周）自动触发。</p></li>
-<li><p><code>workflow_dispatch</code>：手动触发工作流。</p></li>
-<li><p><code>repository_dispatch</code>：自定义事件触发。</p></li>
-</ul>
-<h3 id="作业jobs和步骤steps">1.3 作业（Jobs）和步骤（Steps）：</h3>
-<ul>
-<li><p><code>Job</code>：一个工作流可以包含多个作业（jobs），每个作业可以在不同的虚拟环境中并行或顺序运行。作业之间也可以通过输出和依赖关系进行通信。</p></li>
-<li><p><code>Step</code>：每个作业可以包含多个步骤，通常是命令或操作（actions）的执行。这些步骤可以是<code>shell</code>命令或预定义的GitHub
-Actions。</p></li>
-</ul>
-<h3 id="运行环境runners">1.4 运行环境（Runners）：</h3>
-<p>GitHub
-Actions提供多种预配置的虚拟机环境，称为运行器（Runners），包括：</p>
-<ul>
-<li><p>Ubuntu、Windows、macOS等系统。</p></li>
-<li><p>用户还可以使用自托管运行器，在自己的服务器上执行工作流。</p></li>
-</ul>
-<h3 id="actions操作">1.5 Actions（操作）：</h3>
-<ul>
-<li><p><code>Actions</code>是GitHub
-Actions的核心组件，是可复用的单元。GitHub提供了大量官方和社区开发的Actions，来简化常见任务（如设置语言环境、部署到云服务等）。</p></li>
-<li><p>开发者也可以自定义自己的Action，以适应特定需求。Actions可以是Docker容器化的任务，也可以是运行JavaScript或Shell脚本的任务。</p></li>
-</ul>
-<h3 id="工作流的上下文与秘密管理">1.6 工作流的上下文与秘密管理：</h3>
-<ul>
-<li><p>GitHub
-Actions提供了丰富的上下文变量，如环境变量、GitHub的元数据（例如事件信息、触发时间等），可在工作流中使用。</p></li>
-<li><p>可以通过GitHub的Secrets管理敏感信息（如API密钥、认证令牌等），并在工作流中安全地使用这些秘密信息。</p></li>
-</ul>
-<h3 id="并行和依赖管理">1.7 并行和依赖管理：</h3>
-<ul>
-<li><p>作业可以并行运行，以加速CI/CD流程。</p></li>
-<li><p>通过设置needs关键字，可以定义作业之间的依赖关系，确保某些作业在其他作业完成后才执行。</p></li>
-</ul>
-<h3 id="缓存和工件artifacts">1.8 缓存和工件（Artifacts）：</h3>
-<ul>
-<li><p>GitHub
-Actions支持缓存依赖项（如npm包、编译结果）以加速后续的工作流运行。</p></li>
-<li><p>通过上传工件，可以在作业之间共享生成的文件或产物（如编译产物、测试结果等）。</p></li>
-</ul>
-<h2 id="github-actions的典型用例">2. GitHub Actions的典型用例</h2>
-<h3 id="持续集成ci">2.1 持续集成（CI）：</h3>
-<ul>
-<li><p>自动化测试：在每次代码推送或PR创建时，自动拉取代码并运行单元测试、集成测试等。</p></li>
-<li><p>代码质量检查：使用linters、格式化工具对代码进行检查。</p></li>
-<li><p>多平台构建：通过GitHub
-Actions可以在不同的平台（Windows、Linux、macOS）上同时进行构建。</p></li>
-</ul>
-<h3 id="持续交付cd">2.2 持续交付（CD）：</h3>
-<ul>
-<li><p>自动化部署：可以在代码通过测试后，自动部署到生产环境或测试环境中。例如，部署到AWS、Google
-Cloud、Azure，或通过FTP部署到自托管服务器。</p></li>
-<li><p>自动发布：在创建GitHub
-Release或推送特定标签时，自动打包应用并发布到如npm、PyPI、Docker
-Hub等平台。</p></li>
-</ul>
-<h3 id="项目自动化">2.3 项目自动化：</h3>
-<ul>
-<li><p>自动化Issue管理：可以自动化标记、关闭、分配Issue。</p></li>
-<li><p>Pull
-Request工作流：当有新的PR时，自动分配审查人员、运行测试和检查。</p></li>
-</ul>
-<p><strong>一个简单的 GitHub Actions 示例</strong></p>
-<p>以下是一个基本的 GitHub Actions 工作流，用于在代码推送到 main
-分支时，自动执行 Node.js 项目的测试：</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> Node.js CI
-
-<span class="token key atrule">on</span><span class="token punctuation">:</span>
-  <span class="token key atrule">push</span><span class="token punctuation">:</span>
-    <span class="token key atrule">branches</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> main
-
-<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
-  <span class="token key atrule">build</span><span class="token punctuation">:</span>
-    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
-    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout code
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
-
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
-      <span class="token key atrule">with</span><span class="token punctuation">:</span>
-        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
-
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
-      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
-
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Run tests
-      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm test</code></pre>
-<p><strong>GitHub Actions 的优势</strong></p>
-<ul>
-<li><p>高度集成：与GitHub仓库紧密集成，工作流可以响应多种GitHub事件。</p></li>
-<li><p>灵活性：支持自定义Actions，适用于多种任务场景。</p></li>
-<li><p>多平台支持：可以同时在不同操作系统上运行作业。</p></li>
-<li><p>社区支持：有大量社区维护的Actions，覆盖了多种常见场景，用户可以直接复用。</p></li>
-</ul>
-<p>GitHub
-Actions是一个功能强大且灵活的CI/CD工具，能够大幅提升开发效率，通过自动化流程帮助团队减少手动操作，确保代码质量和发布流程的稳定性。但是，有时候我们可能需要在本地进行类似的打包操作，下面将介绍如何实现这一过程。</p>
-<h2 id="本地打包实现">3. 本地打包实现</h2>
-<p>在本地实现类似Github
-Actions的<code>continuous.yml</code>文件进行打包，主要是为了模拟CI/CD流程，并在本地执行自动化任务。通常可以通过一些CI工具（如Docker、Makefile或者直接通过Shell脚本）来运行类似的任务。假设你已经有一个GitHub
-Actions的<code>continuous.yml</code>文件，以下步骤可以帮助你在本地打包和测试：</p>
-<h3 id="使用act模拟github-actions">3.1 使用Act模拟GitHub Actions</h3>
-<p><code>Act</code>是一个工具，它能够在本地运行GitHub
-Actions。你可以用它来直接执行<code>continuous.yml</code>文件中的内容。</p>
-<h4 id="安装act">3.1.1 安装Act：</h4>
-<p>首先，需要在本地机器上安装<code>act</code>。如果你使用的是macOS，可以使用Homebrew安装：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> act</code></pre>
-<p>对于其他操作系统，可以参考<a
-href="https://nektosact.com/installation/index.html">Act的官方文档</a>进行安装。</p>
-<h4 id="配置continuous.yml文件">3.1.2 配置continuous.yml文件：</h4>
-<p>确保你的GitHub
-Actions配置文件<code>continuous.yml</code>位于<code>.github/workflows/</code>路径下（这是GitHub
-Actions的默认路径）。</p>
-<h4 id="运行act">3.1.3 运行Act：</h4>
-<p>使用以下命令来运行你的工作流：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">act</code></pre>
-<p><code>act</code>会根据你的<code>continuous.yml</code>文件中的触发条件（如<code>push</code>或<code>pull_request</code>），模拟GitHub
-Actions并执行相关步骤。</p>
-<p>** 配置镜像：**</p>
-<p>如果你的工作流中使用了自定义的镜像，你可以在<code>act</code>命令中指定镜像，例如：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">act <span class="token parameter variable">-P</span> ubuntu-latest<span class="token operator">=</span>nektos/act-environments-ubuntu:18.04</code></pre>
-<p>这样，<code>act</code>会使用<code>nektos/act-environments-ubuntu:18.04</code>镜像来运行你的工作流。</p>
-<h3 id="使用shell脚本或makefile">3.2 使用Shell脚本或Makefile</h3>
-<p>如果你不想使用Act，可以通过将<code>continuous.yml</code>文件中的指令提取出来，转为Shell脚本或Makefile，在本地执行打包。</p>
-<h4 id="创建makefile或shell脚本">3.2.1 创建Makefile或Shell脚本：</h4>
-<p>根据<code>continuous.yml</code>文件中的步骤，创建一个本地Shell脚本或Makefile。例如，假设<code>continuous.yml</code>中有一个打包的步骤：</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">jobs</span><span class="token punctuation">:</span>
-  <span class="token key atrule">build</span><span class="token punctuation">:</span>
-    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
-    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout repository
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
-      <span class="token key atrule">with</span><span class="token punctuation">:</span>
-        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
-      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build project
-      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm run build</code></pre>
-<p>你可以将这些步骤转为一个Shell脚本<code>build.sh</code>：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-
-<span class="token comment"># 模拟 GitHub Actions 的构建过程</span>
-
-<span class="token comment"># Step 1: 拉取代码 (checkout)</span>
-<span class="token function">git</span> checkout main
-
-<span class="token comment"># Step 2: 设置 Node.js 环境</span>
-nvm <span class="token function">install</span> <span class="token number">14</span>
-nvm use <span class="token number">14</span>
-
-<span class="token comment"># Step 3: 安装依赖</span>
-<span class="token function">npm</span> <span class="token function">install</span>
-
-<span class="token comment"># Step 4: 构建项目</span>
-<span class="token function">npm</span> run build</code></pre>
-<p>将这个脚本保存为<code>local_build.sh</code>，然后运行：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x local_build.sh
-./local_build.sh</code></pre>
-<h3 id="使用docker">3.3 使用Docker</h3>
-<p>如果你希望通过容器来实现更接近GitHub
-Actions的运行环境，可以使用Docker构建环境，来打包和测试项目。</p>
-<h4 id="创建dockerfile">3.3.1 创建Dockerfile：</h4>
-<p>根据<code>continuous.yml</code>文件中的环境要求创建一个<code>Dockerfile</code>。例如：</p>
-<pre class="language-Dockerfile" data-language="Dockerfile"><code class="language-Dockerfile">FROM node:14
-
-WORKDIR &#x2F;app
-
-COPY . .
-
-RUN npm install
-
-CMD [&quot;npm&quot;, &quot;run&quot;, &quot;build&quot;]</code></pre>
-<h4 id="运行docker容器">3.3.2 运行Docker容器：</h4>
-<p>运行以下命令来构建和运行Docker容器：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build <span class="token parameter variable">-t</span> local-build <span class="token builtin class-name">.</span>
-<span class="token function">docker</span> run local-build</code></pre>
-<p>这样，Docker容器会在本地构建项目，类似于GitHub
-Actions中的构建过程。</p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>GitHub Action</tag>
-        <tag>软件打包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
-uBlock Origin</p>
-</blockquote>
-<h3
-id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span
+class="math inline">\(\mathbb{R}^n\)</span>中的<span
+class="math inline">\(m\)</span>个样本点为<span
+class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
+class="math inline">\(m\)</span>个样本嵌入到低维空间<span
+class="math inline">\(\mathbb{R}^{d}\)</span>，<span
+class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img
+src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
+alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
 <span id="more"></span>
-<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
-<p><img src="https://files.ifish.ink/mics/uo.png"
-alt="uBlock Origin Logo" /> uBlock
-Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
-Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
-Origin的目标是为用户提供自行实施内容过滤的选择。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
-截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
-Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
-<hr />
-<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
-Origin插件</h3>
-<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
-<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
-<blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
-store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
-</blockquote>
-<ol type="1">
-<li><a
-href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
-<img src="https://files.ifish.ink/mics/uo5.png" /> <img
-src="https://files.ifish.ink/mics/uo2.png" /></li>
-</ol>
-<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
-<ol type="1">
-<li><p>从百度云盘<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
-Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
-href="chrome://extensions/">chrome://extensions/</a>
-后回车，可以看到类似下图页面 <img
-src="https://files.ifish.ink/mics/1.png"
-alt="chrome://extensions" /></p></li>
-<li><p>将第1步中下载的<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
-href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
-<img src="https://files.ifish.ink/mics/uo2.png" /> <img
-src="https://files.ifish.ink/mics/uo3.png" /></p></li>
-<li><p>在Chrome右上角点击uBlock
-Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
-<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
-</ol>
-<hr />
-<h3 id="三测试">三、测试</h3>
-<ul>
-<li><p>未启用uBlock
-Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(可以看到靠前的内容几乎都是广告) <img
-src="https://files.ifish.ink/mics/uo6.png" /></p></li>
-<li><p>启用uBlock
-Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(广告明显减少) <img
-src="https://files.ifish.ink/mics/uo7.png" /></p></li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
-src="https://files.ifish.ink/mics/uo.gif" /></p></li>
-</ul>
-<hr />
-<h3 id="四参考">四、参考：</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
-维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
+class="math inline">\(i\)</span>行第<span
+class="math inline">\(j\)</span>列元素为<span
+class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
+class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
+class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
+class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
+class="math inline">\(k\)</span>个非零特征值，分别为<span
+class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
+class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
+class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
+class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
+class="math inline">\({ V}\)</span>的第<span
+class="math inline">\(i\)</span>列是特征值<span
+class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
+class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
+class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span
+class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
+class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br />
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
+class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
+class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
+class="math inline">\(V_*\)</span>。即<span
+class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
+class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
+class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
 ]]></content>
       <categories>
-        <category>工具技能</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
-        <tag>神器</tag>
-        <tag>插件</tag>
+        <tag>几何处理</tag>
+        <tag>曲面参数化</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -2828,11 +2640,101 @@ href="https://files.ifish.ink/mics/Standard_Jacobian_Iterative_Algorithm_Procedu
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>代数</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
+        <tag>代数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
+    <content><![CDATA[<blockquote>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin</p>
+</blockquote>
+<h3
+id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
+<span id="more"></span>
+<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
+<p><img src="https://files.ifish.ink/mics/uo.png"
+alt="uBlock Origin Logo" /> uBlock
+Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
+Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
+Origin的目标是为用户提供自行实施内容过滤的选择。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
+截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
+Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr />
+<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
+Origin插件</h3>
+<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
+<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+<blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
+store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol type="1">
+<li><a
+href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
+<img src="https://files.ifish.ink/mics/uo5.png" /> <img
+src="https://files.ifish.ink/mics/uo2.png" /></li>
+</ol>
+<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
+<ol type="1">
+<li><p>从百度云盘<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
+Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
+href="chrome://extensions/">chrome://extensions/</a>
+后回车，可以看到类似下图页面 <img
+src="https://files.ifish.ink/mics/1.png"
+alt="chrome://extensions" /></p></li>
+<li><p>将第1步中下载的<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
+href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
+<img src="https://files.ifish.ink/mics/uo2.png" /> <img
+src="https://files.ifish.ink/mics/uo3.png" /></p></li>
+<li><p>在Chrome右上角点击uBlock
+Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
+<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
+</ol>
+<hr />
+<h3 id="三测试">三、测试</h3>
+<ul>
+<li><p>未启用uBlock
+Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(可以看到靠前的内容几乎都是广告) <img
+src="https://files.ifish.ink/mics/uo6.png" /></p></li>
+<li><p>启用uBlock
+Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(广告明显减少) <img
+src="https://files.ifish.ink/mics/uo7.png" /></p></li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
+src="https://files.ifish.ink/mics/uo.gif" /></p></li>
+</ul>
+<hr />
+<h3 id="四参考">四、参考：</h3>
+<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
+维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>神器</tag>
+        <tag>插件</tag>
       </tags>
   </entry>
   <entry>
@@ -3156,11 +3058,222 @@ alt="封闭控制多边形的四点插值细分曲线" /></p>
 </ul>
 ]]></content>
       <categories>
-        <category>曲线曲面</category>
+        <category>学习/研究</category>
       </categories>
       <tags>
+        <tag>曲线曲面</tag>
         <tag>C/C++</tag>
         <tag>细分曲线</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何像GitHub Action那样本地打包</title>
+    <url>/post/d2f9f15b.html</url>
+    <content><![CDATA[<blockquote>
+<p>GitHub
+Actions是GitHub提供的一项功能，用于实现持续集成和持续交付（CI/CD）工作流的自动化。通过GitHub
+Actions，开发者可以在代码库发生特定事件时，自动触发构建、测试、部署等一系列任务。它支持高度自定义的工作流，适用于从简单的脚本执行到复杂的项目自动化。这里将首先简要介绍GitHub
+Actions的基本概念，然后讲解如何在本地实现类似的打包过程。</p>
+</blockquote>
+<h2 id="github-actions的主要功能">1. GitHub Actions的主要功能</h2>
+<h3 id="工作流自动化workflows">1.1 工作流自动化（Workflows）：</h3>
+<p>GitHub
+Actions使用<code>YAML</code>文件定义自动化工作流，通常保存在项目的<code>.github/workflows/</code>目录下。每个工作流都可以根据触发条件（如代码提交、Pull
+Request、Issue变动等）自动执行。</p>
+<h3 id="触发器triggers">1.2 触发器（Triggers）：</h3>
+<p>工作流可以通过不同的事件触发，如：</p>
+<ul>
+<li><p><code>push</code>：在代码推送到指定分支时触发。</p></li>
+<li><p><code>pull_request</code>：当发起或更新 Pull Request
+时触发。</p></li>
+<li><p><code>schedule</code>：基于时间计划（如每天、每周）自动触发。</p></li>
+<li><p><code>workflow_dispatch</code>：手动触发工作流。</p></li>
+<li><p><code>repository_dispatch</code>：自定义事件触发。</p></li>
+</ul>
+<h3 id="作业jobs和步骤steps">1.3 作业（Jobs）和步骤（Steps）：</h3>
+<ul>
+<li><p><code>Job</code>：一个工作流可以包含多个作业（jobs），每个作业可以在不同的虚拟环境中并行或顺序运行。作业之间也可以通过输出和依赖关系进行通信。</p></li>
+<li><p><code>Step</code>：每个作业可以包含多个步骤，通常是命令或操作（actions）的执行。这些步骤可以是<code>shell</code>命令或预定义的GitHub
+Actions。</p></li>
+</ul>
+<h3 id="运行环境runners">1.4 运行环境（Runners）：</h3>
+<p>GitHub
+Actions提供多种预配置的虚拟机环境，称为运行器（Runners），包括：</p>
+<ul>
+<li><p>Ubuntu、Windows、macOS等系统。</p></li>
+<li><p>用户还可以使用自托管运行器，在自己的服务器上执行工作流。</p></li>
+</ul>
+<h3 id="actions操作">1.5 Actions（操作）：</h3>
+<ul>
+<li><p><code>Actions</code>是GitHub
+Actions的核心组件，是可复用的单元。GitHub提供了大量官方和社区开发的Actions，来简化常见任务（如设置语言环境、部署到云服务等）。</p></li>
+<li><p>开发者也可以自定义自己的Action，以适应特定需求。Actions可以是Docker容器化的任务，也可以是运行JavaScript或Shell脚本的任务。</p></li>
+</ul>
+<h3 id="工作流的上下文与秘密管理">1.6 工作流的上下文与秘密管理：</h3>
+<ul>
+<li><p>GitHub
+Actions提供了丰富的上下文变量，如环境变量、GitHub的元数据（例如事件信息、触发时间等），可在工作流中使用。</p></li>
+<li><p>可以通过GitHub的Secrets管理敏感信息（如API密钥、认证令牌等），并在工作流中安全地使用这些秘密信息。</p></li>
+</ul>
+<h3 id="并行和依赖管理">1.7 并行和依赖管理：</h3>
+<ul>
+<li><p>作业可以并行运行，以加速CI/CD流程。</p></li>
+<li><p>通过设置needs关键字，可以定义作业之间的依赖关系，确保某些作业在其他作业完成后才执行。</p></li>
+</ul>
+<h3 id="缓存和工件artifacts">1.8 缓存和工件（Artifacts）：</h3>
+<ul>
+<li><p>GitHub
+Actions支持缓存依赖项（如npm包、编译结果）以加速后续的工作流运行。</p></li>
+<li><p>通过上传工件，可以在作业之间共享生成的文件或产物（如编译产物、测试结果等）。</p></li>
+</ul>
+<h2 id="github-actions的典型用例">2. GitHub Actions的典型用例</h2>
+<h3 id="持续集成ci">2.1 持续集成（CI）：</h3>
+<ul>
+<li><p>自动化测试：在每次代码推送或PR创建时，自动拉取代码并运行单元测试、集成测试等。</p></li>
+<li><p>代码质量检查：使用linters、格式化工具对代码进行检查。</p></li>
+<li><p>多平台构建：通过GitHub
+Actions可以在不同的平台（Windows、Linux、macOS）上同时进行构建。</p></li>
+</ul>
+<h3 id="持续交付cd">2.2 持续交付（CD）：</h3>
+<ul>
+<li><p>自动化部署：可以在代码通过测试后，自动部署到生产环境或测试环境中。例如，部署到AWS、Google
+Cloud、Azure，或通过FTP部署到自托管服务器。</p></li>
+<li><p>自动发布：在创建GitHub
+Release或推送特定标签时，自动打包应用并发布到如npm、PyPI、Docker
+Hub等平台。</p></li>
+</ul>
+<h3 id="项目自动化">2.3 项目自动化：</h3>
+<ul>
+<li><p>自动化Issue管理：可以自动化标记、关闭、分配Issue。</p></li>
+<li><p>Pull
+Request工作流：当有新的PR时，自动分配审查人员、运行测试和检查。</p></li>
+</ul>
+<p><strong>一个简单的 GitHub Actions 示例</strong></p>
+<p>以下是一个基本的 GitHub Actions 工作流，用于在代码推送到 main
+分支时，自动执行 Node.js 项目的测试：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> Node.js CI
+
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token key atrule">push</span><span class="token punctuation">:</span>
+    <span class="token key atrule">branches</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> main
+
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout code
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Run tests
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm test</code></pre>
+<p><strong>GitHub Actions 的优势</strong></p>
+<ul>
+<li><p>高度集成：与GitHub仓库紧密集成，工作流可以响应多种GitHub事件。</p></li>
+<li><p>灵活性：支持自定义Actions，适用于多种任务场景。</p></li>
+<li><p>多平台支持：可以同时在不同操作系统上运行作业。</p></li>
+<li><p>社区支持：有大量社区维护的Actions，覆盖了多种常见场景，用户可以直接复用。</p></li>
+</ul>
+<p>GitHub
+Actions是一个功能强大且灵活的CI/CD工具，能够大幅提升开发效率，通过自动化流程帮助团队减少手动操作，确保代码质量和发布流程的稳定性。但是，有时候我们可能需要在本地进行类似的打包操作，下面将介绍如何实现这一过程。</p>
+<h2 id="本地打包实现">3. 本地打包实现</h2>
+<p>在本地实现类似Github
+Actions的<code>continuous.yml</code>文件进行打包，主要是为了模拟CI/CD流程，并在本地执行自动化任务。通常可以通过一些CI工具（如Docker、Makefile或者直接通过Shell脚本）来运行类似的任务。假设你已经有一个GitHub
+Actions的<code>continuous.yml</code>文件，以下步骤可以帮助你在本地打包和测试：</p>
+<h3 id="使用act模拟github-actions">3.1 使用Act模拟GitHub Actions</h3>
+<p><code>Act</code>是一个工具，它能够在本地运行GitHub
+Actions。你可以用它来直接执行<code>continuous.yml</code>文件中的内容。</p>
+<h4 id="安装act">3.1.1 安装Act：</h4>
+<p>首先，需要在本地机器上安装<code>act</code>。如果你使用的是macOS，可以使用Homebrew安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> act</code></pre>
+<p>对于其他操作系统，可以参考<a
+href="https://nektosact.com/installation/index.html">Act的官方文档</a>进行安装。</p>
+<h4 id="配置continuous.yml文件">3.1.2 配置continuous.yml文件：</h4>
+<p>确保你的GitHub
+Actions配置文件<code>continuous.yml</code>位于<code>.github/workflows/</code>路径下（这是GitHub
+Actions的默认路径）。</p>
+<h4 id="运行act">3.1.3 运行Act：</h4>
+<p>使用以下命令来运行你的工作流：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">act</code></pre>
+<p><code>act</code>会根据你的<code>continuous.yml</code>文件中的触发条件（如<code>push</code>或<code>pull_request</code>），模拟GitHub
+Actions并执行相关步骤。</p>
+<p>** 配置镜像：**</p>
+<p>如果你的工作流中使用了自定义的镜像，你可以在<code>act</code>命令中指定镜像，例如：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">act <span class="token parameter variable">-P</span> ubuntu-latest<span class="token operator">=</span>nektos/act-environments-ubuntu:18.04</code></pre>
+<p>这样，<code>act</code>会使用<code>nektos/act-environments-ubuntu:18.04</code>镜像来运行你的工作流。</p>
+<h3 id="使用shell脚本或makefile">3.2 使用Shell脚本或Makefile</h3>
+<p>如果你不想使用Act，可以通过将<code>continuous.yml</code>文件中的指令提取出来，转为Shell脚本或Makefile，在本地执行打包。</p>
+<h4 id="创建makefile或shell脚本">3.2.1 创建Makefile或Shell脚本：</h4>
+<p>根据<code>continuous.yml</code>文件中的步骤，创建一个本地Shell脚本或Makefile。例如，假设<code>continuous.yml</code>中有一个打包的步骤：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout repository
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Set up Node.js
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v2
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+        <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">'14'</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm install
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build project
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> npm run build</code></pre>
+<p>你可以将这些步骤转为一个Shell脚本<code>build.sh</code>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># 模拟 GitHub Actions 的构建过程</span>
+
+<span class="token comment"># Step 1: 拉取代码 (checkout)</span>
+<span class="token function">git</span> checkout main
+
+<span class="token comment"># Step 2: 设置 Node.js 环境</span>
+nvm <span class="token function">install</span> <span class="token number">14</span>
+nvm use <span class="token number">14</span>
+
+<span class="token comment"># Step 3: 安装依赖</span>
+<span class="token function">npm</span> <span class="token function">install</span>
+
+<span class="token comment"># Step 4: 构建项目</span>
+<span class="token function">npm</span> run build</code></pre>
+<p>将这个脚本保存为<code>local_build.sh</code>，然后运行：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x local_build.sh
+./local_build.sh</code></pre>
+<h3 id="使用docker">3.3 使用Docker</h3>
+<p>如果你希望通过容器来实现更接近GitHub
+Actions的运行环境，可以使用Docker构建环境，来打包和测试项目。</p>
+<h4 id="创建dockerfile">3.3.1 创建Dockerfile：</h4>
+<p>根据<code>continuous.yml</code>文件中的环境要求创建一个<code>Dockerfile</code>。例如：</p>
+<pre class="language-Dockerfile" data-language="Dockerfile"><code class="language-Dockerfile">FROM node:14
+
+WORKDIR &#x2F;app
+
+COPY . .
+
+RUN npm install
+
+CMD [&quot;npm&quot;, &quot;run&quot;, &quot;build&quot;]</code></pre>
+<h4 id="运行docker容器">3.3.2 运行Docker容器：</h4>
+<p>运行以下命令来构建和运行Docker容器：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> build <span class="token parameter variable">-t</span> local-build <span class="token builtin class-name">.</span>
+<span class="token function">docker</span> run local-build</code></pre>
+<p>这样，Docker容器会在本地构建项目，类似于GitHub
+Actions中的构建过程。</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>GitHub Action</tag>
+        <tag>软件打包</tag>
       </tags>
   </entry>
 </search>

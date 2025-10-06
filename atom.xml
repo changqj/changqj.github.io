@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2025-10-03T21:01:51.086Z</updated>
+  <updated>2025-10-06T10:49:06.332Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -17,11 +17,44 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>macOS工具推荐--Quick Look源码高亮插件Syntax Highlight</title>
+    <link href="https://www.ifish.ink/post/3108369d.html"/>
+    <id>https://www.ifish.ink/post/3108369d.html</id>
+    <published>2025-10-06T10:14:31.000Z</published>
+    <updated>2025-10-06T10:49:06.332Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;macos原生quick-look的局限与动机&quot;&gt;macOS原生Quick
+Look的局限与动机&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Quick</summary>
+        
+      
+    
+    
+    
+    <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
+    
+    
+    <category term="macOS" scheme="https://www.ifish.ink/tags/macOS/"/>
+    
+    <category term="Quick Look" scheme="https://www.ifish.ink/tags/Quick-Look/"/>
+    
+    <category term="源码高亮" scheme="https://www.ifish.ink/tags/%E6%BA%90%E7%A0%81%E9%AB%98%E4%BA%AE/"/>
+    
+    <category term="Syntax Highlight" scheme="https://www.ifish.ink/tags/Syntax-Highlight/"/>
+    
+  </entry>
+  
+  <entry>
     <title>在macOS上用PM2实现Node.js服务开机自启动</title>
     <link href="https://www.ifish.ink/post/pm2-nodejs-macos.html"/>
     <id>https://www.ifish.ink/post/pm2-nodejs-macos.html</id>
     <published>2025-10-03T20:21:53.000Z</published>
-    <updated>2025-10-03T21:01:51.086Z</updated>
+    <updated>2025-10-06T10:49:01.150Z</updated>
     
     
       
@@ -36,14 +69,14 @@ mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket
     
     
     
-    <category term="技术" scheme="https://www.ifish.ink/categories/%E6%8A%80%E6%9C%AF/"/>
+    <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
     
+    
+    <category term="macOS" scheme="https://www.ifish.ink/tags/macOS/"/>
     
     <category term="PM2" scheme="https://www.ifish.ink/tags/PM2/"/>
     
     <category term="Node.js" scheme="https://www.ifish.ink/tags/Node-js/"/>
-    
-    <category term="macOS" scheme="https://www.ifish.ink/tags/macOS/"/>
     
   </entry>
   
@@ -139,7 +172,7 @@ Commander +</summary>
     <link href="https://www.ifish.ink/post/e9330479.html"/>
     <id>https://www.ifish.ink/post/e9330479.html</id>
     <published>2024-10-13T17:15:59.000Z</published>
-    <updated>2024-10-13T19:00:29.846Z</updated>
+    <updated>2025-10-06T10:48:23.703Z</updated>
     
     
       
@@ -203,7 +236,7 @@ display）&lt;/strong&gt;上开发图形应</summary>
     <link href="https://www.ifish.ink/post/mlc2d.html"/>
     <id>https://www.ifish.ink/post/mlc2d.html</id>
     <published>2023-12-22T20:39:00.000Z</published>
-    <updated>2024-06-27T08:45:18.145Z</updated>
+    <updated>2025-10-06T10:51:57.212Z</updated>
     
     
       
@@ -218,12 +251,14 @@ src=&quot;https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/
     
     
     
-    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
+    <category term="学习/研究" scheme="https://www.ifish.ink/categories/%E5%AD%A6%E4%B9%A0-%E7%A0%94%E7%A9%B6/"/>
     
     
     <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
     
     <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
+    <category term="几何处理" scheme="https://www.ifish.ink/tags/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
     
     <category term="极大似然坐标" scheme="https://www.ifish.ink/tags/%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E5%9D%90%E6%A0%87/"/>
     
@@ -234,7 +269,7 @@ src=&quot;https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/
     <link href="https://www.ifish.ink/post/harmonic.html"/>
     <id>https://www.ifish.ink/post/harmonic.html</id>
     <published>2023-12-20T21:03:35.000Z</published>
-    <updated>2025-04-17T22:03:18.466Z</updated>
+    <updated>2025-10-06T10:51:12.458Z</updated>
     
     
       
@@ -249,10 +284,12 @@ class=&quot;math</summary>
     
     
     
-    <category term="曲线曲面" scheme="https://www.ifish.ink/categories/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
+    <category term="学习/研究" scheme="https://www.ifish.ink/categories/%E5%AD%A6%E4%B9%A0-%E7%A0%94%E7%A9%B6/"/>
     
     
     <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
+    
+    <category term="曲线曲面" scheme="https://www.ifish.ink/tags/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
     
     <category term="调和函数" scheme="https://www.ifish.ink/tags/%E8%B0%83%E5%92%8C%E5%87%BD%E6%95%B0/"/>
     
@@ -296,7 +333,7 @@ class=&quot;math</summary>
     <link href="https://www.ifish.ink/post/subdivcurve.html"/>
     <id>https://www.ifish.ink/post/subdivcurve.html</id>
     <published>2020-12-23T22:02:34.000Z</published>
-    <updated>2024-06-27T08:45:38.043Z</updated>
+    <updated>2025-10-06T10:52:33.234Z</updated>
     
     
       
@@ -312,8 +349,10 @@ class=&quot;math</summary>
     
     
     
-    <category term="曲线曲面" scheme="https://www.ifish.ink/categories/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
+    <category term="学习/研究" scheme="https://www.ifish.ink/categories/%E5%AD%A6%E4%B9%A0-%E7%A0%94%E7%A9%B6/"/>
     
+    
+    <category term="曲线曲面" scheme="https://www.ifish.ink/tags/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
     
     <category term="C/C++" scheme="https://www.ifish.ink/tags/C-C/"/>
     
@@ -326,7 +365,7 @@ class=&quot;math</summary>
     <link href="https://www.ifish.ink/post/cubicspline.html"/>
     <id>https://www.ifish.ink/post/cubicspline.html</id>
     <published>2020-11-10T20:30:10.000Z</published>
-    <updated>2025-04-17T22:07:16.884Z</updated>
+    <updated>2025-10-06T10:50:54.161Z</updated>
     
     
       
@@ -342,10 +381,12 @@ class=&quot;math</summary>
     
     
     
-    <category term="曲线曲面" scheme="https://www.ifish.ink/categories/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
+    <category term="学习/研究" scheme="https://www.ifish.ink/categories/%E5%AD%A6%E4%B9%A0-%E7%A0%94%E7%A9%B6/"/>
     
     
     <category term="拟合" scheme="https://www.ifish.ink/tags/%E6%8B%9F%E5%90%88/"/>
+    
+    <category term="曲线曲面" scheme="https://www.ifish.ink/tags/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
     
     <category term="C/C++" scheme="https://www.ifish.ink/tags/C-C/"/>
     
@@ -356,7 +397,7 @@ class=&quot;math</summary>
     <link href="https://www.ifish.ink/post/94abe0b4.html"/>
     <id>https://www.ifish.ink/post/94abe0b4.html</id>
     <published>2020-11-09T18:43:19.000Z</published>
-    <updated>2025-04-17T22:02:13.606Z</updated>
+    <updated>2025-10-06T10:52:07.158Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -381,8 +422,10 @@ alt=&quot;embedding&quot; /&gt;
     
     
     
-    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
+    <category term="学习/研究" scheme="https://www.ifish.ink/categories/%E5%AD%A6%E4%B9%A0-%E7%A0%94%E7%A9%B6/"/>
     
+    
+    <category term="几何处理" scheme="https://www.ifish.ink/tags/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
     
     <category term="曲面参数化" scheme="https://www.ifish.ink/tags/%E6%9B%B2%E9%9D%A2%E5%8F%82%E6%95%B0%E5%8C%96/"/>
     
@@ -395,7 +438,7 @@ alt=&quot;embedding&quot; /&gt;
     <link href="https://www.ifish.ink/post/56c1b7a3.html"/>
     <id>https://www.ifish.ink/post/56c1b7a3.html</id>
     <published>2020-11-03T15:14:00.000Z</published>
-    <updated>2025-04-17T22:11:30.987Z</updated>
+    <updated>2025-10-06T10:49:49.399Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -429,14 +472,16 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     
     
     
-    <category term="曲线曲面" scheme="https://www.ifish.ink/categories/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
+    <category term="学习/研究" scheme="https://www.ifish.ink/categories/%E5%AD%A6%E4%B9%A0-%E7%A0%94%E7%A9%B6/"/>
     
     
     <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
     
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    
     <category term="拟合" scheme="https://www.ifish.ink/tags/%E6%8B%9F%E5%90%88/"/>
     
-    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
+    <category term="曲线曲面" scheme="https://www.ifish.ink/tags/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
     
   </entry>
   
@@ -445,7 +490,7 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     <link href="https://www.ifish.ink/post/8f4cbc0c.html"/>
     <id>https://www.ifish.ink/post/8f4cbc0c.html</id>
     <published>2020-11-02T18:09:11.000Z</published>
-    <updated>2024-06-27T08:42:55.257Z</updated>
+    <updated>2025-10-06T10:48:38.342Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;github上-fork了别人的代码-本地更新主分支代码&quot;&gt;Github上
@@ -472,7 +517,7 @@ fork了别人的代码 本地更新主分支代码&lt;/h3&gt;
     <link href="https://www.ifish.ink/post/bcf65292.html"/>
     <id>https://www.ifish.ink/post/bcf65292.html</id>
     <published>2020-10-31T14:26:08.000Z</published>
-    <updated>2025-04-17T22:05:32.415Z</updated>
+    <updated>2025-10-06T10:51:05.678Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -491,7 +536,7 @@ class=&quot;math inline&quot;&gt;&#92;(&#92;phi^{-1}&#92;)&lt;/span&gt;的过程
     
     
     
-    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
+    <category term="学习/研究" scheme="https://www.ifish.ink/categories/%E5%AD%A6%E4%B9%A0-%E7%A0%94%E7%A9%B6/"/>
     
     
     <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
@@ -502,6 +547,8 @@ class=&quot;math inline&quot;&gt;&#92;(&#92;phi^{-1}&#92;)&lt;/span&gt;的过程
     
     <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
     
+    <category term="几何处理" scheme="https://www.ifish.ink/tags/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
+    
   </entry>
   
   <entry>
@@ -509,7 +556,7 @@ class=&quot;math inline&quot;&gt;&#92;(&#92;phi^{-1}&#92;)&lt;/span&gt;的过程
     <link href="https://www.ifish.ink/post/curvefitting.html"/>
     <id>https://www.ifish.ink/post/curvefitting.html</id>
     <published>2020-10-23T21:32:31.000Z</published>
-    <updated>2024-06-27T08:45:08.559Z</updated>
+    <updated>2025-10-06T10:51:25.206Z</updated>
     
     
       
@@ -525,10 +572,12 @@ class=&quot;math</summary>
     
     
     
-    <category term="曲线曲面" scheme="https://www.ifish.ink/categories/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
+    <category term="学习/研究" scheme="https://www.ifish.ink/categories/%E5%AD%A6%E4%B9%A0-%E7%A0%94%E7%A9%B6/"/>
     
     
     <category term="拟合" scheme="https://www.ifish.ink/tags/%E6%8B%9F%E5%90%88/"/>
+    
+    <category term="曲线曲面" scheme="https://www.ifish.ink/tags/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
     
     <category term="C/C++" scheme="https://www.ifish.ink/tags/C-C/"/>
     
@@ -569,7 +618,7 @@ LVDS-1 和 HDMI-1
     <link href="https://www.ifish.ink/post/ec4bf4f5.html"/>
     <id>https://www.ifish.ink/post/ec4bf4f5.html</id>
     <published>2020-05-26T14:06:55.000Z</published>
-    <updated>2024-06-27T08:43:00.891Z</updated>
+    <updated>2025-10-06T10:48:34.905Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;code&gt;$ git clone https://xxxx&lt;/code&gt; 克隆速度慢的解决方法：&lt;/p&gt;
@@ -617,36 +666,6 @@ title=&quot;https://www.ipaddress.com&quot;&gt;https://www.ipaddress.com&lt;/a&g
     <category term="游记" scheme="https://www.ifish.ink/tags/%E6%B8%B8%E8%AE%B0/"/>
     
     <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
-    <link href="https://www.ifish.ink/post/d033f67a.html"/>
-    <id>https://www.ifish.ink/post/d033f67a.html</id>
-    <published>2019-10-06T16:02:20.000Z</published>
-    <updated>2024-06-27T08:38:36.473Z</updated>
-    
-    
-    <summary type="html">&lt;h4
-id=&quot;c实现二维多边形均值重心坐标代码可能有冗余未优化代码&quot;&gt;c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;p&gt;关于三维中均值重心坐标的实现可参考我的另一篇博客：&lt;a
-href=&quot;https://www.ifish.ink/post/4d3c170c.html&quot;
-title=&quot;均值重心坐标Mean Value Coordinates In 3D代码实现&quot;&gt;均值重心坐标Mean
-Value Coordinates In 3D代码实现&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="几何处理" scheme="https://www.ifish.ink/categories/%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/"/>
-    
-    
-    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
-    
-    <category term="均值重心坐标" scheme="https://www.ifish.ink/tags/%E5%9D%87%E5%80%BC%E9%87%8D%E5%BF%83%E5%9D%90%E6%A0%87/"/>
-    
-    <category term="C++代码" scheme="https://www.ifish.ink/tags/C-%E4%BB%A3%E7%A0%81/"/>
     
   </entry>
   
