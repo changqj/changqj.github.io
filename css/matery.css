@@ -2299,3 +2299,7 @@ body.DarkMode .theme-btn:hover {
 @media (max-width: 767px) {
   .pc-only { display: none !important; }
 }
+
+@media (max-height: 1000px) {
+  .pc-only { display: none !important; }
+}
