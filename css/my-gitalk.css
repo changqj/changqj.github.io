@@ -1,3 +1,14 @@
+/* 仅为中文字符应用行楷字体，英文保持原有字体 */
+@font-face {
+    font-family: 'HuaWenKT-local';
+    src: url('/fonts/华文楷体.TTF') format('truetype');
+    unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
+    font-display: block;
+}
+
+#gitalk-container, .gitalk-card, .markdown-body {
+    font-family: 'HuaWenKT-local', -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
 .gitalk-card {
     margin: 1.25rem auto;
 }

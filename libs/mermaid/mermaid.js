@@ -101650,4 +101650,3 @@ var getStylesFromArray = function getStylesFromArray(arr) {
 
 /******/ })["default"];
 });
-//# sourceMappingURL=mermaid.js.map
