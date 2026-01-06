@@ -336,6 +336,135 @@ std<span class="token double-colon punctuation">::</span>cout <span class="token
       </tags>
   </entry>
   <entry>
+    <title>Total Commander使用</title>
+    <url>/post/aada5c99.html</url>
+    <content><![CDATA[<h1 id="total-commander使用教程及快捷键设置">Total
+Commander使用教程及快捷键设置</h1>
+<p>Total
+Commander是一款功能强大的文件管理器，通过双窗格界面和丰富的自定义选项提高文件操作的效率。在本文中，我们将介绍一些常用的快捷键设置、文件操作技巧，并展示如何根据文件属性自定义文件颜色显示。</p>
+<h2 id="常用快捷键设置">1. 常用快捷键设置</h2>
+<p>Total
+Commander支持用户自定义快捷键，可以根据个人需求调整以提升效率。以下是几个常见的操作及其快捷键设置方法：</p>
+<h3 id="复制全路径">1.1 复制全路径</h3>
+<p>在文件操作中，常常需要复制文件或文件夹的完整路径。Total
+Commander提供了便捷的方式：</p>
+<ol type="1">
+<li><p><strong>默认快捷键</strong>：<code>Ctrl + Shift + Enter</code>，可以快速复制当前选中文件或文件夹的完整路径到命令行或者剪贴板。</p></li>
+<li><p><strong>自定义快捷键</strong>：如果你想自定义此快捷键，可以通过以下步骤：</p>
+<ol type="1">
+<li><p>点击顶部菜单的“配置”，选择“选项”。</p></li>
+<li><p>在左侧选择“Misc”选项。</p></li>
+<li><p>在“Redefine hotkeys (keyboard
+remapping)”部分，选择想要重新定义的快捷键（例如
+<code>Ctrl + Shift + P</code>），然后在“Command”下拉列表中找到“cm_CopyFullNamesToClip”。</p></li>
+<li><p>点击“OK”保存设置。</p></li>
+</ol></li>
+</ol>
+<h3 id="复制路径及文件名">1.2 复制路径及文件名</h3>
+<p>如果你需要复制文件的路径并包含文件名，以下是设置方法：</p>
+<ol type="1">
+<li><p><strong>快捷键</strong>：<code>Ctrl + Shift + C</code>，可以复制完整的路径及文件名到剪贴板。</p></li>
+<li><p><strong>自定义快捷键</strong>：</p>
+<ul>
+<li>参考上面的自定义步骤，将快捷键指向命令“cm_CopyNetNamesToClip”来实现复制路径及文件名。</li>
+</ul></li>
+</ol>
+<h3 id="文件移动和复制">1.3 文件移动和复制</h3>
+<p>Total Commander
+提供了丰富的文件操作快捷键，默认情况下，你可以使用以下快捷键进行移动和复制操作：</p>
+<ul>
+<li><p><strong>复制文件</strong>：<code>F5</code>
+键，弹出复制确认窗口。</p></li>
+<li><p><strong>移动文件</strong>：<code>F6</code>
+键，弹出移动确认窗口。</p></li>
+</ul>
+<p>要自定义这些快捷键，可以通过：</p>
+<ol type="1">
+<li><p>打开“配置 -&gt; 选项”。</p></li>
+<li><p>选择“Misc”选项卡。</p></li>
+<li><p>在“Redefine hotkeys”中，找到 <code>F5</code>（复制）和
+<code>F6</code>（移动）的命令，分别绑定到 <code>cm_Copy</code> 和
+<code>cm_RenameMove</code>。</p></li>
+</ol>
+<h3 id="快速选择文件">1.4 快速选择文件</h3>
+<p>有时你需要快速选择某类文件（例如扩展名相同的文件）。你可以使用快捷键
+<code>Num +</code>（数字键盘的加号）来选中当前面板中的同类文件，具体操作如下：</p>
+<ol type="1">
+<li><p>按下 <code>Num +</code>，Total Commander
+会弹出一个选择框。</p></li>
+<li><p>输入文件类型（如 <code>*.txt</code> 选择所有文本文件），然后按
+<code>Enter</code>，所有符合条件的文件将被选中。</p></li>
+</ol>
+<h2 id="文件颜色显示设置">2. 文件颜色显示设置</h2>
+<p>Total
+Commander支持根据文件属性或扩展名给文件和文件夹上色，帮助用户更快地区分不同的文件类型。以下是一些常见的设置方法：</p>
+<h3 id="根据下载时间显示不同颜色">2.1 根据下载时间显示不同颜色</h3>
+<p>你可以设置Total
+Commander根据文件的创建时间来显示不同的颜色，比如最近下载的文件显示为不同颜色：</p>
+<ol type="1">
+<li><p>打开“配置 -&gt; 选项”，选择左侧的“Color”。</p></li>
+<li><p>点击“Define colors by file
+type”按钮，进入文件颜色自定义界面。</p></li>
+<li><p>点击“Add”按钮，选择一个颜色。</p></li>
+<li><p>在条件中选择“Age (文件创建时间)”。</p></li>
+<li><p>输入时间条件，如“&lt;
+1d”（表示一天内的文件），这样所有一天内的文件将会显示为所选颜色。</p></li>
+</ol>
+<h3 id="根据文件扩展名显示颜色">2.2 根据文件扩展名显示颜色</h3>
+<p>如果你希望不同扩展名的文件显示为不同颜色，可以设置如下：</p>
+<ol type="1">
+<li><p>同样进入“Define colors by file
+type”界面，点击“Add”按钮。</p></li>
+<li><p>选择颜色后，在条件部分输入文件类型条件，如
+<code>*.txt</code>，这样所有 <code>.txt</code>
+文件都会以该颜色显示。</p></li>
+<li><p>你可以重复此步骤为其他文件类型设定不同颜色，例如
+<code>*.jpg</code> 为蓝色，<code>*.exe</code> 为红色。</p></li>
+</ol>
+<h3 id="自定义目录颜色">2.3 自定义目录颜色</h3>
+<p>如果你希望特定的文件夹（如工作目录或某些重要目录）显示为不同颜色：</p>
+<ol type="1">
+<li><p>在“Define colors by file type”中点击“Add”。</p></li>
+<li><p>选择一个颜色，在条件中选择“属性 (Attribute)”。</p></li>
+<li><p>输入 <code>D</code>
+来匹配所有目录，或者手动输入特定目录的名称。</p></li>
+<li><p>这样所有符合条件的目录将会显示为你设定的颜色。</p></li>
+</ol>
+<h2 id="文件操作技巧">3. 文件操作技巧</h2>
+<p>Total
+Commander的核心在于它的双窗格文件管理，这使得文件复制、移动等操作极为高效。以下是一些实用技巧：</p>
+<h3 id="快速切换路径">3.1 快速切换路径</h3>
+<p>使用 <code>Alt + F1</code> 和 <code>Alt + F2</code>
+可以快速切换左右窗格的驱动器。你可以通过此功能快速定位到不同的驱动器或文件夹。</p>
+<h3 id="批量重命名工具">3.2 批量重命名工具</h3>
+<p>Total Commander自带批量重命名工具，可以快速重命名一组文件：</p>
+<ol type="1">
+<li><p>选择需要重命名的文件。</p></li>
+<li><p>按 <code>Ctrl + M</code> 调出批量重命名工具。</p></li>
+<li><p>你可以设置规则，如添加前缀、后缀，或者按数字顺序重命名。</p></li>
+</ol>
+<h3 id="文件同步">3.3 文件同步</h3>
+<p>Total
+Commander提供了文件同步功能，帮助你保持两个文件夹内容的一致性：</p>
+<ol type="1">
+<li><p>打开左右两个窗格，分别定位到两个文件夹。</p></li>
+<li><p>点击顶部菜单中的“文件 -&gt; 同步目录”。</p></li>
+<li><p>选择需要同步的文件和操作方式（复制或删除）。</p></li>
+</ol>
+<h2 id="总结">4. 总结</h2>
+<p>Total
+Commander强大的文件管理功能和自定义选项，可以显著提升Windows下的文件操作效率。通过设置快捷键、定义文件颜色显示等，你可以根据个人需求定制你的文件管理体验。</p>
+<p>祝你使用愉快！</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>神器</tag>
+        <tag>Total Commander</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenSubdiv + Visual Studio环境配置</title>
     <url>/post/a507e481.html</url>
     <content><![CDATA[<blockquote>
@@ -559,135 +688,6 @@ Commander的双窗格管理相结合，让你的日常文件操作更加高效�
       </tags>
   </entry>
   <entry>
-    <title>Total Commander使用</title>
-    <url>/post/aada5c99.html</url>
-    <content><![CDATA[<h1 id="total-commander使用教程及快捷键设置">Total
-Commander使用教程及快捷键设置</h1>
-<p>Total
-Commander是一款功能强大的文件管理器，通过双窗格界面和丰富的自定义选项提高文件操作的效率。在本文中，我们将介绍一些常用的快捷键设置、文件操作技巧，并展示如何根据文件属性自定义文件颜色显示。</p>
-<h2 id="常用快捷键设置">1. 常用快捷键设置</h2>
-<p>Total
-Commander支持用户自定义快捷键，可以根据个人需求调整以提升效率。以下是几个常见的操作及其快捷键设置方法：</p>
-<h3 id="复制全路径">1.1 复制全路径</h3>
-<p>在文件操作中，常常需要复制文件或文件夹的完整路径。Total
-Commander提供了便捷的方式：</p>
-<ol type="1">
-<li><p><strong>默认快捷键</strong>：<code>Ctrl + Shift + Enter</code>，可以快速复制当前选中文件或文件夹的完整路径到命令行或者剪贴板。</p></li>
-<li><p><strong>自定义快捷键</strong>：如果你想自定义此快捷键，可以通过以下步骤：</p>
-<ol type="1">
-<li><p>点击顶部菜单的“配置”，选择“选项”。</p></li>
-<li><p>在左侧选择“Misc”选项。</p></li>
-<li><p>在“Redefine hotkeys (keyboard
-remapping)”部分，选择想要重新定义的快捷键（例如
-<code>Ctrl + Shift + P</code>），然后在“Command”下拉列表中找到“cm_CopyFullNamesToClip”。</p></li>
-<li><p>点击“OK”保存设置。</p></li>
-</ol></li>
-</ol>
-<h3 id="复制路径及文件名">1.2 复制路径及文件名</h3>
-<p>如果你需要复制文件的路径并包含文件名，以下是设置方法：</p>
-<ol type="1">
-<li><p><strong>快捷键</strong>：<code>Ctrl + Shift + C</code>，可以复制完整的路径及文件名到剪贴板。</p></li>
-<li><p><strong>自定义快捷键</strong>：</p>
-<ul>
-<li>参考上面的自定义步骤，将快捷键指向命令“cm_CopyNetNamesToClip”来实现复制路径及文件名。</li>
-</ul></li>
-</ol>
-<h3 id="文件移动和复制">1.3 文件移动和复制</h3>
-<p>Total Commander
-提供了丰富的文件操作快捷键，默认情况下，你可以使用以下快捷键进行移动和复制操作：</p>
-<ul>
-<li><p><strong>复制文件</strong>：<code>F5</code>
-键，弹出复制确认窗口。</p></li>
-<li><p><strong>移动文件</strong>：<code>F6</code>
-键，弹出移动确认窗口。</p></li>
-</ul>
-<p>要自定义这些快捷键，可以通过：</p>
-<ol type="1">
-<li><p>打开“配置 -&gt; 选项”。</p></li>
-<li><p>选择“Misc”选项卡。</p></li>
-<li><p>在“Redefine hotkeys”中，找到 <code>F5</code>（复制）和
-<code>F6</code>（移动）的命令，分别绑定到 <code>cm_Copy</code> 和
-<code>cm_RenameMove</code>。</p></li>
-</ol>
-<h3 id="快速选择文件">1.4 快速选择文件</h3>
-<p>有时你需要快速选择某类文件（例如扩展名相同的文件）。你可以使用快捷键
-<code>Num +</code>（数字键盘的加号）来选中当前面板中的同类文件，具体操作如下：</p>
-<ol type="1">
-<li><p>按下 <code>Num +</code>，Total Commander
-会弹出一个选择框。</p></li>
-<li><p>输入文件类型（如 <code>*.txt</code> 选择所有文本文件），然后按
-<code>Enter</code>，所有符合条件的文件将被选中。</p></li>
-</ol>
-<h2 id="文件颜色显示设置">2. 文件颜色显示设置</h2>
-<p>Total
-Commander支持根据文件属性或扩展名给文件和文件夹上色，帮助用户更快地区分不同的文件类型。以下是一些常见的设置方法：</p>
-<h3 id="根据下载时间显示不同颜色">2.1 根据下载时间显示不同颜色</h3>
-<p>你可以设置Total
-Commander根据文件的创建时间来显示不同的颜色，比如最近下载的文件显示为不同颜色：</p>
-<ol type="1">
-<li><p>打开“配置 -&gt; 选项”，选择左侧的“Color”。</p></li>
-<li><p>点击“Define colors by file
-type”按钮，进入文件颜色自定义界面。</p></li>
-<li><p>点击“Add”按钮，选择一个颜色。</p></li>
-<li><p>在条件中选择“Age (文件创建时间)”。</p></li>
-<li><p>输入时间条件，如“&lt;
-1d”（表示一天内的文件），这样所有一天内的文件将会显示为所选颜色。</p></li>
-</ol>
-<h3 id="根据文件扩展名显示颜色">2.2 根据文件扩展名显示颜色</h3>
-<p>如果你希望不同扩展名的文件显示为不同颜色，可以设置如下：</p>
-<ol type="1">
-<li><p>同样进入“Define colors by file
-type”界面，点击“Add”按钮。</p></li>
-<li><p>选择颜色后，在条件部分输入文件类型条件，如
-<code>*.txt</code>，这样所有 <code>.txt</code>
-文件都会以该颜色显示。</p></li>
-<li><p>你可以重复此步骤为其他文件类型设定不同颜色，例如
-<code>*.jpg</code> 为蓝色，<code>*.exe</code> 为红色。</p></li>
-</ol>
-<h3 id="自定义目录颜色">2.3 自定义目录颜色</h3>
-<p>如果你希望特定的文件夹（如工作目录或某些重要目录）显示为不同颜色：</p>
-<ol type="1">
-<li><p>在“Define colors by file type”中点击“Add”。</p></li>
-<li><p>选择一个颜色，在条件中选择“属性 (Attribute)”。</p></li>
-<li><p>输入 <code>D</code>
-来匹配所有目录，或者手动输入特定目录的名称。</p></li>
-<li><p>这样所有符合条件的目录将会显示为你设定的颜色。</p></li>
-</ol>
-<h2 id="文件操作技巧">3. 文件操作技巧</h2>
-<p>Total
-Commander的核心在于它的双窗格文件管理，这使得文件复制、移动等操作极为高效。以下是一些实用技巧：</p>
-<h3 id="快速切换路径">3.1 快速切换路径</h3>
-<p>使用 <code>Alt + F1</code> 和 <code>Alt + F2</code>
-可以快速切换左右窗格的驱动器。你可以通过此功能快速定位到不同的驱动器或文件夹。</p>
-<h3 id="批量重命名工具">3.2 批量重命名工具</h3>
-<p>Total Commander自带批量重命名工具，可以快速重命名一组文件：</p>
-<ol type="1">
-<li><p>选择需要重命名的文件。</p></li>
-<li><p>按 <code>Ctrl + M</code> 调出批量重命名工具。</p></li>
-<li><p>你可以设置规则，如添加前缀、后缀，或者按数字顺序重命名。</p></li>
-</ol>
-<h3 id="文件同步">3.3 文件同步</h3>
-<p>Total
-Commander提供了文件同步功能，帮助你保持两个文件夹内容的一致性：</p>
-<ol type="1">
-<li><p>打开左右两个窗格，分别定位到两个文件夹。</p></li>
-<li><p>点击顶部菜单中的“文件 -&gt; 同步目录”。</p></li>
-<li><p>选择需要同步的文件和操作方式（复制或删除）。</p></li>
-</ol>
-<h2 id="总结">4. 总结</h2>
-<p>Total
-Commander强大的文件管理功能和自定义选项，可以显著提升Windows下的文件操作效率。通过设置快捷键、定义文件颜色显示等，你可以根据个人需求定制你的文件管理体验。</p>
-<p>祝你使用愉快！</p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>神器</tag>
-        <tag>Total Commander</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
     <url>/post/563c2d.html</url>
     <content><![CDATA[<blockquote>
@@ -727,69 +727,6 @@ unavailable for scheduled maintenance. Check back in a minute.”</p>
       </categories>
       <tags>
         <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WordPress站点地图自动更新</title>
-    <url>/post/943451b1.html</url>
-    <content><![CDATA[<blockquote>
-<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
-</blockquote>
-<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-<img src="https://files.ifish.ink/mics/baiduzhanzhang.png"
-alt="百度站长" /> <span id="more"></span> <img
-src="https://files.ifish.ink/mics/googlezhanzhang.png" alt="google" />
-现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
-<img src="https://files.ifish.ink/mics/2.png" alt="google" />
-在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
-        <tag>SEO</tag>
-        <tag>sitemap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git clone 速度慢？</title>
-    <url>/post/ec4bf4f5.html</url>
-    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
-<h2 id="方法1">方法1：</h2>
-<h3 id="查询ip地址">查询IP地址</h3>
-<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com"
-title="https://www.ipaddress.com">https://www.ipaddress.com</a>
-分别输入如下网址查看对应的IP地址</p>
-<span id="more"></span>
-<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
-或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
-<h3 id="修改hosts文件">修改hosts文件</h3>
-<p>得到对应的IP后，在hosts文件后追加如下两行
-Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
-Linux用户：<code>sudo gedit /etc/hosts</code>
-（xxx替换为你得到的对应的IP地址）</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
-xxx.xxx.xxx.xxx github.com</code></pre>
-<h3 id="刷新dns">刷新DNS</h3>
-<p>Windows用户：<code>ipconfig /flushdns</code>
-Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
-<h2 id="方法2">方法2：</h2>
-<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
-<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -889,6 +826,69 @@ href="https://github.com/sbarex/SourceCodeSyntaxHighlight">GitHub
         <tag>Quick Look</tag>
         <tag>源码高亮</tag>
         <tag>Syntax Highlight</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WordPress站点地图自动更新</title>
+    <url>/post/943451b1.html</url>
+    <content><![CDATA[<blockquote>
+<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
+</blockquote>
+<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
+<img src="https://files.ifish.ink/mics/baiduzhanzhang.png"
+alt="百度站长" /> <span id="more"></span> <img
+src="https://files.ifish.ink/mics/googlezhanzhang.png" alt="google" />
+现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
+<img src="https://files.ifish.ink/mics/2.png" alt="google" />
+在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+        <tag>SEO</tag>
+        <tag>sitemap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git clone 速度慢？</title>
+    <url>/post/ec4bf4f5.html</url>
+    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
+<h2 id="方法1">方法1：</h2>
+<h3 id="查询ip地址">查询IP地址</h3>
+<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com"
+title="https://www.ipaddress.com">https://www.ipaddress.com</a>
+分别输入如下网址查看对应的IP地址</p>
+<span id="more"></span>
+<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
+或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
+<h3 id="修改hosts文件">修改hosts文件</h3>
+<p>得到对应的IP后，在hosts文件后追加如下两行
+Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
+Linux用户：<code>sudo gedit /etc/hosts</code>
+（xxx替换为你得到的对应的IP地址）</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
+xxx.xxx.xxx.xxx github.com</code></pre>
+<h3 id="刷新dns">刷新DNS</h3>
+<p>Windows用户：<code>ipconfig /flushdns</code>
+Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
+<h2 id="方法2">方法2：</h2>
+<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -2859,95 +2859,6 @@ href="https://files.ifish.ink/mics/Standard_Jacobian_Iterative_Algorithm_Procedu
       </tags>
   </entry>
   <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
-uBlock Origin</p>
-</blockquote>
-<h3
-id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
-<span id="more"></span>
-<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
-<p><img src="https://files.ifish.ink/mics/uo.png"
-alt="uBlock Origin Logo" /> uBlock
-Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
-Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
-Origin的目标是为用户提供自行实施内容过滤的选择。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
-截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
-Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
-<hr />
-<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
-Origin插件</h3>
-<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
-<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
-<blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
-store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
-</blockquote>
-<ol type="1">
-<li><a
-href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
-<img src="https://files.ifish.ink/mics/uo5.png" /> <img
-src="https://files.ifish.ink/mics/uo2.png" /></li>
-</ol>
-<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
-<ol type="1">
-<li><p>从百度云盘<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
-Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
-href="chrome://extensions/">chrome://extensions/</a>
-后回车，可以看到类似下图页面 <img
-src="https://files.ifish.ink/mics/1.png"
-alt="chrome://extensions" /></p></li>
-<li><p>将第1步中下载的<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
-href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
-<img src="https://files.ifish.ink/mics/uo2.png" /> <img
-src="https://files.ifish.ink/mics/uo3.png" /></p></li>
-<li><p>在Chrome右上角点击uBlock
-Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
-<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
-</ol>
-<hr />
-<h3 id="三测试">三、测试</h3>
-<ul>
-<li><p>未启用uBlock
-Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(可以看到靠前的内容几乎都是广告) <img
-src="https://files.ifish.ink/mics/uo6.png" /></p></li>
-<li><p>启用uBlock
-Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(广告明显减少) <img
-src="https://files.ifish.ink/mics/uo7.png" /></p></li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
-src="https://files.ifish.ink/mics/uo.gif" /></p></li>
-</ul>
-<hr />
-<h3 id="四参考">四、参考：</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
-维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>神器</tag>
-        <tag>插件</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>男孩，鼹鼠，狐狸和马</title>
     <url>/post/ca64211f.html</url>
     <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
@@ -3091,6 +3002,95 @@ alt="封闭控制多边形的四点插值细分曲线" /></p>
         <tag>曲线曲面</tag>
         <tag>C/C++</tag>
         <tag>细分曲线</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
+    <content><![CDATA[<blockquote>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin</p>
+</blockquote>
+<h3
+id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
+<span id="more"></span>
+<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
+<p><img src="https://files.ifish.ink/mics/uo.png"
+alt="uBlock Origin Logo" /> uBlock
+Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
+Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
+Origin的目标是为用户提供自行实施内容过滤的选择。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
+截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
+Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr />
+<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
+Origin插件</h3>
+<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
+<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+<blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
+store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol type="1">
+<li><a
+href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
+<img src="https://files.ifish.ink/mics/uo5.png" /> <img
+src="https://files.ifish.ink/mics/uo2.png" /></li>
+</ol>
+<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
+<ol type="1">
+<li><p>从百度云盘<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
+Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
+href="chrome://extensions/">chrome://extensions/</a>
+后回车，可以看到类似下图页面 <img
+src="https://files.ifish.ink/mics/1.png"
+alt="chrome://extensions" /></p></li>
+<li><p>将第1步中下载的<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
+href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
+<img src="https://files.ifish.ink/mics/uo2.png" /> <img
+src="https://files.ifish.ink/mics/uo3.png" /></p></li>
+<li><p>在Chrome右上角点击uBlock
+Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
+<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
+</ol>
+<hr />
+<h3 id="三测试">三、测试</h3>
+<ul>
+<li><p>未启用uBlock
+Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(可以看到靠前的内容几乎都是广告) <img
+src="https://files.ifish.ink/mics/uo6.png" /></p></li>
+<li><p>启用uBlock
+Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(广告明显减少) <img
+src="https://files.ifish.ink/mics/uo7.png" /></p></li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
+src="https://files.ifish.ink/mics/uo.gif" /></p></li>
+</ul>
+<hr />
+<h3 id="四参考">四、参考：</h3>
+<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
+维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>神器</tag>
+        <tag>插件</tag>
       </tags>
   </entry>
   <entry>
