@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2025-10-06T10:49:06.332Z</updated>
+  <updated>2025-10-06T10:49:06.000Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.ifish.ink/post/3108369d.html"/>
     <id>https://www.ifish.ink/post/3108369d.html</id>
     <published>2025-10-06T10:14:31.000Z</published>
-    <updated>2025-10-06T10:49:06.332Z</updated>
+    <updated>2025-10-06T10:49:06.000Z</updated>
     
     
       
@@ -54,7 +54,7 @@ Look的局限与动机&lt;/h2&gt;
     <link href="https://www.ifish.ink/post/pm2-nodejs-macos.html"/>
     <id>https://www.ifish.ink/post/pm2-nodejs-macos.html</id>
     <published>2025-10-03T20:21:53.000Z</published>
-    <updated>2025-10-06T10:49:01.150Z</updated>
+    <updated>2025-10-06T10:49:01.000Z</updated>
     
     
       
@@ -85,7 +85,7 @@ mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket
     <link href="https://www.ifish.ink/post/d2f9f15b.html"/>
     <id>https://www.ifish.ink/post/d2f9f15b.html</id>
     <published>2024-10-21T17:28:58.000Z</published>
-    <updated>2024-10-21T18:03:15.571Z</updated>
+    <updated>2024-10-21T18:03:15.000Z</updated>
     
     
       
@@ -115,7 +115,7 @@ Actions，开发者可以在代码库发生特定事件时，自动触发构建�
     <link href="https://www.ifish.ink/post/aada5c99.html"/>
     <id>https://www.ifish.ink/post/aada5c99.html</id>
     <published>2024-10-15T09:57:45.000Z</published>
-    <updated>2024-10-23T18:20:39.653Z</updated>
+    <updated>2024-10-23T18:20:39.000Z</updated>
     
     
       
@@ -142,7 +142,7 @@ Actions，开发者可以在代码库发生特定事件时，自动触发构建�
     <link href="https://www.ifish.ink/post/bb2b886d.html"/>
     <id>https://www.ifish.ink/post/bb2b886d.html</id>
     <published>2024-10-14T09:13:24.000Z</published>
-    <updated>2024-10-23T18:21:12.256Z</updated>
+    <updated>2024-10-23T18:21:12.000Z</updated>
     
     
       
@@ -172,7 +172,7 @@ Commander +</summary>
     <link href="https://www.ifish.ink/post/e9330479.html"/>
     <id>https://www.ifish.ink/post/e9330479.html</id>
     <published>2024-10-13T17:15:59.000Z</published>
-    <updated>2025-10-06T10:48:23.703Z</updated>
+    <updated>2025-10-06T10:48:23.000Z</updated>
     
     
       
@@ -207,7 +207,7 @@ display）&lt;/strong&gt;上开发图形应</summary>
     <link href="https://www.ifish.ink/post/ca64211f.html"/>
     <id>https://www.ifish.ink/post/ca64211f.html</id>
     <published>2024-10-12T08:42:07.000Z</published>
-    <updated>2024-10-14T09:17:03.786Z</updated>
+    <updated>2024-10-14T09:17:03.000Z</updated>
     
     
       
@@ -223,11 +223,11 @@ display）&lt;/strong&gt;上开发图形应</summary>
     <category term="生活娱乐" scheme="https://www.ifish.ink/categories/%E7%94%9F%E6%B4%BB%E5%A8%B1%E4%B9%90/"/>
     
     
-    <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
-    
     <category term="动画" scheme="https://www.ifish.ink/tags/%E5%8A%A8%E7%94%BB/"/>
     
     <category term="短片" scheme="https://www.ifish.ink/tags/%E7%9F%AD%E7%89%87/"/>
+    
+    <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -236,7 +236,7 @@ display）&lt;/strong&gt;上开发图形应</summary>
     <link href="https://www.ifish.ink/post/mlc2d.html"/>
     <id>https://www.ifish.ink/post/mlc2d.html</id>
     <published>2023-12-22T20:39:00.000Z</published>
-    <updated>2025-10-06T18:24:05.678Z</updated>
+    <updated>2025-10-06T18:24:05.000Z</updated>
     
     
       
@@ -269,7 +269,7 @@ src=&quot;https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/
     <link href="https://www.ifish.ink/post/harmonic.html"/>
     <id>https://www.ifish.ink/post/harmonic.html</id>
     <published>2023-12-20T21:03:35.000Z</published>
-    <updated>2025-10-06T10:51:12.458Z</updated>
+    <updated>2025-10-06T10:51:12.000Z</updated>
     
     
       
@@ -302,7 +302,7 @@ class=&quot;math</summary>
     <link href="https://www.ifish.ink/post/5755d91.html"/>
     <id>https://www.ifish.ink/post/5755d91.html</id>
     <published>2022-03-15T20:50:11.000Z</published>
-    <updated>2024-10-13T18:46:30.776Z</updated>
+    <updated>2024-10-13T18:46:30.000Z</updated>
     
     
       
@@ -333,7 +333,7 @@ class=&quot;math</summary>
     <link href="https://www.ifish.ink/post/subdivcurve.html"/>
     <id>https://www.ifish.ink/post/subdivcurve.html</id>
     <published>2020-12-23T22:02:34.000Z</published>
-    <updated>2025-10-06T18:24:01.129Z</updated>
+    <updated>2025-10-06T18:24:01.000Z</updated>
     
     
       
@@ -365,7 +365,7 @@ class=&quot;math</summary>
     <link href="https://www.ifish.ink/post/cubicspline.html"/>
     <id>https://www.ifish.ink/post/cubicspline.html</id>
     <published>2020-11-10T20:30:10.000Z</published>
-    <updated>2025-10-06T18:20:53.240Z</updated>
+    <updated>2025-10-06T18:20:53.000Z</updated>
     
     
       
@@ -397,7 +397,7 @@ class=&quot;math</summary>
     <link href="https://www.ifish.ink/post/94abe0b4.html"/>
     <id>https://www.ifish.ink/post/94abe0b4.html</id>
     <published>2020-11-09T18:43:19.000Z</published>
-    <updated>2025-10-06T10:52:07.158Z</updated>
+    <updated>2025-10-06T10:52:07.000Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -438,7 +438,7 @@ alt=&quot;embedding&quot; /&gt;
     <link href="https://www.ifish.ink/post/56c1b7a3.html"/>
     <id>https://www.ifish.ink/post/56c1b7a3.html</id>
     <published>2020-11-03T15:14:00.000Z</published>
-    <updated>2025-10-06T10:49:49.399Z</updated>
+    <updated>2025-10-06T10:49:49.000Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -477,11 +477,11 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     
     <category term="MATLAB代码" scheme="https://www.ifish.ink/tags/MATLAB%E4%BB%A3%E7%A0%81/"/>
     
-    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
-    
     <category term="拟合" scheme="https://www.ifish.ink/tags/%E6%8B%9F%E5%90%88/"/>
     
     <category term="曲线曲面" scheme="https://www.ifish.ink/tags/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
+    
+    <category term="算法实现" scheme="https://www.ifish.ink/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/"/>
     
   </entry>
   
@@ -490,7 +490,7 @@ myText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     <link href="https://www.ifish.ink/post/8f4cbc0c.html"/>
     <id>https://www.ifish.ink/post/8f4cbc0c.html</id>
     <published>2020-11-02T18:09:11.000Z</published>
-    <updated>2025-10-06T10:48:38.342Z</updated>
+    <updated>2025-10-06T10:48:38.000Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;github上-fork了别人的代码-本地更新主分支代码&quot;&gt;Github上
@@ -517,7 +517,7 @@ fork了别人的代码 本地更新主分支代码&lt;/h3&gt;
     <link href="https://www.ifish.ink/post/bcf65292.html"/>
     <id>https://www.ifish.ink/post/bcf65292.html</id>
     <published>2020-10-31T14:26:08.000Z</published>
-    <updated>2025-10-06T10:51:05.678Z</updated>
+    <updated>2025-10-06T10:51:05.000Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -556,7 +556,7 @@ class=&quot;math inline&quot;&gt;&#92;(&#92;phi^{-1}&#92;)&lt;/span&gt;的过程
     <link href="https://www.ifish.ink/post/curvefitting.html"/>
     <id>https://www.ifish.ink/post/curvefitting.html</id>
     <published>2020-10-23T21:32:31.000Z</published>
-    <updated>2025-10-06T10:51:25.206Z</updated>
+    <updated>2025-10-06T10:51:25.000Z</updated>
     
     
       
@@ -590,7 +590,7 @@ class=&quot;math</summary>
     <link href="https://www.ifish.ink/post/83277084.html"/>
     <id>https://www.ifish.ink/post/83277084.html</id>
     <published>2020-06-02T14:23:53.000Z</published>
-    <updated>2025-04-17T22:08:46.076Z</updated>
+    <updated>2025-04-17T22:08:46.000Z</updated>
     
     
     <summary type="html">&lt;ul&gt;
@@ -618,7 +618,7 @@ LVDS-1 和 HDMI-1
     <link href="https://www.ifish.ink/post/ec4bf4f5.html"/>
     <id>https://www.ifish.ink/post/ec4bf4f5.html</id>
     <published>2020-05-26T14:06:55.000Z</published>
-    <updated>2025-10-06T10:48:34.905Z</updated>
+    <updated>2025-10-06T10:48:34.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;code&gt;$ git clone https://xxxx&lt;/code&gt; 克隆速度慢的解决方法：&lt;/p&gt;
@@ -646,7 +646,7 @@ title=&quot;https://www.ipaddress.com&quot;&gt;https://www.ipaddress.com&lt;/a&g
     <link href="https://www.ifish.ink/post/f29efa2.html"/>
     <id>https://www.ifish.ink/post/f29efa2.html</id>
     <published>2020-04-08T11:20:30.000Z</published>
-    <updated>2025-06-04T15:47:15.824Z</updated>
+    <updated>2025-06-04T15:47:15.000Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -663,9 +663,9 @@ title=&quot;https://www.ipaddress.com&quot;&gt;https://www.ipaddress.com&lt;/a&g
     <category term="生活娱乐" scheme="https://www.ifish.ink/categories/%E7%94%9F%E6%B4%BB%E5%A8%B1%E4%B9%90/"/>
     
     
-    <category term="游记" scheme="https://www.ifish.ink/tags/%E6%B8%B8%E8%AE%B0/"/>
-    
     <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="游记" scheme="https://www.ifish.ink/tags/%E6%B8%B8%E8%AE%B0/"/>
     
   </entry>
   
