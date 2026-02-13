@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
-    <url>/post/8f4cbc0c.html</url>
-    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
-fork了别人的代码 本地更新主分支代码</h3>
-<ul>
-<li><p>查看本地仓库项目目录：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
-<li><p>添加上游项目地址：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
-<span id="more"></span>
-<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
-</ul>
-<hr />
-<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
-<ul>
-<li><p>从上游提取：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
-<li><p>合并：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
-<li><p>上传：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -342,6 +309,127 @@ alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
       </tags>
   </entry>
   <entry>
+    <title>Github上 fork了别人的代码 本地更新主分支代码</title>
+    <url>/post/8f4cbc0c.html</url>
+    <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
+fork了别人的代码 本地更新主分支代码</h3>
+<ul>
+<li><p>查看本地仓库项目目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token parameter variable">-v</span></code></pre></li>
+<li><p>添加上游项目地址：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> <span class="token operator">&lt;</span>remote-name<span class="token operator">></span> <span class="token operator">&lt;</span>your upstream URL<span class="token operator">></span></code></pre>
+<span id="more"></span>
+<p>例如我从https://github.com/xxx/xxxx.git这个项目地址fork，则指令为：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> remote <span class="token function">add</span> test1 https://github.com/xxx/xxxx.git</code></pre></li>
+</ul>
+<hr />
+<p>上面是第一次配置即可，下面则每次从上游更新时执行</p>
+<ul>
+<li><p>从上游提取：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> fetch <span class="token operator">&lt;</span>remote-name<span class="token operator">></span></code></pre></li>
+<li><p>合并：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token operator">&lt;</span>remote-name<span class="token operator">></span>/<span class="token operator">&lt;</span>branches-name<span class="token operator">></span></code></pre></li>
+<li><p>上传：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push</code></pre></li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</title>
+    <url>/post/e9330479.html</url>
+    <content><![CDATA[<h1
+id="opengl坐标与imgui坐标在视网膜屏幕上的转换">OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</h1>
+<blockquote>
+<p>在高分辨率显示器，尤其是<strong>视网膜屏幕（Retina
+display）</strong>上开发图形应用时，通常需要处理不同的坐标系统和像素密度问题。<strong>OpenGL</strong>和<strong>ImGui</strong>都有各自的坐标系统，当在视网膜屏幕上进行开发时，如何正确处理坐标转换成为一个关键问题。</p>
+</blockquote>
+<p>本文将探讨如何在视网膜屏幕上进行<strong>OpenGL坐标</strong>和<strong>ImGui坐标</strong>之间的转换，并讨论像素密度对坐标计算的影响。</p>
+<h2 id="opengl坐标系统">1. OpenGL坐标系统</h2>
+<p>在OpenGL中，坐标系统通常是以<strong>标准化设备坐标（Normalized Device
+Coordinates, NDC）</strong>表示的。它的范围为：</p>
+<ul>
+<li>X 轴范围：<code>[-1, 1]</code></li>
+<li>Y 轴范围：<code>[-1, 1]</code></li>
+</ul>
+<p>这意味着屏幕的中心为 <code>(0, 0)</code>，左下角为
+<code>(-1, -1)</code>，右上角为
+<code>(1, 1)</code>。通常，这个坐标系统会通过投影矩阵映射到屏幕空间。</p>
+<p>在高分辨率（视网膜）屏幕上，例如MacBook最近几年的屏幕，每个物理像素可能对应多个屏幕像素，这就是<strong>像素密度（Pixel
+Density）</strong>的概念。一般情况下，视网膜屏幕的像素密度为<code>2x</code>，这意味着每个逻辑像素会显示在2x2的物理像素网格上。</p>
+<h2 id="imgui-坐标系统">2. ImGui 坐标系统</h2>
+<p><strong><a
+href="https://github.com/ocornut/imgui">ImGui</a></strong>是一个常用于图形界面的库，其坐标系统通常基于窗口的分辨率，默认情况下，ImGui的坐标是基于像素的。例如：</p>
+<ul>
+<li>X 轴范围：<code>[0, 窗口宽度]</code></li>
+<li>Y 轴范围：<code>[0, 窗口高度]</code></li>
+</ul>
+<p>与OpenGL的NDC坐标不同，ImGui的坐标系原点位于左上角，且单位为像素。因此，在处理ImGui坐标时，尤其是在高分辨率屏幕上，需要考虑像素密度。</p>
+<h2 id="视网膜屏幕上的像素密度">3. 视网膜屏幕上的像素密度</h2>
+<p>在视网膜屏幕上，通常会有一个<strong>缩放因子</strong>，也叫<strong>DPI缩放</strong>或<strong>像素比（Pixel
+Ratio）</strong>。例如，对于<code>2x</code>的视网膜屏幕，缩放因子为<code>2.0</code>。这意味着窗口的逻辑分辨率和物理分辨率之间存在比例差异。</p>
+<p>假设一个视网膜屏幕的物理分辨率为<code>2880x1800</code>，而其逻辑分辨率为<code>1440x900</code>，那么像素比为<code>2.0</code>。</p>
+<p>在这种情况下，OpenGL和ImGui需要正确处理这个像素比，以确保坐标和尺寸能够正确映射到物理像素上。</p>
+<h2 id="坐标转换方法">4. 坐标转换方法</h2>
+<h3 id="opengl坐标到imgui坐标">OpenGL坐标到ImGui坐标</h3>
+<p>假设你有OpenGL中的标准化设备坐标
+<code>(x_ndc, y_ndc)</code>，想将其转换为ImGui的窗口坐标
+<code>(x_imgui, y_imgui)</code>。可以按照以下步骤进行转换：</p>
+<ol type="1">
+<li>获取窗口的逻辑分辨率<code>(width_logical, height_logical)</code>和像素比<code>pixel_ratio</code>。</li>
+<li>使用如下公式进行转换：</li>
+</ol>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span></code></pre>
+<p>这里的<code>x_ndc</code>和<code>y_ndc</code>分别在<code>[-1, 1]</code>范围内，代表OpenGL的标准化设备坐标。通过这种转换，你可以得到对应的ImGui坐标。</p>
+<h3 id="imgui坐标到opengl坐标">ImGui坐标到OpenGL坐标</h3>
+<p>反过来，如果你想将ImGui坐标转换回OpenGL坐标，可以使用以下公式：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
+y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span></code></pre>
+<p>这将把ImGui的像素坐标映射回OpenGL的标准化设备坐标。</p>
+<h2 id="示例代码">5. 示例代码</h2>
+<p>以下是一个简单的代码片段，演示了如何在视网膜屏幕上进行OpenGL和ImGui坐标的转换：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 假设 pixel_ratio = 2.0f (视网膜屏幕)</span>
+<span class="token comment">// 假设窗口的逻辑分辨率为 1440x900</span>
+<span class="token keyword">float</span> width_logical <span class="token operator">=</span> <span class="token number">1440.0f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> height_logical <span class="token operator">=</span> <span class="token number">900.0f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> pixel_ratio <span class="token operator">=</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
+
+<span class="token comment">// OpenGL标准化设备坐标</span>
+<span class="token keyword">float</span> x_ndc <span class="token operator">=</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> y_ndc <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5f</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 转换为ImGui坐标</span>
+<span class="token keyword">float</span> x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+<span class="token keyword">float</span> y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ImGui坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+<span class="token comment">// 再将ImGui坐标转换回OpenGL坐标</span>
+x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
+y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
+
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"OpenGL坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></code></pre>
+<h2 id="总结">6. 总结</h2>
+<p>在高分辨率（如视网膜）屏幕上，处理OpenGL和ImGui坐标之间的转换需要考虑<strong>像素密度</strong>和<strong>坐标系统的不同</strong>。通过正确处理像素比和坐标转换，可以确保应用程序在高分辨率屏幕上正确显示。</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>OpenGL</tag>
+        <tag>ImGui</tag>
+        <tag>视网膜屏幕</tag>
+        <tag>坐标转换</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Total Commander使用</title>
     <url>/post/aada5c99.html</url>
     <content><![CDATA[<h1 id="total-commander使用教程及快捷键设置">Total
@@ -468,6 +556,44 @@ Commander强大的文件管理功能和自定义选项，可以显著提升Windo
       <tags>
         <tag>神器</tag>
         <tag>Total Commander</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git clone 速度慢？</title>
+    <url>/post/ec4bf4f5.html</url>
+    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
+<h2 id="方法1">方法1：</h2>
+<h3 id="查询ip地址">查询IP地址</h3>
+<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com"
+title="https://www.ipaddress.com">https://www.ipaddress.com</a>
+分别输入如下网址查看对应的IP地址</p>
+<span id="more"></span>
+<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
+或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
+<h3 id="修改hosts文件">修改hosts文件</h3>
+<p>得到对应的IP后，在hosts文件后追加如下两行
+Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
+Linux用户：<code>sudo gedit /etc/hosts</code>
+（xxx替换为你得到的对应的IP地址）</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
+xxx.xxx.xxx.xxx github.com</code></pre>
+<h3 id="刷新dns">刷新DNS</h3>
+<p>Windows用户：<code>ipconfig /flushdns</code>
+Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
+<h2 id="方法2">方法2：</h2>
+<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
+<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+        <tag>git</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
@@ -600,31 +726,6 @@ Commander的双窗格管理相结合，让你的日常文件操作更加高效�
       </tags>
   </entry>
   <entry>
-    <title>WordPress站点地图自动更新</title>
-    <url>/post/943451b1.html</url>
-    <content><![CDATA[<blockquote>
-<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
-</blockquote>
-<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
-<img src="https://files.ifish.ink/mics/baiduzhanzhang.png"
-alt="百度站长" /> <span id="more"></span> <img
-src="https://files.ifish.ink/mics/googlezhanzhang.png" alt="google" />
-现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
-<img src="https://files.ifish.ink/mics/2.png" alt="google" />
-在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>SEO</tag>
-        <tag>sitemap</tag>
-        <tag>wordpress</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WordPress插件更新出现Briefly unavailable for scheduled maintenance. Check back in a minute</title>
     <url>/post/563c2d.html</url>
     <content><![CDATA[<blockquote>
@@ -667,27 +768,18 @@ unavailable for scheduled maintenance. Check back in a minute.”</p>
       </tags>
   </entry>
   <entry>
-    <title>ubuntu 外接显示与内置显示切换</title>
-    <url>/post/83277084.html</url>
-    <content><![CDATA[<ul>
-<li>查看显示器设备名称
-在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
-LVDS-1 和 HDMI-1
-(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
-</ul>
-<span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
-<ul>
-<li><p>关闭外接显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off</code>
-(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>打开外接显示器，关闭内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>关闭外接显示器，打开内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-</ul>
+    <title>WordPress站点地图自动更新</title>
+    <url>/post/943451b1.html</url>
+    <content><![CDATA[<blockquote>
+<p>站点地图可以各个搜索引擎能够爬取到我们网站上页面。</p>
+</blockquote>
+<p>之前的方式是向google或者百度等搜索引擎的站长工具提交sitemap.xml或者其他静态文本文件
+<img src="https://files.ifish.ink/mics/baiduzhanzhang.png"
+alt="百度站长" /> <span id="more"></span> <img
+src="https://files.ifish.ink/mics/googlezhanzhang.png" alt="google" />
+现在的<strong>google-sitemap-generator</strong>插件采用非静态方式，如下图所示采用url传参的方式获取站点地图的.xml文件
+<img src="https://files.ifish.ink/mics/2.png" alt="google" />
+在百度站点或者谷歌站点配置时，只需要将此url设置好就可以了</p>
 <hr />
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
@@ -695,9 +787,108 @@ LVDS-1 和 HDMI-1
         <category>工具技能</category>
       </categories>
       <tags>
-        <tag>环境配置</tag>
-        <tag>ubuntu</tag>
-        <tag>方法</tag>
+        <tag>wordpress</tag>
+        <tag>SEO</tag>
+        <tag>sitemap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>macOS工具推荐--Quick Look源码高亮插件Syntax Highlight</title>
+    <url>/post/3108369d.html</url>
+    <content><![CDATA[<h2 id="macos原生quick-look的局限与动机">macOS原生Quick
+Look的局限与动机</h2>
+<p><code>Quick Look</code>是macOS上极为高效的文件预览工具，但其原生仅支持大多数常见文件的基础预览。对于开发者常用的文本和代码文件（如<code>.tex</code>、<code>.bib</code>、<code>.md</code>、<code>.py</code>、<code>.js</code>、<code>.cpp</code>等），<code>Quick Look</code>只会以纯文本方式显示，缺乏语法高亮，部分文件（如<code>.tex</code>、<code>.bib</code>）甚至可能无法正常预览，显示为空白或乱码。这极大影响了查阅和阅读体验。</p>
+<p>为了解决这些局限，推荐使用<code>Syntax Highlight</code>插件，让<code>Quick Look</code>支持源码高亮和更多文本格式的友好预览。</p>
+<h2 id="为什么需要quick-look源码高亮">为什么需要Quick
+Look源码高亮？</h2>
+<ul>
+<li>快速预览代码文件，无需打开编辑器</li>
+<li>支持多种主流编程语言</li>
+<li>代码高亮更易阅读和查错</li>
+<li>提升macOS办公与开发效率</li>
+</ul>
+<h2 id="推荐插件syntax-highlight">推荐插件：Syntax Highlight</h2>
+<p><a href="https://github.com/sbarex/SourceCodeSyntaxHighlight">Syntax
+Highlight</a>是一款开源的<code>Quick Look</code>插件，支持数十种编程语言的高亮显示，界面美观，安装简单。</p>
+<h3 id="主要特性">主要特性</h3>
+<ul>
+<li>支持常见代码文件（Python、C/C++、Java、JS、Markdown、LaTeX等）</li>
+<li>多种高亮主题可选</li>
+<li>支持大文件、长行自动换行</li>
+<li>支持自定义字体和字号</li>
+<li>兼容Apple Silicon和Intel Mac</li>
+</ul>
+<h2 id="安装方法">安装方法</h2>
+<ol type="1">
+<li>前往<a
+href="https://github.com/sbarex/SourceCodeSyntaxHighlight/releases">GitHub
+Releases</a>下载最新版<code>QLSyntaxHighlight.qlgenerator</code></li>
+<li>解压后，将<code>QLSyntaxHighlight.qlgenerator</code>拖入<code>~/Library/QuickLook/</code>目录（如没有该目录可手动创建）</li>
+<li>在终端执行： <pre class="language-bash" data-language="bash"><code class="language-bash">qlmanage <span class="token parameter variable">-r</span>
+qlmanage <span class="token parameter variable">-r</span> cache</code></pre>
+以刷新<code>Quick Look</code>插件缓存</li>
+<li>选中任意代码文件，按空格即可预览高亮效果</li>
+</ol>
+<h2 id="命令行一键安装">命令行一键安装</h2>
+<p>你也可以直接通过Homebrew安装<code>Syntax Highlight</code>插件，无需手动下载和拖拽：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> --no-quarantine syntax-highlight</code></pre>
+<p>安装完成后，执行：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">qlmanage <span class="token parameter variable">-r</span>
+qlmanage <span class="token parameter variable">-r</span> cache</code></pre>
+<p>即可立即体验高亮预览。</p>
+<h2 id="插件设置与自定义">插件设置与自定义</h2>
+<p>安装好<code>Syntax Highlight</code>后，建议首次启动主程序（<code>Syntax Highlight.app</code>），以便系统识别并激活<code>Quick Look</code>扩展。你可以在“系统设置-扩展-Quick
+Look”中管理插件启用状态。</p>
+<p>插件支持丰富的自定义设置：</p>
+<ul>
+<li><strong>高亮主题</strong>：可在设置中选择不同的配色方案，适配浅色/深色模式，也可自定义主题。</li>
+<li><strong>字体与字号</strong>：可自定义代码预览的字体和字号，满足不同阅读习惯。</li>
+<li><strong>自动换行</strong>：支持长行自动换行，适合大文件或单行代码较长的场景。</li>
+<li><strong>显示行号</strong>：可选择是否显示代码行号。</li>
+<li><strong>VCS
+支持</strong>：可高亮显示与<code>Git</code>/<code>Mercurial</code>版本控制相关的变更行。</li>
+<li><strong>自定义
+CSS</strong>：如选择HTML渲染引擎，可通过自定义CSS进一步美化高亮效果。</li>
+<li><strong>数据限制</strong>：可设置最大预览数据量，超出部分自动截断。</li>
+</ul>
+<p>所有设置均可在主程序的“设置”窗口中调整，部分高级选项需在“高级设置”中开启。</p>
+<blockquote>
+<p>⚠️ 注意：部分系统保留格式（如 .ts、.html、.json
+等）受macOS限制，第三方插件无法接管预览。</p>
+</blockquote>
+<h2 id="常见问题">常见问题</h2>
+<ul>
+<li><strong>插件无效？</strong>
+<ul>
+<li>检查插件是否放在 <code>~/Library/QuickLook/</code> 下</li>
+<li>确认已执行 <code>qlmanage -r</code> 刷新缓存</li>
+<li>某些新版macOS需在“系统设置-隐私与安全性”中允许插件</li>
+</ul></li>
+</ul>
+<h2 id="其他推荐-quick-look-插件">其他推荐 Quick Look 插件</h2>
+<ul>
+<li><a
+href="https://github.com/toland/qlmarkdown">QLMarkdown</a>：Markdown文件预览</li>
+<li><a
+href="https://github.com/Nyx0uf/qlImageSize">QLImageSize</a>：图片尺寸信息预览</li>
+<li><a
+href="https://github.com/Marginal/QLVideo">QLVideo</a>：视频格式预览</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>有了<code>Syntax Highlight</code>，macOS下的<code>Quick Look</code>预览代码体验大幅提升。推荐开发者和经常查阅代码的用户安装体验。</p>
+<hr />
+<p>如有问题欢迎评论区交流，或访问插件<a
+href="https://github.com/sbarex/SourceCodeSyntaxHighlight">GitHub
+项目页</a>获取更多信息。</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>Quick Look</tag>
+        <tag>源码高亮</tag>
+        <tag>Syntax Highlight</tag>
       </tags>
   </entry>
   <entry>
@@ -858,152 +1049,37 @@ href="https://files.ifish.ink/mics/Implementation_of_Tridiag_Matrix_Inversion_Al
       </tags>
   </entry>
   <entry>
-    <title>三对角矩阵的类雅可比迭代程序</title>
-    <url>/post/f9428d51.html</url>
-    <content><![CDATA[<h2
-id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
+    <title>ubuntu 外接显示与内置显示切换</title>
+    <url>/post/83277084.html</url>
+    <content><![CDATA[<ul>
+<li>查看显示器设备名称
+在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
+LVDS-1 和 HDMI-1
+(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
+</ul>
 <span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
 <ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
-% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
-% init_X：初始值
-% coefficient_mat：系数矩阵
-% b_mat：b
-% maxNum：最大迭代次数
-% epsilon：精度
-output_args &#x3D; [];
-flag &#x3D; 0;
-
-%% 预处理 检查用户调用函数时参数格式是否传错
-if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
-    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
-    return;
-end
-if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
-    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
-    return;
-end
-if size(b_mat,1) &#x3D;&#x3D; 1
-    b_mat &#x3D; b_mat&#39;;
-end
-if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
-    disp(&#39;初始值必须为行向量或者列向量&#39;);
-    return;
-end
-if size(init_X,1) &#x3D;&#x3D; 1
-    init_X &#x3D; init_X&#39;;
-end
-if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
-    disp(&#39;初始值与系数矩阵维数不一致&#39;);
-    return;
-end
-if size(init_X,1) ~&#x3D; size(b_mat,1)
-    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
-    return;
-end
-if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
-    maxNum &#x3D; 500; % 默认值
-end
-if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
-    epsilon &#x3D; 1e-14; % 默认值
-end
-
-%% 三对角线
-a &#x3D; diag(coefficient_mat,-1)&#39;;
-b &#x3D; diag(coefficient_mat)&#39;;
-c &#x3D; diag(coefficient_mat,1)&#39;;
-D &#x3D; diag(a,-1)+diag(b)+diag(c,1);
-
-% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
-[~,D_inv] &#x3D; cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
-if isempty(D_inv)
-    disp(&#39;系数矩阵不可逆&#39;);
-    return;
-end
-%% 开始迭代
-% 下面代码段也行 但是对内存的消耗比较大 
-% x(:,0) &#x3D; init_X;
-% for k &#x3D; 1:maxNum
-%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
-%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
-%         flag &#x3D; 1;
-%         break;
-%     end
-% end
-x &#x3D; init_X;
-%%
-% 迭代公式：
-% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
-% 
-for k &#x3D; 1:maxNum
-    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
-    if norm(temp-x) &lt; epsilon
-        flag &#x3D; 1;
-        x &#x3D; temp;
-        break;
-    end
-    x &#x3D; temp;
-end
-
-
-%% 结果
-text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
-% 正则表达式
-str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
-    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
-mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
-my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
-    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
-mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
-str5 &#x3D; &#39;\times X&#x3D;&#39;;
-% LaTex 输出
-text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
-    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
-    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
-    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
-text(0,0.5,&#39;三对角类雅可比迭代的结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
-if flag &#x3D;&#x3D; 1  %好的结果
-    output_args.itrNum &#x3D; k;
-    output_args.result &#x3D; x;
-    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
-%     disp(x(:,k));
-    disp(&#39;解：&#39;);
-    disp(x);
-    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
-        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
-        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
-    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-    return;
-end
-text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
-    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
-fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
-end</code></pre>
-<ul>
-<li>测试程序</li>
-</ul>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
-b_mat &#x3D; [-1 -5 2 -1];
-init_X &#x3D; zeros(size(b_mat));
-out_QuasiJacobi &#x3D; cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
-<ul>
-<li>文档 <a
-href="https://files.ifish.ink/mics/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
+<li><p>关闭外接显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off</code>
+(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>打开外接显示器，关闭内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>关闭外接显示器，打开内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
 </ul>
 <hr />
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
-        <category>学习/研究</category>
+        <category>工具技能</category>
       </categories>
       <tags>
-        <tag>MATLAB代码</tag>
-        <tag>算法实现</tag>
-        <tag>代数</tag>
+        <tag>环境配置</tag>
+        <tag>ubuntu</tag>
+        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -1151,30 +1227,152 @@ alt="角部顶点绘制（型值点处为G^1连续，其他点C^2连续）" /></
       </tags>
   </entry>
   <entry>
-    <title>从复平面上域的多项式函数生成调和函数</title>
-    <url>/post/harmonic.html</url>
-    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
-class="math inline">\(z=x+yi\)</span>的多项式函数<span
-class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
-class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
-class="math inline">\((x,y)\)</span>的二元调和函数。</p>
-<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-[x,y] &#x3D; meshgrid(linspace(-1,1,100));
-p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
-z &#x3D; real(p(x,y));
-surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
-axis off;</code></pre></p>
-<p><img src="https://files.ifish.ink/mics/har.gif" /></p>
+    <title>三对角矩阵的类雅可比迭代程序</title>
+    <url>/post/f9428d51.html</url>
+    <content><![CDATA[<h2
+id="三对角矩阵的类雅可比迭代算法解线性方程组">三对角矩阵的类雅可比迭代算法解线性方程组</h2>
+<span id="more"></span>
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ output_args ] &#x3D; cqj_QuasiJacobi(init_X,coefficient_mat,b_mat,maxNum,epsilon)
+% 类雅可比迭代法 只不过对角矩阵D由三对角矩阵代替
+% init_X：初始值
+% coefficient_mat：系数矩阵
+% b_mat：b
+% maxNum：最大迭代次数
+% epsilon：精度
+output_args &#x3D; [];
+flag &#x3D; 0;
+
+%% 预处理 检查用户调用函数时参数格式是否传错
+if size(coefficient_mat,1) ~&#x3D; size(coefficient_mat,2)
+    disp(&#39;系数矩阵格式错误(需要方阵)&#39;);
+    return;
+end
+if size(b_mat,1) ~&#x3D; 1 &amp;&amp; size(b_mat,2) ~&#x3D; 1
+    disp(&#39;AX&#x3D;b中的b必须为行向量或者列向量&#39;);
+    return;
+end
+if size(b_mat,1) &#x3D;&#x3D; 1
+    b_mat &#x3D; b_mat&#39;;
+end
+if size(init_X,1) ~&#x3D; 1 &amp;&amp; size(init_X,2) ~&#x3D; 1
+    disp(&#39;初始值必须为行向量或者列向量&#39;);
+    return;
+end
+if size(init_X,1) &#x3D;&#x3D; 1
+    init_X &#x3D; init_X&#39;;
+end
+if size(init_X,1) ~&#x3D; size(coefficient_mat,1)
+    disp(&#39;初始值与系数矩阵维数不一致&#39;);
+    return;
+end
+if size(init_X,1) ~&#x3D; size(b_mat,1)
+    disp(&#39;AX&#x3D;b中的b向量维数错误(需与系数矩阵的维数一致&#39;);
+    return;
+end
+if ~exist(&#39;maxNum&#39;, &#39;var&#39;)
+    maxNum &#x3D; 500; % 默认值
+end
+if ~exist(&#39;epsilon&#39;, &#39;var&#39;)
+    epsilon &#x3D; 1e-14; % 默认值
+end
+
+%% 三对角线
+a &#x3D; diag(coefficient_mat,-1)&#39;;
+b &#x3D; diag(coefficient_mat)&#39;;
+c &#x3D; diag(coefficient_mat,1)&#39;;
+D &#x3D; diag(a,-1)+diag(b)+diag(c,1);
+
+% 采用冉瑞生等人《三对角矩阵求逆的算法》中的算法
+[~,D_inv] &#x3D; cqj_InverseMatrixOfTridiagonalMatrices(a,b,c);
+if isempty(D_inv)
+    disp(&#39;系数矩阵不可逆&#39;);
+    return;
+end
+%% 开始迭代
+% 下面代码段也行 但是对内存的消耗比较大 
+% x(:,0) &#x3D; init_X;
+% for k &#x3D; 1:maxNum
+%     x(:,k) &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x(:,k-1));
+%     if norm(x(:,k)-x(:,k-1)) &lt; epsilon  % 达到精度
+%         flag &#x3D; 1;
+%         break;
+%     end
+% end
+x &#x3D; init_X;
+%%
+% 迭代公式：
+% $$x_&#123;k+1&#125;&#x3D;D^&#123;-1&#125;(b-(L+U)x_k),k&#x3D;0,1,2,\cdots$
+% 
+for k &#x3D; 1:maxNum
+    temp &#x3D; D_inv*(b_mat-(coefficient_mat-D)*x);
+    if norm(temp-x) &lt; epsilon
+        flag &#x3D; 1;
+        x &#x3D; temp;
+        break;
+    end
+    x &#x3D; temp;
+end
+
+
+%% 结果
+text(0,0.95,&#39;方程：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+str1 &#x3D; &#39;\left[\begin&#123;array&#125;&#39;;
+% 正则表达式
+str2 &#x3D; @(X) regexprep(regexprep(mat2str(zeros(1,size(X,2))),...
+    &#39;[\s\[\]]&#39;,&#39;&#39;),&#39;0&#39;,&#39;c&#39;); 
+mat_start &#x3D; @(X) [str1 &#39;&#123;&#39; str2(X) &#39;&#125;&#39;];
+my_mat2str &#x3D; @(mat) regexprep(regexprep(regexprep(mat2str(mat),...
+    &#39; *&#39;,&#39;&amp;&#39;),&#39;;&#39;,&#39;\\\&#39;),&#39;[\[\]]&#39;,&#39;&#39;);
+mat_end &#x3D; &#39;\end&#123;array&#125;\right]&#39;;
+str5 &#x3D; &#39;\times X&#x3D;&#39;;
+% LaTex 输出
+text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$&#39;...
+    mat_start(coefficient_mat),my_mat2str(coefficient_mat),mat_end,...
+    str5,mat_start(b_mat),my_mat2str(b_mat),mat_end &#39;$$&#39;],...
+    &#39;Position&#39;,[0.1 0.7],&#39;FontSize&#39;,10);
+text(0,0.5,&#39;三对角类雅可比迭代的结果：&#39;,&#39;Color&#39;,&#39;red&#39;,&#39;FontSize&#39;,14);
+if flag &#x3D;&#x3D; 1  %好的结果
+    output_args.itrNum &#x3D; k;
+    output_args.result &#x3D; x;
+    fprintf(&#39;迭代次数：%d\n&#39;,output_args.itrNum);
+%     disp(x(:,k));
+    disp(&#39;解：&#39;);
+    disp(x);
+    text(&#39;Interpreter&#39;,&#39;latex&#39;, &#39;String&#39;,[&#39;$$X^*&#x3D;&#39; ...
+        mat_start(x) my_mat2str(x) mat_end &#39;$$&#39;],...
+        &#39;Position&#39;,[0.1 0.3],&#39;FontSize&#39;,10);
+    text(0.1,0.1,[&#39;迭代次数：&#39; num2str(output_args.itrNum)],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+    return;
+end
+text(0.1,0.3,[&#39;迭代&#39; num2str(maxNum) &#39;次后未收敛&#39;],...
+    &#39;Color&#39;,&#39;k&#39;,&#39;FontSize&#39;,10);
+fprintf(&#39;迭代%d次后暂未收敛\n&#39;,maxNum);
+end</code></pre>
+<ul>
+<li>测试程序</li>
+</ul>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">xishu_mat &#x3D; [20 8 -5 -5;7 9 -2 -10;-5 -1 9 -1;-7 1 -9 10];
+b_mat &#x3D; [-1 -5 2 -1];
+init_X &#x3D; zeros(size(b_mat));
+out_QuasiJacobi &#x3D; cqj_QuasiJacobi(init_X,xishu_mat,b_mat,1000);</code></pre>
+<ul>
+<li>文档 <a
+href="https://files.ifish.ink/mics/Jacobianlike_Iterators_Tri_Matrices.pdf">三对角矩阵的类雅可比迭代程序.pdf</a></li>
+</ul>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
       <categories>
         <category>学习/研究</category>
       </categories>
       <tags>
         <tag>MATLAB代码</tag>
-        <tag>曲线曲面</tag>
-        <tag>调和函数</tag>
-        <tag>极小曲面</tag>
+        <tag>算法实现</tag>
+        <tag>代数</tag>
       </tags>
   </entry>
   <entry>
@@ -1512,111 +1710,30 @@ Pages，搭建一个免费的静态博客非常简单且高效。希望本教程
       </tags>
   </entry>
   <entry>
-    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
-    <url>/post/pm2-nodejs-macos.html</url>
-    <content><![CDATA[<p>在本地开发或部署轻量级应用时，我们常常需要在Mac
-mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用<strong>PM2</strong>来实现开机自启动。</p>
-<h2 id="安装pm2">1. 安装PM2</h2>
-<p>如果还没安装过PM2，可以通过npm全局安装：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> pm2</code></pre>
-<p>检查是否安装成功：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 <span class="token parameter variable">-v</span></code></pre>
-<h2 id="启动node.js服务">2. 启动Node.js服务</h2>
-<p>进入你的Node.js项目目录，使用PM2启动你的服务。例如，如果你的入口文件是<code>app.js</code>：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
-<blockquote>
-<p><code>--name</code>参数可以为你的进程指定一个易于识别的名称。</p>
-</blockquote>
-<p>如果你不想进入项目目录，也可以直接指定完整路径：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start /path/to/your/app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
-<h2 id="配置pm2开机自启动">3. 配置PM2开机自启动</h2>
-<p>PM2提供了一个方便的命令来生成开机自启动脚本。运行以下命令：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 startup</code></pre>
-<p>这条命令会输出一条类似下面的命令：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/bin pm2 startup launchd <span class="token parameter variable">-u</span> your-username <span class="token parameter variable">--hp</span> /Users/your-username</code></pre>
-<p>复制并执行这条命令。它会将PM2配置为在系统启动时自动运行。</p>
-<h2 id="保存当前进程列表">4. 保存当前进程列表</h2>
-<p>为了确保在系统重启后，PM2能够重新启动你当前运行的Node.js服务，需要保存当前的进程列表：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 save</code></pre>
-<h2 id="验证配置">5. 验证配置</h2>
-<p>你可以通过重启你的Mac来验证配置是否成功。重启后，使用以下命令查看PM2的进程列表：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 list</code></pre>
-<p>如果看到你的Node.js服务正在运行，说明配置成功。</p>
-<p>或者查看日志：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 logs my-node-app</code></pre>
-<h2 id="管理pm2进程">6. 管理PM2进程</h2>
-<p>你可以使用以下命令来管理你的PM2进程：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 stop my-node-app   <span class="token comment"># 停止服务</span>
-pm2 restart my-node-app <span class="token comment"># 重启服务</span>
-pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code></pre>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>PM2</tag>
-        <tag>Node.js</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
-    <url>/post/d033f67a.html</url>
-    <content><![CDATA[<h4
-id="c实现二维多边形均值重心坐标代码可能有冗余未优化代码">c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
-<blockquote>
-<p>关于三维中均值重心坐标的实现可参考我的另一篇博客：<a
-href="https://www.ifish.ink/post/4d3c170c.html"
-title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
-Value Coordinates In 3D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 2D
-/// @details    
-/// @param[in]  p,postiveity
-/// @return     
-/// @attention  
-*/</span>
-VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
-        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
-        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
-        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+    <title>从复平面上域的多项式函数生成调和函数</title>
+    <url>/post/harmonic.html</url>
+    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
+class="math inline">\(z=x+yi\)</span>的多项式函数<span
+class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
+class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
+class="math inline">\((x,y)\)</span>的二元调和函数。</p>
+<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+[x,y] &#x3D; meshgrid(linspace(-1,1,100));
+p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
+z &#x3D; real(p(x,y));
+surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
+axis off;</code></pre></p>
+<p><img src="https://files.ifish.ink/mics/har.gif" /></p>
 ]]></content>
       <categories>
         <category>学习/研究</category>
       </categories>
       <tags>
-        <tag>算法实现</tag>
-        <tag>均值重心坐标</tag>
-        <tag>几何处理</tag>
-        <tag>C++代码</tag>
+        <tag>MATLAB代码</tag>
+        <tag>曲线曲面</tag>
+        <tag>调和函数</tag>
+        <tag>极小曲面</tag>
       </tags>
   </entry>
   <entry>
@@ -1939,6 +2056,114 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
       </tags>
   </entry>
   <entry>
+    <title>在macOS上用PM2实现Node.js服务开机自启动</title>
+    <url>/post/pm2-nodejs-macos.html</url>
+    <content><![CDATA[<p>在本地开发或部署轻量级应用时，我们常常需要在Mac
+mini或其他macOS设备上，让一个Node.js服务（例如Express或WebSocket服务）在系统开机后自动启动并常驻后台。本文介绍如何使用<strong>PM2</strong>来实现开机自启动。</p>
+<h2 id="安装pm2">1. 安装PM2</h2>
+<p>如果还没安装过PM2，可以通过npm全局安装：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> pm2</code></pre>
+<p>检查是否安装成功：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 <span class="token parameter variable">-v</span></code></pre>
+<h2 id="启动node.js服务">2. 启动Node.js服务</h2>
+<p>进入你的Node.js项目目录，使用PM2启动你的服务。例如，如果你的入口文件是<code>app.js</code>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<blockquote>
+<p><code>--name</code>参数可以为你的进程指定一个易于识别的名称。</p>
+</blockquote>
+<p>如果你不想进入项目目录，也可以直接指定完整路径：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 start /path/to/your/app.js <span class="token parameter variable">--name</span> my-node-app</code></pre>
+<h2 id="配置pm2开机自启动">3. 配置PM2开机自启动</h2>
+<p>PM2提供了一个方便的命令来生成开机自启动脚本。运行以下命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 startup</code></pre>
+<p>这条命令会输出一条类似下面的命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">env</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/bin pm2 startup launchd <span class="token parameter variable">-u</span> your-username <span class="token parameter variable">--hp</span> /Users/your-username</code></pre>
+<p>复制并执行这条命令。它会将PM2配置为在系统启动时自动运行。</p>
+<h2 id="保存当前进程列表">4. 保存当前进程列表</h2>
+<p>为了确保在系统重启后，PM2能够重新启动你当前运行的Node.js服务，需要保存当前的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 save</code></pre>
+<h2 id="验证配置">5. 验证配置</h2>
+<p>你可以通过重启你的Mac来验证配置是否成功。重启后，使用以下命令查看PM2的进程列表：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 list</code></pre>
+<p>如果看到你的Node.js服务正在运行，说明配置成功。</p>
+<p>或者查看日志：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 logs my-node-app</code></pre>
+<h2 id="管理pm2进程">6. 管理PM2进程</h2>
+<p>你可以使用以下命令来管理你的PM2进程：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">pm2 stop my-node-app   <span class="token comment"># 停止服务</span>
+pm2 restart my-node-app <span class="token comment"># 重启服务</span>
+pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code></pre>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>PM2</tag>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
+    <url>/post/d033f67a.html</url>
+    <content><![CDATA[<h4
+id="c实现二维多边形均值重心坐标代码可能有冗余未优化代码">c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
+<blockquote>
+<p>关于三维中均值重心坐标的实现可参考我的另一篇博客：<a
+href="https://www.ifish.ink/post/4d3c170c.html"
+title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
+Value Coordinates In 3D代码实现</a></p>
+</blockquote>
+<span id="more"></span>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 2D
+/// @details    
+/// @param[in]  p,postiveity
+/// @return     
+/// @attention  
+*/</span>
+VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
+        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
+        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
+        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>算法实现</tag>
+        <tag>均值重心坐标</tag>
+        <tag>几何处理</tag>
+        <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>均值重心坐标Mean Value Coordinates In 3D代码实现</title>
     <url>/post/4d3c170c.html</url>
     <content><![CDATA[<h4 id="c实现">c++实现：</h4>
@@ -2020,6 +2245,108 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
         <tag>均值重心坐标</tag>
         <tag>几何处理</tag>
         <tag>C++代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span
+class="math inline">\(\mathbb{R}^n\)</span>中的<span
+class="math inline">\(m\)</span>个样本点为<span
+class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
+class="math inline">\(m\)</span>个样本嵌入到低维空间<span
+class="math inline">\(\mathbb{R}^{d}\)</span>，<span
+class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img
+src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
+alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
+class="math inline">\(i\)</span>行第<span
+class="math inline">\(j\)</span>列元素为<span
+class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
+class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
+class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
+class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
+class="math inline">\(k\)</span>个非零特征值，分别为<span
+class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
+class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
+class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
+class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
+class="math inline">\({ V}\)</span>的第<span
+class="math inline">\(i\)</span>列是特征值<span
+class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
+class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
+class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span
+class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
+class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br />
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
+class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
+class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
+class="math inline">\(V_*\)</span>。即<span
+class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
+class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
+class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>几何处理</tag>
+        <tag>曲面参数化</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -2181,44 +2508,6 @@ src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5
         <tag>算法实现</tag>
         <tag>几何处理</tag>
         <tag>极大似然坐标</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git clone 速度慢？</title>
-    <url>/post/ec4bf4f5.html</url>
-    <content><![CDATA[<p><code>$ git clone https://xxxx</code> 克隆速度慢的解决方法：</p>
-<h2 id="方法1">方法1：</h2>
-<h3 id="查询ip地址">查询IP地址</h3>
-<p>进入域名IP地址查看工具： <a href="https://www.ipaddress.com"
-title="https://www.ipaddress.com">https://www.ipaddress.com</a>
-分别输入如下网址查看对应的IP地址</p>
-<span id="more"></span>
-<p><code>github.global.ssl.fastly.net</code> <code>github.com</code>
-或者分别通过命令<code>$ nslookup github.global.ssl.fastly.Net</code>和<code>$ nslookup github.com</code>也可获得对应的IP地址</p>
-<h3 id="修改hosts文件">修改hosts文件</h3>
-<p>得到对应的IP后，在hosts文件后追加如下两行
-Windows用户hosts文件所在路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>
-Linux用户：<code>sudo gedit /etc/hosts</code>
-（xxx替换为你得到的对应的IP地址）</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">xxx.xxx.xxx.xxx github.global-ssl.fastly.net
-xxx.xxx.xxx.xxx github.com</code></pre>
-<h3 id="刷新dns">刷新DNS</h3>
-<p>Windows用户：<code>ipconfig /flushdns</code>
-Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
-<h2 id="方法2">方法2：</h2>
-<p>如果你使用了代理，可直接在克隆前使用如下命令</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy <span class="token string">'sock5://127.0.0.1:1080'</span>
-<span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy <span class="token string">'sock5://127.0.0.1:1080'</span></code></pre>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>github</tag>
-        <tag>环境配置</tag>
       </tags>
   </entry>
   <entry>
@@ -2432,108 +2721,6 @@ Actions中的构建过程。</p>
       </tags>
   </entry>
   <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span
-class="math inline">\(\mathbb{R}^n\)</span>中的<span
-class="math inline">\(m\)</span>个样本点为<span
-class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
-class="math inline">\(m\)</span>个样本嵌入到低维空间<span
-class="math inline">\(\mathbb{R}^{d}\)</span>，<span
-class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img
-src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
-alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
-class="math inline">\(i\)</span>行第<span
-class="math inline">\(j\)</span>列元素为<span
-class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
-class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
-class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
-class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
-class="math inline">\(k\)</span>个非零特征值，分别为<span
-class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
-class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
-class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
-class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
-class="math inline">\({ V}\)</span>的第<span
-class="math inline">\(i\)</span>列是特征值<span
-class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
-class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
-class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span
-class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
-class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br />
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
-class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
-class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
-class="math inline">\(V_*\)</span>。即<span
-class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
-class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
-class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>学习/研究</category>
-      </categories>
-      <tags>
-        <tag>几何处理</tag>
-        <tag>曲面参数化</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>标准雅可比迭代算法-实现</title>
     <url>/post/5d0495ae.html</url>
     <content><![CDATA[<h3
@@ -2669,282 +2856,6 @@ href="https://files.ifish.ink/mics/Standard_Jacobian_Iterative_Algorithm_Procedu
         <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
         <tag>代数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>macOS工具推荐--Quick Look源码高亮插件Syntax Highlight</title>
-    <url>/post/3108369d.html</url>
-    <content><![CDATA[<h2 id="macos原生quick-look的局限与动机">macOS原生Quick
-Look的局限与动机</h2>
-<p><code>Quick Look</code>是macOS上极为高效的文件预览工具，但其原生仅支持大多数常见文件的基础预览。对于开发者常用的文本和代码文件（如<code>.tex</code>、<code>.bib</code>、<code>.md</code>、<code>.py</code>、<code>.js</code>、<code>.cpp</code>等），<code>Quick Look</code>只会以纯文本方式显示，缺乏语法高亮，部分文件（如<code>.tex</code>、<code>.bib</code>）甚至可能无法正常预览，显示为空白或乱码。这极大影响了查阅和阅读体验。</p>
-<p>为了解决这些局限，推荐使用<code>Syntax Highlight</code>插件，让<code>Quick Look</code>支持源码高亮和更多文本格式的友好预览。</p>
-<h2 id="为什么需要quick-look源码高亮">为什么需要Quick
-Look源码高亮？</h2>
-<ul>
-<li>快速预览代码文件，无需打开编辑器</li>
-<li>支持多种主流编程语言</li>
-<li>代码高亮更易阅读和查错</li>
-<li>提升macOS办公与开发效率</li>
-</ul>
-<h2 id="推荐插件syntax-highlight">推荐插件：Syntax Highlight</h2>
-<p><a href="https://github.com/sbarex/SourceCodeSyntaxHighlight">Syntax
-Highlight</a>是一款开源的<code>Quick Look</code>插件，支持数十种编程语言的高亮显示，界面美观，安装简单。</p>
-<h3 id="主要特性">主要特性</h3>
-<ul>
-<li>支持常见代码文件（Python、C/C++、Java、JS、Markdown、LaTeX等）</li>
-<li>多种高亮主题可选</li>
-<li>支持大文件、长行自动换行</li>
-<li>支持自定义字体和字号</li>
-<li>兼容Apple Silicon和Intel Mac</li>
-</ul>
-<h2 id="安装方法">安装方法</h2>
-<ol type="1">
-<li>前往<a
-href="https://github.com/sbarex/SourceCodeSyntaxHighlight/releases">GitHub
-Releases</a>下载最新版<code>QLSyntaxHighlight.qlgenerator</code></li>
-<li>解压后，将<code>QLSyntaxHighlight.qlgenerator</code>拖入<code>~/Library/QuickLook/</code>目录（如没有该目录可手动创建）</li>
-<li>在终端执行： <pre class="language-bash" data-language="bash"><code class="language-bash">qlmanage <span class="token parameter variable">-r</span>
-qlmanage <span class="token parameter variable">-r</span> cache</code></pre>
-以刷新<code>Quick Look</code>插件缓存</li>
-<li>选中任意代码文件，按空格即可预览高亮效果</li>
-</ol>
-<h2 id="命令行一键安装">命令行一键安装</h2>
-<p>你也可以直接通过Homebrew安装<code>Syntax Highlight</code>插件，无需手动下载和拖拽：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> --no-quarantine syntax-highlight</code></pre>
-<p>安装完成后，执行：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">qlmanage <span class="token parameter variable">-r</span>
-qlmanage <span class="token parameter variable">-r</span> cache</code></pre>
-<p>即可立即体验高亮预览。</p>
-<h2 id="插件设置与自定义">插件设置与自定义</h2>
-<p>安装好<code>Syntax Highlight</code>后，建议首次启动主程序（<code>Syntax Highlight.app</code>），以便系统识别并激活<code>Quick Look</code>扩展。你可以在“系统设置-扩展-Quick
-Look”中管理插件启用状态。</p>
-<p>插件支持丰富的自定义设置：</p>
-<ul>
-<li><strong>高亮主题</strong>：可在设置中选择不同的配色方案，适配浅色/深色模式，也可自定义主题。</li>
-<li><strong>字体与字号</strong>：可自定义代码预览的字体和字号，满足不同阅读习惯。</li>
-<li><strong>自动换行</strong>：支持长行自动换行，适合大文件或单行代码较长的场景。</li>
-<li><strong>显示行号</strong>：可选择是否显示代码行号。</li>
-<li><strong>VCS
-支持</strong>：可高亮显示与<code>Git</code>/<code>Mercurial</code>版本控制相关的变更行。</li>
-<li><strong>自定义
-CSS</strong>：如选择HTML渲染引擎，可通过自定义CSS进一步美化高亮效果。</li>
-<li><strong>数据限制</strong>：可设置最大预览数据量，超出部分自动截断。</li>
-</ul>
-<p>所有设置均可在主程序的“设置”窗口中调整，部分高级选项需在“高级设置”中开启。</p>
-<blockquote>
-<p>⚠️ 注意：部分系统保留格式（如 .ts、.html、.json
-等）受macOS限制，第三方插件无法接管预览。</p>
-</blockquote>
-<h2 id="常见问题">常见问题</h2>
-<ul>
-<li><strong>插件无效？</strong>
-<ul>
-<li>检查插件是否放在 <code>~/Library/QuickLook/</code> 下</li>
-<li>确认已执行 <code>qlmanage -r</code> 刷新缓存</li>
-<li>某些新版macOS需在“系统设置-隐私与安全性”中允许插件</li>
-</ul></li>
-</ul>
-<h2 id="其他推荐-quick-look-插件">其他推荐 Quick Look 插件</h2>
-<ul>
-<li><a
-href="https://github.com/toland/qlmarkdown">QLMarkdown</a>：Markdown文件预览</li>
-<li><a
-href="https://github.com/Nyx0uf/qlImageSize">QLImageSize</a>：图片尺寸信息预览</li>
-<li><a
-href="https://github.com/Marginal/QLVideo">QLVideo</a>：视频格式预览</li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>有了<code>Syntax Highlight</code>，macOS下的<code>Quick Look</code>预览代码体验大幅提升。推荐开发者和经常查阅代码的用户安装体验。</p>
-<hr />
-<p>如有问题欢迎评论区交流，或访问插件<a
-href="https://github.com/sbarex/SourceCodeSyntaxHighlight">GitHub
-项目页</a>获取更多信息。</p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>Quick Look</tag>
-        <tag>源码高亮</tag>
-        <tag>Syntax Highlight</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
-uBlock Origin</p>
-</blockquote>
-<h3
-id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
-<span id="more"></span>
-<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
-<p><img src="https://files.ifish.ink/mics/uo.png"
-alt="uBlock Origin Logo" /> uBlock
-Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
-Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
-Origin的目标是为用户提供自行实施内容过滤的选择。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
-截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
-Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
-<hr />
-<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
-Origin插件</h3>
-<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
-<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
-<blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
-store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
-</blockquote>
-<ol type="1">
-<li><a
-href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
-<img src="https://files.ifish.ink/mics/uo5.png" /> <img
-src="https://files.ifish.ink/mics/uo2.png" /></li>
-</ol>
-<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
-<ol type="1">
-<li><p>从百度云盘<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
-Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
-href="chrome://extensions/">chrome://extensions/</a>
-后回车，可以看到类似下图页面 <img
-src="https://files.ifish.ink/mics/1.png"
-alt="chrome://extensions" /></p></li>
-<li><p>将第1步中下载的<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
-href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
-<img src="https://files.ifish.ink/mics/uo2.png" /> <img
-src="https://files.ifish.ink/mics/uo3.png" /></p></li>
-<li><p>在Chrome右上角点击uBlock
-Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
-<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
-</ol>
-<hr />
-<h3 id="三测试">三、测试</h3>
-<ul>
-<li><p>未启用uBlock
-Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(可以看到靠前的内容几乎都是广告) <img
-src="https://files.ifish.ink/mics/uo6.png" /></p></li>
-<li><p>启用uBlock
-Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(广告明显减少) <img
-src="https://files.ifish.ink/mics/uo7.png" /></p></li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
-src="https://files.ifish.ink/mics/uo.gif" /></p></li>
-</ul>
-<hr />
-<h3 id="四参考">四、参考：</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
-维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>神器</tag>
-        <tag>插件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</title>
-    <url>/post/e9330479.html</url>
-    <content><![CDATA[<h1
-id="opengl坐标与imgui坐标在视网膜屏幕上的转换">OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</h1>
-<blockquote>
-<p>在高分辨率显示器，尤其是<strong>视网膜屏幕（Retina
-display）</strong>上开发图形应用时，通常需要处理不同的坐标系统和像素密度问题。<strong>OpenGL</strong>和<strong>ImGui</strong>都有各自的坐标系统，当在视网膜屏幕上进行开发时，如何正确处理坐标转换成为一个关键问题。</p>
-</blockquote>
-<p>本文将探讨如何在视网膜屏幕上进行<strong>OpenGL坐标</strong>和<strong>ImGui坐标</strong>之间的转换，并讨论像素密度对坐标计算的影响。</p>
-<h2 id="opengl坐标系统">1. OpenGL坐标系统</h2>
-<p>在OpenGL中，坐标系统通常是以<strong>标准化设备坐标（Normalized Device
-Coordinates, NDC）</strong>表示的。它的范围为：</p>
-<ul>
-<li>X 轴范围：<code>[-1, 1]</code></li>
-<li>Y 轴范围：<code>[-1, 1]</code></li>
-</ul>
-<p>这意味着屏幕的中心为 <code>(0, 0)</code>，左下角为
-<code>(-1, -1)</code>，右上角为
-<code>(1, 1)</code>。通常，这个坐标系统会通过投影矩阵映射到屏幕空间。</p>
-<p>在高分辨率（视网膜）屏幕上，例如MacBook最近几年的屏幕，每个物理像素可能对应多个屏幕像素，这就是<strong>像素密度（Pixel
-Density）</strong>的概念。一般情况下，视网膜屏幕的像素密度为<code>2x</code>，这意味着每个逻辑像素会显示在2x2的物理像素网格上。</p>
-<h2 id="imgui-坐标系统">2. ImGui 坐标系统</h2>
-<p><strong><a
-href="https://github.com/ocornut/imgui">ImGui</a></strong>是一个常用于图形界面的库，其坐标系统通常基于窗口的分辨率，默认情况下，ImGui的坐标是基于像素的。例如：</p>
-<ul>
-<li>X 轴范围：<code>[0, 窗口宽度]</code></li>
-<li>Y 轴范围：<code>[0, 窗口高度]</code></li>
-</ul>
-<p>与OpenGL的NDC坐标不同，ImGui的坐标系原点位于左上角，且单位为像素。因此，在处理ImGui坐标时，尤其是在高分辨率屏幕上，需要考虑像素密度。</p>
-<h2 id="视网膜屏幕上的像素密度">3. 视网膜屏幕上的像素密度</h2>
-<p>在视网膜屏幕上，通常会有一个<strong>缩放因子</strong>，也叫<strong>DPI缩放</strong>或<strong>像素比（Pixel
-Ratio）</strong>。例如，对于<code>2x</code>的视网膜屏幕，缩放因子为<code>2.0</code>。这意味着窗口的逻辑分辨率和物理分辨率之间存在比例差异。</p>
-<p>假设一个视网膜屏幕的物理分辨率为<code>2880x1800</code>，而其逻辑分辨率为<code>1440x900</code>，那么像素比为<code>2.0</code>。</p>
-<p>在这种情况下，OpenGL和ImGui需要正确处理这个像素比，以确保坐标和尺寸能够正确映射到物理像素上。</p>
-<h2 id="坐标转换方法">4. 坐标转换方法</h2>
-<h3 id="opengl坐标到imgui坐标">OpenGL坐标到ImGui坐标</h3>
-<p>假设你有OpenGL中的标准化设备坐标
-<code>(x_ndc, y_ndc)</code>，想将其转换为ImGui的窗口坐标
-<code>(x_imgui, y_imgui)</code>。可以按照以下步骤进行转换：</p>
-<ol type="1">
-<li>获取窗口的逻辑分辨率<code>(width_logical, height_logical)</code>和像素比<code>pixel_ratio</code>。</li>
-<li>使用如下公式进行转换：</li>
-</ol>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span></code></pre>
-<p>这里的<code>x_ndc</code>和<code>y_ndc</code>分别在<code>[-1, 1]</code>范围内，代表OpenGL的标准化设备坐标。通过这种转换，你可以得到对应的ImGui坐标。</p>
-<h3 id="imgui坐标到opengl坐标">ImGui坐标到OpenGL坐标</h3>
-<p>反过来，如果你想将ImGui坐标转换回OpenGL坐标，可以使用以下公式：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
-y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span></code></pre>
-<p>这将把ImGui的像素坐标映射回OpenGL的标准化设备坐标。</p>
-<h2 id="示例代码">5. 示例代码</h2>
-<p>以下是一个简单的代码片段，演示了如何在视网膜屏幕上进行OpenGL和ImGui坐标的转换：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 假设 pixel_ratio = 2.0f (视网膜屏幕)</span>
-<span class="token comment">// 假设窗口的逻辑分辨率为 1440x900</span>
-<span class="token keyword">float</span> width_logical <span class="token operator">=</span> <span class="token number">1440.0f</span><span class="token punctuation">;</span>
-<span class="token keyword">float</span> height_logical <span class="token operator">=</span> <span class="token number">900.0f</span><span class="token punctuation">;</span>
-<span class="token keyword">float</span> pixel_ratio <span class="token operator">=</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
-
-<span class="token comment">// OpenGL标准化设备坐标</span>
-<span class="token keyword">float</span> x_ndc <span class="token operator">=</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
-<span class="token keyword">float</span> y_ndc <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5f</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 转换为ImGui坐标</span>
-<span class="token keyword">float</span> x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-<span class="token keyword">float</span> y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-
-std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ImGui坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-
-<span class="token comment">// 再将ImGui坐标转换回OpenGL坐标</span>
-x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
-y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
-
-std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"OpenGL坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></code></pre>
-<h2 id="总结">6. 总结</h2>
-<p>在高分辨率（如视网膜）屏幕上，处理OpenGL和ImGui坐标之间的转换需要考虑<strong>像素密度</strong>和<strong>坐标系统的不同</strong>。通过正确处理像素比和坐标转换，可以确保应用程序在高分辨率屏幕上正确显示。</p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>OpenGL</tag>
-        <tag>ImGui</tag>
-        <tag>视网膜屏幕</tag>
-        <tag>坐标转换</tag>
       </tags>
   </entry>
   <entry>
@@ -3131,6 +3042,117 @@ Hormann教授的邀请和邓重阳教授的支持让我有了这次国外学习�
       </tags>
   </entry>
   <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
+    <content><![CDATA[<blockquote>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin</p>
+</blockquote>
+<h3
+id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
+<span id="more"></span>
+<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
+<p><img src="https://files.ifish.ink/mics/uo.png"
+alt="uBlock Origin Logo" /> uBlock
+Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
+Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
+Origin的目标是为用户提供自行实施内容过滤的选择。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
+截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
+Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr />
+<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
+Origin插件</h3>
+<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
+<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+<blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
+store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol type="1">
+<li><a
+href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
+<img src="https://files.ifish.ink/mics/uo5.png" /> <img
+src="https://files.ifish.ink/mics/uo2.png" /></li>
+</ol>
+<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
+<ol type="1">
+<li><p>从百度云盘<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
+Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
+href="chrome://extensions/">chrome://extensions/</a>
+后回车，可以看到类似下图页面 <img
+src="https://files.ifish.ink/mics/1.png"
+alt="chrome://extensions" /></p></li>
+<li><p>将第1步中下载的<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
+href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
+<img src="https://files.ifish.ink/mics/uo2.png" /> <img
+src="https://files.ifish.ink/mics/uo3.png" /></p></li>
+<li><p>在Chrome右上角点击uBlock
+Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
+<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
+</ol>
+<hr />
+<h3 id="三测试">三、测试</h3>
+<ul>
+<li><p>未启用uBlock
+Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(可以看到靠前的内容几乎都是广告) <img
+src="https://files.ifish.ink/mics/uo6.png" /></p></li>
+<li><p>启用uBlock
+Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(广告明显减少) <img
+src="https://files.ifish.ink/mics/uo7.png" /></p></li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
+src="https://files.ifish.ink/mics/uo.gif" /></p></li>
+</ul>
+<hr />
+<h3 id="四参考">四、参考：</h3>
+<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
+维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>神器</tag>
+        <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>男孩，鼹鼠，狐狸和马</title>
+    <url>/post/ca64211f.html</url>
+    <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
+<p>《男孩、鼹鼠、狐狸和马》是一部感人至深的动画短片，改编自英国作家查理·麦克西（Charlie
+Mackesy）的同名绘本。这部作品以其温暖的画风、简洁的对白和深刻的哲理内涵广受欢迎，传递了关于友情、勇气、爱与自我接纳的普世价值。</p>
+<p>该影片于2023年3月12日获得了奥斯卡最佳动画短片奖。影片讲述了一个小男孩在寻找家的过程中，遇到了鼹鼠、狐狸和马这三个截然不同的动物伙伴。四个角色的性格和对话十分鲜明：男孩天真无邪、好奇心强，鼹鼠贪恋甜食且充满智慧，狐狸沉默寡言，但心地善良，马则象征着力量与平静。在旅程中，四个角色共同经历了挑战，彼此扶持，学会了接受自己的脆弱和不完美，同时明白了什么是爱与关怀。</p>
+<p><img src="/images/imgs/ca64211f-1.jpeg" /></p>
+<p>影片最大的亮点之一是其画面风格，它保留了原著插画的水彩笔触和流动的线条，使观众仿佛置身于一幅动态的水彩画中。这种柔和的美学风格与影片温暖的主题相得益彰，给人以安慰和治愈的感觉。</p>
+<p>此外，影片通过极简的对话传达了深刻的哲理。例如，男孩问马“什么是成功”，马回答说：“<code>成功是被爱</code>。”，以及“长大以后，你想当什么呢？”，鼹鼠回答“<code>善良的人</code>”。这类发人深省的句子贯穿全片，令观众在观影过程中不断思考生命中真正重要的东西。对于狐狸这个角色，他的沉默和善良也让人印象深刻，他在影片中扮演了一个重要的引导者角色，帮助男孩和其他动物找到了自己的方向。</p>
+<p>这是一部令人心灵平静的作品，无论是大人还是孩子都能从中汲取力量和安慰。这部动画不仅仅是一个寻找家的故事，更是关于自我发现、友谊和接纳彼此不完美的寓言。</p>
+<p><img src="/images/imgs/ca64211f-2.jpeg" /></p>
+]]></content>
+      <categories>
+        <category>生活娱乐</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>动画</tag>
+        <tag>短片</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>简单细分曲线</title>
     <url>/post/subdivcurve.html</url>
     <content><![CDATA[<h3 id="细分曲线">细分曲线</h3>
@@ -3252,28 +3274,6 @@ alt="封闭控制多边形的四点插值细分曲线" /></p>
         <tag>曲线曲面</tag>
         <tag>C/C++</tag>
         <tag>细分曲线</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>男孩，鼹鼠，狐狸和马</title>
-    <url>/post/ca64211f.html</url>
-    <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
-<p>《男孩、鼹鼠、狐狸和马》是一部感人至深的动画短片，改编自英国作家查理·麦克西（Charlie
-Mackesy）的同名绘本。这部作品以其温暖的画风、简洁的对白和深刻的哲理内涵广受欢迎，传递了关于友情、勇气、爱与自我接纳的普世价值。</p>
-<p>该影片于2023年3月12日获得了奥斯卡最佳动画短片奖。影片讲述了一个小男孩在寻找家的过程中，遇到了鼹鼠、狐狸和马这三个截然不同的动物伙伴。四个角色的性格和对话十分鲜明：男孩天真无邪、好奇心强，鼹鼠贪恋甜食且充满智慧，狐狸沉默寡言，但心地善良，马则象征着力量与平静。在旅程中，四个角色共同经历了挑战，彼此扶持，学会了接受自己的脆弱和不完美，同时明白了什么是爱与关怀。</p>
-<p><img src="/images/imgs/ca64211f-1.jpeg" /></p>
-<p>影片最大的亮点之一是其画面风格，它保留了原著插画的水彩笔触和流动的线条，使观众仿佛置身于一幅动态的水彩画中。这种柔和的美学风格与影片温暖的主题相得益彰，给人以安慰和治愈的感觉。</p>
-<p>此外，影片通过极简的对话传达了深刻的哲理。例如，男孩问马“什么是成功”，马回答说：“<code>成功是被爱</code>。”，以及“长大以后，你想当什么呢？”，鼹鼠回答“<code>善良的人</code>”。这类发人深省的句子贯穿全片，令观众在观影过程中不断思考生命中真正重要的东西。对于狐狸这个角色，他的沉默和善良也让人印象深刻，他在影片中扮演了一个重要的引导者角色，帮助男孩和其他动物找到了自己的方向。</p>
-<p>这是一部令人心灵平静的作品，无论是大人还是孩子都能从中汲取力量和安慰。这部动画不仅仅是一个寻找家的故事，更是关于自我发现、友谊和接纳彼此不完美的寓言。</p>
-<p><img src="/images/imgs/ca64211f-2.jpeg" /></p>
-]]></content>
-      <categories>
-        <category>生活娱乐</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-        <tag>动画</tag>
-        <tag>短片</tag>
       </tags>
   </entry>
 </search>
