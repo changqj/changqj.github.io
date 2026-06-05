@@ -767,7 +767,7 @@ target="_blank" rel="noopener" href="https://files.ifish.ink/mics/Standard_Jacob
         <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
         <span>评论</span>
     </div>
-    <div id="gitalk-container" class="card-content"></div>
+    <div id="gitalk-container" class="card-content" style="visibility: hidden;"></div>
 </div>
 
 <script src="/libs/gitalk/gitalk.min.js"></script>
@@ -779,10 +779,114 @@ target="_blank" rel="noopener" href="https://files.ifish.ink/mics/Standard_Jacob
         owner: 'changqj',
         admin: "changqj",
         id: '2017-11-09T12-16-19',
+        perPage: 10,
+        pagerDirection: 'last',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
     gitalk.render('gitalk-container');
+
+    // Keep comment list newest-first without patching third-party gitalk source.
+    (function keepNewestFirst() {
+        const pageSize = 10;
+
+        function sleep(ms) {
+            return new Promise(function (resolve) {
+                setTimeout(resolve, ms);
+            });
+        }
+
+        function getFlow() {
+            return document.querySelector('#gitalk-container .gt-comments > div');
+        }
+
+        function ensurePagerHost(flow) {
+            let host = document.querySelector('#gitalk-container .gt-comments-controls');
+            if (!host) {
+                host = document.createElement('div');
+                host.className = 'gt-comments-controls';
+                flow.parentNode.appendChild(host);
+            }
+            return host;
+        }
+
+        async function initNewestFirstPagination() {
+            const container = document.getElementById('gitalk-container');
+            let flow = null;
+            for (let i = 0; i < 60; i += 1) {
+                flow = getFlow();
+                if (flow && flow.querySelectorAll('.gt-comment').length > 0) break;
+                await sleep(200);
+            }
+            if (!flow || flow.dataset.newestFirstApplied === '1') {
+                if (container) container.style.visibility = 'visible';
+                return;
+            }
+
+            flow.style.visibility = 'hidden';
+
+            let prevCount = -1;
+            let stableTicks = 0;
+            for (let i = 0; i < 150; i += 1) {
+                const loadMoreBtn = document.querySelector('#gitalk-container .gt-btn-loadmore');
+                const loading = !!(loadMoreBtn && loadMoreBtn.className.indexOf('loading') > -1);
+                const count = flow.querySelectorAll('.gt-comment').length;
+
+                if (loadMoreBtn && !loading) {
+                    loadMoreBtn.click();
+                }
+
+                if (!loadMoreBtn) {
+                    if (count === prevCount) {
+                        stableTicks += 1;
+                    } else {
+                        stableTicks = 0;
+                        prevCount = count;
+                    }
+                    if (stableTicks >= 2) break;
+                }
+
+                await sleep(300);
+            }
+
+            const allComments = Array.from(flow.querySelectorAll('.gt-comment')).reverse();
+            if (allComments.length < 2) {
+                flow.style.visibility = 'visible';
+                flow.dataset.newestFirstApplied = '1';
+                return;
+            }
+
+            let visibleCount = Math.min(pageSize, allComments.length);
+            const pagerHost = ensurePagerHost(flow);
+
+            function renderPage() {
+                flow.innerHTML = '';
+                allComments.slice(0, visibleCount).forEach(function (node) {
+                    flow.appendChild(node);
+                });
+
+                pagerHost.innerHTML = '';
+                if (visibleCount < allComments.length) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'gt-btn gt-btn-loadmore';
+                    btn.textContent = 'Load more';
+                    btn.onclick = function () {
+                        visibleCount = Math.min(visibleCount + pageSize, allComments.length);
+                        renderPage();
+                    };
+                    pagerHost.appendChild(btn);
+                }
+            }
+
+            renderPage();
+            flow.style.visibility = 'visible';
+            if (container) container.style.visibility = 'visible';
+            flow.dataset.newestFirstApplied = '1';
+        }
+
+        initNewestFirstPagination();
+    })();
 </script>
 
     

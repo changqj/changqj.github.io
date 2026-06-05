@@ -6,7 +6,7 @@
   <link href="https://www.ifish.ink/atom.xml" rel="self"/>
   
   <link href="https://www.ifish.ink/"/>
-  <updated>2025-10-06T10:49:06.000Z</updated>
+  <updated>2026-05-07T04:12:43.988Z</updated>
   <id>https://www.ifish.ink/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用伽马函数表示伯恩斯坦基函数</title>
+    <link href="https://www.ifish.ink/post/bernstein-gamma.html"/>
+    <id>https://www.ifish.ink/post/bernstein-gamma.html</id>
+    <published>2026-05-07T08:30:00.000Z</published>
+    <updated>2026-05-07T04:12:43.988Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;如果你接触过 Bezier
+曲线，几乎一定见过伯恩斯坦基函数。它看起来像一个“公式细节”，但其实背后有一个很实用的问题：&lt;/p&gt;
+&lt;p&gt;同样的数学式子，怎么写得更不容易算崩？&lt;/p&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="学习/研究" scheme="https://www.ifish.ink/categories/%E5%AD%A6%E4%B9%A0-%E7%A0%94%E7%A9%B6/"/>
+    
+    
+    <category term="曲线曲面" scheme="https://www.ifish.ink/tags/%E6%9B%B2%E7%BA%BF%E6%9B%B2%E9%9D%A2/"/>
+    
+    <category term="数值计算" scheme="https://www.ifish.ink/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    <category term="MATLAB" scheme="https://www.ifish.ink/tags/MATLAB/"/>
+    
+  </entry>
   
   <entry>
     <title>macOS工具推荐--Quick Look源码高亮插件Syntax Highlight</title>
@@ -633,39 +665,11 @@ title=&quot;https://www.ipaddress.com&quot;&gt;https://www.ipaddress.com&lt;/a&g
     <category term="工具技能" scheme="https://www.ifish.ink/categories/%E5%B7%A5%E5%85%B7%E6%8A%80%E8%83%BD/"/>
     
     
-    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    
     <category term="git" scheme="https://www.ifish.ink/tags/git/"/>
     
     <category term="github" scheme="https://www.ifish.ink/tags/github/"/>
     
-  </entry>
-  
-  <entry>
-    <title>瑞士意大利语区大学访学记录</title>
-    <link href="https://www.ifish.ink/post/f29efa2.html"/>
-    <id>https://www.ifish.ink/post/f29efa2.html</id>
-    <published>2020-04-08T11:20:30.000Z</published>
-    <updated>2025-06-04T15:47:15.000Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;瑞士位于欧洲中部，与德国、意大利、法国接壤，属于内陆国。瑞士是全球最富裕、经济最发达的国家之一。瑞士人民拥有较高的生活水准。瑞士旅游资源丰富，有世界公园的美誉。
-第一次写这种游记，主要是想介绍一下我此次欧洲之行的感受。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure&gt;
-&lt;img src=&quot;https://files.ifish.ink/mics/Switzerland.jpg&quot; alt=&quot;瑞士&quot; /&gt;
-&lt;figcaption aria-hidden=&quot;true&quot;&gt;瑞士&lt;/figcaption&gt;
-&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="生活娱乐" scheme="https://www.ifish.ink/categories/%E7%94%9F%E6%B4%BB%E5%A8%B1%E4%B9%90/"/>
-    
-    
-    <category term="游记" scheme="https://www.ifish.ink/tags/%E6%B8%B8%E8%AE%B0/"/>
-    
-    <category term="随笔" scheme="https://www.ifish.ink/tags/%E9%9A%8F%E7%AC%94/"/>
+    <category term="环境配置" scheme="https://www.ifish.ink/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
