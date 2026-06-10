@@ -787,12 +787,30 @@ target="_blank" rel="noopener" href="https://github.com/sbarex/SourceCodeSyntaxH
         }
 
         function getIssueCommentId(node) {
-            const timeLink = node.querySelector('a.gt-comment-time[href*="issuecomment-"]');
-            const genericLink = node.querySelector('a[href*="issuecomment-"]');
-            const link = timeLink || genericLink;
-            const href = link ? (link.getAttribute('href') || '') : '';
-            const m = href.match(/issuecomment-(\d+)/);
-            if (m) return parseInt(m[1], 10) || 0;
+            const links = Array.from(node.querySelectorAll('a[href*="issuecomment-"]'));
+            for (let i = 0; i < links.length; i += 1) {
+                const href = links[i].getAttribute('href') || '';
+                const m = href.match(/issuecomment-(\d+)/);
+                if (m) {
+                    const id = parseInt(m[1], 10) || 0;
+                    if (id > 0) return id;
+                }
+            }
+
+            const idAttr = node.getAttribute('id') || '';
+            const m2 = idAttr.match(/(\d{6,})/);
+            if (m2) {
+                const id = parseInt(m2[1], 10) || 0;
+                if (id > 0) return id;
+            }
+
+            const dataId = node.getAttribute('data-id') || node.getAttribute('data-comment-id') || '';
+            const m3 = dataId.match(/(\d{6,})/);
+            if (m3) {
+                const id = parseInt(m3[1], 10) || 0;
+                if (id > 0) return id;
+            }
+
             return 0;
         }
 
@@ -809,6 +827,10 @@ target="_blank" rel="noopener" href="https://github.com/sbarex/SourceCodeSyntaxH
                 const ts = Date.parse(timeLink.getAttribute('title') || '');
                 if (!Number.isNaN(ts)) return ts;
             }
+
+            // GitHub issuecomment IDs are monotonic, good fallback when datetime is missing.
+            const fallbackId = getIssueCommentId(node);
+            if (fallbackId > 0) return fallbackId;
 
             return 0;
         }
