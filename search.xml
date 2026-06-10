@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title(&#39;Bezier曲线拟合&#39;);
+questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
+<span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
+while 1
+    i &#x3D; i+1;
+    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
+    xlabel(tip);
+    try
+    [x,y,button] &#x3D; ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,&#39;o&#39;);
+    dataPoints(:,i) &#x3D; [x;y];
+    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
+    if button ~&#x3D; 1
+        xlabel(&#39;&#39;);
+        break;
+    end
+end
+
+
+for i &#x3D; 0:0.01:1
+    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
+end
+h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
+legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data &#x3D; dataPoints;
+while 1
+    if size(data,2) &#x3D;&#x3D; 1
+        break;
+    end
+    temp &#x3D; zeros(size(data,1),size(data,2)-1);
+    for i &#x3D; 1:size(data,2)-1
+        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data &#x3D; temp;
+end
+end</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>拟合</tag>
+        <tag>曲线曲面</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>(增强篇)  Bezier曲线拟合数据点的几何作图法</title>
     <url>/post/56c1b7a3.html</url>
     <content><![CDATA[<blockquote>
@@ -136,82 +209,9 @@ grid on<span class="token punctuation">,</span>hold on
       </categories>
       <tags>
         <tag>MATLAB代码</tag>
+        <tag>拟合</tag>
+        <tag>曲线曲面</tag>
         <tag>算法实现</tag>
-        <tag>拟合</tag>
-        <tag>曲线曲面</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title(&#39;Bezier曲线拟合&#39;);
-questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
-<span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
-while 1
-    i &#x3D; i+1;
-    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
-    xlabel(tip);
-    try
-    [x,y,button] &#x3D; ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,&#39;o&#39;);
-    dataPoints(:,i) &#x3D; [x;y];
-    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
-    if button ~&#x3D; 1
-        xlabel(&#39;&#39;);
-        break;
-    end
-end
-
-
-for i &#x3D; 0:0.01:1
-    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
-end
-h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
-legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data &#x3D; dataPoints;
-while 1
-    if size(data,2) &#x3D;&#x3D; 1
-        break;
-    end
-    temp &#x3D; zeros(size(data,1),size(data,2)-1);
-    for i &#x3D; 1:size(data,2)-1
-        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data &#x3D; temp;
-end
-end</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>学习/研究</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>拟合</tag>
-        <tag>曲线曲面</tag>
       </tags>
   </entry>
   <entry>
@@ -793,40 +793,6 @@ Linux用户：<code>sudo /etc/init.d/networking restart</code></p>
       </tags>
   </entry>
   <entry>
-    <title>ubuntu 外接显示与内置显示切换</title>
-    <url>/post/83277084.html</url>
-    <content><![CDATA[<ul>
-<li>查看显示器设备名称
-在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
-LVDS-1 和 HDMI-1
-(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
-</ul>
-<span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
-<ul>
-<li><p>关闭外接显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off</code>
-(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>打开外接显示器，关闭内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-<li><p>关闭外接显示器，打开内置显示器
-终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
-(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
-</ul>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>环境配置</tag>
-        <tag>ubuntu</tag>
-        <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>macOS工具推荐--Quick Look源码高亮插件Syntax Highlight</title>
     <url>/post/3108369d.html</url>
     <content><![CDATA[<h2 id="macos原生quick-look的局限与动机">macOS原生Quick
@@ -923,6 +889,40 @@ href="https://github.com/sbarex/SourceCodeSyntaxHighlight">GitHub
         <tag>Quick Look</tag>
         <tag>源码高亮</tag>
         <tag>Syntax Highlight</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu 外接显示与内置显示切换</title>
+    <url>/post/83277084.html</url>
+    <content><![CDATA[<ul>
+<li>查看显示器设备名称
+在Linux终端键入命令：<code>$ xrandx</code>，如下图所示查看对应的设备名称，本例为
+LVDS-1 和 HDMI-1
+(如果你的外接显示器使用VGA转接一般就是VGA-1，如果使用HDMI转接一般是HDMI-1)</li>
+</ul>
+<span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/display_1.png" /></p>
+<ul>
+<li><p>关闭外接显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off</code>
+(其中名称VGA-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>打开外接显示器，关闭内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --auto --output LVDS-1 --off</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+<li><p>关闭外接显示器，打开内置显示器
+终端键入：<code>$ xrandr --output HDMI-1 --off --output LVDS-1 --auto</code>
+(其中名称HDMI-1和LVDS-1根据你自己的设备名称作相应的替换)</p></li>
+</ul>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+        <tag>ubuntu</tag>
+        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -1561,6 +1561,33 @@ src="https://files.ifish.ink/mics/20201031-4.png" /></p>
       </tags>
   </entry>
   <entry>
+    <title>从复平面上域的多项式函数生成调和函数</title>
+    <url>/post/harmonic.html</url>
+    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
+class="math inline">\(z=x+yi\)</span>的多项式函数<span
+class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
+class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
+class="math inline">\((x,y)\)</span>的二元调和函数。</p>
+<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+[x,y] &#x3D; meshgrid(linspace(-1,1,100));
+p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
+z &#x3D; real(p(x,y));
+surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
+axis off;</code></pre></p>
+<p><img src="https://files.ifish.ink/mics/har.gif" /></p>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>曲线曲面</tag>
+        <tag>调和函数</tag>
+        <tag>极小曲面</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>用伽马函数表示伯恩斯坦基函数</title>
     <url>/post/bernstein-gamma.html</url>
     <content><![CDATA[<p>如果你接触过 Bezier
@@ -1642,33 +1669,6 @@ B_r^d(t)=\exp\left(\mathrm{gammaln}(d+1)-\mathrm{gammaln}(r+1)-\mathrm{gammaln}(
         <tag>曲线曲面</tag>
         <tag>数值计算</tag>
         <tag>MATLAB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从复平面上域的多项式函数生成调和函数</title>
-    <url>/post/harmonic.html</url>
-    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
-class="math inline">\(z=x+yi\)</span>的多项式函数<span
-class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
-class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
-class="math inline">\((x,y)\)</span>的二元调和函数。</p>
-<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-[x,y] &#x3D; meshgrid(linspace(-1,1,100));
-p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
-z &#x3D; real(p(x,y));
-surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
-axis off;</code></pre></p>
-<p><img src="https://files.ifish.ink/mics/har.gif" /></p>
-]]></content>
-      <categories>
-        <category>学习/研究</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>曲线曲面</tag>
-        <tag>调和函数</tag>
-        <tag>极小曲面</tag>
       </tags>
   </entry>
   <entry>
@@ -2493,108 +2493,6 @@ src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5
       </tags>
   </entry>
   <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span
-class="math inline">\(\mathbb{R}^n\)</span>中的<span
-class="math inline">\(m\)</span>个样本点为<span
-class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
-class="math inline">\(m\)</span>个样本嵌入到低维空间<span
-class="math inline">\(\mathbb{R}^{d}\)</span>，<span
-class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img
-src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
-alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
-class="math inline">\(i\)</span>行第<span
-class="math inline">\(j\)</span>列元素为<span
-class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
-class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
-class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
-class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
-class="math inline">\(k\)</span>个非零特征值，分别为<span
-class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
-class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
-class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
-class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
-class="math inline">\({ V}\)</span>的第<span
-class="math inline">\(i\)</span>列是特征值<span
-class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
-class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
-class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span
-class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
-class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br />
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
-class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
-class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
-class="math inline">\(V_*\)</span>。即<span
-class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
-class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
-class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>学习/研究</category>
-      </categories>
-      <tags>
-        <tag>几何处理</tag>
-        <tag>曲面参数化</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何像GitHub Action那样本地打包</title>
     <url>/post/d2f9f15b.html</url>
     <content><![CDATA[<blockquote>
@@ -3358,6 +3256,108 @@ alt="封闭控制多边形的四点插值细分曲线" /></p>
         <tag>曲线曲面</tag>
         <tag>C/C++</tag>
         <tag>细分曲线</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span
+class="math inline">\(\mathbb{R}^n\)</span>中的<span
+class="math inline">\(m\)</span>个样本点为<span
+class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
+class="math inline">\(m\)</span>个样本嵌入到低维空间<span
+class="math inline">\(\mathbb{R}^{d}\)</span>，<span
+class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img
+src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
+alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
+class="math inline">\(i\)</span>行第<span
+class="math inline">\(j\)</span>列元素为<span
+class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
+class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
+class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
+class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
+class="math inline">\(k\)</span>个非零特征值，分别为<span
+class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
+class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
+class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
+class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
+class="math inline">\({ V}\)</span>的第<span
+class="math inline">\(i\)</span>列是特征值<span
+class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
+class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
+class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span
+class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
+class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br />
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
+class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
+class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
+class="math inline">\(V_*\)</span>。即<span
+class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
+class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
+class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>几何处理</tag>
+        <tag>曲面参数化</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
 </search>
