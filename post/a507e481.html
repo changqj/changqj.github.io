@@ -709,24 +709,37 @@ alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
         <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
         <span>评论</span>
     </div>
-    <div id="gitalk-container" class="card-content" style="visibility: hidden;"></div>
+    <div id="gitalk-container" class="card-content"></div>
 </div>
 
 <script src="/libs/gitalk/gitalk.min.js"></script>
 <script>
-    let gitalk = new Gitalk({
-        clientID: '4b7ca90b03dcff43cb0b',
-        clientSecret: 'a38eedc2fe1ab77d18e4ad2b9633ce4093d886c2',
-        repo: 'Comments',
-        owner: 'changqj',
-        admin: "changqj",
-        id: '2017-10-10T15-29-21',
-        perPage: 10,
-        pagerDirection: 'last',
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
+    const gitalkContainer = document.getElementById('gitalk-container');
 
-    gitalk.render('gitalk-container');
+    try {
+        if (typeof Gitalk !== 'function') {
+            throw new Error('Gitalk library failed to load');
+        }
+
+        let gitalk = new Gitalk({
+            clientID: '4b7ca90b03dcff43cb0b',
+            clientSecret: 'a38eedc2fe1ab77d18e4ad2b9633ce4093d886c2',
+            repo: 'Comments',
+            owner: 'changqj',
+            admin: ["changqj"],
+            id: "2017-10-10T15-29-21",
+            perPage: 10,
+            pagerDirection: 'last',
+            distractionFreeMode: false  // Facebook-like distraction free mode
+        });
+
+        gitalk.render('gitalk-container');
+    } catch (error) {
+        if (gitalkContainer) {
+            gitalkContainer.innerHTML = '<p style="margin: 0; color: #b71c1c;">评论模块加载失败，请检查 Gitalk 配置或浏览器控制台报错。</p>';
+        }
+        console.error('Gitalk init failed:', error);
+    }
 
     // Keep comment list newest-first without patching third-party gitalk source.
     (function keepNewestFirst() {
