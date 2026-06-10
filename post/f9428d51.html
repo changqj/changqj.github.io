@@ -829,15 +829,29 @@ target="_blank" rel="noopener" href="https://files.ifish.ink/mics/Jacobianlike_I
             return document.querySelector('#gitalk-container .gt-comments > div');
         }
 
-        function getCommentOrderKey(node) {
-            const link = node.querySelector('a.gt-comment-time, a[href*="issuecomment-"]');
+        function getIssueCommentId(node) {
+            const timeLink = node.querySelector('a.gt-comment-time[href*="issuecomment-"]');
+            const genericLink = node.querySelector('a[href*="issuecomment-"]');
+            const link = timeLink || genericLink;
             const href = link ? (link.getAttribute('href') || '') : '';
             const m = href.match(/issuecomment-(\d+)/);
             if (m) return parseInt(m[1], 10) || 0;
+            return 0;
+        }
 
-            const idAttr = node.getAttribute('id') || '';
-            const m2 = idAttr.match(/(\d+)/);
-            if (m2) return parseInt(m2[1], 10) || 0;
+        function getCommentTimestamp(node) {
+            const timeEl = node.querySelector('time[datetime]');
+            if (timeEl) {
+                const dt = timeEl.getAttribute('datetime') || '';
+                const ts = Date.parse(dt);
+                if (!Number.isNaN(ts)) return ts;
+            }
+
+            const timeLink = node.querySelector('a.gt-comment-time[title]');
+            if (timeLink) {
+                const ts = Date.parse(timeLink.getAttribute('title') || '');
+                if (!Number.isNaN(ts)) return ts;
+            }
 
             return 0;
         }
@@ -845,9 +859,11 @@ target="_blank" rel="noopener" href="https://files.ifish.ink/mics/Jacobianlike_I
         function buildSignature(flow) {
             const comments = Array.from(flow.querySelectorAll('.gt-comment'));
             if (!comments.length) return '0';
-            const first = getCommentOrderKey(comments[0]);
-            const last = getCommentOrderKey(comments[comments.length - 1]);
-            return comments.length + '|' + first + '|' + last;
+            const firstTs = getCommentTimestamp(comments[0]);
+            const lastTs = getCommentTimestamp(comments[comments.length - 1]);
+            const firstId = getIssueCommentId(comments[0]);
+            const lastId = getIssueCommentId(comments[comments.length - 1]);
+            return comments.length + '|' + firstTs + '|' + firstId + '|' + lastTs + '|' + lastId;
         }
 
         function ensurePagerHost(flow) {
@@ -911,12 +927,23 @@ target="_blank" rel="noopener" href="https://files.ifish.ink/mics/Jacobianlike_I
             }
 
             const allComments = Array.from(flow.querySelectorAll('.gt-comment'));
-            const keyedComments = allComments.map(function (node) {
-                return { node: node, key: getCommentOrderKey(node) };
+            const keyedComments = allComments.map(function (node, index) {
+                return {
+                    node: node,
+                    ts: getCommentTimestamp(node),
+                    id: getIssueCommentId(node),
+                    idx: index
+                };
             });
-            const hasSortableKey = keyedComments.some(function (item) { return item.key > 0; });
+            const hasSortableKey = keyedComments.some(function (item) {
+                return item.ts > 0 || item.id > 0;
+            });
             if (hasSortableKey) {
-                keyedComments.sort(function (a, b) { return b.key - a.key; });
+                keyedComments.sort(function (a, b) {
+                    if (b.ts !== a.ts) return b.ts - a.ts;
+                    if (b.id !== a.id) return b.id - a.id;
+                    return b.idx - a.idx;
+                });
             } else {
                 keyedComments.reverse();
             }
