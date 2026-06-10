@@ -867,6 +867,15 @@ header .go-back i {
     margin-bottom: 10px;
 }
 
+/* Keep spacing on masonry items to avoid occasional collapsed card margins. */
+#articles .article {
+    margin-bottom: 15px;
+}
+
+#articles .article .card {
+    margin: .5rem 0 0;
+}
+
 article a {
     margin-right: 0 !important;
     color: #4295b4;

@@ -57,10 +57,22 @@ $(function () {
         fixStyles();
     });
 
-    /*初始化瀑布流布局*/
-    $('#articles').masonry({
-        itemSelector: '.article'
-    });
+    /* 初始化瀑布流布局，并在资源加载后重排，避免个别卡片贴连。 */
+    let $articles = $('#articles');
+    if ($articles.length) {
+        $articles.masonry({
+            itemSelector: '.article',
+            percentPosition: true
+        });
+
+        $articles.find('img').on('load', function () {
+            $articles.masonry('layout');
+        });
+
+        $(window).on('load', function () {
+            $articles.masonry('layout');
+        });
+    }
 
     AOS.init({
         easing: 'ease-in-out-sine',
