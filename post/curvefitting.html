@@ -990,6 +990,11 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
     // Keep comment list newest-first without patching third-party gitalk source.
     (function keepNewestFirst() {
         const pageSize = 10;
+        const state = {
+            running: false,
+            timer: null,
+            ignoreMutationsUntil: 0
+        };
 
         function sleep(ms) {
             return new Promise(function (resolve) {
@@ -999,6 +1004,27 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
 
         function getFlow() {
             return document.querySelector('#gitalk-container .gt-comments > div');
+        }
+
+        function getCommentOrderKey(node) {
+            const link = node.querySelector('a.gt-comment-time, a[href*="issuecomment-"]');
+            const href = link ? (link.getAttribute('href') || '') : '';
+            const m = href.match(/issuecomment-(\d+)/);
+            if (m) return parseInt(m[1], 10) || 0;
+
+            const idAttr = node.getAttribute('id') || '';
+            const m2 = idAttr.match(/(\d+)/);
+            if (m2) return parseInt(m2[1], 10) || 0;
+
+            return 0;
+        }
+
+        function buildSignature(flow) {
+            const comments = Array.from(flow.querySelectorAll('.gt-comment'));
+            if (!comments.length) return '0';
+            const first = getCommentOrderKey(comments[0]);
+            const last = getCommentOrderKey(comments[comments.length - 1]);
+            return comments.length + '|' + first + '|' + last;
         }
 
         function ensurePagerHost(flow) {
@@ -1012,6 +1038,9 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
         }
 
         async function initNewestFirstPagination() {
+            if (state.running) return;
+            state.running = true;
+
             const container = document.getElementById('gitalk-container');
             let flow = null;
             for (let i = 0; i < 60; i += 1) {
@@ -1019,8 +1048,16 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
                 if (flow && flow.querySelectorAll('.gt-comment').length > 0) break;
                 await sleep(200);
             }
-            if (!flow || flow.dataset.newestFirstApplied === '1') {
+            if (!flow) {
                 if (container) container.style.visibility = 'visible';
+                state.running = false;
+                return;
+            }
+
+            const beforeSignature = buildSignature(flow);
+            if (flow.dataset.newestFirstApplied === '1' && flow.dataset.newestFirstSignature === beforeSignature) {
+                if (container) container.style.visibility = 'visible';
+                state.running = false;
                 return;
             }
 
@@ -1050,30 +1087,46 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
                 await sleep(300);
             }
 
-            const allComments = Array.from(flow.querySelectorAll('.gt-comment')).reverse();
-            if (allComments.length < 2) {
+            const allComments = Array.from(flow.querySelectorAll('.gt-comment'));
+            const keyedComments = allComments.map(function (node) {
+                return { node: node, key: getCommentOrderKey(node) };
+            });
+            const hasSortableKey = keyedComments.some(function (item) { return item.key > 0; });
+            if (hasSortableKey) {
+                keyedComments.sort(function (a, b) { return b.key - a.key; });
+            } else {
+                keyedComments.reverse();
+            }
+
+            const sortedComments = keyedComments.map(function (item) { return item.node; });
+            if (sortedComments.length < 2) {
                 flow.style.visibility = 'visible';
                 flow.dataset.newestFirstApplied = '1';
+                flow.dataset.newestFirstSignature = buildSignature(flow);
+                state.running = false;
                 return;
             }
 
-            let visibleCount = Math.min(pageSize, allComments.length);
+            let visibleCount = Math.min(pageSize, sortedComments.length);
             const pagerHost = ensurePagerHost(flow);
 
             function renderPage() {
+                // Ignore observer callbacks caused by our own pagination DOM updates.
+                state.ignoreMutationsUntil = Date.now() + 800;
+
                 flow.innerHTML = '';
-                allComments.slice(0, visibleCount).forEach(function (node) {
+                sortedComments.slice(0, visibleCount).forEach(function (node) {
                     flow.appendChild(node);
                 });
 
                 pagerHost.innerHTML = '';
-                if (visibleCount < allComments.length) {
+                if (visibleCount < sortedComments.length) {
                     const btn = document.createElement('button');
                     btn.type = 'button';
                     btn.className = 'gt-btn gt-btn-loadmore';
                     btn.textContent = 'Load more';
                     btn.onclick = function () {
-                        visibleCount = Math.min(visibleCount + pageSize, allComments.length);
+                        visibleCount = Math.min(visibleCount + pageSize, sortedComments.length);
                         renderPage();
                     };
                     pagerHost.appendChild(btn);
@@ -1084,9 +1137,31 @@ alt="不同参数化对高斯基函数拟合结果的影响。从左到右参数
             flow.style.visibility = 'visible';
             if (container) container.style.visibility = 'visible';
             flow.dataset.newestFirstApplied = '1';
+            flow.dataset.newestFirstSignature = buildSignature(flow);
+            state.running = false;
         }
 
         initNewestFirstPagination();
+
+        const container = document.getElementById('gitalk-container');
+        if (container && typeof MutationObserver === 'function') {
+            const observer = new MutationObserver(function () {
+                if (Date.now() < state.ignoreMutationsUntil) {
+                    return;
+                }
+                if (state.timer) {
+                    clearTimeout(state.timer);
+                }
+                state.timer = setTimeout(function () {
+                    initNewestFirstPagination();
+                }, 200);
+            });
+            observer.observe(container, { childList: true, subtree: true });
+        }
+
+        window.addEventListener('hashchange', function () {
+            initNewestFirstPagination();
+        });
     })();
 </script>
 
