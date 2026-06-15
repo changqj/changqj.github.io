@@ -222,7 +222,7 @@ jobs:
             const results = Array.isArray(data.Results) ? data.Results : [];
 
             return results
-              .filter((m) => m.OfficialityStatus === 1)
+              .filter((m) => m?.IdMatch)
               .filter((m) => new Date(m.Date) <= CUTOFF_UTC)
               .sort((a, b) => new Date(a.Date) - new Date(b.Date));
           }
