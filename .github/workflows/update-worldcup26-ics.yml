@@ -1,0 +1,239 @@
+name: Update worldcup26.ics
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/update-worldcup26-ics.yml
+  schedule:
+    - cron: '*/30 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-worldcup26-ics
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate worldcup26.ics from FIFA
+        run: |
+          set -euo pipefail
+          cat <<'NODE' | node --input-type=module
+          import { mkdirSync, writeFileSync } from 'node:fs';
+          import { dirname } from 'node:path';
+
+          const API_URL = 'https://api.fifa.com/api/v3/calendar/matches?language=en&count=500&idSeason=285023';
+          const OUTPUT_PATH = 'pub/worldcup26.ics';
+          const CALENDAR_NAME = 'FIFA World Cup 2026 - Finished Matches';
+          const UID_DOMAIN = 'qjchang.blog';
+
+          const FIFA_CODE_TO_ISO2 = {
+            ALG: 'DZ',
+            ARG: 'AR',
+            AUS: 'AU',
+            AUT: 'AT',
+            BEL: 'BE',
+            BIH: 'BA',
+            BRA: 'BR',
+            CAN: 'CA',
+            CPV: 'CV',
+            CUB: 'CU',
+            CIV: 'CI',
+            CMR: 'CM',
+            COL: 'CO',
+            COD: 'CD',
+            COK: 'CK',
+            CRO: 'HR',
+            CUW: 'CW',
+            CZE: 'CZ',
+            DEN: 'DK',
+            ECU: 'EC',
+            EGY: 'EG',
+            ENG: 'GB',
+            ESP: 'ES',
+            FRA: 'FR',
+            GER: 'DE',
+            GHA: 'GH',
+            HAI: 'HT',
+            IRN: 'IR',
+            JPN: 'JP',
+            JOR: 'JO',
+            KAZ: 'KZ',
+            KOR: 'KR',
+            KSA: 'SA',
+            MAR: 'MA',
+            MEX: 'MX',
+            NED: 'NL',
+            NEW: 'NZ',
+            NZL: 'NZ',
+            NOR: 'NO',
+            PAN: 'PA',
+            PAR: 'PY',
+            PER: 'PE',
+            POR: 'PT',
+            QAT: 'QA',
+            RSA: 'ZA',
+            ROU: 'RO',
+            SCO: 'GB',
+            SEN: 'SN',
+            SUI: 'CH',
+            SWE: 'SE',
+            TUN: 'TN',
+            TUR: 'TR',
+            UZB: 'UZ',
+            URU: 'UY',
+            USA: 'US',
+            WAL: 'GB'
+          };
+
+          const CUTOFF_UTC = new Date('2026-07-21T23:59:59Z');
+
+          function toIcsDateTime(date) {
+            const yyyy = String(date.getUTCFullYear());
+            const mm = String(date.getUTCMonth() + 1).padStart(2, '0');
+            const dd = String(date.getUTCDate()).padStart(2, '0');
+            const hh = String(date.getUTCHours()).padStart(2, '0');
+            const mi = String(date.getUTCMinutes()).padStart(2, '0');
+            const ss = String(date.getUTCSeconds()).padStart(2, '0');
+            return `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`;
+          }
+
+          function escapeIcsText(text) {
+            return String(text)
+              .replace(/\\/g, '\\\\')
+              .replace(/\n/g, '\\n')
+              .replace(/;/g, '\\;')
+              .replace(/,/g, '\\,');
+          }
+
+          function flagFromCode(code) {
+            if (!code || code.length !== 3) {
+              return '';
+            }
+
+            const iso2 = FIFA_CODE_TO_ISO2[code.toUpperCase()];
+            if (!iso2) {
+              return '';
+            }
+
+            return [...iso2.toUpperCase()]
+              .map((ch) => String.fromCodePoint(0x1f1e6 + (ch.charCodeAt(0) - 65)))
+              .join('');
+          }
+
+          function makeSummary(match) {
+            const homeCode = match.Home?.IdCountry;
+            const awayCode = match.Away?.IdCountry;
+            const homeName = match.Home?.TeamName?.[0]?.Description || 'Home';
+            const awayName = match.Away?.TeamName?.[0]?.Description || 'Away';
+            const leftName = homeCode === 'KOR' && homeName === 'Korea Republic' ? 'South Korea' : homeName;
+            const rightName = awayCode === 'CZE' && awayName === 'Czechia' ? 'Czech Republic' : awayName;
+
+            return `${leftName}${flagFromCode(homeCode)} - ${rightName}${flagFromCode(awayCode)}`;
+          }
+
+          function makeDescription(match, matchUrl) {
+            const stage = match.StageName?.[0]?.Description || '';
+            const group = match.GroupName?.[0]?.Description || '';
+            const stadium = match.Stadium?.Name?.[0]?.Description || '';
+            const city = match.Stadium?.CityName?.[0]?.Description || '';
+            const score = `${match.HomeTeamScore} - ${match.AwayTeamScore}`;
+
+            const parts = [
+              `Score: ${score}`,
+              stage ? `Stage: ${stage}` : '',
+              group ? `Group: ${group}` : '',
+              stadium ? `Stadium: ${stadium}` : '',
+              city ? `City: ${city}` : '',
+              `Source: ${matchUrl}`
+            ].filter(Boolean);
+
+            return parts.join('\n');
+          }
+
+          function buildCalendar(matches) {
+            const now = new Date();
+            const dtstamp = toIcsDateTime(now);
+            const lines = [
+              'BEGIN:VCALENDAR',
+              'VERSION:2.0',
+              'CALSCALE:GREGORIAN',
+              `PRODID:-//qjchang//worldcup26//EN`,
+              `NAME:${escapeIcsText(CALENDAR_NAME)}`,
+              `X-WR-CALNAME:${escapeIcsText(CALENDAR_NAME)}`,
+              'X-WR-TIMEZONE:UTC'
+            ];
+
+            for (const match of matches) {
+              const matchDate = new Date(match.Date);
+              const endDate = new Date(matchDate.getTime() + 2 * 60 * 60 * 1000);
+              const idCompetition = match.IdCompetition;
+              const idSeason = match.IdSeason;
+              const idStage = match.IdStage;
+              const idMatch = match.IdMatch;
+              const matchUrl = `https://www.fifa.com/en/match-centre/match/${idCompetition}/${idSeason}/${idStage}/${idMatch}`;
+
+              lines.push('BEGIN:VEVENT');
+              lines.push(`UID:worldcup26-${idMatch}@${UID_DOMAIN}`);
+              lines.push(`DTSTAMP:${dtstamp}`);
+              lines.push(`DTSTART:${toIcsDateTime(matchDate)}`);
+              lines.push(`DTEND:${toIcsDateTime(endDate)}`);
+              lines.push(`SUMMARY:${escapeIcsText(makeSummary(match))}`);
+              lines.push(`DESCRIPTION:${escapeIcsText(makeDescription(match, matchUrl))}`);
+              lines.push(`URL:${matchUrl}`);
+              lines.push('END:VEVENT');
+            }
+
+            lines.push('END:VCALENDAR');
+            return lines.join('\r\n') + '\r\n';
+          }
+
+          async function fetchMatches() {
+            const response = await fetch(API_URL, {
+              headers: {
+                Accept: 'application/json'
+              }
+            });
+
+            if (!response.ok) {
+              throw new Error(`FIFA API request failed: HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+            const results = Array.isArray(data.Results) ? data.Results : [];
+
+            return results
+              .filter((m) => m.MatchStatus === 0 && m.OfficialityStatus === 1)
+              .filter((m) => new Date(m.Date) <= CUTOFF_UTC)
+              .sort((a, b) => new Date(a.Date) - new Date(b.Date));
+          }
+
+          const matches = await fetchMatches();
+          const content = buildCalendar(matches);
+
+          mkdirSync(dirname(OUTPUT_PATH), { recursive: true });
+          writeFileSync(OUTPUT_PATH, content, 'utf8');
+          console.log(`Wrote ${OUTPUT_PATH} with ${matches.length} finished matches.`);
+          NODE
+
+      - name: Commit and push if changed
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet -- pub/worldcup26.ics; then
+            echo "No changes in pub/worldcup26.ics"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pub/worldcup26.ics
+          git commit -m "chore: update worldcup26.ics"
+          git push
