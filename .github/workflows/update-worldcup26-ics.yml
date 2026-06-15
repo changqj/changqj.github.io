@@ -2,8 +2,11 @@ name: Update worldcup26.ics
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/update-worldcup26-ics.yml
   schedule:
-    - cron: '5 * * * *'
+    - cron: '*/30 * * * *'
 
 permissions:
   contents: write
