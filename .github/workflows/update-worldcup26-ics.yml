@@ -25,6 +25,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Delay 6 minutes on push
+        if: github.event_name == 'push'
+        run: sleep 360
+
       - name: Generate worldcup26.ics from FIFA
         run: |
           set -euo pipefail
