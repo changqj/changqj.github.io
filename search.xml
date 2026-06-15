@@ -342,94 +342,6 @@ alt="fig21" /> 其余例子也可同理运行。 谢谢阅读！！！</p>
       </tags>
   </entry>
   <entry>
-    <title>OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</title>
-    <url>/post/e9330479.html</url>
-    <content><![CDATA[<h1
-id="opengl坐标与imgui坐标在视网膜屏幕上的转换">OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</h1>
-<blockquote>
-<p>在高分辨率显示器，尤其是<strong>视网膜屏幕（Retina
-display）</strong>上开发图形应用时，通常需要处理不同的坐标系统和像素密度问题。<strong>OpenGL</strong>和<strong>ImGui</strong>都有各自的坐标系统，当在视网膜屏幕上进行开发时，如何正确处理坐标转换成为一个关键问题。</p>
-</blockquote>
-<p>本文将探讨如何在视网膜屏幕上进行<strong>OpenGL坐标</strong>和<strong>ImGui坐标</strong>之间的转换，并讨论像素密度对坐标计算的影响。</p>
-<h2 id="opengl坐标系统">1. OpenGL坐标系统</h2>
-<p>在OpenGL中，坐标系统通常是以<strong>标准化设备坐标（Normalized Device
-Coordinates, NDC）</strong>表示的。它的范围为：</p>
-<ul>
-<li>X 轴范围：<code>[-1, 1]</code></li>
-<li>Y 轴范围：<code>[-1, 1]</code></li>
-</ul>
-<p>这意味着屏幕的中心为 <code>(0, 0)</code>，左下角为
-<code>(-1, -1)</code>，右上角为
-<code>(1, 1)</code>。通常，这个坐标系统会通过投影矩阵映射到屏幕空间。</p>
-<p>在高分辨率（视网膜）屏幕上，例如MacBook最近几年的屏幕，每个物理像素可能对应多个屏幕像素，这就是<strong>像素密度（Pixel
-Density）</strong>的概念。一般情况下，视网膜屏幕的像素密度为<code>2x</code>，这意味着每个逻辑像素会显示在2x2的物理像素网格上。</p>
-<h2 id="imgui-坐标系统">2. ImGui 坐标系统</h2>
-<p><strong><a
-href="https://github.com/ocornut/imgui">ImGui</a></strong>是一个常用于图形界面的库，其坐标系统通常基于窗口的分辨率，默认情况下，ImGui的坐标是基于像素的。例如：</p>
-<ul>
-<li>X 轴范围：<code>[0, 窗口宽度]</code></li>
-<li>Y 轴范围：<code>[0, 窗口高度]</code></li>
-</ul>
-<p>与OpenGL的NDC坐标不同，ImGui的坐标系原点位于左上角，且单位为像素。因此，在处理ImGui坐标时，尤其是在高分辨率屏幕上，需要考虑像素密度。</p>
-<h2 id="视网膜屏幕上的像素密度">3. 视网膜屏幕上的像素密度</h2>
-<p>在视网膜屏幕上，通常会有一个<strong>缩放因子</strong>，也叫<strong>DPI缩放</strong>或<strong>像素比（Pixel
-Ratio）</strong>。例如，对于<code>2x</code>的视网膜屏幕，缩放因子为<code>2.0</code>。这意味着窗口的逻辑分辨率和物理分辨率之间存在比例差异。</p>
-<p>假设一个视网膜屏幕的物理分辨率为<code>2880x1800</code>，而其逻辑分辨率为<code>1440x900</code>，那么像素比为<code>2.0</code>。</p>
-<p>在这种情况下，OpenGL和ImGui需要正确处理这个像素比，以确保坐标和尺寸能够正确映射到物理像素上。</p>
-<h2 id="坐标转换方法">4. 坐标转换方法</h2>
-<h3 id="opengl坐标到imgui坐标">OpenGL坐标到ImGui坐标</h3>
-<p>假设你有OpenGL中的标准化设备坐标
-<code>(x_ndc, y_ndc)</code>，想将其转换为ImGui的窗口坐标
-<code>(x_imgui, y_imgui)</code>。可以按照以下步骤进行转换：</p>
-<ol type="1">
-<li>获取窗口的逻辑分辨率<code>(width_logical, height_logical)</code>和像素比<code>pixel_ratio</code>。</li>
-<li>使用如下公式进行转换：</li>
-</ol>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span></code></pre>
-<p>这里的<code>x_ndc</code>和<code>y_ndc</code>分别在<code>[-1, 1]</code>范围内，代表OpenGL的标准化设备坐标。通过这种转换，你可以得到对应的ImGui坐标。</p>
-<h3 id="imgui坐标到opengl坐标">ImGui坐标到OpenGL坐标</h3>
-<p>反过来，如果你想将ImGui坐标转换回OpenGL坐标，可以使用以下公式：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
-y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span></code></pre>
-<p>这将把ImGui的像素坐标映射回OpenGL的标准化设备坐标。</p>
-<h2 id="示例代码">5. 示例代码</h2>
-<p>以下是一个简单的代码片段，演示了如何在视网膜屏幕上进行OpenGL和ImGui坐标的转换：</p>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 假设 pixel_ratio = 2.0f (视网膜屏幕)</span>
-<span class="token comment">// 假设窗口的逻辑分辨率为 1440x900</span>
-<span class="token keyword">float</span> width_logical <span class="token operator">=</span> <span class="token number">1440.0f</span><span class="token punctuation">;</span>
-<span class="token keyword">float</span> height_logical <span class="token operator">=</span> <span class="token number">900.0f</span><span class="token punctuation">;</span>
-<span class="token keyword">float</span> pixel_ratio <span class="token operator">=</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
-
-<span class="token comment">// OpenGL标准化设备坐标</span>
-<span class="token keyword">float</span> x_ndc <span class="token operator">=</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
-<span class="token keyword">float</span> y_ndc <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5f</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 转换为ImGui坐标</span>
-<span class="token keyword">float</span> x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-<span class="token keyword">float</span> y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
-
-std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ImGui坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-
-<span class="token comment">// 再将ImGui坐标转换回OpenGL坐标</span>
-x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
-y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
-
-std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"OpenGL坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></code></pre>
-<h2 id="总结">6. 总结</h2>
-<p>在高分辨率（如视网膜）屏幕上，处理OpenGL和ImGui坐标之间的转换需要考虑<strong>像素密度</strong>和<strong>坐标系统的不同</strong>。通过正确处理像素比和坐标转换，可以确保应用程序在高分辨率屏幕上正确显示。</p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>OpenGL</tag>
-        <tag>ImGui</tag>
-        <tag>视网膜屏幕</tag>
-        <tag>坐标转换</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Total Commander使用</title>
     <url>/post/aada5c99.html</url>
     <content><![CDATA[<h1 id="total-commander使用教程及快捷键设置">Total
@@ -889,6 +801,94 @@ href="https://github.com/sbarex/SourceCodeSyntaxHighlight">GitHub
         <tag>Quick Look</tag>
         <tag>源码高亮</tag>
         <tag>Syntax Highlight</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</title>
+    <url>/post/e9330479.html</url>
+    <content><![CDATA[<h1
+id="opengl坐标与imgui坐标在视网膜屏幕上的转换">OpenGL坐标与ImGui坐标在视网膜屏幕上的转换</h1>
+<blockquote>
+<p>在高分辨率显示器，尤其是<strong>视网膜屏幕（Retina
+display）</strong>上开发图形应用时，通常需要处理不同的坐标系统和像素密度问题。<strong>OpenGL</strong>和<strong>ImGui</strong>都有各自的坐标系统，当在视网膜屏幕上进行开发时，如何正确处理坐标转换成为一个关键问题。</p>
+</blockquote>
+<p>本文将探讨如何在视网膜屏幕上进行<strong>OpenGL坐标</strong>和<strong>ImGui坐标</strong>之间的转换，并讨论像素密度对坐标计算的影响。</p>
+<h2 id="opengl坐标系统">1. OpenGL坐标系统</h2>
+<p>在OpenGL中，坐标系统通常是以<strong>标准化设备坐标（Normalized Device
+Coordinates, NDC）</strong>表示的。它的范围为：</p>
+<ul>
+<li>X 轴范围：<code>[-1, 1]</code></li>
+<li>Y 轴范围：<code>[-1, 1]</code></li>
+</ul>
+<p>这意味着屏幕的中心为 <code>(0, 0)</code>，左下角为
+<code>(-1, -1)</code>，右上角为
+<code>(1, 1)</code>。通常，这个坐标系统会通过投影矩阵映射到屏幕空间。</p>
+<p>在高分辨率（视网膜）屏幕上，例如MacBook最近几年的屏幕，每个物理像素可能对应多个屏幕像素，这就是<strong>像素密度（Pixel
+Density）</strong>的概念。一般情况下，视网膜屏幕的像素密度为<code>2x</code>，这意味着每个逻辑像素会显示在2x2的物理像素网格上。</p>
+<h2 id="imgui-坐标系统">2. ImGui 坐标系统</h2>
+<p><strong><a
+href="https://github.com/ocornut/imgui">ImGui</a></strong>是一个常用于图形界面的库，其坐标系统通常基于窗口的分辨率，默认情况下，ImGui的坐标是基于像素的。例如：</p>
+<ul>
+<li>X 轴范围：<code>[0, 窗口宽度]</code></li>
+<li>Y 轴范围：<code>[0, 窗口高度]</code></li>
+</ul>
+<p>与OpenGL的NDC坐标不同，ImGui的坐标系原点位于左上角，且单位为像素。因此，在处理ImGui坐标时，尤其是在高分辨率屏幕上，需要考虑像素密度。</p>
+<h2 id="视网膜屏幕上的像素密度">3. 视网膜屏幕上的像素密度</h2>
+<p>在视网膜屏幕上，通常会有一个<strong>缩放因子</strong>，也叫<strong>DPI缩放</strong>或<strong>像素比（Pixel
+Ratio）</strong>。例如，对于<code>2x</code>的视网膜屏幕，缩放因子为<code>2.0</code>。这意味着窗口的逻辑分辨率和物理分辨率之间存在比例差异。</p>
+<p>假设一个视网膜屏幕的物理分辨率为<code>2880x1800</code>，而其逻辑分辨率为<code>1440x900</code>，那么像素比为<code>2.0</code>。</p>
+<p>在这种情况下，OpenGL和ImGui需要正确处理这个像素比，以确保坐标和尺寸能够正确映射到物理像素上。</p>
+<h2 id="坐标转换方法">4. 坐标转换方法</h2>
+<h3 id="opengl坐标到imgui坐标">OpenGL坐标到ImGui坐标</h3>
+<p>假设你有OpenGL中的标准化设备坐标
+<code>(x_ndc, y_ndc)</code>，想将其转换为ImGui的窗口坐标
+<code>(x_imgui, y_imgui)</code>。可以按照以下步骤进行转换：</p>
+<ol type="1">
+<li>获取窗口的逻辑分辨率<code>(width_logical, height_logical)</code>和像素比<code>pixel_ratio</code>。</li>
+<li>使用如下公式进行转换：</li>
+</ol>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span></code></pre>
+<p>这里的<code>x_ndc</code>和<code>y_ndc</code>分别在<code>[-1, 1]</code>范围内，代表OpenGL的标准化设备坐标。通过这种转换，你可以得到对应的ImGui坐标。</p>
+<h3 id="imgui坐标到opengl坐标">ImGui坐标到OpenGL坐标</h3>
+<p>反过来，如果你想将ImGui坐标转换回OpenGL坐标，可以使用以下公式：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
+y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span></code></pre>
+<p>这将把ImGui的像素坐标映射回OpenGL的标准化设备坐标。</p>
+<h2 id="示例代码">5. 示例代码</h2>
+<p>以下是一个简单的代码片段，演示了如何在视网膜屏幕上进行OpenGL和ImGui坐标的转换：</p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 假设 pixel_ratio = 2.0f (视网膜屏幕)</span>
+<span class="token comment">// 假设窗口的逻辑分辨率为 1440x900</span>
+<span class="token keyword">float</span> width_logical <span class="token operator">=</span> <span class="token number">1440.0f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> height_logical <span class="token operator">=</span> <span class="token number">900.0f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> pixel_ratio <span class="token operator">=</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
+
+<span class="token comment">// OpenGL标准化设备坐标</span>
+<span class="token keyword">float</span> x_ndc <span class="token operator">=</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
+<span class="token keyword">float</span> y_ndc <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.5f</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 转换为ImGui坐标</span>
+<span class="token keyword">float</span> x_imgui <span class="token operator">=</span> <span class="token punctuation">(</span>x_ndc <span class="token operator">+</span> <span class="token number">1.0f</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+<span class="token keyword">float</span> y_imgui <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1.0f</span> <span class="token operator">-</span> y_ndc<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.5f</span> <span class="token operator">*</span> height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">;</span>
+
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ImGui坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_imgui <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+<span class="token comment">// 再将ImGui坐标转换回OpenGL坐标</span>
+x_ndc <span class="token operator">=</span> <span class="token punctuation">(</span>x_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>width_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span> <span class="token operator">-</span> <span class="token number">1.0f</span><span class="token punctuation">;</span>
+y_ndc <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> <span class="token punctuation">(</span>y_imgui <span class="token operator">/</span> <span class="token punctuation">(</span>height_logical <span class="token operator">*</span> pixel_ratio<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.0f</span><span class="token punctuation">;</span>
+
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"OpenGL坐标: ("</span> <span class="token operator">&lt;&lt;</span> x_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> y_ndc <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span></code></pre>
+<h2 id="总结">6. 总结</h2>
+<p>在高分辨率（如视网膜）屏幕上，处理OpenGL和ImGui坐标之间的转换需要考虑<strong>像素密度</strong>和<strong>坐标系统的不同</strong>。通过正确处理像素比和坐标转换，可以确保应用程序在高分辨率屏幕上正确显示。</p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>OpenGL</tag>
+        <tag>ImGui</tag>
+        <tag>视网膜屏幕</tag>
+        <tag>坐标转换</tag>
       </tags>
   </entry>
   <entry>
@@ -2332,6 +2332,108 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
       </tags>
   </entry>
   <entry>
+    <title>多维放缩MDS算法</title>
+    <url>/post/94abe0b4.html</url>
+    <content><![CDATA[<blockquote>
+<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
+“embedding”也应用在计算机图形学的参数化领域中。</p>
+</blockquote>
+<h3 id="问题">问题</h3>
+<p>给定高维空间<span
+class="math inline">\(\mathbb{R}^n\)</span>中的<span
+class="math inline">\(m\)</span>个样本点为<span
+class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
+class="math inline">\(m\)</span>个样本嵌入到低维空间<span
+class="math inline">\(\mathbb{R}^{d}\)</span>，<span
+class="math inline">\(d&lt;
+n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
+<figure>
+<img
+src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
+alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+<span id="more"></span>
+<h3 id="分析">分析</h3>
+<p>设高维空间中样本点<span class="math inline">\({
+X}_i\)</span>在低维空间中表示为<span class="math inline">\({
+Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
+\label{eq1}
+\]</span> 将上式平方得到： <span class="math display">\[
+\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
+Z}_i^{ T}{ Z}_j
+\label{eq2}
+\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
+Z}\in\mathbb{R}^{m\times
+m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
+class="math inline">\(i\)</span>行第<span
+class="math inline">\(j\)</span>列元素为<span
+class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
+class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
+class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
+class="math display">\[
+D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
+\label{eq3}
+\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
+B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
+class="math inline">\(k\)</span>个非零特征值，分别为<span
+class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
+class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
+class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
+class="math inline">\({
+\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
+class="math inline">\({ V}\)</span>的第<span
+class="math inline">\(i\)</span>列是特征值<span
+class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
+class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
+T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
+class="math inline">\(k&lt;
+n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
+<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
+<p>考虑低维样本的中心为原点，即<span
+class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
+class="math display">\[
+\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
+\]</span></p>
+<p><span class="math display">\[
+\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
+\]</span></p>
+<p>有：<br />
+<span class="math display">\[
+B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
+\]</span> 代入公式有： <span class="math display">\[
+B_{i,j} =
+-\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
+\]</span> 由此则可得到内积矩阵。</p>
+<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
+<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
+class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
+class="math inline">\({
+\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
+class="math inline">\(V_*\)</span>。即<span
+class="math inline">\(B\approx{
+V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
+class="math display">\[
+Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
+\]</span></p>
+<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
+class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
+<figure>
+<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
+<figcaption aria-hidden="true">embedding</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>几何处理</tag>
+        <tag>曲面参数化</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于极大似然坐标的图像变形的MATLAB实现</title>
     <url>/post/mlc2d.html</url>
     <content><![CDATA[<p><img
@@ -2490,108 +2592,6 @@ src="https://github.com/changqj/Maximum-Likelihood-Coordinates-2D/raw/main/doc/5
         <tag>算法实现</tag>
         <tag>几何处理</tag>
         <tag>极大似然坐标</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多维放缩MDS算法</title>
-    <url>/post/94abe0b4.html</url>
-    <content><![CDATA[<blockquote>
-<p>在线性代数中我们接触到embedding(嵌入)这一术语，表示从高维到低维空间。考虑一个高维空间中的样本集在低维空间中的形态。
-“embedding”也应用在计算机图形学的参数化领域中。</p>
-</blockquote>
-<h3 id="问题">问题</h3>
-<p>给定高维空间<span
-class="math inline">\(\mathbb{R}^n\)</span>中的<span
-class="math inline">\(m\)</span>个样本点为<span
-class="math inline">\(\{X_i\}_{i=1}^m\)</span>，考虑是否可以将<span
-class="math inline">\(m\)</span>个样本嵌入到低维空间<span
-class="math inline">\(\mathbb{R}^{d}\)</span>，<span
-class="math inline">\(d&lt;
-n\)</span>，使得高维空间中两样本点的度量距离在低维空间中保持不变。</p>
-<figure>
-<img
-src="https://files.ifish.ink/mics/1110_1.png?imageMogr2/auto-orient/thumbnail/1000x1000"
-alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-<span id="more"></span>
-<h3 id="分析">分析</h3>
-<p>设高维空间中样本点<span class="math inline">\({
-X}_i\)</span>在低维空间中表示为<span class="math inline">\({
-Z}_i\)</span>，要保证度量距离不变，即： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert=\Vert { Z}_i-{ Z}_j\Vert\qquad i,j=1,2,\dots,m
-\label{eq1}
-\]</span> 将上式平方得到： <span class="math display">\[
-\Vert {X}_i-{ X}_j\Vert^2=\Vert { Z}_i\Vert^2+\Vert { Z}_j\Vert^2-2{
-Z}_i^{ T}{ Z}_j
-\label{eq2}
-\]</span> 令<span class="math inline">\({ B}={ Z}^{ T}{
-Z}\in\mathbb{R}^{m\times
-m}\)</span>表示低维空间中样本的内积矩阵，内积矩阵第<span
-class="math inline">\(i\)</span>行第<span
-class="math inline">\(j\)</span>列元素为<span
-class="math inline">\(B_{i,j}=Z_i^{\rm T}Z_j\)</span>，用<span
-class="math inline">\(D\)</span>表示样本在原始空间中的距离矩阵，其中<span
-class="math inline">\(D_{i,j}=\Vert X_i-X_j\Vert\)</span>， <span
-class="math display">\[
-D_{i,j}^2=B_{i,i}+B_{j,j}-2B_{i,j}
-\label{eq3}
-\]</span> 如果得到满足上式约束的矩阵<span class="math inline">\({
-B}\)</span>，假定<span class="math inline">\({ B}\)</span>含有<span
-class="math inline">\(k\)</span>个非零特征值，分别为<span
-class="math inline">\(\lambda_1,\lambda_2,\dots,\lambda_k\)</span>且满足<span
-class="math inline">\(\lambda_i\ge\lambda_j,i&lt; j\)</span>，则有<span
-class="math inline">\({ B}={ V\Lambda V^T}\)</span>，其中<span
-class="math inline">\({
-\Lambda}=diag\{\lambda_1,\lambda_2,\dots,\lambda_k\}\)</span>，<span
-class="math inline">\({ V}\)</span>的第<span
-class="math inline">\(i\)</span>列是特征值<span
-class="math inline">\(\lambda_i\)</span>对应的特征向量。则有<span
-class="math inline">\({ Z}={ \Lambda}^{\frac{1}{2}}{ V}^{
-T}\in\mathbb{R}^{k\times m}\)</span>，如果<span
-class="math inline">\(k&lt;
-n\)</span>，则实现距离不变的降维。下面考虑如何求解满足上式约束的内积矩阵。</p>
-<h3 id="内积矩阵的推导">内积矩阵的推导</h3>
-<p>考虑低维样本的中心为原点，即<span
-class="math inline">\(\sum_iZ_i=0\)</span>，根据第二等式有： <span
-class="math display">\[
-\sum_iD_{i,j}^2=\sum_iB_{i,i}+mB_{j,j}
-\]</span></p>
-<p><span class="math display">\[
-\sum_{i,j}D_{i,j}^2 =2m\sum_iB_{i,i}
-\]</span></p>
-<p>有：<br />
-<span class="math display">\[
-B_{j,j}=\frac{\sum_iD_{i,j}^2}{m}-\frac{\sum_{i,j}D_{i,j}^2}{2m^2}
-\]</span> 代入公式有： <span class="math display">\[
-B_{i,j} =
--\frac{1}{2}(D_{i,j}^2-\frac{\sum_jD_{i,j}^2}{m}+\frac{\sum_{i,j}D_{i,j}^2}{m^2}-\frac{\sum_iD_{i,j}^2}{m})
-\]</span> 由此则可得到内积矩阵。</p>
-<h3 id="距离不必严格相等的嵌入">距离不必严格相等的嵌入</h3>
-<p>特别地，在现实应用为了降低维度，多数情况下会损失一部分信息。即，如果目标空间维度<span
-class="math inline">\(d\)</span>小于非零特征值的个数，则做不到距离严格相等。此时取<span
-class="math inline">\({
-\Lambda_*}=diag\{\lambda_1,\lambda_2,\dots,\lambda_d\}\)</span>，对应的特征向量矩阵为<span
-class="math inline">\(V_*\)</span>。即<span
-class="math inline">\(B\approx{
-V_*\Lambda_*V^T_*}\)</span>。低维空间中的样本可表示为 <span
-class="math display">\[
-Z=\Lambda_*^{\frac{1}{2}}V^T_*\in\mathbb{R}^{d\times m}
-\]</span></p>
-<h3 id="简单应用mathbbr3longmapstomathbbr2">简单应用<span
-class="math inline">\(\mathbb{R}^3\longmapsto\mathbb{R}^2\)</span></h3>
-<figure>
-<img src="https://files.ifish.ink/mics/1110_2.png" alt="embedding" />
-<figcaption aria-hidden="true">embedding</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>学习/研究</category>
-      </categories>
-      <tags>
-        <tag>几何处理</tag>
-        <tag>曲面参数化</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
