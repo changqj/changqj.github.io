@@ -31,7 +31,7 @@ jobs:
 
           const API_URL = 'https://api.fifa.com/api/v3/calendar/matches?language=en&count=500&idSeason=285023';
           const OUTPUT_PATH = 'pub/worldcup26.ics';
-          const CALENDAR_NAME = 'FIFA World Cup 2026 - Finished Matches';
+          const CALENDAR_NAME = 'FIFA World Cup 2026 - All Matches';
           const UID_DOMAIN = 'qjchang.blog';
 
           const FIFA_CODE_TO_ISO2 = {
@@ -128,6 +128,10 @@ jobs:
               .join('');
           }
 
+          function isFinishedMatch(match) {
+            return match.MatchStatus === 0;
+          }
+
           function makeSummary(match) {
             const homeCode = match.Home?.IdCountry;
             const awayCode = match.Away?.IdCountry;
@@ -135,8 +139,14 @@ jobs:
             const awayName = match.Away?.TeamName?.[0]?.Description || 'Away';
             const leftName = homeCode === 'KOR' && homeName === 'Korea Republic' ? 'South Korea' : homeName;
             const rightName = awayCode === 'CZE' && awayName === 'Czechia' ? 'Czech Republic' : awayName;
+            const left = `${leftName}${flagFromCode(homeCode)}`;
+            const right = `${rightName}${flagFromCode(awayCode)}`;
 
-            return `${leftName}${flagFromCode(homeCode)} - ${rightName}${flagFromCode(awayCode)}`;
+            if (isFinishedMatch(match)) {
+              return `${left} ${match.HomeTeamScore}-${match.AwayTeamScore} ${right}`;
+            }
+
+            return `${left} - ${right}`;
           }
 
           function makeDescription(match, matchUrl) {
@@ -145,9 +155,11 @@ jobs:
             const stadium = match.Stadium?.Name?.[0]?.Description || '';
             const city = match.Stadium?.CityName?.[0]?.Description || '';
             const score = `${match.HomeTeamScore} - ${match.AwayTeamScore}`;
+            const status = isFinishedMatch(match) ? 'Finished' : 'Scheduled';
 
             const parts = [
-              `Score: ${score}`,
+              `Status: ${status}`,
+              isFinishedMatch(match) ? `Score: ${score}` : '',
               stage ? `Stage: ${stage}` : '',
               group ? `Group: ${group}` : '',
               stadium ? `Stadium: ${stadium}` : '',
@@ -210,7 +222,7 @@ jobs:
             const results = Array.isArray(data.Results) ? data.Results : [];
 
             return results
-              .filter((m) => m.MatchStatus === 0 && m.OfficialityStatus === 1)
+              .filter((m) => m.OfficialityStatus === 1)
               .filter((m) => new Date(m.Date) <= CUTOFF_UTC)
               .sort((a, b) => new Date(a.Date) - new Date(b.Date));
           }
