@@ -8,8 +8,8 @@ on:
   schedule:
     # Beijing time (UTC+8) 00:00-07:30 at :00/:30 => UTC 16:00-23:30
     - cron: '0,30 16-23 * * *'
-    # Beijing time (UTC+8) 08:00 => UTC 00:00
-    - cron: '0 0 * * *'
+    # Beijing time (UTC+8) 08:00-15:30 at :00/:30 => UTC 00:00-07:30
+    - cron: '0,30 0-7 * * *'
 
 permissions:
   contents: write
