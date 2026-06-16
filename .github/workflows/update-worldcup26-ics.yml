@@ -6,17 +6,17 @@ on:
     paths:
       - .github/workflows/update-worldcup26-ics.yml
   schedule:
-    # Beijing time (UTC+8) 00:00-07:30 at :00/:30 => UTC 16:00-23:30
-    - cron: '0,30 16-23 * * *'
-    # Beijing time (UTC+8) 08:00-15:30 at :00/:30 => UTC 00:00-07:30
-    - cron: '0,30 0-7 * * *'
+    # Beijing time (UTC+8) 00:07-07:37 at :07/:37 => UTC 16:07-23:37
+    - cron: '17,47 16-23 * * *'
+    # Beijing time (UTC+8) 08:07-15:37 at :07/:37 => UTC 00:07-07:37
+    - cron: '17,47 0-7 * * *'
 
 permissions:
   contents: write
 
 concurrency:
   group: update-worldcup26-ics
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   update:
