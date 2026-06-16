@@ -1,12 +1,944 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=https://files.ifish.ink/worldcup26.ics">
-  <link rel="canonical" href="https://files.ifish.ink/worldcup26.ics">
-  <title>Redirecting...</title>
-</head>
-<body>
-  Redirecting to <a href="https://files.ifish.ink/worldcup26.ics">https://files.ifish.ink/worldcup26.ics</a>
-</body>
-</html>
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:-//qjchang//worldcup26//EN
+NAME:FIFA World Cup 2026 - All Matches
+X-WR-CALNAME:FIFA World Cup 2026 - All Matches
+X-WR-TIMEZONE:UTC
+BEGIN:VEVENT
+UID:worldcup26-400021443@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260611T190000Z
+DTEND:20260611T210000Z
+SUMMARY:Mexico🇲🇽 2-0 South Africa🇿🇦
+DESCRIPTION:Status: Finished\nScore: 2 - 0\nStage: First Stage\nGroup: Group A\nStadium: Mexico City Stadium\nCity: Mexico City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021443
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021443
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021441@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260612T020000Z
+DTEND:20260612T040000Z
+SUMMARY:Korea Republic🇰🇷 2-1 Czechia🇨🇿
+DESCRIPTION:Status: Finished\nScore: 2 - 1\nStage: First Stage\nGroup: Group A\nStadium: Guadalajara Stadium\nCity: Guadalajara\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021441
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021441
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021449@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260612T190000Z
+DTEND:20260612T210000Z
+SUMMARY:Canada🇨🇦 1-1 Bosnia and Herzegovina🇧🇦
+DESCRIPTION:Status: Finished\nScore: 1 - 1\nStage: First Stage\nGroup: Group B\nStadium: Toronto Stadium\nCity: Toronto\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021449
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021449
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021458@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260613T010000Z
+DTEND:20260613T030000Z
+SUMMARY:USA🇺🇸 4-1 Paraguay🇵🇾
+DESCRIPTION:Status: Finished\nScore: 4 - 1\nStage: First Stage\nGroup: Group D\nStadium: Los Angeles Stadium\nCity: Los Angeles\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021458
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021458
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021447@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260613T190000Z
+DTEND:20260613T210000Z
+SUMMARY:Qatar🇶🇦 1-1 Switzerland🇨🇭
+DESCRIPTION:Status: Finished\nScore: 1 - 1\nStage: First Stage\nGroup: Group B\nStadium: San Francisco Bay Area Stadium\nCity: San Francisco Bay Area\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021447
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021447
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021456@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260613T220000Z
+DTEND:20260614T000000Z
+SUMMARY:Brazil🇧🇷 1-1 Morocco🇲🇦
+DESCRIPTION:Status: Finished\nScore: 1 - 1\nStage: First Stage\nGroup: Group C\nStadium: New York/New Jersey Stadium\nCity: New Jersey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021456
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021456
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021453@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260614T010000Z
+DTEND:20260614T030000Z
+SUMMARY:Haiti🇭🇹 0-1 Scotland🇬🇧
+DESCRIPTION:Status: Finished\nScore: 0 - 1\nStage: First Stage\nGroup: Group C\nStadium: Boston Stadium\nCity: Boston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021453
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021453
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021463@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260614T040000Z
+DTEND:20260614T060000Z
+SUMMARY:Australia🇦🇺 2-0 Türkiye🇹🇷
+DESCRIPTION:Status: Finished\nScore: 2 - 0\nStage: First Stage\nGroup: Group D\nStadium: BC Place Vancouver\nCity: Vancouver\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021463
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021463
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021464@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260614T170000Z
+DTEND:20260614T190000Z
+SUMMARY:Germany🇩🇪 7-1 Curaçao🇨🇼
+DESCRIPTION:Status: Finished\nScore: 7 - 1\nStage: First Stage\nGroup: Group E\nStadium: Houston Stadium\nCity: Houston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021464
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021464
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021470@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260614T200000Z
+DTEND:20260614T220000Z
+SUMMARY:Netherlands🇳🇱 2-2 Japan🇯🇵
+DESCRIPTION:Status: Finished\nScore: 2 - 2\nStage: First Stage\nGroup: Group F\nStadium: Dallas Stadium\nCity: Dallas\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021470
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021470
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021467@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260614T230000Z
+DTEND:20260615T010000Z
+SUMMARY:Côte d'Ivoire🇨🇮 1-0 Ecuador🇪🇨
+DESCRIPTION:Status: Finished\nScore: 1 - 0\nStage: First Stage\nGroup: Group E\nStadium: Philadelphia Stadium\nCity: Philadelphia\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021467
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021467
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021474@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260615T020000Z
+DTEND:20260615T040000Z
+SUMMARY:Sweden🇸🇪 5-1 Tunisia🇹🇳
+DESCRIPTION:Status: Finished\nScore: 5 - 1\nStage: First Stage\nGroup: Group F\nStadium: Monterrey Stadium\nCity: Monterrey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021474
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021474
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021482@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260615T160000Z
+DTEND:20260615T180000Z
+SUMMARY:Spain🇪🇸 0-0 Cabo Verde🇨🇻
+DESCRIPTION:Status: Finished\nScore: 0 - 0\nStage: First Stage\nGroup: Group H\nStadium: Atlanta Stadium\nCity: Atlanta\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021482
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021482
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021478@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260615T190000Z
+DTEND:20260615T210000Z
+SUMMARY:Belgium🇧🇪 1-1 Egypt🇪🇬
+DESCRIPTION:Status: Finished\nScore: 1 - 1\nStage: First Stage\nGroup: Group G\nStadium: Seattle Stadium\nCity: Seattle\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021478
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021478
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021486@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260615T220000Z
+DTEND:20260616T000000Z
+SUMMARY:Saudi Arabia🇸🇦 1-1 Uruguay🇺🇾
+DESCRIPTION:Status: Finished\nScore: 1 - 1\nStage: First Stage\nGroup: Group H\nStadium: Miami Stadium\nCity: Miami\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021486
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021486
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021476@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260616T010000Z
+DTEND:20260616T030000Z
+SUMMARY:IR Iran🇮🇷 2-2 New Zealand🇳🇿
+DESCRIPTION:Status: Finished\nScore: 2 - 2\nStage: First Stage\nGroup: Group G\nStadium: Los Angeles Stadium\nCity: Los Angeles\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021476
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021476
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021490@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260616T190000Z
+DTEND:20260616T210000Z
+SUMMARY:France🇫🇷 - Senegal🇸🇳
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group I\nStadium: New York/New Jersey Stadium\nCity: New Jersey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021490
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021490
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021488@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260616T220000Z
+DTEND:20260617T000000Z
+SUMMARY:Iraq - Norway🇳🇴
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group I\nStadium: Boston Stadium\nCity: Boston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021488
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021488
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021496@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260617T010000Z
+DTEND:20260617T030000Z
+SUMMARY:Argentina🇦🇷 - Algeria🇩🇿
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group J\nStadium: Kansas City Stadium\nCity: Kansas City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021496
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021496
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021498@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260617T040000Z
+DTEND:20260617T060000Z
+SUMMARY:Austria🇦🇹 - Jordan🇯🇴
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group J\nStadium: San Francisco Bay Area Stadium\nCity: San Francisco Bay Area\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021498
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021498
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021502@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260617T170000Z
+DTEND:20260617T190000Z
+SUMMARY:Portugal🇵🇹 - Congo DR🇨🇩
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group K\nStadium: Houston Stadium\nCity: Houston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021502
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021502
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021507@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260617T200000Z
+DTEND:20260617T220000Z
+SUMMARY:England🇬🇧 - Croatia🇭🇷
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group L\nStadium: Dallas Stadium\nCity: Dallas\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021507
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021507
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021510@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260617T230000Z
+DTEND:20260618T010000Z
+SUMMARY:Ghana🇬🇭 - Panama🇵🇦
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group L\nStadium: Toronto Stadium\nCity: Toronto\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021510
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021510
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021504@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260618T020000Z
+DTEND:20260618T040000Z
+SUMMARY:Uzbekistan🇺🇿 - Colombia🇨🇴
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group K\nStadium: Mexico City Stadium\nCity: Mexico City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021504
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021504
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021440@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260618T160000Z
+DTEND:20260618T180000Z
+SUMMARY:Czechia🇨🇿 - South Africa🇿🇦
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group A\nStadium: Atlanta Stadium\nCity: Atlanta\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021440
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021440
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021446@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260618T190000Z
+DTEND:20260618T210000Z
+SUMMARY:Switzerland🇨🇭 - Bosnia and Herzegovina🇧🇦
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group B\nStadium: Los Angeles Stadium\nCity: Los Angeles\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021446
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021446
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021450@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260618T220000Z
+DTEND:20260619T000000Z
+SUMMARY:Canada🇨🇦 - Qatar🇶🇦
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group B\nStadium: BC Place Vancouver\nCity: Vancouver\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021450
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021450
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021442@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260619T010000Z
+DTEND:20260619T030000Z
+SUMMARY:Mexico🇲🇽 - Korea Republic🇰🇷
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group A\nStadium: Guadalajara Stadium\nCity: Guadalajara\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021442
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021442
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021462@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260619T190000Z
+DTEND:20260619T210000Z
+SUMMARY:USA🇺🇸 - Australia🇦🇺
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group D\nStadium: Seattle Stadium\nCity: Seattle\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021462
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021462
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021454@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260619T220000Z
+DTEND:20260620T000000Z
+SUMMARY:Scotland🇬🇧 - Morocco🇲🇦
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group C\nStadium: Boston Stadium\nCity: Boston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021454
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021454
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021457@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260620T003000Z
+DTEND:20260620T023000Z
+SUMMARY:Brazil🇧🇷 - Haiti🇭🇹
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group C\nStadium: Philadelphia Stadium\nCity: Philadelphia\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021457
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021457
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021460@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260620T030000Z
+DTEND:20260620T050000Z
+SUMMARY:Türkiye🇹🇷 - Paraguay🇵🇾
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group D\nStadium: San Francisco Bay Area Stadium\nCity: San Francisco Bay Area\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021460
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021460
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021472@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260620T170000Z
+DTEND:20260620T190000Z
+SUMMARY:Netherlands🇳🇱 - Sweden🇸🇪
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group F\nStadium: Houston Stadium\nCity: Houston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021472
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021472
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021469@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260620T200000Z
+DTEND:20260620T220000Z
+SUMMARY:Germany🇩🇪 - Côte d'Ivoire🇨🇮
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group E\nStadium: Toronto Stadium\nCity: Toronto\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021469
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021469
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021465@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260621T000000Z
+DTEND:20260621T020000Z
+SUMMARY:Ecuador🇪🇨 - Curaçao🇨🇼
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group E\nStadium: Kansas City Stadium\nCity: Kansas City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021465
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021465
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021475@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260621T040000Z
+DTEND:20260621T060000Z
+SUMMARY:Tunisia🇹🇳 - Japan🇯🇵
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group F\nStadium: Monterrey Stadium\nCity: Monterrey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021475
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021475
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021483@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260621T160000Z
+DTEND:20260621T180000Z
+SUMMARY:Spain🇪🇸 - Saudi Arabia🇸🇦
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group H\nStadium: Atlanta Stadium\nCity: Atlanta\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021483
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021483
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021477@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260621T190000Z
+DTEND:20260621T210000Z
+SUMMARY:Belgium🇧🇪 - IR Iran🇮🇷
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group G\nStadium: Los Angeles Stadium\nCity: Los Angeles\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021477
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021477
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021487@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260621T220000Z
+DTEND:20260622T000000Z
+SUMMARY:Uruguay🇺🇾 - Cabo Verde🇨🇻
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group H\nStadium: Miami Stadium\nCity: Miami\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021487
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021487
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021480@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260622T010000Z
+DTEND:20260622T030000Z
+SUMMARY:New Zealand🇳🇿 - Egypt🇪🇬
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group G\nStadium: BC Place Vancouver\nCity: Vancouver\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021480
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021480
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021494@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260622T170000Z
+DTEND:20260622T190000Z
+SUMMARY:Argentina🇦🇷 - Austria🇦🇹
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group J\nStadium: Dallas Stadium\nCity: Dallas\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021494
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021494
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021492@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260622T210000Z
+DTEND:20260622T230000Z
+SUMMARY:France🇫🇷 - Iraq
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group I\nStadium: Philadelphia Stadium\nCity: Philadelphia\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021492
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021492
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021491@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260623T000000Z
+DTEND:20260623T020000Z
+SUMMARY:Norway🇳🇴 - Senegal🇸🇳
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group I\nStadium: New York/New Jersey Stadium\nCity: New Jersey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021491
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021491
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021499@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260623T030000Z
+DTEND:20260623T050000Z
+SUMMARY:Jordan🇯🇴 - Algeria🇩🇿
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group J\nStadium: San Francisco Bay Area Stadium\nCity: San Francisco Bay Area\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021499
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021499
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021503@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260623T170000Z
+DTEND:20260623T190000Z
+SUMMARY:Portugal🇵🇹 - Uzbekistan🇺🇿
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group K\nStadium: Houston Stadium\nCity: Houston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021503
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021503
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021506@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260623T200000Z
+DTEND:20260623T220000Z
+SUMMARY:England🇬🇧 - Ghana🇬🇭
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group L\nStadium: Boston Stadium\nCity: Boston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021506
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021506
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021511@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260623T230000Z
+DTEND:20260624T010000Z
+SUMMARY:Panama🇵🇦 - Croatia🇭🇷
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group L\nStadium: Toronto Stadium\nCity: Toronto\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021511
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021511
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021501@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260624T020000Z
+DTEND:20260624T040000Z
+SUMMARY:Colombia🇨🇴 - Congo DR🇨🇩
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group K\nStadium: Guadalajara Stadium\nCity: Guadalajara\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021501
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021501
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021448@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260624T190000Z
+DTEND:20260624T210000Z
+SUMMARY:Bosnia and Herzegovina🇧🇦 - Qatar🇶🇦
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group B\nStadium: Seattle Stadium\nCity: Seattle\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021448
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021448
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021451@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260624T190000Z
+DTEND:20260624T210000Z
+SUMMARY:Switzerland🇨🇭 - Canada🇨🇦
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group B\nStadium: BC Place Vancouver\nCity: Vancouver\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021451
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021451
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021452@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260624T220000Z
+DTEND:20260625T000000Z
+SUMMARY:Morocco🇲🇦 - Haiti🇭🇹
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group C\nStadium: Atlanta Stadium\nCity: Atlanta\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021452
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021452
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021455@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260624T220000Z
+DTEND:20260625T000000Z
+SUMMARY:Scotland🇬🇧 - Brazil🇧🇷
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group C\nStadium: Miami Stadium\nCity: Miami\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021455
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021455
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021445@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260625T010000Z
+DTEND:20260625T030000Z
+SUMMARY:South Africa🇿🇦 - Korea Republic🇰🇷
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group A\nStadium: Monterrey Stadium\nCity: Monterrey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021445
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021445
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021444@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260625T010000Z
+DTEND:20260625T030000Z
+SUMMARY:Czechia🇨🇿 - Mexico🇲🇽
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group A\nStadium: Mexico City Stadium\nCity: Mexico City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021444
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021444
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021468@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260625T200000Z
+DTEND:20260625T220000Z
+SUMMARY:Curaçao🇨🇼 - Côte d'Ivoire🇨🇮
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group E\nStadium: Philadelphia Stadium\nCity: Philadelphia\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021468
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021468
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021466@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260625T200000Z
+DTEND:20260625T220000Z
+SUMMARY:Ecuador🇪🇨 - Germany🇩🇪
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group E\nStadium: New York/New Jersey Stadium\nCity: New Jersey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021466
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021466
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021473@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260625T230000Z
+DTEND:20260626T010000Z
+SUMMARY:Tunisia🇹🇳 - Netherlands🇳🇱
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group F\nStadium: Kansas City Stadium\nCity: Kansas City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021473
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021473
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021471@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260625T230000Z
+DTEND:20260626T010000Z
+SUMMARY:Japan🇯🇵 - Sweden🇸🇪
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group F\nStadium: Dallas Stadium\nCity: Dallas\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021471
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021471
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021461@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260626T020000Z
+DTEND:20260626T040000Z
+SUMMARY:Paraguay🇵🇾 - Australia🇦🇺
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group D\nStadium: San Francisco Bay Area Stadium\nCity: San Francisco Bay Area\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021461
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021461
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021459@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260626T020000Z
+DTEND:20260626T040000Z
+SUMMARY:Türkiye🇹🇷 - USA🇺🇸
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group D\nStadium: Los Angeles Stadium\nCity: Los Angeles\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021459
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021459
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021493@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260626T190000Z
+DTEND:20260626T210000Z
+SUMMARY:Senegal🇸🇳 - Iraq
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group I\nStadium: Toronto Stadium\nCity: Toronto\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021493
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021493
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021489@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260626T190000Z
+DTEND:20260626T210000Z
+SUMMARY:Norway🇳🇴 - France🇫🇷
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group I\nStadium: Boston Stadium\nCity: Boston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021489
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021489
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021484@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260627T000000Z
+DTEND:20260627T020000Z
+SUMMARY:Uruguay🇺🇾 - Spain🇪🇸
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group H\nStadium: Guadalajara Stadium\nCity: Guadalajara\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021484
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021484
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021485@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260627T000000Z
+DTEND:20260627T020000Z
+SUMMARY:Cabo Verde🇨🇻 - Saudi Arabia🇸🇦
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group H\nStadium: Houston Stadium\nCity: Houston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021485
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021485
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021481@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260627T030000Z
+DTEND:20260627T050000Z
+SUMMARY:New Zealand🇳🇿 - Belgium🇧🇪
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group G\nStadium: BC Place Vancouver\nCity: Vancouver\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021481
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021481
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021479@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260627T030000Z
+DTEND:20260627T050000Z
+SUMMARY:Egypt🇪🇬 - IR Iran🇮🇷
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group G\nStadium: Seattle Stadium\nCity: Seattle\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021479
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021479
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021508@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260627T210000Z
+DTEND:20260627T230000Z
+SUMMARY:Panama🇵🇦 - England🇬🇧
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group L\nStadium: New York/New Jersey Stadium\nCity: New Jersey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021508
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021508
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021509@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260627T210000Z
+DTEND:20260627T230000Z
+SUMMARY:Croatia🇭🇷 - Ghana🇬🇭
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group L\nStadium: Philadelphia Stadium\nCity: Philadelphia\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021509
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021509
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021500@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260627T233000Z
+DTEND:20260628T013000Z
+SUMMARY:Congo DR🇨🇩 - Uzbekistan🇺🇿
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group K\nStadium: Atlanta Stadium\nCity: Atlanta\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021500
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021500
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021505@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260627T233000Z
+DTEND:20260628T013000Z
+SUMMARY:Colombia🇨🇴 - Portugal🇵🇹
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group K\nStadium: Miami Stadium\nCity: Miami\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021505
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021505
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021497@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260628T020000Z
+DTEND:20260628T040000Z
+SUMMARY:Algeria🇩🇿 - Austria🇦🇹
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group J\nStadium: Kansas City Stadium\nCity: Kansas City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021497
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021497
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021495@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260628T020000Z
+DTEND:20260628T040000Z
+SUMMARY:Jordan🇯🇴 - Argentina🇦🇷
+DESCRIPTION:Status: Scheduled\nStage: First Stage\nGroup: Group J\nStadium: Dallas Stadium\nCity: Dallas\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021495
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289273/400021495
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021518@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260628T190000Z
+DTEND:20260628T210000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Los Angeles Stadium\nCity: Los Angeles\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021518
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021518
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021516@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260629T170000Z
+DTEND:20260629T190000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Houston Stadium\nCity: Houston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021516
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021516
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021513@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260629T203000Z
+DTEND:20260629T223000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Boston Stadium\nCity: Boston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021513
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021513
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021522@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260630T010000Z
+DTEND:20260630T030000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Monterrey Stadium\nCity: Monterrey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021522
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021522
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021514@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260630T170000Z
+DTEND:20260630T190000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Dallas Stadium\nCity: Dallas\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021514
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021514
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021523@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260630T210000Z
+DTEND:20260630T230000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: New York/New Jersey Stadium\nCity: New Jersey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021523
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021523
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021520@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260701T010000Z
+DTEND:20260701T030000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Mexico City Stadium\nCity: Mexico City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021520
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021520
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021512@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260701T160000Z
+DTEND:20260701T180000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Atlanta Stadium\nCity: Atlanta\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021512
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021512
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021525@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260701T200000Z
+DTEND:20260701T220000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Seattle Stadium\nCity: Seattle\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021525
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021525
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021524@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260702T000000Z
+DTEND:20260702T020000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: San Francisco Bay Area Stadium\nCity: San Francisco Bay Area\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021524
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021524
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021519@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260702T190000Z
+DTEND:20260702T210000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Los Angeles Stadium\nCity: Los Angeles\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021519
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021519
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021526@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260702T230000Z
+DTEND:20260703T010000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Toronto Stadium\nCity: Toronto\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021526
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021526
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021527@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260703T030000Z
+DTEND:20260703T050000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: BC Place Vancouver\nCity: Vancouver\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021527
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021527
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021515@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260703T180000Z
+DTEND:20260703T200000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Dallas Stadium\nCity: Dallas\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021515
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021515
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021521@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260703T220000Z
+DTEND:20260704T000000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Miami Stadium\nCity: Miami\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021521
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021521
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021517@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260704T013000Z
+DTEND:20260704T033000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 32\nStadium: Kansas City Stadium\nCity: Kansas City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289287/400021517
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289287/400021517
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021530@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260704T170000Z
+DTEND:20260704T190000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 16\nStadium: Houston Stadium\nCity: Houston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289288/400021530
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289288/400021530
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021533@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260704T210000Z
+DTEND:20260704T230000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 16\nStadium: Philadelphia Stadium\nCity: Philadelphia\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289288/400021533
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289288/400021533
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021532@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260705T200000Z
+DTEND:20260705T220000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 16\nStadium: New York/New Jersey Stadium\nCity: New Jersey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289288/400021532
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289288/400021532
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021531@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260706T000000Z
+DTEND:20260706T020000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 16\nStadium: Mexico City Stadium\nCity: Mexico City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289288/400021531
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289288/400021531
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021529@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260706T190000Z
+DTEND:20260706T210000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 16\nStadium: Dallas Stadium\nCity: Dallas\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289288/400021529
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289288/400021529
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021534@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260707T000000Z
+DTEND:20260707T020000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 16\nStadium: Seattle Stadium\nCity: Seattle\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289288/400021534
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289288/400021534
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021528@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260707T160000Z
+DTEND:20260707T180000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 16\nStadium: Atlanta Stadium\nCity: Atlanta\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289288/400021528
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289288/400021528
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021535@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260707T200000Z
+DTEND:20260707T220000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Round of 16\nStadium: BC Place Vancouver\nCity: Vancouver\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289288/400021535
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289288/400021535
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021536@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260709T200000Z
+DTEND:20260709T220000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Quarter-final\nStadium: Boston Stadium\nCity: Boston\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289289/400021536
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289289/400021536
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021538@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260710T190000Z
+DTEND:20260710T210000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Quarter-final\nStadium: Los Angeles Stadium\nCity: Los Angeles\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289289/400021538
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289289/400021538
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021539@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260711T210000Z
+DTEND:20260711T230000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Quarter-final\nStadium: Miami Stadium\nCity: Miami\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289289/400021539
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289289/400021539
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021537@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260712T010000Z
+DTEND:20260712T030000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Quarter-final\nStadium: Kansas City Stadium\nCity: Kansas City\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289289/400021537
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289289/400021537
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021541@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260714T190000Z
+DTEND:20260714T210000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Semi-final\nStadium: Dallas Stadium\nCity: Dallas\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289290/400021541
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289290/400021541
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021540@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260715T190000Z
+DTEND:20260715T210000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Semi-final\nStadium: Atlanta Stadium\nCity: Atlanta\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289290/400021540
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289290/400021540
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021542@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260718T210000Z
+DTEND:20260718T230000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Play-off for third place\nStadium: Miami Stadium\nCity: Miami\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289291/400021542
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289291/400021542
+END:VEVENT
+BEGIN:VEVENT
+UID:worldcup26-400021543@qjchang.blog
+DTSTAMP:20260616T090654Z
+DTSTART:20260719T190000Z
+DTEND:20260719T210000Z
+SUMMARY:Home - Away
+DESCRIPTION:Status: Scheduled\nStage: Final\nStadium: New York/New Jersey Stadium\nCity: New Jersey\nSource: https://www.fifa.com/en/match-centre/match/17/285023/289292/400021543
+URL:https://www.fifa.com/en/match-centre/match/17/285023/289292/400021543
+END:VEVENT
+END:VCALENDAR
