@@ -135,17 +135,23 @@ jobs:
             return match.MatchStatus === 0;
           }
 
+          function isLiveMatch(match) {
+            return match.MatchStatus === 3;
+          }
+
+          function hasScore(match) {
+            return Number.isFinite(match.HomeTeamScore) && Number.isFinite(match.AwayTeamScore);
+          }
+
           function makeSummary(match) {
             const homeCode = match.Home?.IdCountry;
             const awayCode = match.Away?.IdCountry;
             const homeName = match.Home?.TeamName?.[0]?.Description || 'Home';
             const awayName = match.Away?.TeamName?.[0]?.Description || 'Away';
-            const leftName = homeCode === 'KOR' && homeName === 'Korea Republic' ? 'South Korea' : homeName;
-            const rightName = awayCode === 'CZE' && awayName === 'Czechia' ? 'Czech Republic' : awayName;
-            const left = `${leftName}${flagFromCode(homeCode)}`;
-            const right = `${rightName}${flagFromCode(awayCode)}`;
+            const left = `${homeName}${flagFromCode(homeCode)}`;
+            const right = `${awayName}${flagFromCode(awayCode)}`;
 
-            if (isFinishedMatch(match)) {
+            if ((isFinishedMatch(match) || isLiveMatch(match)) && hasScore(match)) {
               return `${left} ${match.HomeTeamScore}-${match.AwayTeamScore} ${right}`;
             }
 
@@ -158,11 +164,11 @@ jobs:
             const stadium = match.Stadium?.Name?.[0]?.Description || '';
             const city = match.Stadium?.CityName?.[0]?.Description || '';
             const score = `${match.HomeTeamScore} - ${match.AwayTeamScore}`;
-            const status = isFinishedMatch(match) ? 'Finished' : 'Scheduled';
+            const status = isFinishedMatch(match) ? 'Finished' : isLiveMatch(match) ? 'Live' : 'Scheduled';
 
             const parts = [
               `Status: ${status}`,
-              isFinishedMatch(match) ? `Score: ${score}` : '',
+              (isFinishedMatch(match) || isLiveMatch(match)) && hasScore(match) ? `Score: ${score}` : '',
               stage ? `Stage: ${stage}` : '',
               group ? `Group: ${group}` : '',
               stadium ? `Stadium: ${stadium}` : '',
@@ -232,10 +238,12 @@ jobs:
 
           const matches = await fetchMatches();
           const content = buildCalendar(matches);
+          const liveCount = matches.filter(isLiveMatch).length;
+          const finishedCount = matches.filter(isFinishedMatch).length;
 
           mkdirSync(dirname(OUTPUT_PATH), { recursive: true });
           writeFileSync(OUTPUT_PATH, content, 'utf8');
-          console.log(`Wrote ${OUTPUT_PATH} with ${matches.length} finished matches.`);
+          console.log(`Wrote ${OUTPUT_PATH} with ${matches.length} matches (${finishedCount} finished, ${liveCount} live).`);
           NODE
 
       - name: Commit and push if changed
