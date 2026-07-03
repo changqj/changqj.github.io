@@ -142,6 +142,79 @@ grid on<span class="token punctuation">,</span>hold on
       </tags>
   </entry>
   <entry>
+    <title>Bezier曲线拟合数据点的几何作图法</title>
+    <url>/post/7741e06a.html</url>
+    <content><![CDATA[<blockquote>
+<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
+</blockquote>
+<h1 id="contents">Contents</h1>
+<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+figure;
+axis([-5,5,-5,5]);
+grid on;
+title(&#39;Bezier曲线拟合&#39;);
+questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
+<span id="more"></span>
+<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
+<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
+while 1
+    i &#x3D; i+1;
+    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
+    xlabel(tip);
+    try
+    [x,y,button] &#x3D; ginput(1);
+    catch
+        return;
+    end
+    hold on ,plot(x,y,&#39;o&#39;);
+    dataPoints(:,i) &#x3D; [x;y];
+    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
+    if button ~&#x3D; 1
+        xlabel(&#39;&#39;);
+        break;
+    end
+end
+
+
+for i &#x3D; 0:0.01:1
+    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
+end
+h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
+legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
+<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
+<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
+% 得到曲线参数为u的数据点
+% dataPoints：初始点 2xn
+data &#x3D; dataPoints;
+while 1
+    if size(data,2) &#x3D;&#x3D; 1
+        break;
+    end
+    temp &#x3D; zeros(size(data,1),size(data,2)-1);
+    for i &#x3D; 1:size(data,2)-1
+        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
+    end
+    data &#x3D; temp;
+end
+end</code></pre>
+<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>拟合</tag>
+        <tag>曲线曲面</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github上 fork了别人的代码 本地更新主分支代码</title>
     <url>/post/8f4cbc0c.html</url>
     <content><![CDATA[<h3 id="github上-fork了别人的代码-本地更新主分支代码">Github上
@@ -657,79 +730,6 @@ unavailable for scheduled maintenance. Check back in a minute.”</p>
       </tags>
   </entry>
   <entry>
-    <title>Bezier曲线拟合数据点的几何作图法</title>
-    <url>/post/7741e06a.html</url>
-    <content><![CDATA[<blockquote>
-<p>Bezier曲线拟合数据点的几何作图法MATLAB程序。</p>
-</blockquote>
-<h1 id="contents">Contents</h1>
-<h3 id="左键选择点右键或中间结束">左键选择点，右键或中间结束</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-figure;
-axis([-5,5,-5,5]);
-grid on;
-title(&#39;Bezier曲线拟合&#39;);
-questdlg(&#39;1.鼠标左键：选择新点   2.鼠标中键或右键：选择最后一个点&#39;,&#39;操作&#39;,&#39;ok&#39;,&#39;ok&#39;);</code></pre>
-<span id="more"></span>
-<p><img src="https://files.ifish.ink/mics/main_01.png" /></p>
-<h3 id="从鼠标获取数据点">从鼠标获取数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">i &#x3D; 0;
-while 1
-    i &#x3D; i+1;
-    tip &#x3D; [&#39;请选择第&#39;,num2str(i),&#39;个数据点&#39;];
-    xlabel(tip);
-    try
-    [x,y,button] &#x3D; ginput(1);
-    catch
-        return;
-    end
-    hold on ,plot(x,y,&#39;o&#39;);
-    dataPoints(:,i) &#x3D; [x;y];
-    h1 &#x3D; plot(dataPoints(1,:),dataPoints(2,:),&#39;b&#39;);
-    if button ~&#x3D; 1
-        xlabel(&#39;&#39;);
-        break;
-    end
-end
-
-
-for i &#x3D; 0:0.01:1
-    newData(:,int32(i*100)+1) &#x3D; cqj_GetBezier3Point(dataPoints,i);
-end
-h2 &#x3D; plot(newData(1,:),newData(2,:),&#39;.-r&#39;);
-legend([h1,h2],&#39;原始点&#39;,&#39;3次Bezier曲线&#39;)</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_02.png" /></p>
-<h3 id="得到曲线参数为u的数据点">得到曲线参数为u的数据点</h3>
-<pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">function [ data ] &#x3D; cqj_GetBezier3Point(dataPoints,u)
-% 得到曲线参数为u的数据点
-% dataPoints：初始点 2xn
-data &#x3D; dataPoints;
-while 1
-    if size(data,2) &#x3D;&#x3D; 1
-        break;
-    end
-    temp &#x3D; zeros(size(data,1),size(data,2)-1);
-    for i &#x3D; 1:size(data,2)-1
-        temp(:,i) &#x3D; (1-u)*data(:,i)+u*data(:,i+1);
-    end
-    data &#x3D; temp;
-end
-end</code></pre>
-<p><img src="https://files.ifish.ink/mics/main_03.png" /></p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>学习/研究</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>拟合</tag>
-        <tag>曲线曲面</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WordPress站点地图自动更新</title>
     <url>/post/943451b1.html</url>
     <content><![CDATA[<blockquote>
@@ -923,6 +923,163 @@ LVDS-1 和 HDMI-1
         <tag>环境配置</tag>
         <tag>ubuntu</tag>
         <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三对角矩阵求逆的算法-实现</title>
+    <url>/post/891db679.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文实现的是论文《三对角矩阵求逆的算法》
+论文作者：冉瑞生、黄延祝等人</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="matlab代码">MATLAB代码</h3>
+<ul>
+<li>函数实现</li>
+</ul>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span>
+<span class="token comment">% 本文实现的是论文《三对角矩阵求逆的算法》论文作者：冉瑞生、黄延祝等人</span>
+<span class="token comment">% 本文算法的计算复杂度为O(n^2)</span>
+<span class="token comment">% 应用数学和力学，第30卷，第2期 2009年2月15日出版 文章编号：1000-0887(2009)02-0238-07</span>
+<span class="token comment">% Code author:Qingjun Chang  qingjun_chang@163.com &amp; qingjun.cn@gmail.com</span>
+<span class="token comment">% INPUT     a：下对角线 1*(n-1)</span>
+<span class="token comment">%           b：对角线 1*n</span>
+<span class="token comment">%           c：上对角线 1*(n-1)</span>
+<span class="token comment">% OUTPUT    A：原始三对角矩阵</span>
+<span class="token comment">%           C：逆矩阵</span>
+C <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment">%% STEP1 input A</span>
+
+A <span class="token operator">=</span> <span class="token function">diag</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">diag</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">diag</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span> a<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">%% STEP2 将A分解成A = LU</span>
+%
+<span class="token comment">% $\alpha_1=b_1$</span>
+<span class="token comment">% $\tau_&#123;i-1&#125;=\frac&#123;c_&#123;i-1&#125;&#125;&#123;\alpha_&#123;i-1&#125;&#125;,\alpha_i=b_i-a_i\tau_&#123;i-1&#125;,$</span>
+<span class="token comment">% $\gamma_i=\frac&#123;a_i&#125;&#123;\alpha_&#123;i-1&#125;&#125;(i=2,\cdots,n)$</span>
+%
+n <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+    <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'算法2.1失败!正在尝试算法2.2...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    syms x
+    alpha <span class="token operator">=</span> x<span class="token punctuation">;</span>
+    flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">:</span>n
+    <span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">c</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'算法2.1失败!正在尝试算法2.2...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        syms x
+        alpha <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        t <span class="token operator">=</span> <span class="token punctuation">[</span>t x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        gamma <span class="token operator">=</span> <span class="token punctuation">[</span>gamma x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+<span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+    <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'矩阵是奇异的!\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token comment">%% 算法2.2的一部分</span>
+%
+<span class="token comment">% $P(x)=\Pi_&#123;i=1&#125;^n\alpha_i$</span>
+%
+<span class="token keyword">if</span> flag
+    P <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
+        P <span class="token operator">=</span> P<span class="token operator">*</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    P <span class="token operator">=</span> <span class="token function">expand</span><span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    P_poly <span class="token operator">=</span> <span class="token function">sym2poly</span><span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">% 偶尔会出现错误 提示是Not a polynomial.以后修复</span>
+    <span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">P_poly</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token punctuation">)</span>
+        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'矩阵是奇异的\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">%% STEP3 计算逆矩阵的最后一个元</span>
+%
+<span class="token comment">% $C_&#123;nn&#125;=\frac&#123;1&#125;&#123;\alpha_n&#125;$</span>
+%
+C <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> flag
+    C <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    C <span class="token operator">=</span> <span class="token function">reshape</span><span class="token punctuation">(</span>C<span class="token punctuation">,</span>n<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token function">C</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span>n<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% STEP4 计算逆矩阵C的主对角线元素</span>
+%
+<span class="token comment">% $C_&#123;ii&#125;=\frac&#123;1&#125;&#123;\alpha_i&#125;+\tau_i\gamma_&#123;i+1&#125;C_&#123;i+1,i+1&#125; (i = n-1,\cdots,2,1)$</span>
+%
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
+    <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">%% STEP5 计算第i行位于主对角线元素左边的元素以及位于第i列位于主对角线上方的元素</span>
+%
+<span class="token comment">% $C_&#123;ij&#125;=-\gamma_&#123;j+1&#125;C_&#123;i,j+1&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
+%
+<span class="token comment">% $C_&#123;ji&#125;=-\tau_jC_&#123;j+1,i&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
+%
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span>
+    <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
+        <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span>
+    <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
+        <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">%% STEP6 输出C</span>
+<span class="token keyword">if</span> flag
+    C <span class="token operator">=</span> <span class="token function">expand</span><span class="token punctuation">(</span>C<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    str <span class="token operator">=</span> <span class="token string">'@(x) ['</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
+        <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
+            temp <span class="token operator">=</span> <span class="token function">factor</span><span class="token punctuation">(</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">' '</span> <span class="token function">char</span><span class="token punctuation">(</span><span class="token function">prod</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+        str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">';'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">']'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    Cfun <span class="token operator">=</span> <span class="token function">str2func</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    C <span class="token operator">=</span> <span class="token function">Cfun</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span></code></pre>
+<ul>
+<li>测试</li>
+</ul>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">3</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span></code></pre>
+<ul>
+<li>论文原文</li>
+</ul>
+<p><a
+href="/pdf/三对角矩阵求逆的算法_冉瑞生.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
+<ul>
+<li>文档</li>
+</ul>
+<p><a
+href="https://files.ifish.ink/mics/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>算法实现</tag>
+        <tag>代数</tag>
       </tags>
   </entry>
   <entry>
@@ -1219,117 +1376,6 @@ alt="角部顶点绘制（型值点处为G^1连续，其他点C^2连续）" /></
       </tags>
   </entry>
   <entry>
-    <title>从复平面上域的多项式函数生成调和函数</title>
-    <url>/post/harmonic.html</url>
-    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
-class="math inline">\(z=x+yi\)</span>的多项式函数<span
-class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
-class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
-class="math inline">\((x,y)\)</span>的二元调和函数。</p>
-<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
-close all
-[x,y] &#x3D; meshgrid(linspace(-1,1,100));
-p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
-z &#x3D; real(p(x,y));
-surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
-axis off;</code></pre></p>
-<p><img src="https://files.ifish.ink/mics/har.gif" /></p>
-]]></content>
-      <categories>
-        <category>学习/研究</category>
-      </categories>
-      <tags>
-        <tag>MATLAB代码</tag>
-        <tag>曲线曲面</tag>
-        <tag>调和函数</tag>
-        <tag>极小曲面</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用伽马函数表示伯恩斯坦基函数</title>
-    <url>/post/bernstein-gamma.html</url>
-    <content><![CDATA[<p>如果你接触过 Bezier
-曲线，几乎一定见过伯恩斯坦基函数。它看起来像一个“公式细节”，但其实背后有一个很实用的问题：</p>
-<p>同样的数学式子，怎么写得更不容易算崩？</p>
-<h3 id="先说结论">先说结论</h3>
-<p>伯恩斯坦基函数的标准形式是</p>
-<p><span class="math display">\[
-B_r^d(t)=\binom{d}{r}t^r(1-t)^{d-r},\quad r=0,1,\ldots,d,\; t\in[0,1].
-\]</span></p>
-<p>关键在组合数 <span
-class="math inline">\(\binom{d}{r}\)</span>。它常见写法是</p>
-<p><span class="math display">\[
-\binom{d}{r}=\frac{d!}{r!(d-r)!}.
-\]</span></p>
-<p>问题来了：当阶数 <span class="math inline">\(d\)</span>
-很大时，阶乘会非常大，直接计算容易溢出或者损失精度。</p>
-<p>更稳妥的做法是：用伽马函数，特别是用
-<code>gammaln</code>（对数伽马函数）来算。</p>
-<h3 id="直觉理解它在分配权重">直觉理解：它在“分配权重”</h3>
-<p>可以把 <span class="math inline">\(B_r^d(t)\)</span>
-理解成一组权重函数：</p>
-<ol type="1">
-<li>每个 <span class="math inline">\(r\)</span> 对应一个权重。</li>
-<li>这些权重在 <span class="math inline">\(t\in[0,1]\)</span>
-内非负。</li>
-<li>所有权重加起来等于 1。</li>
-</ol>
-<p>这也是为什么它非常适合曲线插值和形状控制。</p>
-<h3
-id="数学推导阶乘如何变成伽马函数">数学推导：阶乘如何变成伽马函数</h3>
-<p>伽马函数有一个经典关系：</p>
-<p><span class="math display">\[
-\Gamma(n+1)=n!,\quad n\in\mathbb{N}.
-\]</span></p>
-<p>把它代入组合数：</p>
-<p><span class="math display">\[
-\binom{d}{r}=\frac{\Gamma(d+1)}{\Gamma(r+1)\Gamma(d-r+1)}.
-\]</span></p>
-<p>再代回伯恩斯坦基函数：</p>
-<p><span class="math display">\[
-B_r^d(t)=\frac{\Gamma(d+1)}{\Gamma(r+1)\Gamma(d-r+1)}t^r(1-t)^{d-r}.
-\]</span></p>
-<p>到这一步还是“直接算伽马函数”。在数值计算里，我们通常再往前走一步，用对数形式：</p>
-<p><span class="math display">\[
-\mathrm{gammaln}(x)=\log\Gamma(x).
-\]</span></p>
-<p>于是</p>
-<p><span class="math display">\[
-\binom{d}{r}=\exp\left(\mathrm{gammaln}(d+1)-\mathrm{gammaln}(r+1)-\mathrm{gammaln}(d-r+1)\right).
-\]</span></p>
-<p>最终得到更稳定的伯恩斯坦基函数写法：</p>
-<p><span class="math display">\[
-B_r^d(t)=\exp\left(\mathrm{gammaln}(d+1)-\mathrm{gammaln}(r+1)-\mathrm{gammaln}(d-r+1)\right)t^r(1-t)^{d-r}.
-\]</span></p>
-<h3 id="代码实现matlab">代码实现（MATLAB）</h3>
-<p>本文使用的实现如下：</p>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">% Standard Bernstein Basis Polynomial</span>
-<span class="token keyword">function</span> v <span class="token operator">=</span> <span class="token function">bern</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span> d_<span class="token punctuation">,</span> t<span class="token punctuation">)</span>
-    v <span class="token operator">=</span> <span class="token function">exp</span><span class="token punctuation">(</span><span class="token function">gammaln</span><span class="token punctuation">(</span>d_<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">gammaln</span><span class="token punctuation">(</span>r<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">gammaln</span><span class="token punctuation">(</span>d_<span class="token operator">-</span>r<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">.*</span> t<span class="token operator">.^</span>r <span class="token operator">.*</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>t<span class="token punctuation">)</span><span class="token operator">.^</span><span class="token punctuation">(</span>d_<span class="token operator">-</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span></code></pre>
-<h3 id="为什么-gammaln-更推荐">为什么 <code>gammaln</code> 更推荐</h3>
-<ol type="1">
-<li><p>避免“大数爆炸” 直接算 <span class="math inline">\(d!\)</span>
-很快就会变成超大数，浮点数容易顶不住；<code>gammaln</code>
-先在对数域处理，稳定很多。</p></li>
-<li><p>降低精度损失 组合数可能极大或极小。对数域里先做加减，再
-<code>exp</code>，比“先乘出大数再相除”更安全。</p></li>
-<li><p>更适合高阶曲线曲面计算 在高阶 Bezier/Bernstein
-场景中，更不容易出现 <code>Inf</code>、<code>NaN</code>。</p></li>
-<li><p>数学上更通用
-伽马函数是阶乘的连续推广，在一些扩展模型中更方便。</p></li>
-</ol>
-]]></content>
-      <categories>
-        <category>学习/研究</category>
-      </categories>
-      <tags>
-        <tag>曲线曲面</tag>
-        <tag>数值计算</tag>
-        <tag>MATLAB</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>三角网格曲面参数化</title>
     <url>/post/bcf65292.html</url>
     <content><![CDATA[<blockquote>
@@ -1512,6 +1558,117 @@ src="https://files.ifish.ink/mics/20201031-4.png" /></p>
         <tag>参数化</tag>
         <tag>均值重心坐标</tag>
         <tag>几何处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从复平面上域的多项式函数生成调和函数</title>
+    <url>/post/harmonic.html</url>
+    <content><![CDATA[<p>调和函数是在某区域中满足拉普拉斯方程的函数。由于任意全纯函数的实部和虚部都满足二元调和函数。所有关于复数<span
+class="math inline">\(z=x+yi\)</span>的多项式函数<span
+class="math inline">\(p_n(z)=a_0+a_1z+\dots+a_nz^n\)</span>在复数域上是全纯的。则<span
+class="math inline">\(p_n(z)\)</span>的实部（虚部）是关于<span
+class="math inline">\((x,y)\)</span>的二元调和函数。</p>
+<p>这里我们用Matlab可视化 <pre class="language-MATLAB" data-language="MATLAB"><code class="language-MATLAB">clear
+close all
+[x,y] &#x3D; meshgrid(linspace(-1,1,100));
+p &#x3D; @(x,y) complex(x,y).^2-complex(x,y)&#x2F;2;
+z &#x3D; real(p(x,y));
+surf(x,y,z,&#39;linestyle&#39;,&#39;none&#39;);
+axis off;</code></pre></p>
+<p><img src="https://files.ifish.ink/mics/har.gif" /></p>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>MATLAB代码</tag>
+        <tag>曲线曲面</tag>
+        <tag>调和函数</tag>
+        <tag>极小曲面</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用伽马函数表示伯恩斯坦基函数</title>
+    <url>/post/bernstein-gamma.html</url>
+    <content><![CDATA[<p>如果你接触过 Bezier
+曲线，几乎一定见过伯恩斯坦基函数。它看起来像一个“公式细节”，但其实背后有一个很实用的问题：</p>
+<p>同样的数学式子，怎么写得更不容易算崩？</p>
+<h3 id="先说结论">先说结论</h3>
+<p>伯恩斯坦基函数的标准形式是</p>
+<p><span class="math display">\[
+B_r^d(t)=\binom{d}{r}t^r(1-t)^{d-r},\quad r=0,1,\ldots,d,\; t\in[0,1].
+\]</span></p>
+<p>关键在组合数 <span
+class="math inline">\(\binom{d}{r}\)</span>。它常见写法是</p>
+<p><span class="math display">\[
+\binom{d}{r}=\frac{d!}{r!(d-r)!}.
+\]</span></p>
+<p>问题来了：当阶数 <span class="math inline">\(d\)</span>
+很大时，阶乘会非常大，直接计算容易溢出或者损失精度。</p>
+<p>更稳妥的做法是：用伽马函数，特别是用
+<code>gammaln</code>（对数伽马函数）来算。</p>
+<h3 id="直觉理解它在分配权重">直觉理解：它在“分配权重”</h3>
+<p>可以把 <span class="math inline">\(B_r^d(t)\)</span>
+理解成一组权重函数：</p>
+<ol type="1">
+<li>每个 <span class="math inline">\(r\)</span> 对应一个权重。</li>
+<li>这些权重在 <span class="math inline">\(t\in[0,1]\)</span>
+内非负。</li>
+<li>所有权重加起来等于 1。</li>
+</ol>
+<p>这也是为什么它非常适合曲线插值和形状控制。</p>
+<h3
+id="数学推导阶乘如何变成伽马函数">数学推导：阶乘如何变成伽马函数</h3>
+<p>伽马函数有一个经典关系：</p>
+<p><span class="math display">\[
+\Gamma(n+1)=n!,\quad n\in\mathbb{N}.
+\]</span></p>
+<p>把它代入组合数：</p>
+<p><span class="math display">\[
+\binom{d}{r}=\frac{\Gamma(d+1)}{\Gamma(r+1)\Gamma(d-r+1)}.
+\]</span></p>
+<p>再代回伯恩斯坦基函数：</p>
+<p><span class="math display">\[
+B_r^d(t)=\frac{\Gamma(d+1)}{\Gamma(r+1)\Gamma(d-r+1)}t^r(1-t)^{d-r}.
+\]</span></p>
+<p>到这一步还是“直接算伽马函数”。在数值计算里，我们通常再往前走一步，用对数形式：</p>
+<p><span class="math display">\[
+\mathrm{gammaln}(x)=\log\Gamma(x).
+\]</span></p>
+<p>于是</p>
+<p><span class="math display">\[
+\binom{d}{r}=\exp\left(\mathrm{gammaln}(d+1)-\mathrm{gammaln}(r+1)-\mathrm{gammaln}(d-r+1)\right).
+\]</span></p>
+<p>最终得到更稳定的伯恩斯坦基函数写法：</p>
+<p><span class="math display">\[
+B_r^d(t)=\exp\left(\mathrm{gammaln}(d+1)-\mathrm{gammaln}(r+1)-\mathrm{gammaln}(d-r+1)\right)t^r(1-t)^{d-r}.
+\]</span></p>
+<h3 id="代码实现matlab">代码实现（MATLAB）</h3>
+<p>本文使用的实现如下：</p>
+<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">% Standard Bernstein Basis Polynomial</span>
+<span class="token keyword">function</span> v <span class="token operator">=</span> <span class="token function">bern</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span> d_<span class="token punctuation">,</span> t<span class="token punctuation">)</span>
+    v <span class="token operator">=</span> <span class="token function">exp</span><span class="token punctuation">(</span><span class="token function">gammaln</span><span class="token punctuation">(</span>d_<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">gammaln</span><span class="token punctuation">(</span>r<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">gammaln</span><span class="token punctuation">(</span>d_<span class="token operator">-</span>r<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">.*</span> t<span class="token operator">.^</span>r <span class="token operator">.*</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>t<span class="token punctuation">)</span><span class="token operator">.^</span><span class="token punctuation">(</span>d_<span class="token operator">-</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span></code></pre>
+<h3 id="为什么-gammaln-更推荐">为什么 <code>gammaln</code> 更推荐</h3>
+<ol type="1">
+<li><p>避免“大数爆炸” 直接算 <span class="math inline">\(d!\)</span>
+很快就会变成超大数，浮点数容易顶不住；<code>gammaln</code>
+先在对数域处理，稳定很多。</p></li>
+<li><p>降低精度损失 组合数可能极大或极小。对数域里先做加减，再
+<code>exp</code>，比“先乘出大数再相除”更安全。</p></li>
+<li><p>更适合高阶曲线曲面计算 在高阶 Bezier/Bernstein
+场景中，更不容易出现 <code>Inf</code>、<code>NaN</code>。</p></li>
+<li><p>数学上更通用
+伽马函数是阶乘的连续推广，在一些扩展模型中更方便。</p></li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习/研究</category>
+      </categories>
+      <tags>
+        <tag>曲线曲面</tag>
+        <tag>数值计算</tag>
+        <tag>MATLAB</tag>
       </tags>
   </entry>
   <entry>
@@ -2031,150 +2188,52 @@ pm2 delete my-node-app  <span class="token comment"># 删除服务</span></code>
       </tags>
   </entry>
   <entry>
-    <title>三对角矩阵求逆的算法-实现</title>
-    <url>/post/891db679.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文实现的是论文《三对角矩阵求逆的算法》
-论文作者：冉瑞生、黄延祝等人</p>
+    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
+    <url>/post/d033f67a.html</url>
+    <content><![CDATA[<h4
+id="c实现二维多边形均值重心坐标代码可能有冗余未优化代码">c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
+<blockquote>
+<p>关于三维中均值重心坐标的实现可参考我的另一篇博客：<a
+href="https://www.ifish.ink/post/4d3c170c.html"
+title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
+Value Coordinates In 3D代码实现</a></p>
 </blockquote>
 <span id="more"></span>
-<h3 id="matlab代码">MATLAB代码</h3>
-<ul>
-<li>函数实现</li>
-</ul>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span>
-<span class="token comment">% 本文实现的是论文《三对角矩阵求逆的算法》论文作者：冉瑞生、黄延祝等人</span>
-<span class="token comment">% 本文算法的计算复杂度为O(n^2)</span>
-<span class="token comment">% 应用数学和力学，第30卷，第2期 2009年2月15日出版 文章编号：1000-0887(2009)02-0238-07</span>
-<span class="token comment">% Code author:Qingjun Chang  qingjun_chang@163.com &amp; qingjun.cn@gmail.com</span>
-<span class="token comment">% INPUT     a：下对角线 1*(n-1)</span>
-<span class="token comment">%           b：对角线 1*n</span>
-<span class="token comment">%           c：上对角线 1*(n-1)</span>
-<span class="token comment">% OUTPUT    A：原始三对角矩阵</span>
-<span class="token comment">%           C：逆矩阵</span>
-C <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token comment">%% STEP1 input A</span>
-
-A <span class="token operator">=</span> <span class="token function">diag</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">diag</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">diag</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span> a<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token comment">%% STEP2 将A分解成A = LU</span>
-%
-<span class="token comment">% $\alpha_1=b_1$</span>
-<span class="token comment">% $\tau_&#123;i-1&#125;=\frac&#123;c_&#123;i-1&#125;&#125;&#123;\alpha_&#123;i-1&#125;&#125;,\alpha_i=b_i-a_i\tau_&#123;i-1&#125;,$</span>
-<span class="token comment">% $\gamma_i=\frac&#123;a_i&#125;&#123;\alpha_&#123;i-1&#125;&#125;(i=2,\cdots,n)$</span>
-%
-n <span class="token operator">=</span> <span class="token function">size</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
-    <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'算法2.1失败!正在尝试算法2.2...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    syms x
-    alpha <span class="token operator">=</span> x<span class="token punctuation">;</span>
-    flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">:</span>n
-    <span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">c</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'算法2.1失败!正在尝试算法2.2...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        syms x
-        alpha <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        t <span class="token operator">=</span> <span class="token punctuation">[</span>t x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        gamma <span class="token operator">=</span> <span class="token punctuation">[</span>gamma x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-<span class="token keyword">if</span> <span class="token function">alpha</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
-    <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'矩阵是奇异的!\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token comment">%% 算法2.2的一部分</span>
-%
-<span class="token comment">% $P(x)=\Pi_&#123;i=1&#125;^n\alpha_i$</span>
-%
-<span class="token keyword">if</span> flag
-    P <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
-        P <span class="token operator">=</span> P<span class="token operator">*</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    P <span class="token operator">=</span> <span class="token function">expand</span><span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    P_poly <span class="token operator">=</span> <span class="token function">sym2poly</span><span class="token punctuation">(</span>P<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">% 偶尔会出现错误 提示是Not a polynomial.以后修复</span>
-    <span class="token keyword">if</span> <span class="token operator">~</span><span class="token function">P_poly</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token punctuation">)</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'矩阵是奇异的\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-
-<span class="token comment">%% STEP3 计算逆矩阵的最后一个元</span>
-%
-<span class="token comment">% $C_&#123;nn&#125;=\frac&#123;1&#125;&#123;\alpha_n&#125;$</span>
-%
-C <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> flag
-    C <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    C <span class="token operator">=</span> <span class="token function">reshape</span><span class="token punctuation">(</span>C<span class="token punctuation">,</span>n<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-<span class="token function">C</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span>n<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">%% STEP4 计算逆矩阵C的主对角线元素</span>
-%
-<span class="token comment">% $C_&#123;ii&#125;=\frac&#123;1&#125;&#123;\alpha_i&#125;+\tau_i\gamma_&#123;i+1&#125;C_&#123;i+1,i+1&#125; (i = n-1,\cdots,2,1)$</span>
-%
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
-    <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">alpha</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span>
-
-<span class="token comment">%% STEP5 计算第i行位于主对角线元素左边的元素以及位于第i列位于主对角线上方的元素</span>
-%
-<span class="token comment">% $C_&#123;ij&#125;=-\gamma_&#123;j+1&#125;C_&#123;i,j+1&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
-%
-<span class="token comment">% $C_&#123;ji&#125;=-\tau_jC_&#123;j+1,i&#125; (i=n,n-1,\cdots,2;j=i-1,\cdots,1)$</span>
-%
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span>
-    <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
-        <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token function">gamma</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> n<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span>
-    <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">i</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span>
-        <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token function">t</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-<span class="token keyword">end</span>
-
-<span class="token comment">%% STEP6 输出C</span>
-<span class="token keyword">if</span> flag
-    C <span class="token operator">=</span> <span class="token function">expand</span><span class="token punctuation">(</span>C<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    str <span class="token operator">=</span> <span class="token string">'@(x) ['</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
-        <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>n
-            temp <span class="token operator">=</span> <span class="token function">factor</span><span class="token punctuation">(</span><span class="token function">C</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">' '</span> <span class="token function">char</span><span class="token punctuation">(</span><span class="token function">prod</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">end</span>
-        str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">';'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">end</span>
-    str <span class="token operator">=</span> <span class="token punctuation">[</span>str <span class="token string">']'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    Cfun <span class="token operator">=</span> <span class="token function">str2func</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    C <span class="token operator">=</span> <span class="token function">Cfun</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span></code></pre>
-<ul>
-<li>测试</li>
-</ul>
-<pre class="language-matlab" data-language="matlab"><code class="language-matlab">a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">3</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">2</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">[</span>A<span class="token punctuation">,</span>C<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">cqj_InverseMatrixOfTridiagonalMatrices</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span></code></pre>
-<ul>
-<li>论文原文</li>
-</ul>
-<p><a
-href="/pdf/三对角矩阵求逆的算法_冉瑞生.pdf">三对角矩阵求逆的算法_冉瑞生.pdf</a></p>
-<ul>
-<li>文档</li>
-</ul>
-<p><a
-href="https://files.ifish.ink/mics/Implementation_of_Tridiag_Matrix_Inversion_Algorithm.pdf">文档原文</a></p>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
+/// @brief      mean value coordinates in 2D
+/// @details    
+/// @param[in]  p,postiveity
+/// @return     
+/// @attention  
+*/</span>
+VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
+        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
+        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
+        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <hr />
 <p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
 ]]></content>
@@ -2182,9 +2241,10 @@ href="https://files.ifish.ink/mics/Implementation_of_Tridiag_Matrix_Inversion_Al
         <category>学习/研究</category>
       </categories>
       <tags>
-        <tag>MATLAB代码</tag>
         <tag>算法实现</tag>
-        <tag>代数</tag>
+        <tag>均值重心坐标</tag>
+        <tag>几何处理</tag>
+        <tag>C++代码</tag>
       </tags>
   </entry>
   <entry>
@@ -2256,66 +2316,6 @@ VectorXd <span class="token class-name">MyMesh</span><span class="token double-c
     <span class="token punctuation">&#125;</span>
     mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>学习/研究</category>
-      </categories>
-      <tags>
-        <tag>算法实现</tag>
-        <tag>均值重心坐标</tag>
-        <tag>几何处理</tag>
-        <tag>C++代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>均值重心坐标Mean Value Coordinates In 2D代码实现</title>
-    <url>/post/d033f67a.html</url>
-    <content><![CDATA[<h4
-id="c实现二维多边形均值重心坐标代码可能有冗余未优化代码">c++实现二维多边形均值重心坐标（代码可能有冗余，未优化代码！）：</h4>
-<blockquote>
-<p>关于三维中均值重心坐标的实现可参考我的另一篇博客：<a
-href="https://www.ifish.ink/post/4d3c170c.html"
-title="均值重心坐标Mean Value Coordinates In 3D代码实现">均值重心坐标Mean
-Value Coordinates In 3D代码实现</a></p>
-</blockquote>
-<span id="more"></span>
-<pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">/*
-/// @brief      mean value coordinates in 2D
-/// @details    
-/// @param[in]  p,postiveity
-/// @return     
-/// @attention  
-*/</span>
-VectorXd <span class="token class-name">MyPolygon</span><span class="token double-colon punctuation">::</span><span class="token function">meanValueCoordinates</span><span class="token punctuation">(</span>Vector2d <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token keyword">bool</span> <span class="token operator">&amp;</span>postiveity<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    postiveity <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> numOfV <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span><span class="token function">getNumberOfVertices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd mvc_coor <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    VectorXd tanalpha <span class="token operator">=</span> <span class="token class-name">VectorXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span>numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd temp <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    MatrixXd unit_v <span class="token operator">=</span> <span class="token class-name">MatrixXd</span><span class="token double-colon punctuation">::</span><span class="token function">Zero</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-></span>vertices<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> p<span class="token punctuation">;</span>
-        unit_v<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">normalized</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token comment">//Vector3d cor = Vector3d(unit_v(0, i), unit_v(1, i), 0).cross(Vector3d(unit_v(0, (i + 1) % numOfV), unit_v(1, (i + 1) % numOfV), 0));</span>
-        <span class="token comment">//tanalpha[i] = (1 - unit_v.col(i).dot(unit_v.col((i + 1) % numOfV))) / (cor.norm())*(2 * (cor.dot(Vector3d(0, 0, 1)) &lt; 0) - 1);</span>
-        tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">unit_v</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numOfV<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        mvc_coor<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>tanalpha<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> tanalpha<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">+</span> numOfV<span class="token punctuation">)</span> <span class="token operator">%</span> numOfV<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> temp<span class="token punctuation">.</span><span class="token function">col</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    mvc_coor <span class="token operator">/=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    postiveity <span class="token operator">=</span> mvc_coor<span class="token punctuation">.</span><span class="token function">minCoeff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> mvc_coor <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> mvc_coor<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 <hr />
@@ -2943,6 +2943,95 @@ href="https://files.ifish.ink/mics/Standard_Jacobian_Iterative_Algorithm_Procedu
       </tags>
   </entry>
   <entry>
+    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
+    <url>/post/6248da0d.html</url>
+    <content><![CDATA[<blockquote>
+<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
+uBlock Origin</p>
+</blockquote>
+<h3
+id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
+Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
+<span id="more"></span>
+<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
+<p><img src="https://files.ifish.ink/mics/uo.png"
+alt="uBlock Origin Logo" /> uBlock
+Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
+Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
+Origin的目标是为用户提供自行实施内容过滤的选择。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
+截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
+Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
+href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
+<hr />
+<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
+Origin插件</h3>
+<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
+<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
+<blockquote>
+<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
+store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
+</blockquote>
+<ol type="1">
+<li><a
+href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
+<img src="https://files.ifish.ink/mics/uo5.png" /> <img
+src="https://files.ifish.ink/mics/uo2.png" /></li>
+</ol>
+<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
+<ol type="1">
+<li><p>从百度云盘<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
+Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
+<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
+href="chrome://extensions/">chrome://extensions/</a>
+后回车，可以看到类似下图页面 <img
+src="https://files.ifish.ink/mics/1.png"
+alt="chrome://extensions" /></p></li>
+<li><p>将第1步中下载的<a
+href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
+href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
+<img src="https://files.ifish.ink/mics/uo2.png" /> <img
+src="https://files.ifish.ink/mics/uo3.png" /></p></li>
+<li><p>在Chrome右上角点击uBlock
+Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
+<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
+</ol>
+<hr />
+<h3 id="三测试">三、测试</h3>
+<ul>
+<li><p>未启用uBlock
+Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(可以看到靠前的内容几乎都是广告) <img
+src="https://files.ifish.ink/mics/uo6.png" /></p></li>
+<li><p>启用uBlock
+Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
+(广告明显减少) <img
+src="https://files.ifish.ink/mics/uo7.png" /></p></li>
+<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
+src="https://files.ifish.ink/mics/uo.gif" /></p></li>
+</ul>
+<hr />
+<h3 id="四参考">四、参考：</h3>
+<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
+title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
+维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
+<hr />
+<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
+]]></content>
+      <categories>
+        <category>工具技能</category>
+      </categories>
+      <tags>
+        <tag>神器</tag>
+        <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>男孩，鼹鼠，狐狸和马</title>
     <url>/post/ca64211f.html</url>
     <content><![CDATA[<p><img src="/images/imgs/ca64211f-4.jpeg" /></p>
@@ -3086,95 +3175,6 @@ alt="封闭控制多边形的四点插值细分曲线" /></p>
         <tag>曲线曲面</tag>
         <tag>C/C++</tag>
         <tag>细分曲线</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爱奇艺非会员去视频广告：uBlock Origin插件</title>
-    <url>/post/6248da0d.html</url>
-    <content><![CDATA[<blockquote>
-<p>相信大家在浏览网页时，都有被各种各样的站内广告所打扰的经历。今天小编给大家分享一款评分很高的去广告插件
-uBlock Origin</p>
-</blockquote>
-<h3
-id="小编使用ublock-origin插件已经一年多时间了在这之前用过各种各样的去广告插件但唯独这一款插件用得最舒服也是使用时间最长的一款去广告插件">小编使用uBlock
-Origin插件已经一年多时间了，在这之前用过各种各样的去广告插件，但唯独这一款插件用得最舒服，也是使用时间最长的一款去广告插件</h3>
-<span id="more"></span>
-<h3 id="一ublock-origin简介">一、uBlock Origin简介</h3>
-<p><img src="https://files.ifish.ink/mics/uo.png"
-alt="uBlock Origin Logo" /> uBlock
-Origin是一款自由、开源、跨平台的内容过滤浏览器扩展，包含广告屏蔽功能。此扩展可在多款浏览器上使用，包括Safari、Chrome、Edge、Firefox和Opera及相关的兼容浏览器。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a> uBlock
-Origin已获得多家技术网站的赞誉，其内存占用比其他同样功能的扩展更少。uBlock
-Origin的目标是为用户提供自行实施内容过滤的选择。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a>
-截至2016年，uBlock Origin继续由其创始人和主要开发者Raymond
-Hill积极开发和维护。Hill已撤出对该软件的旧分支“uBlock”的支持，援引“严重违背本项目的精神”。从外表看，旧的分支也已不再被维护。<a
-href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">[1]</a></p>
-<hr />
-<h3 id="二chrome下安装ublock-origin插件">二、Chrome下安装uBlock
-Origin插件</h3>
-<p><em>小编仅仅在Chrome下测试过，其他浏览器下未测试</em></p>
-<h4 id="直接从google-store安装插件">直接从Google Store安装插件</h4>
-<blockquote>
-<p>（由于一些众所周知的原因，国内用户可能不能直接使用google服务，所以不能访问google
-store的同学请跳过本节，用下面讲的第二种方法“<strong>从本地导入.crx文件</strong>”）</p>
-</blockquote>
-<ol type="1">
-<li><a
-href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=zh-CN">点击</a>进入Chrome网上应用商店，点击右侧“<strong>添加至Chrome</strong>”，选择“<strong>添加扩展程序</strong>”
-<img src="https://files.ifish.ink/mics/uo5.png" /> <img
-src="https://files.ifish.ink/mics/uo2.png" /></li>
-</ol>
-<h4 id="从本地导入.crx文件">从本地导入.crx文件</h4>
-<ol type="1">
-<li><p>从百度云盘<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">下载</a> uBlock
-Origin 1.19.6_0.crx文件 提取码：tqwe</p></li>
-<li><p>进入Chrome的扩展程序页：在Chrome地址栏中键入<a
-href="chrome://extensions/">chrome://extensions/</a>
-后回车，可以看到类似下图页面 <img
-src="https://files.ifish.ink/mics/1.png"
-alt="chrome://extensions" /></p></li>
-<li><p>将第1步中下载的<a
-href="https://pan.baidu.com/s/1kqHWjTgz2bY8WD00uniqWQ">uBlockOrigin1.19.6_0.crx</a>文件拖动到<a
-href="chrome://extensions/">Chrome扩展页</a>，点击“<strong>添加扩展程序</strong>”即可
-<img src="https://files.ifish.ink/mics/uo2.png" /> <img
-src="https://files.ifish.ink/mics/uo3.png" /></p></li>
-<li><p>在Chrome右上角点击uBlock
-Origin的图标，选择启动插件，大功告成。可以根据自己的需要设置一些广告拦截规则。
-<img src="https://files.ifish.ink/mics/uo4.png" /></p></li>
-</ol>
-<hr />
-<h3 id="三测试">三、测试</h3>
-<ul>
-<li><p>未启用uBlock
-Origin插件时，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(可以看到靠前的内容几乎都是广告) <img
-src="https://files.ifish.ink/mics/uo6.png" /></p></li>
-<li><p>启用uBlock
-Origin插件后，用<strong>百度</strong>搜索引擎搜索关键词“前端开发”的页面
-(广告明显减少) <img
-src="https://files.ifish.ink/mics/uo7.png" /></p></li>
-<li><p>测试爱奇艺视频 (请注意下面gif图中广告时间的变化) <img
-src="https://files.ifish.ink/mics/uo.gif" /></p></li>
-</ul>
-<hr />
-<h3 id="四参考">四、参考：</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UBlock_Origin"
-title="https://zh.wikipedia.org/wiki/UBlock_Origin">1</a>.
-维基百科：https://zh.wikipedia.org/wiki/UBlock_Origin</p>
-<hr />
-<p><strong>如有任何疑问或建议欢迎下方留言 :-)</strong></p>
-]]></content>
-      <categories>
-        <category>工具技能</category>
-      </categories>
-      <tags>
-        <tag>神器</tag>
-        <tag>插件</tag>
       </tags>
   </entry>
   <entry>
