@@ -171,11 +171,34 @@
   <li class="hide-on-med-and-down nav-item">
     
     <a href="/galleries" class="waves-effect waves-light">
+
       
       <i class="fas fa-image" style="zoom: 0.6;"></i>
       
       <span>相册</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
     </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/galleries/">
+          
+          <i class="fas fa-images" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>相册首页</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/galleries/cn-map/">
+          
+          <i class="fas fa-map-location-dot" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>中国足迹相册</span>
+        </a>
+      </li>
+      
+    </ul>
     
   </li>
   
@@ -346,12 +369,36 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/galleries" class="waves-effect waves-light">
+		<a href="javascript:;">
 			
-			    <i class="fa-fw fas fa-image"></i>
+				<i class="fa-fw fas fa-image"></i>
 			
 			相册
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
 		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/galleries/ " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-images" style="position: absolute;left:50px" ></i>
+			      
+		          <span>相册首页</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/galleries/cn-map/ " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-map-location-dot" style="position: absolute;left:50px" ></i>
+			      
+		          <span>中国足迹相册</span>
+                  </a>
+                </li>
+              
+            </ul>
           
         </li>
         
@@ -775,7 +822,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"学习/研究","value":15},{"name":"工具技能","value":14},{"name":"生活娱乐","value":1}],
+                data: [{"name":"学习/研究","value":15},{"name":"生活娱乐","value":1},{"name":"工具技能","value":14}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -799,7 +846,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["MATLAB代码","算法实现","曲线曲面","几何处理","拟合","神器","环境配置","代数","均值重心坐标","C/C++"]
+                data: ["MATLAB代码","算法实现","曲线曲面","几何处理","拟合","环境配置","神器","代数","C/C++","均值重心坐标"]
             }
         ],
         yAxis: [
@@ -936,6 +983,12 @@
             
             
             
+            <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
+                <span class="chip center-align waves-effect waves-light chip-default">算法实现</span>
+            </a>
+            
+            
+            
             <a href="/tags/%E6%8B%9F%E5%90%88/">
                 <span class="chip center-align waves-effect waves-light chip-default">拟合</span>
             </a>
@@ -948,8 +1001,8 @@
             
             
             
-            <a href="/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/">
-                <span class="chip center-align waves-effect waves-light chip-default">算法实现</span>
+            <a href="/tags/%E9%9A%8F%E7%AC%94/">
+                <span class="chip center-align waves-effect waves-light chip-default">随笔</span>
             </a>
             
             
@@ -966,8 +1019,32 @@
             
             
             
-            <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                <span class="chip center-align waves-effect waves-light chip-default">随笔</span>
+            <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+                <span class="chip center-align waves-effect waves-light chip-default">环境配置</span>
+            </a>
+            
+            
+            
+            <a href="/tags/OpenGL/">
+                <span class="chip center-align waves-effect waves-light chip-default">OpenGL</span>
+            </a>
+            
+            
+            
+            <a href="/tags/ImGui/">
+                <span class="chip center-align waves-effect waves-light chip-default">ImGui</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E8%A7%86%E7%BD%91%E8%86%9C%E5%B1%8F%E5%B9%95/">
+                <span class="chip center-align waves-effect waves-light chip-default">视网膜屏幕</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/">
+                <span class="chip center-align waves-effect waves-light chip-default">坐标转换</span>
             </a>
             
             
@@ -984,14 +1061,8 @@
             
             
             
-            <a href="/tags/SEO/">
-                <span class="chip center-align waves-effect waves-light chip-default">SEO</span>
-            </a>
-            
-            
-            
-            <a href="/tags/sitemap/">
-                <span class="chip center-align waves-effect waves-light chip-default">sitemap</span>
+            <a href="/tags/Listary/">
+                <span class="chip center-align waves-effect waves-light chip-default">Listary</span>
             </a>
             
             
@@ -1002,8 +1073,14 @@
             
             
             
-            <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-                <span class="chip center-align waves-effect waves-light chip-default">环境配置</span>
+            <a href="/tags/SEO/">
+                <span class="chip center-align waves-effect waves-light chip-default">SEO</span>
+            </a>
+            
+            
+            
+            <a href="/tags/sitemap/">
+                <span class="chip center-align waves-effect waves-light chip-default">sitemap</span>
             </a>
             
             
@@ -1050,26 +1127,16 @@
             
             
             
-            <a href="/tags/OpenGL/">
-                <span class="chip center-align waves-effect waves-light chip-default">OpenGL</span>
+            
+            
+            <a href="/tags/%E8%B0%83%E5%92%8C%E5%87%BD%E6%95%B0/">
+                <span class="chip center-align waves-effect waves-light chip-default">调和函数</span>
             </a>
             
             
             
-            <a href="/tags/ImGui/">
-                <span class="chip center-align waves-effect waves-light chip-default">ImGui</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E8%A7%86%E7%BD%91%E8%86%9C%E5%B1%8F%E5%B9%95/">
-                <span class="chip center-align waves-effect waves-light chip-default">视网膜屏幕</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/">
-                <span class="chip center-align waves-effect waves-light chip-default">坐标转换</span>
+            <a href="/tags/%E6%9E%81%E5%B0%8F%E6%9B%B2%E9%9D%A2/">
+                <span class="chip center-align waves-effect waves-light chip-default">极小曲面</span>
             </a>
             
             
@@ -1094,26 +1161,6 @@
             
             <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/">
                 <span class="chip center-align waves-effect waves-light chip-default">数值计算</span>
-            </a>
-            
-            
-            
-            
-            
-            <a href="/tags/%E8%B0%83%E5%92%8C%E5%87%BD%E6%95%B0/">
-                <span class="chip center-align waves-effect waves-light chip-default">调和函数</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E6%9E%81%E5%B0%8F%E6%9B%B2%E9%9D%A2/">
-                <span class="chip center-align waves-effect waves-light chip-default">极小曲面</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Listary/">
-                <span class="chip center-align waves-effect waves-light chip-default">Listary</span>
             </a>
             
             
@@ -1150,18 +1197,6 @@
             
             
             
-            <a href="/tags/PM2/">
-                <span class="chip center-align waves-effect waves-light chip-default">PM2</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Node-js/">
-                <span class="chip center-align waves-effect waves-light chip-default">Node.js</span>
-            </a>
-            
-            
-            
             <a href="/tags/C-%E4%BB%A3%E7%A0%81/">
                 <span class="chip center-align waves-effect waves-light chip-default">C++代码</span>
             </a>
@@ -1186,14 +1221,32 @@
             
             
             
+            <a href="/tags/PM2/">
+                <span class="chip center-align waves-effect waves-light chip-default">PM2</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Node-js/">
+                <span class="chip center-align waves-effect waves-light chip-default">Node.js</span>
+            </a>
+            
+            
+            
             <a href="/tags/%E6%8F%92%E4%BB%B6/">
                 <span class="chip center-align waves-effect waves-light chip-default">插件</span>
             </a>
             
             
             
-            <a href="/tags/%E7%BB%86%E5%88%86%E6%9B%B2%E7%BA%BF/">
-                <span class="chip center-align waves-effect waves-light chip-default">细分曲线</span>
+            <a href="/tags/%E5%8A%A8%E7%94%BB/">
+                <span class="chip center-align waves-effect waves-light chip-default">动画</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E7%9F%AD%E7%89%87/">
+                <span class="chip center-align waves-effect waves-light chip-default">短片</span>
             </a>
             
             
@@ -1210,14 +1263,8 @@
             
             
             
-            <a href="/tags/%E5%8A%A8%E7%94%BB/">
-                <span class="chip center-align waves-effect waves-light chip-default">动画</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E7%9F%AD%E7%89%87/">
-                <span class="chip center-align waves-effect waves-light chip-default">短片</span>
+            <a href="/tags/%E7%BB%86%E5%88%86%E6%9B%B2%E7%BA%BF/">
+                <span class="chip center-align waves-effect waves-light chip-default">细分曲线</span>
             </a>
             
             
