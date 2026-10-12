@@ -632,6 +632,28 @@
                 locationRules.find(function (rule) { return description.indexOf(rule.match) === 0; });
         }
 
+        function administrativeCodes(photo) {
+            var rule = locationRule(photo);
+            var saved = String(photo.location_code || '').split('-');
+            return ['province', 'city', 'county'].map(function (level, index) {
+                return saved[index] || (rule && rule[level] ? String(rule[level].adcode) : '');
+            });
+        }
+
+        function boundaryParentAdcodes(level) {
+            var values = {};
+            var directMunicipalities = {110000: true, 120000: true, 310000: true, 500000: true};
+            photos.forEach(function (photo) {
+                var codes = administrativeCodes(photo);
+                if (level === 'city' && codes[0] && !directMunicipalities[codes[0]]) values[codes[0]] = true;
+                if (level === 'county') {
+                    if (codes[1]) values[codes[1]] = true;
+                    else if (codes[0] && (codes[2] || directMunicipalities[codes[0]])) values[codes[0]] = true;
+                }
+            });
+            return Object.keys(values);
+        }
+
         function aggregate(level) {
             var values = {};
             photos.forEach(function (photo) {
@@ -691,7 +713,11 @@
         async function mapForLevel(level, data) {
             var national = await fetchGeojson('100000', true);
             if (level === 'province') return national;
-            var parentAdcodes = Array.from(new Set(data.map(function (item) { return item.parentAdcode; }).filter(Boolean)));
+            // Boundary detail follows every known parent location, not only
+            // regions that already have a photo classified at this exact level.
+            // For example, a 湖北-武汉 photo should still split Wuhan into
+            // counties even before a specific county has been assigned.
+            var parentAdcodes = boundaryParentAdcodes(level);
             var parentBoundaries = await Promise.all(parentAdcodes.map(function (adcode) { return fetchGeojson(adcode, true); }));
             var subdivisionFeatures = [];
             parentBoundaries.forEach(function (boundary) { subdivisionFeatures = subdivisionFeatures.concat(boundary.features || []); });
