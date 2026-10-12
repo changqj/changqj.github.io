@@ -668,7 +668,10 @@
             var cacheKey = adcode + (includeChildren ? '-full' : '');
             if (geojsonCache[cacheKey]) return geojsonCache[cacheKey];
             var suffix = includeChildren ? '_full' : '';
-            var response = await fetch('https://geo.datav.aliyun.com/areas_v3/bound/' + adcode + suffix + '.json');
+            var response = await fetch(
+                'https://geo.datav.aliyun.com/areas_v3/bound/' + adcode + suffix + '.json',
+                {referrerPolicy: 'no-referrer'}
+            );
             if (!response.ok) throw new Error('地图边界请求失败（' + response.status + '）');
             geojsonCache[cacheKey] = await response.json();
             (geojsonCache[cacheKey].features || []).forEach(function (feature) {
